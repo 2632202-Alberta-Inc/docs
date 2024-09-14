@@ -1,0 +1,940 @@
+{
+  "paths": {},
+  "info": {
+    "title": "Flux API",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.2",
+  "components": {
+    "schemas": {
+      "Organization_User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "stytch_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "entity": {},
+          "first_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "last_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "email",
+          "entity",
+          "first_name",
+          "last_name",
+          "phone",
+          "stytch_id",
+          "title"
+        ]
+      },
+      "Organization_UserRoles": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Organization_UserPermissions": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "code",
+          "name"
+        ]
+      },
+      "Organization_UserUserRole": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "user": {},
+          "role": {}
+        },
+        "required": [
+          "role",
+          "user"
+        ]
+      },
+      "Organization_UserUserPermission": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "user": {},
+          "role": {}
+        },
+        "required": [
+          "role",
+          "user"
+        ]
+      },
+      "Product_Product": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "product_category": {}
+        },
+        "required": [
+          "name",
+          "product_category",
+          "short_code"
+        ]
+      },
+      "Product_ProductCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Product_MeasurementUnit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "abbreviation": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "product_category": {}
+        },
+        "required": [
+          "abbreviation",
+          "name",
+          "product_category"
+        ]
+      },
+      "Product_MeasurementType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Product_ProductUnitConversion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product": {},
+          "from_unit": {},
+          "to_unit": {},
+          "conversion_factor": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "conversion_factor",
+          "from_unit",
+          "product",
+          "to_unit"
+        ]
+      },
+      "Product_ProductEqConversion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product": {},
+          "from_product": {},
+          "to_product": {},
+          "conversion_factor": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "conversion_factor",
+          "from_product",
+          "product",
+          "to_product"
+        ]
+      },
+      "Currency_Currency": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "symbol": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "symbol"
+        ]
+      },
+      "Currency_CurrencyConversion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "from_currency": {},
+          "to_currency": {},
+          "exchange_rate": {
+            "type": "number"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "exchange_rate",
+          "from_currency",
+          "to_currency"
+        ]
+      },
+      "Entity_Entity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "organization_slug": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Entity_Producer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "vertically_integrated": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_ProducerProducts": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "producer": {},
+          "products": {}
+        },
+        "required": [
+          "producer",
+          "products"
+        ]
+      },
+      "Entity_Carrier": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_CarrierProducts": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "carrier": {},
+          "products": {}
+        },
+        "required": [
+          "carrier",
+          "products"
+        ]
+      },
+      "Entity_Marketer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "vertically_integrated": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_MarketerProducts": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "marketer": {},
+          "products": {}
+        },
+        "required": [
+          "marketer",
+          "products"
+        ]
+      },
+      "Entity_Midstreamer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "vertically_integrated": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_Refiner": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_Government": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_EnvironmentalService": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_InfrastructureService": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_OilfieldService": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Infrastructure_Pipeline": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "wadf": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "pipeline_type": {},
+          "entity": {}
+        },
+        "required": [
+          "entity",
+          "name",
+          "pipeline_type",
+          "wadf"
+        ]
+      },
+      "Infrastructure_PipelineType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Infrastructure_PipelineProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "pipeline": {},
+          "product": {}
+        },
+        "required": [
+          "pipeline",
+          "product"
+        ]
+      },
+      "Infrastructure_RailLine": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "type": {},
+          "category": {},
+          "max_train_length": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "category",
+          "entity",
+          "type"
+        ]
+      },
+      "Infrastructure_RailLineType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Infrastructure_RailLineCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Infrastructure_RailLineCarrier": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "rail_line": {},
+          "carrier": {}
+        },
+        "required": [
+          "carrier",
+          "rail_line"
+        ]
+      },
+      "Infrastructure_RailLineProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "rail_line": {},
+          "products": {}
+        },
+        "required": [
+          "products",
+          "rail_line"
+        ]
+      },
+      "Facility_Facility": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "range",
+          "section",
+          "township"
+        ]
+      },
+      "Facility_Well": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "uwi": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "facility": {},
+          "entity": {}
+        },
+        "required": [
+          "entity",
+          "facility",
+          "uwi"
+        ]
+      },
+      "Facility_Terminal": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "terminal_type": {},
+          "facility": {},
+          "entity": {}
+        },
+        "required": [
+          "entity",
+          "facility",
+          "name",
+          "terminal_type"
+        ]
+      },
+      "Facility_TerminalType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Facility_TerminalConnectionType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Facility_TerminalPipelineConnection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "terminal": {},
+          "pipeline": {},
+          "connection_type": {
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "pipeline",
+          "terminal"
+        ]
+      },
+      "Facility_TerminalRailineConnection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "terminal": {},
+          "railine": {},
+          "connection_type": {
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "railine",
+          "terminal"
+        ]
+      },
+      "Facility_TerminalProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "terminal": {},
+          "product": {}
+        },
+        "required": [
+          "product",
+          "terminal"
+        ]
+      },
+      "Facility_Plant": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "plant_type": {},
+          "facility": {},
+          "entity": {}
+        },
+        "required": [
+          "entity",
+          "facility",
+          "name",
+          "plant_type"
+        ]
+      },
+      "Facility_PlantType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Facility_PlantProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "plant": {},
+          "product": {}
+        },
+        "required": [
+          "plant",
+          "product"
+        ]
+      },
+      "Facility_Storage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "storage_type": {},
+          "facility": {},
+          "entity": {}
+        },
+        "required": [
+          "entity",
+          "facility",
+          "name",
+          "storage_type"
+        ]
+      },
+      "Facility_StorageType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Facility_StorageProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "storage": {},
+          "product": {}
+        },
+        "required": [
+          "product",
+          "storage"
+        ]
+      }
+    }
+  }
+}
