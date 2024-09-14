@@ -18,12 +18,12 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "https://www.flux-os.com/contact"
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Get Started",
+    "url": "https://www.flux-os.com/login"
   },
   "tabs": [
     {
@@ -44,9 +44,9 @@
       "url": "https://mintlify.com/community"
     },
     {
-      "name": "Blog",
+      "name": "Policies",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://www.flux-os.com/policies"
     }
   ],
   "navigation": [
