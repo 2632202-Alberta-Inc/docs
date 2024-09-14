@@ -1,194 +1,939 @@
 {
-  "openapi": "3.0.1",
+  "paths": {},
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
+    "title": "Flux API",
     "version": "1.0.0"
   },
-  "servers": [
-    {
-      "url": "http://sandbox.mintlify.com"
-    }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
-  "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
+  "openapi": "3.0.2",
   "components": {
     "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
+      "Organization_User": {
         "type": "object",
         "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
+          "id": {
+            "type": "string",
+            "readOnly": true
           },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
+          "stytch_id": {
+            "type": "string",
+            "maxLength": 255
           },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
+          "entity": {},
+          "first_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "last_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 255
           }
+        },
+        "required": [
+          "email",
+          "entity",
+          "first_name",
+          "last_name",
+          "phone",
+          "stytch_id",
+          "title"
         ]
       },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
+      "Organization_UserRoles": {
         "type": "object",
         "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
+          "id": {
+            "type": "string",
+            "readOnly": true
           },
-          "message": {
-            "type": "string"
+          "name": {
+            "type": "string",
+            "maxLength": 255
           }
-        }
-      }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Organization_UserPermissions": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "code",
+          "name"
+        ]
+      },
+      "Organization_UserUserRole": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "user": {},
+          "role": {}
+        },
+        "required": [
+          "role",
+          "user"
+        ]
+      },
+      "Organization_UserUserPermission": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "user": {},
+          "role": {}
+        },
+        "required": [
+          "role",
+          "user"
+        ]
+      },
+      "Product_Product": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "product_category": {}
+        },
+        "required": [
+          "name",
+          "product_category",
+          "short_code"
+        ]
+      },
+      "Product_ProductCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Product_MeasurementUnit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "abbreviation": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "product_category": {}
+        },
+        "required": [
+          "abbreviation",
+          "name",
+          "product_category"
+        ]
+      },
+      "Product_MeasurementType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Product_ProductUnitConversion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product": {},
+          "from_unit": {},
+          "to_unit": {},
+          "conversion_factor": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "conversion_factor",
+          "from_unit",
+          "product",
+          "to_unit"
+        ]
+      },
+      "Product_ProductEqConversion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product": {},
+          "from_product": {},
+          "to_product": {},
+          "conversion_factor": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "conversion_factor",
+          "from_product",
+          "product",
+          "to_product"
+        ]
+      },
+      "Currency_Currency": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "symbol": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "symbol"
+        ]
+      },
+      "Currency_CurrencyConversion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "from_currency": {},
+          "to_currency": {},
+          "exchange_rate": {
+            "type": "number"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "exchange_rate",
+          "from_currency",
+          "to_currency"
+        ]
+      },
+      "Entity_Entity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "organization_slug": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Entity_Producer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "vertically_integrated": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_ProducerProducts": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "producer": {},
+          "products": {}
+        },
+        "required": [
+          "producer",
+          "products"
+        ]
+      },
+      "Entity_Carrier": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_CarrierProducts": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "carrier": {},
+          "products": {}
+        },
+        "required": [
+          "carrier",
+          "products"
+        ]
+      },
+      "Entity_Marketer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "vertically_integrated": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_MarketerProducts": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "marketer": {},
+          "products": {}
+        },
+        "required": [
+          "marketer",
+          "products"
+        ]
+      },
+      "Entity_Midstreamer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "vertically_integrated": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_Refiner": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_Government": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_EnvironmentalService": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_InfrastructureService": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Entity_OilfieldService": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "entity",
+          "legal_name"
+        ]
+      },
+      "Infrastructure_Pipeline": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "wadf": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "pipeline_type": {},
+          "entity": {}
+        },
+        "required": [
+          "entity",
+          "name",
+          "pipeline_type",
+          "wadf"
+        ]
+      },
+      "Infrastructure_PipelineType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Infrastructure_PipelineProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "pipeline": {},
+          "product": {}
+        },
+        "required": [
+          "pipeline",
+          "product"
+        ]
+      },
+      "Infrastructure_RailLine": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {},
+          "type": {},
+          "category": {},
+          "max_train_length": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "category",
+          "entity",
+          "type"
+        ]
+      },
+      "Infrastructure_RailLineType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Infrastructure_RailLineCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Infrastructure_RailLineCarrier": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "rail_line": {},
+          "carrier": {}
+        },
+        "required": [
+          "carrier",
+          "rail_line"
+        ]
+      },
+      "Infrastructure_RailLineProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "rail_line": {},
+          "products": {}
+        },
+        "required": [
+          "products",
+          "rail_line"
+        ]
+      },
+      "Facility_Facility": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "range",
+          "section",
+          "township"
+        ]
+      },
+      "Facility_Well": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "uwi": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "facility": {},
+          "entity": {}
+        },
+        "required": [
+          "entity",
+          "facility",
+          "uwi"
+        ]
+      },
+      "Facility_Terminal": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "terminal_type": {},
+          "facility": {},
+          "entity": {}
+        },
+        "required": [
+          "entity",
+          "facility",
+          "name",
+          "terminal_type"
+        ]
+      },
+      "Facility_TerminalType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Facility_TerminalConnectionType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Facility_TerminalPipelineConnection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "terminal": {},
+          "pipeline": {},
+          "connection_type": {
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "pipeline",
+          "terminal"
+        ]
+      },
+      "Facility_TerminalRailineConnection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "terminal": {},
+          "railine": {},
+          "connection_type": {
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "railine",
+          "terminal"
+        ]
+      },
+      "Facility_TerminalProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "terminal": {},
+          "product": {}
+        },
+        "required": [
+          "product",
+          "terminal"
+        ]
+      },
+      "Facility_Plant": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "plant_type": {},
+          "facility": {},
+          "entity": {}
+        },
+        "required": [
+          "entity",
+          "facility",
+          "name",
+          "plant_type"
+        ]
+      },
+      "Facility_PlantType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Facility_PlantProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "plant": {},
+          "product": {}
+        },
+        "required": [
+          "plant",
+          "product"
+        ]
+      },
+      "Facility_Storage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "storage_type": {},
+          "facility": {},
+          "entity": {}
+        },
+        "required": [
+          "entity",
+          "facility",
+          "name",
+          "storage_type"
+        ]
+      },
+      "Facility_StorageType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Facility_StorageProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "storage": {},
+          "product": {}
+        },
+        "required": [
+          "product",
+          "storage"
+        ]
       }
     }
   }
