@@ -38,7 +38,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A single user.",
+            "description": "A single user with related roles and permissions.",
             "content": {
               "application/json": {
                 "schema": {
@@ -358,6 +358,38 @@
         },
         "required": ["name"]
       },
+      "UserRoles": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["name"]
+      },
+      "UserPermissions": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["code", "name"]
+      },
       "Organization_User": {
         "type": "object",
         "properties": {
@@ -391,6 +423,18 @@
           "title": {
             "type": "string",
             "maxLength": 255
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRoles"
+            }
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserPermissions"
+            }
           }
         },
         "required": [
@@ -434,6 +478,50 @@
         },
         "required": ["code", "name"]
       },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "stytch_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity"
+          },
+          "first_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "last_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "email",
+          "first_name",
+          "last_name",
+          "phone",
+          "stytch_id",
+          "title"
+        ]
+      },
       "Organization_UserUserRole": {
         "type": "object",
         "properties": {
@@ -442,7 +530,7 @@
             "readOnly": true
           },
           "user": {
-            "$ref": "#/components/schemas/Organization_User"
+            "$ref": "#/components/schemas/User"
           },
           "role": {
             "$ref": "#/components/schemas/Organization_UserRoles"
@@ -457,12 +545,14 @@
             "readOnly": true
           },
           "user": {
-            "$ref": "#/components/schemas/Organization_User"
+            "$ref": "#/components/schemas/User"
           },
-          "role": {
+          "role": {},
+          "permission": {
             "$ref": "#/components/schemas/Organization_UserPermissions"
           }
-        }
+        },
+        "required": ["role"]
       },
       "ProductCategory": {
         "type": "object",
