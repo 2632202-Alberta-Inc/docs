@@ -369,29 +369,48 @@
         },
         "required": ["conversion_factor"]
       },
-      "Product_ProductEqConversion": {
+      "CurrencyConversion": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "readOnly": true
           },
-          "product": {
-            "$ref": "#/components/schemas/Product_Product"
-          },
-          "from_product": {
-            "$ref": "#/components/schemas/Product_Product"
-          },
-          "to_product": {
-            "$ref": "#/components/schemas/Product_Product"
-          },
-          "conversion_factor": {
+          "exchange_rate": {
             "type": "number"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
-        "required": ["conversion_factor"]
+        "required": ["exchange_rate"]
       },
       "Currency_Currency": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "symbol": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "conversions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CurrencyConversion"
+            }
+          }
+        },
+        "required": ["name", "symbol"]
+      },
+      "Currency": {
         "type": "object",
         "properties": {
           "id": {
@@ -417,10 +436,10 @@
             "readOnly": true
           },
           "from_currency": {
-            "$ref": "#/components/schemas/Currency_Currency"
+            "$ref": "#/components/schemas/Currency"
           },
           "to_currency": {
-            "$ref": "#/components/schemas/Currency_Currency"
+            "$ref": "#/components/schemas/Currency"
           },
           "exchange_rate": {
             "type": "number"
@@ -1355,6 +1374,60 @@
                       "type": "string",
                       "example": "Product not found."
                     }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/products/categories": {
+      "get": {
+        "summary": "Retrieve a list of product categories.",
+        "tags": ["Products"],
+        "responses": {
+          "200": {
+            "description": "A list of product categories.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product_ProductCategory"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/currencies": {
+      "get": {
+        "summary": "Retrieve a list of currencies.",
+        "tags": ["Currency"],
+        "responses": {
+          "200": {
+            "description": "A list of currencies.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Currency_Currency"
                   }
                 }
               }
