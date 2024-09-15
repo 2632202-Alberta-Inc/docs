@@ -48,7 +48,20 @@
             }
           },
           "404": {
-            "description": "User not found."
+            "description": "User not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "User not found."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -101,7 +114,20 @@
             }
           },
           "404": {
-            "description": "Product not found."
+            "description": "Product not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Product not found."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -220,7 +246,20 @@
             }
           },
           "404": {
-            "description": "Facility not found."
+            "description": "Facility not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Facility not found."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -273,7 +312,20 @@
             }
           },
           "404": {
-            "description": "Terminal not found."
+            "description": "Terminal not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Terminal not found."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
