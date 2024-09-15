@@ -1237,6 +1237,60 @@
         }
       }
     },
+    "/roles": {
+      "get": {
+        "summary": "Retrieve a list of user roles.",
+        "tags": ["Organization"],
+        "responses": {
+          "200": {
+            "description": "A list of user roles.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Organization_UserRoles"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/permissions": {
+      "get": {
+        "summary": "Retrieve a list of user permissions.",
+        "tags": ["Organization"],
+        "responses": {
+          "200": {
+            "description": "A list of user permissions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Organization_UserPermissions"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
     "/products": {
       "get": {
         "summary": "Retrieve a list of products.",
