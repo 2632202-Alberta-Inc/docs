@@ -154,7 +154,20 @@
             }
           },
           "404": {
-            "description": "Entity not found."
+            "description": "Entity not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Entity not found."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -208,6 +221,59 @@
           },
           "404": {
             "description": "Facility not found."
+          }
+        }
+      }
+    },
+    "/terminals": {
+      "get": {
+        "summary": "Retrieve a list of terminals.",
+        "tags": ["Facilities"],
+        "responses": {
+          "200": {
+            "description": "A list of terminals.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Facility_Terminal"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/terminals/{id}": {
+      "get": {
+        "summary": "Retrieve a single terminal by ID.",
+        "tags": ["Facilities"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The terminal ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single terminal.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Facility_Terminal"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Terminal not found."
           }
         }
       }
