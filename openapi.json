@@ -47,6 +47,519 @@
       }
     },
     "schemas": {
+      "Producer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "vertically_integrated": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": ["legal_name"]
+      },
+      "Carrier": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["legal_name"]
+      },
+      "Marketer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "vertically_integrated": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": ["legal_name"]
+      },
+      "Midstreamer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "vertically_integrated": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": ["legal_name"]
+      },
+      "Refiner": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["legal_name"]
+      },
+      "Government": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["legal_name"]
+      },
+      "EnvironmentalService": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["legal_name"]
+      },
+      "InfrastructureService": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["legal_name"]
+      },
+      "OilfieldService": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["legal_name"]
+      },
+      "PlantType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["name"]
+      },
+      "Well": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "uwi": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity"
+          }
+        },
+        "required": ["uwi"]
+      },
+      "TerminalType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["name"]
+      },
+      "Terminal": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "terminal_type": {
+            "$ref": "#/components/schemas/TerminalType"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity"
+          }
+        },
+        "required": ["name"]
+      },
+      "StorageType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["name"]
+      },
+      "ProductCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["name"]
+      },
+      "MeasurementUnit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "abbreviation": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["abbreviation", "name"]
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "product_category": {
+            "$ref": "#/components/schemas/ProductCategory"
+          },
+          "measurement_units": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MeasurementUnit"
+            }
+          }
+        },
+        "required": ["name", "short_code"]
+      },
+      "StorageProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          }
+        }
+      },
+      "Storage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "storage_type": {
+            "$ref": "#/components/schemas/StorageType"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StorageProduct"
+            }
+          }
+        },
+        "required": ["name"]
+      },
+      "Facility": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "wells": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Well"
+            }
+          },
+          "terminals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Terminal"
+            }
+          },
+          "storages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Storage"
+            }
+          }
+        },
+        "required": [
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "range",
+          "section",
+          "township"
+        ]
+      },
+      "PlantProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          }
+        }
+      },
+      "Plant": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "plant_type": {
+            "$ref": "#/components/schemas/PlantType"
+          },
+          "facility": {
+            "$ref": "#/components/schemas/Facility"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlantProduct"
+            }
+          }
+        },
+        "required": ["name"]
+      },
+      "Facility1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "range",
+          "section",
+          "township"
+        ]
+      },
+      "Well1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "uwi": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "facility": {
+            "$ref": "#/components/schemas/Facility1"
+          }
+        },
+        "required": ["uwi"]
+      },
+      "Terminal1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "terminal_type": {
+            "$ref": "#/components/schemas/TerminalType"
+          },
+          "facility": {
+            "$ref": "#/components/schemas/Facility1"
+          }
+        },
+        "required": ["name"]
+      },
+      "Storage1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "storage_type": {
+            "$ref": "#/components/schemas/StorageType"
+          },
+          "facility": {
+            "$ref": "#/components/schemas/Facility1"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StorageProduct"
+            }
+          }
+        },
+        "required": ["name"]
+      },
       "Entity": {
         "type": "object",
         "properties": {
@@ -63,6 +576,84 @@
             "default": null,
             "maxLength": 255,
             "nullable": true
+          },
+          "producers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Producer"
+            }
+          },
+          "carriers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Carrier"
+            }
+          },
+          "marketers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Marketer"
+            }
+          },
+          "midstreamers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Midstreamer"
+            }
+          },
+          "refiners": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Refiner"
+            }
+          },
+          "governments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Government"
+            }
+          },
+          "environmental_services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnvironmentalService"
+            }
+          },
+          "infrastructure_services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InfrastructureService"
+            }
+          },
+          "oilfield_services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OilfieldService"
+            }
+          },
+          "plants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Plant"
+            }
+          },
+          "wells": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Well1"
+            }
+          },
+          "terminals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Terminal1"
+            }
+          },
+          "storages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Storage1"
+            }
           }
         },
         "required": ["name"]
@@ -263,20 +854,6 @@
         },
         "required": ["role"]
       },
-      "ProductCategory": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": ["name"]
-      },
       "Product_Product": {
         "type": "object",
         "properties": {
@@ -294,6 +871,12 @@
           },
           "product_category": {
             "$ref": "#/components/schemas/ProductCategory"
+          },
+          "measurement_units": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MeasurementUnit"
+            }
           }
         },
         "required": ["name", "short_code"]
@@ -312,6 +895,74 @@
         },
         "required": ["name"]
       },
+      "Product1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "product_category": {
+            "$ref": "#/components/schemas/Product_ProductCategory"
+          }
+        },
+        "required": ["name", "short_code"]
+      },
+      "ProductUnitConversion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product": {},
+          "to_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit1"
+          },
+          "conversion_factor": {
+            "type": "number"
+          }
+        },
+        "required": ["conversion_factor", "product"]
+      },
+      "MeasurementUnit1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "abbreviation": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "from_conversions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductUnitConversion"
+            }
+          },
+          "to_conversions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductUnitConversion"
+            }
+          }
+        },
+        "required": ["abbreviation", "name"]
+      },
       "Product_MeasurementUnit": {
         "type": "object",
         "properties": {
@@ -327,25 +978,23 @@
             "type": "string",
             "maxLength": 255
           },
-          "product_category": {
-            "$ref": "#/components/schemas/Product_ProductCategory"
+          "product": {
+            "$ref": "#/components/schemas/Product1"
+          },
+          "from_conversions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductUnitConversion"
+            }
+          },
+          "to_conversions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductUnitConversion"
+            }
           }
         },
         "required": ["abbreviation", "name"]
-      },
-      "Product_MeasurementType": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": ["name"]
       },
       "Product_ProductUnitConversion": {
         "type": "object",
@@ -354,20 +1003,18 @@
             "type": "string",
             "readOnly": true
           },
-          "product": {
-            "$ref": "#/components/schemas/Product_Product"
-          },
+          "product": {},
           "from_unit": {
-            "$ref": "#/components/schemas/Product_MeasurementUnit"
+            "$ref": "#/components/schemas/MeasurementUnit1"
           },
           "to_unit": {
-            "$ref": "#/components/schemas/Product_MeasurementUnit"
+            "$ref": "#/components/schemas/MeasurementUnit1"
           },
           "conversion_factor": {
             "type": "number"
           }
         },
-        "required": ["conversion_factor"]
+        "required": ["conversion_factor", "product"]
       },
       "CurrencyConversion": {
         "type": "object",
@@ -467,9 +1114,170 @@
             "default": null,
             "maxLength": 255,
             "nullable": true
+          },
+          "producers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Producer"
+            }
+          },
+          "carriers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Carrier"
+            }
+          },
+          "marketers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Marketer"
+            }
+          },
+          "midstreamers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Midstreamer"
+            }
+          },
+          "refiners": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Refiner"
+            }
+          },
+          "governments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Government"
+            }
+          },
+          "environmental_services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnvironmentalService"
+            }
+          },
+          "infrastructure_services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InfrastructureService"
+            }
+          },
+          "oilfield_services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OilfieldService"
+            }
+          },
+          "plants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Plant"
+            }
+          },
+          "wells": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Well1"
+            }
+          },
+          "terminals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Terminal1"
+            }
+          },
+          "storages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Storage1"
+            }
           }
         },
         "required": ["name"]
+      },
+      "Entity1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "organization_slug": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "plants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Plant"
+            }
+          },
+          "wells": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Well1"
+            }
+          },
+          "terminals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Terminal1"
+            }
+          },
+          "storages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Storage1"
+            }
+          }
+        },
+        "required": ["name"]
+      },
+      "Producer1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "vertically_integrated": {
+            "type": "boolean",
+            "default": false
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProducerProducts"
+            }
+          }
+        },
+        "required": ["legal_name"]
+      },
+      "ProducerProducts": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "producer": {
+            "$ref": "#/components/schemas/Producer1"
+          },
+          "products": {
+            "$ref": "#/components/schemas/Product_Product"
+          }
+        }
       },
       "Entity_Producer": {
         "type": "object",
@@ -479,7 +1287,7 @@
             "readOnly": true
           },
           "entity": {
-            "$ref": "#/components/schemas/Entity_Entity"
+            "$ref": "#/components/schemas/Entity1"
           },
           "legal_name": {
             "type": "string",
@@ -488,6 +1296,12 @@
           "vertically_integrated": {
             "type": "boolean",
             "default": false
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProducerProducts"
+            }
           }
         },
         "required": ["legal_name"]
@@ -500,7 +1314,42 @@
             "readOnly": true
           },
           "producer": {
-            "$ref": "#/components/schemas/Entity_Producer"
+            "$ref": "#/components/schemas/Producer1"
+          },
+          "products": {
+            "$ref": "#/components/schemas/Product_Product"
+          }
+        }
+      },
+      "Carrier1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CarrierProducts"
+            }
+          }
+        },
+        "required": ["legal_name"]
+      },
+      "CarrierProducts": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "carrier": {
+            "$ref": "#/components/schemas/Carrier1"
           },
           "products": {
             "$ref": "#/components/schemas/Product_Product"
@@ -515,11 +1364,17 @@
             "readOnly": true
           },
           "entity": {
-            "$ref": "#/components/schemas/Entity_Entity"
+            "$ref": "#/components/schemas/Entity1"
           },
           "legal_name": {
             "type": "string",
             "maxLength": 255
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CarrierProducts"
+            }
           }
         },
         "required": ["legal_name"]
@@ -532,7 +1387,46 @@
             "readOnly": true
           },
           "carrier": {
-            "$ref": "#/components/schemas/Entity_Carrier"
+            "$ref": "#/components/schemas/Carrier1"
+          },
+          "products": {
+            "$ref": "#/components/schemas/Product_Product"
+          }
+        }
+      },
+      "Marketer1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "vertically_integrated": {
+            "type": "boolean",
+            "default": false
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketerProducts"
+            }
+          }
+        },
+        "required": ["legal_name"]
+      },
+      "MarketerProducts": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "marketer": {
+            "$ref": "#/components/schemas/Marketer1"
           },
           "products": {
             "$ref": "#/components/schemas/Product_Product"
@@ -547,7 +1441,7 @@
             "readOnly": true
           },
           "entity": {
-            "$ref": "#/components/schemas/Entity_Entity"
+            "$ref": "#/components/schemas/Entity1"
           },
           "legal_name": {
             "type": "string",
@@ -556,6 +1450,12 @@
           "vertically_integrated": {
             "type": "boolean",
             "default": false
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketerProducts"
+            }
           }
         },
         "required": ["legal_name"]
@@ -568,7 +1468,7 @@
             "readOnly": true
           },
           "marketer": {
-            "$ref": "#/components/schemas/Entity_Marketer"
+            "$ref": "#/components/schemas/Marketer1"
           },
           "products": {
             "$ref": "#/components/schemas/Product_Product"
@@ -583,7 +1483,7 @@
             "readOnly": true
           },
           "entity": {
-            "$ref": "#/components/schemas/Entity_Entity"
+            "$ref": "#/components/schemas/Entity1"
           },
           "legal_name": {
             "type": "string",
@@ -604,7 +1504,7 @@
             "readOnly": true
           },
           "entity": {
-            "$ref": "#/components/schemas/Entity_Entity"
+            "$ref": "#/components/schemas/Entity1"
           },
           "legal_name": {
             "type": "string",
@@ -621,7 +1521,7 @@
             "readOnly": true
           },
           "entity": {
-            "$ref": "#/components/schemas/Entity_Entity"
+            "$ref": "#/components/schemas/Entity1"
           },
           "legal_name": {
             "type": "string",
@@ -638,7 +1538,7 @@
             "readOnly": true
           },
           "entity": {
-            "$ref": "#/components/schemas/Entity_Entity"
+            "$ref": "#/components/schemas/Entity1"
           },
           "legal_name": {
             "type": "string",
@@ -655,7 +1555,7 @@
             "readOnly": true
           },
           "entity": {
-            "$ref": "#/components/schemas/Entity_Entity"
+            "$ref": "#/components/schemas/Entity1"
           },
           "legal_name": {
             "type": "string",
@@ -672,7 +1572,7 @@
             "readOnly": true
           },
           "entity": {
-            "$ref": "#/components/schemas/Entity_Entity"
+            "$ref": "#/components/schemas/Entity1"
           },
           "legal_name": {
             "type": "string",
@@ -695,7 +1595,19 @@
         },
         "required": ["name"]
       },
-      "Infrastructure_Pipeline": {
+      "PipelineProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product_Product"
+          }
+        }
+      },
+      "Lines_Pipeline": {
         "type": "object",
         "properties": {
           "id": {
@@ -715,11 +1627,17 @@
           },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PipelineProduct"
+            }
           }
         },
         "required": ["name", "wadf"]
       },
-      "Infrastructure_PipelineType": {
+      "Lines_PipelineType": {
         "type": "object",
         "properties": {
           "id": {
@@ -733,7 +1651,31 @@
         },
         "required": ["name"]
       },
-      "Infrastructure_PipelineProduct": {
+      "Pipeline": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "wadf": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "pipeline_type": {
+            "$ref": "#/components/schemas/Lines_PipelineType"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity_Entity"
+          }
+        },
+        "required": ["name", "wadf"]
+      },
+      "Lines_PipelineProduct": {
         "type": "object",
         "properties": {
           "id": {
@@ -741,7 +1683,7 @@
             "readOnly": true
           },
           "pipeline": {
-            "$ref": "#/components/schemas/Infrastructure_Pipeline"
+            "$ref": "#/components/schemas/Pipeline"
           },
           "product": {
             "$ref": "#/components/schemas/Product_Product"
@@ -776,7 +1718,33 @@
         },
         "required": ["name"]
       },
-      "Infrastructure_RailLine": {
+      "RailLineCarrier": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "carrier": {
+            "$ref": "#/components/schemas/Entity_Carrier"
+          }
+        }
+      },
+      "RailLineProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "products": {},
+          "product": {
+            "$ref": "#/components/schemas/Product_Product"
+          }
+        },
+        "required": ["products"]
+      },
+      "Lines_RailLine": {
         "type": "object",
         "properties": {
           "id": {
@@ -796,10 +1764,22 @@
             "type": "number",
             "default": null,
             "nullable": true
+          },
+          "carriers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RailLineCarrier"
+            }
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RailLineProduct"
+            }
           }
         }
       },
-      "Infrastructure_RailLineType": {
+      "Lines_RailLineType": {
         "type": "object",
         "properties": {
           "id": {
@@ -813,7 +1793,7 @@
         },
         "required": ["name"]
       },
-      "Infrastructure_RailLineCategory": {
+      "Lines_RailLineCategory": {
         "type": "object",
         "properties": {
           "id": {
@@ -827,7 +1807,36 @@
         },
         "required": ["name"]
       },
-      "Infrastructure_RailLineCarrier": {
+      "RailLine": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity_Entity"
+          },
+          "type": {
+            "$ref": "#/components/schemas/Lines_RailLineType"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Lines_RailLineCategory"
+          },
+          "max_train_length": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RailLineProduct"
+            }
+          }
+        }
+      },
+      "Lines_RailLineCarrier": {
         "type": "object",
         "properties": {
           "id": {
@@ -835,14 +1844,43 @@
             "readOnly": true
           },
           "rail_line": {
-            "$ref": "#/components/schemas/Infrastructure_RailLine"
+            "$ref": "#/components/schemas/RailLine"
           },
           "carrier": {
             "$ref": "#/components/schemas/Entity_Carrier"
           }
         }
       },
-      "Infrastructure_RailLineProduct": {
+      "RailLine1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity_Entity"
+          },
+          "type": {
+            "$ref": "#/components/schemas/Lines_RailLineType"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Lines_RailLineCategory"
+          },
+          "max_train_length": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "carriers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RailLineCarrier"
+            }
+          }
+        }
+      },
+      "Lines_RailLineProduct": {
         "type": "object",
         "properties": {
           "id": {
@@ -850,12 +1888,132 @@
             "readOnly": true
           },
           "rail_line": {
-            "$ref": "#/components/schemas/Infrastructure_RailLine"
+            "$ref": "#/components/schemas/RailLine1"
           },
-          "products": {
+          "products": {},
+          "product": {
             "$ref": "#/components/schemas/Product_Product"
           }
-        }
+        },
+        "required": ["products"]
+      },
+      "Entity2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "organization_slug": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "producers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Producer"
+            }
+          },
+          "carriers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Carrier"
+            }
+          },
+          "marketers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Marketer"
+            }
+          },
+          "midstreamers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Midstreamer"
+            }
+          },
+          "refiners": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Refiner"
+            }
+          },
+          "governments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Government"
+            }
+          },
+          "environmental_services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnvironmentalService"
+            }
+          },
+          "infrastructure_services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InfrastructureService"
+            }
+          },
+          "oilfield_services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OilfieldService"
+            }
+          },
+          "wells": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Well1"
+            }
+          },
+          "terminals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Terminal1"
+            }
+          },
+          "storages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Storage1"
+            }
+          }
+        },
+        "required": ["name"]
+      },
+      "Plant1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "plant_type": {
+            "$ref": "#/components/schemas/PlantType"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity2"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlantProduct"
+            }
+          }
+        },
+        "required": ["name"]
       },
       "Facility_Facility": {
         "type": "object",
@@ -885,6 +2043,30 @@
           "meridian": {
             "type": "string",
             "maxLength": 255
+          },
+          "wells": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Well"
+            }
+          },
+          "terminals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Terminal"
+            }
+          },
+          "plants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Plant1"
+            }
+          },
+          "storages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Storage"
+            }
           }
         },
         "required": [
@@ -909,27 +2091,13 @@
             "maxLength": 255
           },
           "facility": {
-            "$ref": "#/components/schemas/Facility_Facility"
+            "$ref": "#/components/schemas/Facility1"
           },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
           }
         },
         "required": ["uwi"]
-      },
-      "TerminalType": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": ["name"]
       },
       "Facility_Terminal": {
         "type": "object",
@@ -946,7 +2114,7 @@
             "$ref": "#/components/schemas/TerminalType"
           },
           "facility": {
-            "$ref": "#/components/schemas/Facility_Facility"
+            "$ref": "#/components/schemas/Facility1"
           },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
@@ -993,7 +2161,7 @@
             "$ref": "#/components/schemas/Facility_Terminal"
           },
           "pipeline": {
-            "$ref": "#/components/schemas/Infrastructure_Pipeline"
+            "$ref": "#/components/schemas/Lines_Pipeline"
           },
           "connection_type": {
             "nullable": true,
@@ -1016,7 +2184,7 @@
             "$ref": "#/components/schemas/Facility_Terminal"
           },
           "railine": {
-            "$ref": "#/components/schemas/Infrastructure_RailLine"
+            "$ref": "#/components/schemas/Lines_RailLine"
           },
           "connection_type": {
             "nullable": true,
@@ -1043,20 +2211,6 @@
           }
         }
       },
-      "PlantType": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": ["name"]
-      },
       "Facility_Plant": {
         "type": "object",
         "properties": {
@@ -1072,10 +2226,16 @@
             "$ref": "#/components/schemas/PlantType"
           },
           "facility": {
-            "$ref": "#/components/schemas/Facility_Facility"
+            "$ref": "#/components/schemas/Facility"
           },
           "entity": {
-            "$ref": "#/components/schemas/Entity_Entity"
+            "$ref": "#/components/schemas/Entity2"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlantProduct"
+            }
           }
         },
         "required": ["name"]
@@ -1094,22 +2254,7 @@
         },
         "required": ["name"]
       },
-      "Facility_PlantProduct": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "plant": {
-            "$ref": "#/components/schemas/Facility_Plant"
-          },
-          "product": {
-            "$ref": "#/components/schemas/Product_Product"
-          }
-        }
-      },
-      "StorageType": {
+      "Plant2": {
         "type": "object",
         "properties": {
           "id": {
@@ -1119,9 +2264,33 @@
           "name": {
             "type": "string",
             "maxLength": 255
+          },
+          "plant_type": {
+            "$ref": "#/components/schemas/Facility_PlantType"
+          },
+          "facility": {
+            "$ref": "#/components/schemas/Facility"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity2"
           }
         },
         "required": ["name"]
+      },
+      "Facility_PlantProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "plant": {
+            "$ref": "#/components/schemas/Plant2"
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product_Product"
+          }
+        }
       },
       "Facility_Storage": {
         "type": "object",
@@ -1138,10 +2307,16 @@
             "$ref": "#/components/schemas/StorageType"
           },
           "facility": {
-            "$ref": "#/components/schemas/Facility_Facility"
+            "$ref": "#/components/schemas/Facility1"
           },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StorageProduct"
+            }
           }
         },
         "required": ["name"]
@@ -1160,6 +2335,29 @@
         },
         "required": ["name"]
       },
+      "Storage2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "storage_type": {
+            "$ref": "#/components/schemas/Facility_StorageType"
+          },
+          "facility": {
+            "$ref": "#/components/schemas/Facility1"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity_Entity"
+          }
+        },
+        "required": ["name"]
+      },
       "Facility_StorageProduct": {
         "type": "object",
         "properties": {
@@ -1168,7 +2366,7 @@
             "readOnly": true
           },
           "storage": {
-            "$ref": "#/components/schemas/Facility_Storage"
+            "$ref": "#/components/schemas/Storage2"
           },
           "product": {
             "$ref": "#/components/schemas/Product_Product"
@@ -1444,7 +2642,7 @@
     },
     "/currencies/convert": {
       "get": {
-        "summary": "Convert between two currencies and retrieve the exchange rate.",
+        "summary": "Retrieve the live exchange rate.",
         "tags": ["Currency"],
         "parameters": [
           {
@@ -1519,6 +2717,12 @@
                 }
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
           }
         }
       }
@@ -1586,6 +2790,864 @@
                     "error": {
                       "type": "string",
                       "example": "Entity not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/producers": {
+      "get": {
+        "summary": "Retrieve a list of producers.",
+        "tags": ["Entity"],
+        "responses": {
+          "200": {
+            "description": "A list of producers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Entity_Producer"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/producers/{id}": {
+      "get": {
+        "summary": "Retrieve a single producer by ID.",
+        "tags": ["Entity"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The producer ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single producer.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Entity_Producer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Producer not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Producer not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/carriers": {
+      "get": {
+        "summary": "Retrieve a list of carriers.",
+        "tags": ["Entity"],
+        "responses": {
+          "200": {
+            "description": "A list of carriers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Entity_Carrier"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/carriers/{id}": {
+      "get": {
+        "summary": "Retrieve a single carrier by ID.",
+        "tags": ["Entity"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The carrier ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single carrier with products.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Entity_Carrier"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Carrier not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Carrier not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/marketers": {
+      "get": {
+        "summary": "Retrieve a list of marketers.",
+        "tags": ["Entity"],
+        "responses": {
+          "200": {
+            "description": "A list of marketers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Entity_Marketer"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/marketers/{id}": {
+      "get": {
+        "summary": "Retrieve a single marketer by ID.",
+        "tags": ["Entity"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The marketer ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single marketer.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Entity_Marketer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Marketer not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Marketer not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/midstreamers": {
+      "get": {
+        "summary": "Retrieve a list of midstreamers.",
+        "tags": ["Entity"],
+        "responses": {
+          "200": {
+            "description": "A list of midstreamers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Entity_Midstreamer"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/midstreamers/{id}": {
+      "get": {
+        "summary": "Retrieve a single midstreamer by ID.",
+        "tags": ["Entity"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The midstreamer ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single midstreamer.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Entity_Midstreamer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Midstreamer not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Midstreamer not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/refiners": {
+      "get": {
+        "summary": "Retrieve a list of refiners.",
+        "tags": ["Entity"],
+        "responses": {
+          "200": {
+            "description": "A list of refiners.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Entity_Refiner"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/refiners/{id}": {
+      "get": {
+        "summary": "Retrieve a single refiner by ID.",
+        "tags": ["Entity"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The refiner ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single refiner.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Entity_Refiner"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Refiner not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Refiner not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/governments": {
+      "get": {
+        "summary": "Retrieve a list of governments.",
+        "tags": ["Entity"],
+        "responses": {
+          "200": {
+            "description": "A list of governments.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Entity_Government"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/governments/{id}": {
+      "get": {
+        "summary": "Retrieve a single government entity by ID.",
+        "tags": ["Entity"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The government entity ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single government entity.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Entity_Government"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Government not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Government not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/environmental_services": {
+      "get": {
+        "summary": "Retrieve a list of environmental services.",
+        "tags": ["Entity"],
+        "responses": {
+          "200": {
+            "description": "A list of environmental services.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Entity_EnvironmentalService"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/environmental_services/{id}": {
+      "get": {
+        "summary": "Retrieve a single environmental service by ID.",
+        "tags": ["Entity"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The environmental service ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single environmental service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Entity_EnvironmentalService"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Environmental service not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Environmental service not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/infrastructure_services": {
+      "get": {
+        "summary": "Retrieve a list of infrastructure services.",
+        "tags": ["Entity"],
+        "responses": {
+          "200": {
+            "description": "A list of infrastructure services.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Entity_InfrastructureService"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/infrastructure_services/{id}": {
+      "get": {
+        "summary": "Retrieve a single infrastructure service by ID.",
+        "tags": ["Entity"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The infrastructure service ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single infrastructure service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Entity_InfrastructureService"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Infrastructure service not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Infrastructure service not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/oilfield_services": {
+      "get": {
+        "summary": "Retrieve a list of oilfield services.",
+        "tags": ["Entity"],
+        "responses": {
+          "200": {
+            "description": "A list of oilfield services.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Entity_OilfieldService"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/oilfield_services/{id}": {
+      "get": {
+        "summary": "Retrieve a single oilfield service by ID.",
+        "tags": ["Oilfield Services"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The oilfield service ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single oilfield service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Entity_OilfieldService"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Oilfield service not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Oilfield service not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/pipelines": {
+      "get": {
+        "summary": "Retrieve a list of pipelines.",
+        "tags": ["Lines"],
+        "responses": {
+          "200": {
+            "description": "A list of pipelines.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Lines_Pipeline"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/pipelines/{id}": {
+      "get": {
+        "summary": "Retrieve a single pipeline by ID.",
+        "tags": ["Lines"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The pipeline ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single pipeline.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lines_Pipeline"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pipeline not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Pipeline not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/rail_lines": {
+      "get": {
+        "summary": "Retrieve a list of rail lines.",
+        "tags": ["Lines"],
+        "responses": {
+          "200": {
+            "description": "A list of rail lines.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Lines_RailLine"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/rail_lines/{id}": {
+      "get": {
+        "summary": "Retrieve a single rail line by ID.",
+        "tags": ["Lines"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The rail line ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single rail line with related data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lines_RailLine"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Rail line not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Rail line not found."
                     }
                   }
                 }
@@ -1679,6 +3741,84 @@
         }
       }
     },
+    "/wells": {
+      "get": {
+        "summary": "Retrieve a list of wells.",
+        "tags": ["Facilities"],
+        "responses": {
+          "200": {
+            "description": "A list of wells.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Facility_Well"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/wells/{id}": {
+      "get": {
+        "summary": "Retrieve a single well by ID.",
+        "tags": ["Facilities"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The well ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single well.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Facility_Well"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Well not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Well not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
     "/terminals": {
       "get": {
         "summary": "Retrieve a list of terminals.",
@@ -1742,6 +3882,162 @@
                     "error": {
                       "type": "string",
                       "example": "Terminal not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/plants": {
+      "get": {
+        "summary": "Retrieve a list of plants.",
+        "tags": ["Facilities"],
+        "responses": {
+          "200": {
+            "description": "A list of plants.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Facility_Plant"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/plants/{id}": {
+      "get": {
+        "summary": "Retrieve a single plant by ID.",
+        "tags": ["Facilities"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The plant ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single plant.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Facility_Plant"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Plant not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Plant not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/storages": {
+      "get": {
+        "summary": "Retrieve a list of storage facilities.",
+        "tags": ["Facilities"],
+        "responses": {
+          "200": {
+            "description": "A list of storage facilities.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Facility_Storage"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/storages/{id}": {
+      "get": {
+        "summary": "Retrieve a single storage by ID.",
+        "tags": ["Facilities"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The storage ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single storage facility.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Facility_Storage"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Storage not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Storage not found."
                     }
                   }
                 }
