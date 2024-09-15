@@ -1442,6 +1442,87 @@
         }
       }
     },
+    "/currencies/convert": {
+      "get": {
+        "summary": "Convert between two currencies and retrieve the exchange rate.",
+        "tags": ["Currency"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "from_currency",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The symbol of the currency to convert from."
+          },
+          {
+            "in": "query",
+            "name": "to_currency",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The symbol of the currency to convert to."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The exchange rate between the two currencies.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "from_currency": {
+                      "type": "string"
+                    },
+                    "to_currency": {
+                      "type": "string"
+                    },
+                    "exchange_rate": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request format incorrect.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "You must include from_currency and to_currency as query params."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Conversion not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Conversion not found."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/entities": {
       "get": {
         "summary": "Retrieve a list of entities.",
