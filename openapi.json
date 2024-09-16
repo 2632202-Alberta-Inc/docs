@@ -3459,7 +3459,7 @@
     "/oilfield_services/{id}": {
       "get": {
         "summary": "Retrieve a single oilfield service by ID.",
-        "tags": ["Oilfield Services"],
+        "tags": ["Entity"],
         "parameters": [
           {
             "in": "path",
