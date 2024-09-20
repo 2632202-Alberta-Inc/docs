@@ -7,8 +7,8 @@
   },
   "favicon": "/logo/favicons/browser.png",
   "colors": {
-    "primary": "#e6e6e6",
-    "light": "#e6e6e6",
+    "primary": "#000000",
+    "light": "#ffffff",
     "dark": "#e6e6e6",
     "anchors": {
       "from": "#0D9373",
