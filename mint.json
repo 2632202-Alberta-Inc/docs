@@ -3,9 +3,9 @@
   "name": "Flux OS",
   "logo": {
     "light": "/logo/png/black_logo_no_background.png",
-    "dark": "/logo/png/black_logo_no_background.png"
+    "dark": "/logo/png/white_logo_no_background.png"
   },
-  "favicon": "/logo/favicon.png",
+  "favicon": "/logo/favicons/browser.png",
   "colors": {
     "primary": "#e6e6e6",
     "light": "#e6e6e6",
