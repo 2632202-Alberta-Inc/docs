@@ -9,7 +9,12 @@
       "apiKeyAuth": {
         "type": "apiKey",
         "in": "header",
-        "name": "Authorization"
+        "name": "x-api-key"
+      },
+      "UserIdAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-user-id"
       }
     },
     "responses": {
