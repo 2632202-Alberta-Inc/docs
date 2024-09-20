@@ -1,7 +1,8 @@
 {
   "security": [
     {
-      "apiKeyAuth": []
+      "apiKeyAuth": [],
+      "UserIdAuth": []
     }
   ],
   "components": {
