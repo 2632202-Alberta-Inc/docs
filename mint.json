@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Flux OS",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logos/white_logo.svg",
+    "light": "/logos/black_logo.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
