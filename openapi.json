@@ -629,7 +629,19 @@
             "maxLength": 255,
             "nullable": true
           },
-          "zip": {
+          "zip_code": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "province": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "state": {
             "type": "string",
             "default": null,
             "maxLength": 255,
@@ -1225,7 +1237,19 @@
             "maxLength": 255,
             "nullable": true
           },
-          "zip": {
+          "zip_code": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "province": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "state": {
             "type": "string",
             "default": null,
             "maxLength": 255,
@@ -1381,7 +1405,19 @@
             "maxLength": 255,
             "nullable": true
           },
-          "zip": {
+          "zip_code": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "province": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "state": {
             "type": "string",
             "default": null,
             "maxLength": 255,
@@ -2140,7 +2176,19 @@
             "maxLength": 255,
             "nullable": true
           },
-          "zip": {
+          "zip_code": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "province": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "state": {
             "type": "string",
             "default": null,
             "maxLength": 255,
@@ -2640,6 +2688,12 @@
                 }
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
           }
         }
       }
