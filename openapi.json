@@ -589,6 +589,10 @@
             "maxLength": 255,
             "nullable": true
           },
+          "stytch_id": {
+            "type": "string",
+            "maxLength": 255
+          },
           "url": {
             "type": "string",
             "default": null,
@@ -607,9 +611,41 @@
             "maxLength": 255,
             "nullable": true
           },
-          "stytch_id": {
+          "unit": {
             "type": "string",
-            "maxLength": 255
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "street": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
           },
           "producers": {
             "type": "array",
@@ -1149,6 +1185,10 @@
             "maxLength": 255,
             "nullable": true
           },
+          "stytch_id": {
+            "type": "string",
+            "maxLength": 255
+          },
           "url": {
             "type": "string",
             "default": null,
@@ -1167,9 +1207,41 @@
             "maxLength": 255,
             "nullable": true
           },
-          "stytch_id": {
+          "unit": {
             "type": "string",
-            "maxLength": 255
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "street": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
           },
           "producers": {
             "type": "array",
@@ -1269,6 +1341,10 @@
             "maxLength": 255,
             "nullable": true
           },
+          "stytch_id": {
+            "type": "string",
+            "maxLength": 255
+          },
           "url": {
             "type": "string",
             "default": null,
@@ -1287,9 +1363,41 @@
             "maxLength": 255,
             "nullable": true
           },
-          "stytch_id": {
+          "unit": {
             "type": "string",
-            "maxLength": 255
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "street": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
           },
           "plants": {
             "type": "array",
@@ -1992,6 +2100,10 @@
             "maxLength": 255,
             "nullable": true
           },
+          "stytch_id": {
+            "type": "string",
+            "maxLength": 255
+          },
           "url": {
             "type": "string",
             "default": null,
@@ -2010,9 +2122,41 @@
             "maxLength": 255,
             "nullable": true
           },
-          "stytch_id": {
+          "unit": {
             "type": "string",
-            "maxLength": 255
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "street": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
           },
           "producers": {
             "type": "array",
@@ -2476,6 +2620,30 @@
     }
   },
   "paths": {
+    "/": {
+      "get": {
+        "summary": "Check the server health.",
+        "tags": ["Service"],
+        "responses": {
+          "200": {
+            "description": "Server is running.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "pong"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/users": {
       "get": {
         "summary": "Retrieve a list of users.",
