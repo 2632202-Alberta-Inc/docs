@@ -9,6 +9,10 @@
     {
       "url": "https://v1.api.flux-os.com",
       "description": "v1"
+    },
+    {
+      "url": "https://v2.api.flux-os.com",
+      "description": "v2"
     }
   ],
   "components": {
