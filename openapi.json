@@ -2620,7 +2620,7 @@
     }
   },
   "paths": {
-    "/": {
+    "/ping": {
       "get": {
         "summary": "Check the server health.",
         "tags": ["Service"],
