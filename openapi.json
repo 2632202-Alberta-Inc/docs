@@ -5,6 +5,12 @@
       "UserIdAuth": []
     }
   ],
+  "servers": [
+    {
+      "url": "https://v1.api.flux-os.com",
+      "description": "v1"
+    }
+  ],
   "components": {
     "securitySchemes": {
       "apiKeyAuth": {
@@ -583,6 +589,28 @@
             "maxLength": 255,
             "nullable": true
           },
+          "url": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "stytch_id": {
+            "type": "string",
+            "maxLength": 255
+          },
           "producers": {
             "type": "array",
             "items": {
@@ -662,7 +690,7 @@
             }
           }
         },
-        "required": ["name"]
+        "required": ["name", "stytch_id"]
       },
       "UserRoles": {
         "type": "object",
@@ -1121,6 +1149,28 @@
             "maxLength": 255,
             "nullable": true
           },
+          "url": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "stytch_id": {
+            "type": "string",
+            "maxLength": 255
+          },
           "producers": {
             "type": "array",
             "items": {
@@ -1200,7 +1250,7 @@
             }
           }
         },
-        "required": ["name"]
+        "required": ["name", "stytch_id"]
       },
       "Entity1": {
         "type": "object",
@@ -1218,6 +1268,28 @@
             "default": null,
             "maxLength": 255,
             "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "stytch_id": {
+            "type": "string",
+            "maxLength": 255
           },
           "plants": {
             "type": "array",
@@ -1244,7 +1316,7 @@
             }
           }
         },
-        "required": ["name"]
+        "required": ["name", "stytch_id"]
       },
       "Producer1": {
         "type": "object",
@@ -1920,6 +1992,28 @@
             "maxLength": 255,
             "nullable": true
           },
+          "url": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "stytch_id": {
+            "type": "string",
+            "maxLength": 255
+          },
           "producers": {
             "type": "array",
             "items": {
@@ -1993,7 +2087,7 @@
             }
           }
         },
-        "required": ["name"]
+        "required": ["name", "stytch_id"]
       },
       "Plant1": {
         "type": "object",
