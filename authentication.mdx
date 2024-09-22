@@ -1,0 +1,29 @@
+---
+title: 'Authentication'
+description: 'Learn how authentication, roles, and permissions work in the Flux OS.'
+---
+
+## Authentication
+
+The Flux OS API requires two headers for authentication: `x-api-key` and `x-user-id`. These headers ensure that each request is securely authenticated.
+
+- **x-api-key**: Your API key, which is generated in the [App Settings](https://dashboard.flux-os.com/settings).
+- **x-user-id**: The user ID associated with your account.
+
+Here’s an example Python request using both headers:
+
+```python
+import requests
+
+base_url = "https://v1.api.flux-os.com"
+path = "/ping"
+
+headers = {
+    "x-api-key": "YOUR_API_KEY",
+    "x-user-id": "YOUR_USER_ID"
+}
+
+response = requests.get(base_url + path, headers=headers)
+
+print(response.status_code)
+print(response.json())
