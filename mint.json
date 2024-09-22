@@ -40,7 +40,7 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quickstart", "authentication", "sdks"]
+      "pages": ["introduction", "quickstart", "authentication", "errors", "sdks"]
     },
     {
       "group": "Definitions",
