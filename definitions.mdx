@@ -21,13 +21,55 @@ This is the description of what an entity is and does.
   "name": "Crude Oil"
 }
 ```
-
 # Products
 This section describes various commodity-related data types, including products, product categories, measurement units, and conversions.
 
 ## Product Categories
-Represents categories of products.
+Represents categories of products commonly used in the oil and gas industry, including **Natural Gas Liquids (NGLs)** and various types of **Crude Oil.**
 
+### Natural Gas Liquids (NGLs) `Category`
+Natural Gas Liquids (NGLs) are hydrocarbons separated from natural gas during processing. They are used as fuels, petrochemical feedstocks, and blending agents in crude oil to adjust viscosity for transportation.
+
+- **C1 (Methane)** `Product`: The main component of natural gas, used as a fuel for heating, electricity generation, and as a feedstock in chemical processes.
+- **C2 (Ethane)** `Product`: Mainly used in petrochemical industries to produce ethylene, a key component in plastics and other products.
+- **C3 (Propane)** `Product`: Used for heating, cooking, and as a fuel for vehicles. Propane is also a key component in petrochemical industries and as part of liquefied petroleum gas (LPG).
+- **C4 (Butane)** `Product`: Butane is used in gasoline blending, as a component of LPG, and in petrochemical applications.
+- **C5 (Pentane)** `Product`: Found in natural gasoline, pentane is commonly used as a blending agent in crude oil or in petrochemical processes. It is also referred to as natural gasoline.
+
+### Crude Oil
+Crude oil is unrefined petroleum extracted from the ground, and it can vary significantly in its physical properties. The classification of crude oil typically depends on two factors:
+1. **Light vs Heavy**: Light crude has a lower density and flows more easily than heavy crude. It requires less refining and is more valuable.
+2. **Sweet vs Sour**: Sweet crude has a low sulfur content (less than 0.5%), while sour crude has a higher sulfur content. Sweet crudes are easier to refine and produce higher-value products, while sour crudes need additional processing to remove sulfur.
+
+### Light Crude `Category`
+Light crude oil has a lower density and is easier to refine. It flows more easily than heavier crudes and produces high-value products like gasoline and diesel.
+
+- **West Texas Intermediate (WTI)** `Product`: A major benchmark for North American crude oil, produced in Texas and primarily in the Permian Basin. **WTI** is **light** and **sweet**, meaning it has low sulfur content and is highly desirable for refining.
+- **BRN (Brent Crude Oil)** `Product`: A globally recognized benchmark crude produced in the North Sea. It is **light** and **sweet** with low sulfur content, making it easier and cheaper to refine.
+- **LSB (Light Sweet Blend)** `Product`: A **light**, **low-sulfur** crude oil blend, often sourced from North America. It is highly valuable for producing gasoline.
+
+### Medium Crude `Category`
+Medium crude oils fall between light and heavy crudes. They tend to have moderate sulfur content and are more difficult to refine than light crude.
+
+- **MSW (Mixed Sweet Blend)** `Product`: A **light-to-medium**, **sweet** crude oil blend produced mainly in Western Canada. Its moderate sulfur content makes it suitable for refining into gasoline and diesel.
+- **MID (Midland Crude)** `Product`: Refers to **WTI Midland**, a medium to light crude from the Permian Basin. It is priced based on the WTI benchmark and is desirable for refining.
+
+### Heavy Crude `Category`
+Heavy crude oils are dense and more viscous compared to lighter crudes. They require more complex refining processes to produce lighter products like gasoline.
+
+- **WCS (Western Canadian Select)** `Product`: A **heavy**, **sour** blend of crude oil produced in Alberta, Canada. It requires more processing due to its high sulfur content and density.
+- **MSY (Mars Crude)** `Product`: A **medium** to **heavy**, **sour** crude oil produced in the Gulf of Mexico. Its higher sulfur content means more refining steps are required.
+
+### Synthetic Crude `Category`
+Synthetic crude oils are produced by upgrading heavy oil or bitumen (from oil sands). These are refined to be more similar to light crude oils and can be used as a substitute for conventional crude.
+
+- **PSO (Premium Synthetic Oil)** `Product`: A type of **synthetic crude oil** produced by upgrading bitumen from oil sands. **PSO** is **light** and **sweet**, often used as a high-quality substitute for conventional crude oil.
+
+### By-products `Category`
+These are products or byproducts that need to be treated or removed during the oil extraction and refining processes.
+
+- **Emulsion** `Product`: A mixture of crude oil and water that forms during production. Emulsions must be separated before refining to ensure only pure crude oil is processed.
+- **Water** `Product`: Produced water is a byproduct of oil and gas extraction and must be managed, treated, or disposed of properly.
 
 
 # Currencies
