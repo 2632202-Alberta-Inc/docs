@@ -1,0 +1,65 @@
+---
+title: 'Error Codes'
+description: 'List of error codes and descriptions for API responses.'
+---
+
+## Error Codes
+
+When interacting with the API, you may encounter various error responses. Below is a list of common error codes, their descriptions, and example responses.
+
+### 401 - Unauthorized
+
+**Description**: Unauthorized. The API key is missing or invalid.
+
+This error occurs when the API key provided in the request is either missing or incorrect.
+
+**Example Response**:
+```json
+{
+  "error": "Unauthorized."
+}
+```
+
+## 403 - Forbidden
+
+**Description**: The user does not have the necessary permissions.
+
+This error is returned when the user is authenticated but lacks the necessary permissions to perform the requested action.
+
+**Example Response**:
+
+```json
+{
+  "error": "Forbidden."
+}
+```
+
+View here for a full list of permissions.
+
+## 404 - Not Found
+
+**Description**: Resource not found.
+
+This error is returned when the requested resource (e.g., a product) is not found in the system.
+
+**Example Response**:
+
+```json
+{
+  "error": "{Resource Name} not found."
+}
+```
+
+## 500 - Internal Server Error
+
+**Description**: Something went wrong on the server.
+
+This error occurs when the server encounters an unexpected condition that prevents it from fulfilling the request.
+
+**Example Response**:
+
+```json
+{
+  "error": "Internal server error."
+}
+```
