@@ -36,23 +36,7 @@
       "openapi": "/openapi.json"
     }
   ],
-  "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://docs.flux-os.com/introduction"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Policies",
-      "icon": "newspaper",
-      "url": "https://www.flux-os.com/policies"
-    }
-  ],
+  "anchors": [],
   "navigation": [
     {
       "group": "Get Started",
@@ -84,8 +68,7 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "github": "https://github.com/orgs/2632202-Alberta-Inc",
+    "linkedin": "https://www.linkedin.com/company/flux-os"
   }
 }
