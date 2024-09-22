@@ -40,7 +40,7 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quickstart", "authentication", "errors", "sdks"]
+      "pages": ["introduction", "quickstart", "authentication", "errors", "sdks", "professional_services"]
     },
     {
       "group": "Definitions",
@@ -60,12 +60,6 @@
         "data/classifications",
         "data/policies",
         "data/security"
-      ]
-    },
-    {
-      "group": "Services",
-      "pages": [
-        "data/professional_services"
       ]
     },
     {
