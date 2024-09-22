@@ -63,6 +63,12 @@
       ]
     },
     {
+      "group": "Services",
+      "pages": [
+        "data/professional_services"
+      ]
+    },
+    {
       "group": "API Documentation",
       "pages": ["api-reference/introduction"]
     }
