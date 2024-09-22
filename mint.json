@@ -71,6 +71,14 @@
       ]
     },
     {
+      "group": "Data",
+      "pages": [
+        "data/classifications",
+        "data/policies",
+        "data/security"
+      ]
+    },
+    {
       "group": "API Documentation",
       "pages": ["api-reference/introduction"]
     }
