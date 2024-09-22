@@ -1,13 +1,13 @@
 ---
-title: 'Error Codes'
+title: 'Errors'
 description: 'List of error codes and descriptions for API responses.'
 ---
 
-## Error Codes
+## Codes
 
 When interacting with the API, you may encounter various error responses. Below is a list of common error codes, their descriptions, and example responses.
 
-### 401 - Unauthorized
+### Unauthorized `401`
 
 **Description**: Unauthorized. The API key is missing or invalid.
 
@@ -20,7 +20,7 @@ This error occurs when the API key provided in the request is either missing or 
 }
 ```
 
-## 403 - Forbidden
+### Forbidden `403`
 
 **Description**: The user does not have the necessary permissions.
 
@@ -36,7 +36,7 @@ This error is returned when the user is authenticated but lacks the necessary pe
 
 View here for a full list of permissions.
 
-## 404 - Not Found
+### Not Found `404`
 
 **Description**: Resource not found.
 
@@ -50,7 +50,7 @@ This error is returned when the requested resource (e.g., a product) is not foun
 }
 ```
 
-## 500 - Internal Server Error
+### Internal Server Error `500`
 
 **Description**: Something went wrong on the server.
 
