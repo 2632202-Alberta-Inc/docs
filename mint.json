@@ -59,27 +59,20 @@
       "pages": ["introduction", "quickstart", "development"]
     },
     {
-      "group": "Essentials",
+      "group": "Definitions",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "definitions/products",
+        "definitions/currencies",
+        "definitions/entities",
+        "definitions/facilities",
+        "definitions/lines",
+        "definitions/organizations",
+        "definitions/tickets"
       ]
     },
     {
       "group": "API Documentation",
       "pages": ["api-reference/introduction"]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
-      ]
     }
   ],
   "footerSocials": {
