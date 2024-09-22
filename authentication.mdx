@@ -7,27 +7,6 @@ description: 'Learn how authentication, roles, and permissions work in the Flux 
 
 To authenticate your API requests, the Flux OS API requires two headers: `x-api-key` and `x-user-id`. You can generate your keys in the [app settings](https://dashboard.flux-os.com/settings) view in your dashboard.
 
-### Example Request
-
-Here is a sample Python request using the `requests` library:
-
-```python
-import requests
-
-base_url = "https://v1.api.flux-os.com"
-path = "/ping"
-
-headers = {
-    "x-api-key": "YOUR_API_KEY",
-    "x-user-id": "YOUR_USER_ID"
-}
-
-response = requests.get(base_url + path, headers=headers)
-
-print(response.status_code)
-print(response.json())
-```
-
 ## Roles
 
 Roles in Flux OS define a user’s function within your organization in the public directory. A user can be assigned multiple roles to reflect their responsibilities. Below are some of the key roles available:
