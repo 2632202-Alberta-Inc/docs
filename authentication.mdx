@@ -5,12 +5,11 @@ description: 'Learn how authentication, roles, and permissions work in the Flux 
 
 ## Authentication
 
-The Flux OS API requires two headers for authentication: `x-api-key` and `x-user-id`. These headers ensure that each request is securely authenticated.
+To authenticate your API requests, the Flux OS API requires two headers: `x-api-key` and `x-user-id`. You can generate your keys in the [app settings](https://dashboard.flux-os.com/settings) view in your dashboard.
 
-- **x-api-key**: Your API key, which is generated in the [App Settings](https://dashboard.flux-os.com/settings).
-- **x-user-id**: The user ID associated with your account.
+### Example Request
 
-Here’s an example Python request using both headers:
+Here is a sample Python request using the `requests` library:
 
 ```python
 import requests
@@ -27,3 +26,43 @@ response = requests.get(base_url + path, headers=headers)
 
 print(response.status_code)
 print(response.json())
+```
+
+## Roles
+
+Roles in Flux OS define a user’s function within your organization in the public directory. A user can be assigned multiple roles to reflect their responsibilities. Below are some of the key roles available:
+
+- **Trader**: Responsible for managing trading activities, such as buying and selling commodities.
+- **Marketing**: Develops and executes marketing strategies for company products and services.
+- **Finance**: Handles all financial aspects, including transactions, budgeting, and financial reporting.
+- **Accounting**: Manages financial records, general ledger, and regulatory reporting for compliance.
+- **Executive**: Oversees high-level strategic decisions, company operations, and corporate governance.
+- **Operations**: Manages day-to-day operations, including production, maintenance, and logistics.
+- **Engineering**: Responsible for designing, managing, and optimizing infrastructure and technical systems.
+- **Logistics**: Oversees the movement and transportation of products, ensuring efficient supply chain management.
+- **Legal**: Manages legal contracts, regulatory compliance, and any legal matters within the company.
+- **Human Resources (HR)**: Handles employee relations, recruitment, training, and workforce management.
+- **Health, Safety, and Environment (HSE)**: Ensures adherence to safety protocols and environmental regulations.
+- **IT (Information Technology)**: Manages technological infrastructure, cybersecurity, and IT systems.
+- **Project Management**: Oversees large projects, ensuring they are delivered on time, within scope, and on budget.
+- **Supply Chain**: Manages procurement, vendor relations, and supply chain logistics for the company.
+- **Compliance**: Ensures the company adheres to industry standards, regulations, and legal requirements.
+
+A user can have more than one role, allowing for flexibility in permissions and access depending on their job function.
+
+## Permissions
+
+Permissions control what a user can do within Flux OS, regardless of their role. Currently, there are two permission levels:
+
+- **Admin**: Grants full access to manage settings, data, and system configurations. Admins can also modify roles and permissions.
+- **User**: Grants access to perform operations, but may not use the api nor modify modify settings, roles, or permissions.
+- **Read Only**: Allows users to view data and perform basic operations, but without the ability to modify settings or data.
+
+### Example of Permissions:
+
+- A user with the **User** role can perform trading functions, but if they only have **Read Only** permissions, they will not be able to modify trading data or settings.
+- Users with **Admin** permissions have full access across the system.
+
+## Managing Roles and Permissions
+
+Roles and permissions can be managed via the Flux OS dashboard. To assign or modify roles, navigate to the **Organization** section within your dashboard. Permissions are assigned at the lowest scope during onboarding and may be adjusted to the desired access level required by a organization's admin.
