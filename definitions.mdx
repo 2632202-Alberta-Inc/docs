@@ -1,28 +1,8 @@
 ---
-title: 'Definitions'
-description: 'How we define and model the real world.'
+title: 'Products'
+description: 'This section describes various commodity-related data types, including products, product categories, measurement units, and conversions.'
 ---
 
-# Entities
-This is the description of what an entity is and does. 
-
-**Example:**
-```json
-{
-  "id": 1,
-  "name": "Crude Oil"
-}
-```
-
-**Example:**
-```json
-{
-  "id": 1,
-  "name": "Crude Oil"
-}
-```
-# Products
-This section describes various commodity-related data types, including products, product categories, measurement units, and conversions.
 
 ## Product Categories
 Represents categories of products commonly used in the oil and gas industry, including **Natural Gas Liquids (NGLs)** and various types of **Crude Oil.**
@@ -65,11 +45,19 @@ Synthetic crude oils are produced by upgrading heavy oil or bitumen (from oil sa
 
 - **PSO (Premium Synthetic Oil)** `Product`: A type of **synthetic crude oil** produced by upgrading bitumen from oil sands. **PSO** is **light** and **sweet**, often used as a high-quality substitute for conventional crude oil.
 
-### By-products `Category`
+### Byproducts `Category`
 These are products or byproducts that need to be treated or removed during the oil extraction and refining processes.
 
+- **Sulfur** `Product`: A byproduct of refining sour crude oil. Sulfur is removed during refining and can be used in fertilizer production.
+- **Petroleum Coke (Petcoke)** `Product`: A carbon-rich byproduct from refining heavy crude oil. Petcoke is used as a fuel in industrial processes.
+- **Sludge** `Product`: A mixture of hydrocarbons, water, and sediments that accumulate in storage tanks and pipelines during production and refining.
+- **Asphaltenes** `Product`: Heavy components in crude oil that can precipitate during refining. They are often considered waste but can be used in asphalt production.
+- **Produced Sand/Solids** `Product`: Sand and other solids produced along with hydrocarbons. These solids must be removed and disposed of.
+- **Carbon Dioxide (CO2)** `Product`: Produced during oil and gas extraction. Captured CO2 can be used for enhanced oil recovery (EOR) or stored through carbon capture.
+- **Hydrogen Sulfide (H2S)** `Product`: A toxic gas found in sour gas and sour crude oil. It is removed during processing and often converted into sulfur.
 - **Emulsion** `Product`: A mixture of crude oil and water that forms during production. Emulsions must be separated before refining to ensure only pure crude oil is processed.
-- **Water** `Product`: Produced water is a byproduct of oil and gas extraction and must be managed, treated, or disposed of properly.
+- **Water** `Product`: Produced water is water that is brought to the surface during oil and gas extraction. It must be managed, treated, or disposed of properly.
+
 
 
 # Currencies
