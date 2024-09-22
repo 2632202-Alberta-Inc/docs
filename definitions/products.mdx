@@ -3,7 +3,6 @@ title: 'Products'
 description: 'This section describes various commodity-related data types, including products, product categories, measurement units, and conversions.'
 ---
 
-
 ## Product Categories
 Represents categories of products commonly used in the oil and gas industry, including **Natural Gas Liquids (NGLs)** and various types of **Crude Oil.**
 
@@ -58,15 +57,93 @@ These are products or byproducts that need to be treated or removed during the o
 - **Emulsion** `Product`: A mixture of crude oil and water that forms during production. Emulsions must be separated before refining to ensure only pure crude oil is processed.
 - **Water** `Product`: Produced water is water that is brought to the surface during oil and gas extraction. It must be managed, treated, or disposed of properly.
 
+## Measurement Units
+Measurement units are used to quantify and measure the volume of oil, gas, and refined products. The industry uses standardized units to ensure consistency and accuracy when trading and transporting commodities.
 
+- **Barrel (bbl)** `Measurement Unit`: A standard unit of measure for crude oil and petroleum products. One barrel equals 42 U.S. gallons or approximately 159 liters. However, the actual volume can vary slightly based on the specific product's density or grade.
+- **Cubic Meter (m³)** `Measurement Unit`: A metric unit of volume commonly used in international markets. One cubic meter equals 1,000 liters or approximately 6.29 barrels of oil, but the specific conversion factor can vary based on the product.
 
-# Currencies
+## Conversions
+Different oil and gas products have specific conversion factors between barrels and cubic meters depending on their density, specific gravity, and other physical characteristics such as viscosity and sulfur content. These characteristics influence how products are measured and converted. The following are typical conversion factors for common products:
 
-# Organization
+### Crude Oil `Conversion`
+- **Barrels to Cubic Meters (Crude Oil)**: To convert barrels of crude oil to cubic meters, multiply the volume in barrels by the conversion factor **0.158987** (for typical light crude).  
+  - Example: 100 bbls * 0.158987 = 15.8987 m³
+  - **Note**: This conversion factor can vary slightly depending on the density of the crude oil (e.g., heavy crude vs light crude).
+  
+- **Cubic Meters to Barrels (Crude Oil)**: To convert cubic meters of crude oil to barrels, multiply the volume in cubic meters by the conversion factor **6.28981**.  
+  - Example: 100 m³ * 6.28981 = 628.981 bbls
 
-# Lines
+### Natural Gas Liquids (NGLs) `Conversion`
+Natural Gas Liquids (NGLs) require different conversion factors because they are lighter and less dense than crude oil.
 
-# Facilities
+- **Barrels to Cubic Meters (NGLs)**: To convert barrels of NGLs to cubic meters, multiply the volume by the conversion factor **0.159** for typical NGL mixtures (e.g., propane, butane).  
+  - Example: 100 bbls * 0.159 = 15.9 m³
+  - **Note**: The conversion rate can vary slightly for different NGL components such as propane, butane, or ethane due to their varying densities.
 
-## ProductCategory
+- **Cubic Meters to Barrels (NGLs)**: To convert cubic meters of NGLs to barrels, multiply the volume by the conversion factor **6.29**.  
+  - Example: 100 m³ * 6.29 = 629 bbls
 
+### Condensate `Conversion`
+Condensate is often treated like a very light crude oil, but the specific gravity can result in slightly different conversions.
+
+- **Barrels to Cubic Meters (Condensate)**: Multiply the volume in barrels by the conversion factor **0.159**.  
+  - Example: 100 bbls * 0.159 = 15.9 m³
+
+- **Cubic Meters to Barrels (Condensate)**: Multiply the volume in cubic meters by the conversion factor **6.29**.  
+  - Example: 100 m³ * 6.29 = 629 bbls
+
+### LNG (Liquefied Natural Gas) `Conversion`
+LNG conversion rates are typically based on energy content rather than volume. LNG is often measured in cubic meters, but conversions to barrels may be necessary for some transactions.
+
+- **Cubic Meters to Barrels (LNG)**: LNG conversion depends on the energy content (typically measured in joules or BTUs), and so conversions can vary greatly. There isn't a direct volume-to-volume comparison as with crude oil.
+
+### Product-Specific Conversions
+In the oil and gas industry, each product has its own unique physical characteristics, such as density, specific gravity, and energy content, which impact how its volume is measured and converted. Conversions between units such as **barrels (bbl)** and **cubic meters (m³)** vary from product to product. 
+
+To handle these differences, we store conversion factors on a **product-to-product basis**, ensuring that the specific properties of each hydrocarbon are taken into account for accurate volume and energy conversions.
+
+### How Conversions are Stored and Applied:
+
+1. **Product-Specific Conversion Factors**:
+   - Every product in the system has its own unique conversion factor when converting from one unit of measurement to another (e.g., barrels to cubic meters).
+   - For example, **light crude oil** will have a different conversion factor than **heavy crude oil** due to differences in density. Similarly, **natural gas liquids (NGLs)** like propane and butane have different conversion factors due to their lighter composition.
+   - These conversion factors are tied directly to the product being measured, so conversions are always accurate for the specific type of hydrocarbon.
+
+2. **Dynamic Conversions Between Products**:
+   - When converting between different units (e.g., from barrels to cubic meters), the system dynamically pulls the correct conversion factor based on the product being transacted. For example, converting **100 barrels of light crude** to cubic meters will use a different factor than converting **100 barrels of heavy crude**.
+   - This ensures that conversions account for the specific gravity and density of each product, avoiding inaccuracies that might occur if using generalized conversion rates.
+
+3. **Accounting for Energy Equivalents**:
+   - In cases where energy content is more relevant than volume (e.g., LNG or natural gas), conversions may be based on energy equivalents rather than strictly volume-to-volume. For example, liquefied natural gas (LNG) is often measured and converted based on **BTUs (British Thermal Units)** or **joules** instead of just cubic meters or barrels.
+   - The system stores energy content for each product, and when a conversion is necessary (e.g., from cubic meters to BTUs for LNG), it calculates the energy equivalency based on the product's specific energy content.
+
+4. **Application in Trading, Storage, and Transportation**:
+   - **Trading**: In international oil and gas trading, contracts may specify product quantities in different units (e.g., barrels in North America, cubic meters internationally). Accurate product-to-product conversion rates are critical for ensuring the correct transaction amount.
+   - **Storage**: Storage facilities, such as tanks, often measure capacity in cubic meters. However, if a transaction requires reporting the stored volume in barrels (or vice versa), the conversion will be product-specific to account for differences in density and volume.
+   - **Transportation**: Pipelines and tankers may measure product volumes in different units (e.g., m³ for international shipments, bbls for domestic). Product-specific conversion rates ensure accurate reporting when transporting different products, particularly when mixing different crude grades or NGLs.
+
+5. **Dynamic Updates and Product Properties**:
+   - The system allows for dynamic updates to conversion factors if the properties of a product change, such as if a new blend of crude oil with a different density or API gravity (American Petroleum Institute gravity) is introduced. This ensures that new products or custom blends always have the correct conversion rates stored and applied in transactions.
+   - This flexibility ensures that new products, whether they are synthetic crudes or a different NGL mixture, can be accounted for without disrupting existing workflows.
+
+### Importance of Product-Specific Conversions:
+
+Product-specific conversions are vital because oil and gas products vary widely in physical characteristics:
+- **Density**: Heavier crude oils require different conversion rates than lighter oils because of their higher density. For example, **Western Canadian Select (WCS)**, a heavy crude, has a lower API gravity than **West Texas Intermediate (WTI)**, a light crude, and requires a different conversion factor.
+- **Specific Gravity**: NGLs like propane and butane have different specific gravities than crude oil, so their conversion factors differ even though they might be stored or transported in the same type of container.
+- **Energy Content**: Products like LNG are primarily measured based on their energy content, so conversion between units such as cubic meters and energy units (e.g., BTUs) is product-specific. Energy equivalents are crucial for ensuring accurate measurement when dealing with gas products, where volume and energy content can vary significantly.
+
+### Example:
+
+When converting **100 barrels of WTI** (light crude) to cubic meters:
+- **WTI Conversion Factor**: 0.158987
+- **Conversion Result**: 100 bbls * 0.158987 = 15.8987 m³
+
+However, when converting **100 barrels of WCS** (heavy crude) to cubic meters:
+- **WCS Conversion Factor**: 0.15898
+- **Conversion Result**: 100 bbls * 0.15898 = 15.898 m³
+
+This slight difference in conversion factors is essential for accurate reporting, trading, and transportation.
+
+By storing conversion factors specific to each product, the system ensures the highest level of accuracy in all measurements, transactions, and reports.
