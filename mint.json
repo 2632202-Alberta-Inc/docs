@@ -40,7 +40,15 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quickstart", "authentication", "errors", "sdks", "professional_services"]
+      "pages": ["introduction", "quickstart", "authentication", "errors", "professional_services"]
+    },
+    {
+      "group": "SDKs",
+      "pages": [
+        "sdks/overview",
+        "sdks/python",
+        "sdks/net"
+      ]
     },
     {
       "group": "Definitions",
