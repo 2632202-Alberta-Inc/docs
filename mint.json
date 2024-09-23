@@ -43,16 +43,9 @@
       "pages": ["introduction", "quickstart", "authentication", "errors", "professional_services"]
     },
     {
-      "group": "SDKs",
-      "pages": [
-        "sdks/overview",
-        "sdks/python",
-        "sdks/net"
-      ]
-    },
-    {
       "group": "Definitions",
       "pages": [
+        "definitions/overview",
         "definitions/products",
         "definitions/currencies",
         "definitions/entities",
@@ -65,9 +58,18 @@
     {
       "group": "Data",
       "pages": [
+        "data/overview",
         "data/classifications",
         "data/policies",
         "data/security"
+      ]
+    },
+    {
+      "group": "SDKs",
+      "pages": [
+        "sdks/overview",
+        "sdks/python",
+        "sdks/net"
       ]
     },
     {
