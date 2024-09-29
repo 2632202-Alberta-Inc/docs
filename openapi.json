@@ -223,26 +223,13 @@
           "name": {
             "type": "string",
             "maxLength": 255
-          }
-        },
-        "required": ["name"]
-      },
-      "Well": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
           },
-          "uwi": {
+          "code": {
             "type": "string",
             "maxLength": 255
-          },
-          "entity": {
-            "$ref": "#/components/schemas/Entity"
           }
         },
-        "required": ["uwi"]
+        "required": ["code", "name"]
       },
       "TerminalType": {
         "type": "object",
@@ -254,9 +241,13 @@
           "name": {
             "type": "string",
             "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": ["code", "name"]
       },
       "Terminal": {
         "type": "object",
@@ -274,9 +265,13 @@
           },
           "entity": {
             "$ref": "#/components/schemas/Entity"
+          },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": ["government_code", "name"]
       },
       "StorageType": {
         "type": "object",
@@ -288,9 +283,13 @@
           "name": {
             "type": "string",
             "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": ["code", "name"]
       },
       "ProductCategory": {
         "type": "object",
@@ -380,6 +379,10 @@
           "entity": {
             "$ref": "#/components/schemas/Entity"
           },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
           "products": {
             "type": "array",
             "items": {
@@ -387,7 +390,129 @@
             }
           }
         },
-        "required": ["name"]
+        "required": ["government_code", "name"]
+      },
+      "StationType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["code", "name"]
+      },
+      "StationProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "storage": {},
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          }
+        },
+        "required": ["storage"]
+      },
+      "Station": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "station_type": {
+            "$ref": "#/components/schemas/StationType"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity"
+          },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StationProduct"
+            }
+          }
+        },
+        "required": ["government_code", "name"]
+      },
+      "SystemType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["code", "name"]
+      },
+      "SystemProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          }
+        }
+      },
+      "System": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "system_type": {
+            "$ref": "#/components/schemas/SystemType"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity"
+          },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SystemProduct"
+            }
+          }
+        },
+        "required": ["government_code", "name"]
       },
       "Facility": {
         "type": "object",
@@ -418,12 +543,6 @@
             "type": "string",
             "maxLength": 255
           },
-          "wells": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Well"
-            }
-          },
           "terminals": {
             "type": "array",
             "items": {
@@ -434,6 +553,18 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Storage"
+            }
+          },
+          "stations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Station"
+            }
+          },
+          "systems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/System"
             }
           }
         },
@@ -476,6 +607,10 @@
           "facility": {
             "$ref": "#/components/schemas/Facility"
           },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
           "products": {
             "type": "array",
             "items": {
@@ -483,7 +618,21 @@
             }
           }
         },
-        "required": ["name"]
+        "required": ["government_code", "name"]
+      },
+      "Well": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "uwi": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["uwi"]
       },
       "Facility1": {
         "type": "object",
@@ -525,23 +674,6 @@
           "township"
         ]
       },
-      "Well1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "uwi": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "facility": {
-            "$ref": "#/components/schemas/Facility1"
-          }
-        },
-        "required": ["uwi"]
-      },
       "Terminal1": {
         "type": "object",
         "properties": {
@@ -558,9 +690,13 @@
           },
           "facility": {
             "$ref": "#/components/schemas/Facility1"
+          },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": ["government_code", "name"]
       },
       "Storage1": {
         "type": "object",
@@ -579,6 +715,10 @@
           "facility": {
             "$ref": "#/components/schemas/Facility1"
           },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
           "products": {
             "type": "array",
             "items": {
@@ -586,7 +726,7 @@
             }
           }
         },
-        "required": ["name"]
+        "required": ["government_code", "name"]
       },
       "Entity": {
         "type": "object",
@@ -738,7 +878,7 @@
           "wells": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Well1"
+              "$ref": "#/components/schemas/Well"
             }
           },
           "terminals": {
@@ -1346,7 +1486,7 @@
           "wells": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Well1"
+              "$ref": "#/components/schemas/Well"
             }
           },
           "terminals": {
@@ -1460,7 +1600,7 @@
           "wells": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Well1"
+              "$ref": "#/components/schemas/Well"
             }
           },
           "terminals": {
@@ -2279,7 +2419,7 @@
           "wells": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Well1"
+              "$ref": "#/components/schemas/Well"
             }
           },
           "terminals": {
@@ -2314,6 +2454,10 @@
           "entity": {
             "$ref": "#/components/schemas/Entity2"
           },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
           "products": {
             "type": "array",
             "items": {
@@ -2321,7 +2465,7 @@
             }
           }
         },
-        "required": ["name"]
+        "required": ["government_code", "name"]
       },
       "Facility_Facility": {
         "type": "object",
@@ -2352,12 +2496,6 @@
             "type": "string",
             "maxLength": 255
           },
-          "wells": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Well"
-            }
-          },
           "terminals": {
             "type": "array",
             "items": {
@@ -2374,6 +2512,18 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Storage"
+            }
+          },
+          "stations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Station"
+            }
+          },
+          "systems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/System"
             }
           }
         },
@@ -2397,9 +2547,6 @@
           "uwi": {
             "type": "string",
             "maxLength": 255
-          },
-          "facility": {
-            "$ref": "#/components/schemas/Facility1"
           },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
@@ -2426,9 +2573,13 @@
           },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
+          },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": ["government_code", "name"]
       },
       "Facility_TerminalType": {
         "type": "object",
@@ -2440,9 +2591,13 @@
           "name": {
             "type": "string",
             "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": ["code", "name"]
       },
       "Facility_TerminalConnectionType": {
         "type": "object",
@@ -2539,6 +2694,10 @@
           "entity": {
             "$ref": "#/components/schemas/Entity2"
           },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
           "products": {
             "type": "array",
             "items": {
@@ -2546,7 +2705,7 @@
             }
           }
         },
-        "required": ["name"]
+        "required": ["government_code", "name"]
       },
       "Facility_PlantType": {
         "type": "object",
@@ -2558,9 +2717,13 @@
           "name": {
             "type": "string",
             "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": ["code", "name"]
       },
       "Plant2": {
         "type": "object",
@@ -2581,9 +2744,13 @@
           },
           "entity": {
             "$ref": "#/components/schemas/Entity2"
+          },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": ["government_code", "name"]
       },
       "Facility_PlantProduct": {
         "type": "object",
@@ -2620,6 +2787,10 @@
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
           },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
           "products": {
             "type": "array",
             "items": {
@@ -2627,7 +2798,7 @@
             }
           }
         },
-        "required": ["name"]
+        "required": ["government_code", "name"]
       },
       "Facility_StorageType": {
         "type": "object",
@@ -2639,9 +2810,13 @@
           "name": {
             "type": "string",
             "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": ["code", "name"]
       },
       "Storage2": {
         "type": "object",
@@ -2662,9 +2837,13 @@
           },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
+          },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": ["government_code", "name"]
       },
       "Facility_StorageProduct": {
         "type": "object",
@@ -2675,6 +2854,194 @@
           },
           "storage": {
             "$ref": "#/components/schemas/Storage2"
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product_Product"
+          }
+        }
+      },
+      "Facility_Station": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "station_type": {
+            "$ref": "#/components/schemas/StationType"
+          },
+          "facility": {
+            "$ref": "#/components/schemas/Facility1"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity_Entity"
+          },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StationProduct"
+            }
+          }
+        },
+        "required": ["government_code", "name"]
+      },
+      "Facility_StationType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["code", "name"]
+      },
+      "Station1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "station_type": {
+            "$ref": "#/components/schemas/Facility_StationType"
+          },
+          "facility": {
+            "$ref": "#/components/schemas/Facility1"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity_Entity"
+          },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["government_code", "name"]
+      },
+      "Facility_StationProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "storage": {},
+          "product": {
+            "$ref": "#/components/schemas/Product_Product"
+          },
+          "station": {
+            "$ref": "#/components/schemas/Station1"
+          }
+        },
+        "required": ["storage"]
+      },
+      "Facility_System": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "system_type": {
+            "$ref": "#/components/schemas/SystemType"
+          },
+          "facility": {
+            "$ref": "#/components/schemas/Facility1"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity_Entity"
+          },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SystemProduct"
+            }
+          }
+        },
+        "required": ["government_code", "name"]
+      },
+      "Facility_SystemType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["code", "name"]
+      },
+      "System1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "system_type": {
+            "$ref": "#/components/schemas/Facility_SystemType"
+          },
+          "facility": {
+            "$ref": "#/components/schemas/Facility1"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity_Entity"
+          },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["government_code", "name"]
+      },
+      "Facility_SystemProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "system": {
+            "$ref": "#/components/schemas/System1"
           },
           "product": {
             "$ref": "#/components/schemas/Product_Product"
@@ -4505,6 +4872,174 @@
                     "error": {
                       "type": "string",
                       "example": "Storage not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/stations": {
+      "get": {
+        "summary": "Retrieve a list of station facilities.",
+        "tags": ["Facilities"],
+        "responses": {
+          "200": {
+            "description": "A list of station facilities.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Facility_Station"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/stations/{id}": {
+      "get": {
+        "summary": "Retrieve a single station by ID.",
+        "tags": ["Facilities"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The station ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single station facility.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Facility_Station"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Station not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Station not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/systems": {
+      "get": {
+        "summary": "Retrieve a list of system facilities.",
+        "tags": ["Facilities"],
+        "responses": {
+          "200": {
+            "description": "A list of system facilities.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Facility_System"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/systems/{id}": {
+      "get": {
+        "summary": "Retrieve a single system by ID.",
+        "tags": ["Facilities"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The system ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single system facility.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Facility_System"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "System not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "System not found."
                     }
                   }
                 }
