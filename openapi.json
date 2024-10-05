@@ -75,43 +75,7 @@
       }
     },
     "schemas": {
-      "TerminalType": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": ["code", "name"]
-      },
       "StorageType": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": ["code", "name"]
-      },
-      "PlantType": {
         "type": "object",
         "properties": {
           "id": {
@@ -199,6 +163,71 @@
             "$ref": "#/components/schemas/Product"
           }
         }
+      },
+      "PlantType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["code", "name"]
+      },
+      "PlantProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          }
+        }
+      },
+      "TerminalType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["code", "name"]
+      },
+      "Well": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "uwi": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity"
+          }
+        },
+        "required": ["uwi"]
       },
       "Marketer": {
         "type": "object",
@@ -338,28 +367,167 @@
           }
         }
       },
-      "Well": {
+      "Terminal": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "readOnly": true
           },
-          "uwi": {
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "terminal_type": {
+            "$ref": "#/components/schemas/TerminalType"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity"
+          },
+          "government_code": {
             "type": "string",
             "maxLength": 255
           },
           "meter_tickets": {
             "$ref": "#/components/schemas/MeterTicket"
           },
-          "truck_tickets": {
-            "$ref": "#/components/schemas/TruckTicket"
+          "pickup_truck_tickets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TruckTicket"
+            }
+          },
+          "delivery_truck_tickets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TruckTicket1"
+            }
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket3"
+            "$ref": "#/components/schemas/TankTicket1"
           }
         },
-        "required": ["uwi"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
+      },
+      "StationType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["code", "name"]
+      },
+      "StationProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "storage": {},
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          }
+        },
+        "required": ["storage"]
+      },
+      "SystemType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["code", "name"]
+      },
+      "SystemProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          }
+        }
+      },
+      "Code": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["name"]
+      },
+      "MeterCode": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "code": {
+            "$ref": "#/components/schemas/Code"
+          }
+        }
       },
       "Product1": {
         "type": "object",
@@ -431,284 +599,6 @@
           }
         },
         "required": ["abbreviation", "name"]
-      },
-      "TruckTicket": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "external_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "bill_of_laiden": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "rack_ticket": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "meter": {
-            "$ref": "#/components/schemas/Meter"
-          },
-          "entity": {
-            "$ref": "#/components/schemas/Entity"
-          },
-          "driver": {
-            "$ref": "#/components/schemas/Organization_User"
-          },
-          "producer": {
-            "$ref": "#/components/schemas/Producer"
-          },
-          "well": {
-            "$ref": "#/components/schemas/Well"
-          },
-          "pickup_terminal": {
-            "$ref": "#/components/schemas/Terminal"
-          },
-          "delivery_terminal": {
-            "$ref": "#/components/schemas/Terminal1"
-          },
-          "product": {
-            "$ref": "#/components/schemas/Product"
-          },
-          "production_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "density": {
-            "type": "number"
-          },
-          "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit1"
-          },
-          "volume": {
-            "type": "number"
-          },
-          "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit1"
-          },
-          "load_volume": {
-            "type": "number"
-          },
-          "load_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit1"
-          },
-          "bsw": {
-            "type": "number"
-          },
-          "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit1"
-          }
-        },
-        "required": [
-          "bill_of_laiden",
-          "bsw",
-          "density",
-          "external_id",
-          "load_volume",
-          "production_date",
-          "rack_ticket",
-          "volume"
-        ]
-      },
-      "PlantProduct": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "product": {
-            "$ref": "#/components/schemas/Product"
-          }
-        }
-      },
-      "StationType": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": ["code", "name"]
-      },
-      "StationProduct": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "storage": {},
-          "product": {
-            "$ref": "#/components/schemas/Product"
-          }
-        },
-        "required": ["storage"]
-      },
-      "Terminal": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "terminal_type": {
-            "$ref": "#/components/schemas/TerminalType"
-          },
-          "entity": {
-            "$ref": "#/components/schemas/Entity"
-          },
-          "government_code": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Meter"
-            }
-          },
-          "meter_tickets": {
-            "$ref": "#/components/schemas/MeterTicket"
-          },
-          "pickup_truck_tickets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TruckTicket1"
-            }
-          },
-          "delivery_truck_tickets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TruckTicket"
-            }
-          },
-          "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket"
-          }
-        },
-        "required": ["government_code", "name"]
-      },
-      "Storage": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "storage_type": {
-            "$ref": "#/components/schemas/StorageType"
-          },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
-          },
-          "entity": {
-            "$ref": "#/components/schemas/Entity"
-          },
-          "government_code": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StorageProduct"
-            }
-          },
-          "meter_tickets": {
-            "$ref": "#/components/schemas/MeterTicket1"
-          },
-          "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket4"
-          }
-        },
-        "required": ["government_code", "name"]
-      },
-      "SystemType": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": ["code", "name"]
-      },
-      "SystemProduct": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "product": {
-            "$ref": "#/components/schemas/Product"
-          }
-        }
-      },
-      "Code": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": ["name"]
-      },
-      "MeterCode": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "code": {
-            "$ref": "#/components/schemas/Code"
-          }
-        }
       },
       "MeterTicket": {
         "type": "object",
@@ -842,6 +732,14 @@
           "well": {
             "$ref": "#/components/schemas/Well"
           },
+          "terminal": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Terminal"
+              }
+            ]
+          },
           "plant": {
             "nullable": true,
             "allOf": [
@@ -863,14 +761,6 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/Station"
-              }
-            ]
-          },
-          "system": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/System"
               }
             ]
           },
@@ -947,13 +837,32 @@
           "system_type": {
             "$ref": "#/components/schemas/SystemType"
           },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
-          },
           "entity": {
             "$ref": "#/components/schemas/Entity"
           },
           "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
             "type": "string",
             "maxLength": 255
           },
@@ -970,9 +879,19 @@
             }
           }
         },
-        "required": ["government_code", "name"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
-      "TruckTicket1": {
+      "TruckTicket": {
         "type": "object",
         "properties": {
           "id": {
@@ -991,11 +910,11 @@
             "type": "string",
             "maxLength": 255
           },
+          "meter": {
+            "$ref": "#/components/schemas/Meter"
+          },
           "entity": {
             "$ref": "#/components/schemas/Entity"
-          },
-          "carrier": {
-            "$ref": "#/components/schemas/Carrier"
           },
           "driver": {
             "$ref": "#/components/schemas/Organization_User"
@@ -1063,6 +982,100 @@
           "volume"
         ]
       },
+      "TankTicket1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "external_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "meter": {
+            "$ref": "#/components/schemas/Meter"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity"
+          },
+          "well": {
+            "$ref": "#/components/schemas/Well"
+          },
+          "plant": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Plant"
+              }
+            ]
+          },
+          "storage": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Storage"
+              }
+            ]
+          },
+          "station": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Station"
+              }
+            ]
+          },
+          "system": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/System"
+              }
+            ]
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          },
+          "production_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "density": {
+            "type": "number"
+          },
+          "density_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit1"
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit1"
+          },
+          "bsw": {
+            "type": "number"
+          },
+          "bsw_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit1"
+          }
+        },
+        "required": [
+          "bsw",
+          "density",
+          "external_id",
+          "production_date",
+          "volume"
+        ]
+      },
       "Terminal1": {
         "type": "object",
         "properties": {
@@ -1074,11 +1087,30 @@
             "type": "string",
             "maxLength": 255
           },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
           "terminal_type": {
             "$ref": "#/components/schemas/TerminalType"
-          },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
           },
           "entity": {
             "$ref": "#/components/schemas/Entity"
@@ -1099,16 +1131,26 @@
           "pickup_truck_tickets": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TruckTicket1"
+              "$ref": "#/components/schemas/TruckTicket"
             }
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket"
+            "$ref": "#/components/schemas/TankTicket1"
           }
         },
-        "required": ["government_code", "name"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
-      "TankTicket1": {
+      "TankTicket2": {
         "type": "object",
         "properties": {
           "id": {
@@ -1221,9 +1263,6 @@
           "entity": {
             "$ref": "#/components/schemas/Entity"
           },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
-          },
           "storage": {
             "nullable": true,
             "allOf": [
@@ -1304,13 +1343,32 @@
           "station_type": {
             "$ref": "#/components/schemas/StationType"
           },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
-          },
           "entity": {
             "$ref": "#/components/schemas/Entity"
           },
           "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
             "type": "string",
             "maxLength": 255
           },
@@ -1324,12 +1382,22 @@
             "$ref": "#/components/schemas/MeterTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket2"
+            "$ref": "#/components/schemas/TankTicket3"
           }
         },
-        "required": ["government_code", "name"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
-      "TankTicket2": {
+      "TankTicket3": {
         "type": "object",
         "properties": {
           "id": {
@@ -1370,6 +1438,168 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/Storage"
+              }
+            ]
+          },
+          "system": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/System"
+              }
+            ]
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          },
+          "production_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "density": {
+            "type": "number"
+          },
+          "density_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit1"
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit1"
+          },
+          "bsw": {
+            "type": "number"
+          },
+          "bsw_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit1"
+          }
+        },
+        "required": [
+          "bsw",
+          "density",
+          "external_id",
+          "production_date",
+          "volume"
+        ]
+      },
+      "Storage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "storage_type": {
+            "$ref": "#/components/schemas/StorageType"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity"
+          },
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StorageProduct"
+            }
+          },
+          "meter_tickets": {
+            "$ref": "#/components/schemas/MeterTicket"
+          },
+          "tank_tickets": {
+            "$ref": "#/components/schemas/TankTicket6"
+          }
+        },
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
+      },
+      "TankTicket4": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "external_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "meter": {
+            "$ref": "#/components/schemas/Meter"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity"
+          },
+          "well": {
+            "$ref": "#/components/schemas/Well"
+          },
+          "terminal": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Terminal"
+              }
+            ]
+          },
+          "storage": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Storage"
+              }
+            ]
+          },
+          "station": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Station"
               }
             ]
           },
@@ -1437,10 +1667,29 @@
           "plant_type": {
             "$ref": "#/components/schemas/PlantType"
           },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
-          },
           "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
             "type": "string",
             "maxLength": 255
           },
@@ -1457,15 +1706,116 @@
             }
           },
           "meter_tickets": {
-            "$ref": "#/components/schemas/MeterTicket2"
+            "$ref": "#/components/schemas/MeterTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket5"
+            "$ref": "#/components/schemas/TankTicket4"
           }
         },
-        "required": ["government_code", "name"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
-      "TankTicket3": {
+      "TruckTicket1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "external_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "bill_of_laiden": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "rack_ticket": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "meter": {
+            "$ref": "#/components/schemas/Meter"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity"
+          },
+          "carrier": {
+            "$ref": "#/components/schemas/Carrier"
+          },
+          "driver": {
+            "$ref": "#/components/schemas/Organization_User"
+          },
+          "producer": {
+            "$ref": "#/components/schemas/Producer"
+          },
+          "well": {
+            "$ref": "#/components/schemas/Well"
+          },
+          "pickup_terminal": {
+            "$ref": "#/components/schemas/Terminal"
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          },
+          "production_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "density": {
+            "type": "number"
+          },
+          "density_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit1"
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit1"
+          },
+          "load_volume": {
+            "type": "number"
+          },
+          "load_volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit1"
+          },
+          "bsw": {
+            "type": "number"
+          },
+          "bsw_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit1"
+          }
+        },
+        "required": [
+          "bill_of_laiden",
+          "bsw",
+          "density",
+          "external_id",
+          "load_volume",
+          "production_date",
+          "rack_ticket",
+          "volume"
+        ]
+      },
+      "TankTicket5": {
         "type": "object",
         "properties": {
           "id": {
@@ -1564,6 +1914,29 @@
           "volume"
         ]
       },
+      "Well1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "uwi": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "meter_tickets": {
+            "$ref": "#/components/schemas/MeterTicket"
+          },
+          "truck_tickets": {
+            "$ref": "#/components/schemas/TruckTicket"
+          },
+          "tank_tickets": {
+            "$ref": "#/components/schemas/TankTicket5"
+          }
+        },
+        "required": ["uwi"]
+      },
       "Terminal2": {
         "type": "object",
         "properties": {
@@ -1575,11 +1948,30 @@
             "type": "string",
             "maxLength": 255
           },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
           "terminal_type": {
             "$ref": "#/components/schemas/TerminalType"
-          },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
           },
           "government_code": {
             "type": "string",
@@ -1597,112 +1989,32 @@
           "pickup_truck_tickets": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TruckTicket1"
+              "$ref": "#/components/schemas/TruckTicket"
             }
           },
           "delivery_truck_tickets": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TruckTicket"
+              "$ref": "#/components/schemas/TruckTicket1"
             }
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket"
-          }
-        },
-        "required": ["government_code", "name"]
-      },
-      "MeterTicket1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "external_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "meter": {
-            "$ref": "#/components/schemas/Meter"
-          },
-          "entity": {
-            "$ref": "#/components/schemas/Entity"
-          },
-          "producer": {
-            "$ref": "#/components/schemas/Producer"
-          },
-          "well": {
-            "$ref": "#/components/schemas/Well"
-          },
-          "terminal": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Terminal"
-              }
-            ]
-          },
-          "plant": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Plant"
-              }
-            ]
-          },
-          "station": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Station"
-              }
-            ]
-          },
-          "system": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/System"
-              }
-            ]
-          },
-          "production_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "density": {
-            "type": "number"
-          },
-          "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit1"
-          },
-          "volume": {
-            "type": "number"
-          },
-          "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit1"
-          },
-          "bsw": {
-            "type": "number"
-          },
-          "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit1"
+            "$ref": "#/components/schemas/TankTicket1"
           }
         },
         "required": [
-          "bsw",
-          "density",
-          "external_id",
-          "production_date",
-          "volume"
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
         ]
       },
-      "TankTicket4": {
+      "TankTicket6": {
         "type": "object",
         "properties": {
           "id": {
@@ -1810,10 +2122,29 @@
           "storage_type": {
             "$ref": "#/components/schemas/StorageType"
           },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
-          },
           "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
             "type": "string",
             "maxLength": 255
           },
@@ -1830,13 +2161,23 @@
             }
           },
           "meter_tickets": {
-            "$ref": "#/components/schemas/MeterTicket1"
+            "$ref": "#/components/schemas/MeterTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket4"
+            "$ref": "#/components/schemas/TankTicket6"
           }
         },
-        "required": ["government_code", "name"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
       "Meter1": {
         "type": "object",
@@ -1848,9 +2189,6 @@
           "external_id": {
             "type": "string",
             "maxLength": 255
-          },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
           },
           "storage": {
             "nullable": true,
@@ -1902,10 +2240,10 @@
             "$ref": "#/components/schemas/MeterTicket"
           },
           "truck_tickets": {
-            "$ref": "#/components/schemas/TruckTicket1"
+            "$ref": "#/components/schemas/TruckTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket1"
+            "$ref": "#/components/schemas/TankTicket2"
           }
         },
         "required": ["external_id"]
@@ -2060,7 +2398,7 @@
           "wells": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Well"
+              "$ref": "#/components/schemas/Well1"
             }
           },
           "terminals": {
@@ -2088,348 +2426,10 @@
             "$ref": "#/components/schemas/TruckTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket3"
+            "$ref": "#/components/schemas/TankTicket5"
           }
         },
         "required": ["name", "stytch_id"]
-      },
-      "MeterTicket2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "external_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "meter": {
-            "$ref": "#/components/schemas/Meter"
-          },
-          "entity": {
-            "$ref": "#/components/schemas/Entity"
-          },
-          "producer": {
-            "$ref": "#/components/schemas/Producer"
-          },
-          "well": {
-            "$ref": "#/components/schemas/Well"
-          },
-          "terminal": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Terminal"
-              }
-            ]
-          },
-          "storage": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Storage"
-              }
-            ]
-          },
-          "station": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Station"
-              }
-            ]
-          },
-          "system": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/System"
-              }
-            ]
-          },
-          "production_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "density": {
-            "type": "number"
-          },
-          "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit1"
-          },
-          "volume": {
-            "type": "number"
-          },
-          "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit1"
-          },
-          "bsw": {
-            "type": "number"
-          },
-          "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit1"
-          }
-        },
-        "required": [
-          "bsw",
-          "density",
-          "external_id",
-          "production_date",
-          "volume"
-        ]
-      },
-      "TankTicket5": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "external_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "meter": {
-            "$ref": "#/components/schemas/Meter"
-          },
-          "entity": {
-            "$ref": "#/components/schemas/Entity"
-          },
-          "well": {
-            "$ref": "#/components/schemas/Well"
-          },
-          "terminal": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Terminal"
-              }
-            ]
-          },
-          "storage": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Storage"
-              }
-            ]
-          },
-          "station": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Station"
-              }
-            ]
-          },
-          "system": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/System"
-              }
-            ]
-          },
-          "product": {
-            "$ref": "#/components/schemas/Product"
-          },
-          "production_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "density": {
-            "type": "number"
-          },
-          "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit1"
-          },
-          "volume": {
-            "type": "number"
-          },
-          "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit1"
-          },
-          "bsw": {
-            "type": "number"
-          },
-          "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit1"
-          }
-        },
-        "required": [
-          "bsw",
-          "density",
-          "external_id",
-          "production_date",
-          "volume"
-        ]
-      },
-      "Station1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "station_type": {
-            "$ref": "#/components/schemas/StationType"
-          },
-          "entity": {
-            "$ref": "#/components/schemas/Entity"
-          },
-          "government_code": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StationProduct"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Meter"
-            }
-          },
-          "meter_tickets": {
-            "$ref": "#/components/schemas/MeterTicket"
-          },
-          "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket2"
-          }
-        },
-        "required": ["government_code", "name"]
-      },
-      "System1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "system_type": {
-            "$ref": "#/components/schemas/SystemType"
-          },
-          "entity": {
-            "$ref": "#/components/schemas/Entity"
-          },
-          "government_code": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SystemProduct"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Meter"
-            }
-          },
-          "meter_tickets": {
-            "$ref": "#/components/schemas/MeterTicket"
-          },
-          "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket"
-          }
-        },
-        "required": ["government_code", "name"]
-      },
-      "Facility": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "latitude": {
-            "type": "number"
-          },
-          "longitude": {
-            "type": "number"
-          },
-          "lsd": {
-            "type": "integer"
-          },
-          "section": {
-            "type": "integer"
-          },
-          "township": {
-            "type": "integer"
-          },
-          "range": {
-            "type": "integer"
-          },
-          "meridian": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "terminals": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Terminal"
-            }
-          },
-          "plants": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Plant1"
-            }
-          },
-          "storages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Storage"
-            }
-          },
-          "stations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Station1"
-            }
-          },
-          "systems": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/System1"
-            }
-          }
-        },
-        "required": [
-          "latitude",
-          "longitude",
-          "lsd",
-          "meridian",
-          "range",
-          "section",
-          "township"
-        ]
       },
       "Producer": {
         "type": "object",
@@ -2453,7 +2453,7 @@
             "$ref": "#/components/schemas/TruckTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket3"
+            "$ref": "#/components/schemas/TankTicket5"
           }
         },
         "required": ["legal_name"]
@@ -2472,48 +2472,6 @@
             "$ref": "#/components/schemas/Product"
           }
         }
-      },
-      "Plant1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "plant_type": {
-            "$ref": "#/components/schemas/PlantType"
-          },
-          "entity": {
-            "$ref": "#/components/schemas/Entity"
-          },
-          "government_code": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PlantProduct"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Meter"
-            }
-          },
-          "meter_tickets": {
-            "$ref": "#/components/schemas/MeterTicket2"
-          },
-          "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket5"
-          }
-        },
-        "required": ["government_code", "name"]
       },
       "UserRoles": {
         "type": "object",
@@ -3037,7 +2995,7 @@
           "wells": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Well"
+              "$ref": "#/components/schemas/Well1"
             }
           },
           "terminals": {
@@ -3065,7 +3023,7 @@
             "$ref": "#/components/schemas/TruckTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket3"
+            "$ref": "#/components/schemas/TankTicket5"
           }
         },
         "required": ["name", "stytch_id"]
@@ -3101,7 +3059,7 @@
             "$ref": "#/components/schemas/TruckTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket3"
+            "$ref": "#/components/schemas/TankTicket5"
           }
         },
         "required": ["legal_name"]
@@ -3694,44 +3652,13 @@
             "type": "string",
             "maxLength": 255
           },
-          "terminals": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Terminal"
-            }
-          },
-          "plants": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Plant1"
-            }
-          },
-          "storages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Storage"
-            }
-          },
-          "stations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Station1"
-            }
-          },
-          "systems": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/System1"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Meter"
-            }
+          "government_code": {
+            "type": "string",
+            "maxLength": 255
           }
         },
         "required": [
+          "government_code",
           "latitude",
           "longitude",
           "lsd",
@@ -3762,7 +3689,7 @@
             "$ref": "#/components/schemas/TruckTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket3"
+            "$ref": "#/components/schemas/TankTicket5"
           }
         },
         "required": ["uwi"]
@@ -3778,11 +3705,30 @@
             "type": "string",
             "maxLength": 255
           },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
           "terminal_type": {
             "$ref": "#/components/schemas/TerminalType"
-          },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
           },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
@@ -3803,20 +3749,30 @@
           "pickup_truck_tickets": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TruckTicket1"
+              "$ref": "#/components/schemas/TruckTicket"
             }
           },
           "delivery_truck_tickets": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TruckTicket"
+              "$ref": "#/components/schemas/TruckTicket1"
             }
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket"
+            "$ref": "#/components/schemas/TankTicket1"
           }
         },
-        "required": ["government_code", "name"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
       "Facility_TerminalType": {
         "type": "object",
@@ -3925,13 +3881,32 @@
           "plant_type": {
             "$ref": "#/components/schemas/PlantType"
           },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
-          },
           "entity": {
             "$ref": "#/components/schemas/Entity"
           },
           "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
             "type": "string",
             "maxLength": 255
           },
@@ -3948,13 +3923,23 @@
             }
           },
           "meter_tickets": {
-            "$ref": "#/components/schemas/MeterTicket2"
+            "$ref": "#/components/schemas/MeterTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket5"
+            "$ref": "#/components/schemas/TankTicket4"
           }
         },
-        "required": ["government_code", "name"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
       "Facility_PlantType": {
         "type": "object",
@@ -3974,7 +3959,7 @@
         },
         "required": ["code", "name"]
       },
-      "Plant2": {
+      "Plant1": {
         "type": "object",
         "properties": {
           "id": {
@@ -3988,13 +3973,32 @@
           "plant_type": {
             "$ref": "#/components/schemas/Facility_PlantType"
           },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
-          },
           "entity": {
             "$ref": "#/components/schemas/Entity"
           },
           "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
             "type": "string",
             "maxLength": 255
           },
@@ -4005,13 +4009,23 @@
             }
           },
           "meter_tickets": {
-            "$ref": "#/components/schemas/MeterTicket2"
+            "$ref": "#/components/schemas/MeterTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket5"
+            "$ref": "#/components/schemas/TankTicket4"
           }
         },
-        "required": ["government_code", "name"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
       "Facility_PlantProduct": {
         "type": "object",
@@ -4021,7 +4035,7 @@
             "readOnly": true
           },
           "plant": {
-            "$ref": "#/components/schemas/Plant2"
+            "$ref": "#/components/schemas/Plant1"
           },
           "product": {
             "$ref": "#/components/schemas/Product_Product"
@@ -4042,13 +4056,32 @@
           "storage_type": {
             "$ref": "#/components/schemas/StorageType"
           },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
-          },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
           },
           "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
             "type": "string",
             "maxLength": 255
           },
@@ -4065,13 +4098,23 @@
             }
           },
           "meter_tickets": {
-            "$ref": "#/components/schemas/MeterTicket1"
+            "$ref": "#/components/schemas/MeterTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket4"
+            "$ref": "#/components/schemas/TankTicket6"
           }
         },
-        "required": ["government_code", "name"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
       "Facility_StorageType": {
         "type": "object",
@@ -4105,13 +4148,32 @@
           "storage_type": {
             "$ref": "#/components/schemas/Facility_StorageType"
           },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
-          },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
           },
           "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
             "type": "string",
             "maxLength": 255
           },
@@ -4122,13 +4184,23 @@
             }
           },
           "meter_tickets": {
-            "$ref": "#/components/schemas/MeterTicket1"
+            "$ref": "#/components/schemas/MeterTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket4"
+            "$ref": "#/components/schemas/TankTicket6"
           }
         },
-        "required": ["government_code", "name"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
       "Facility_StorageProduct": {
         "type": "object",
@@ -4159,13 +4231,32 @@
           "station_type": {
             "$ref": "#/components/schemas/StationType"
           },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
-          },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
           },
           "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
             "type": "string",
             "maxLength": 255
           },
@@ -4185,10 +4276,20 @@
             "$ref": "#/components/schemas/MeterTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket2"
+            "$ref": "#/components/schemas/TankTicket3"
           }
         },
-        "required": ["government_code", "name"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
       "Facility_StationType": {
         "type": "object",
@@ -4208,7 +4309,7 @@
         },
         "required": ["code", "name"]
       },
-      "Station2": {
+      "Station1": {
         "type": "object",
         "properties": {
           "id": {
@@ -4222,13 +4323,32 @@
           "station_type": {
             "$ref": "#/components/schemas/Facility_StationType"
           },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
-          },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
           },
           "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
             "type": "string",
             "maxLength": 255
           },
@@ -4242,10 +4362,20 @@
             "$ref": "#/components/schemas/MeterTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket2"
+            "$ref": "#/components/schemas/TankTicket3"
           }
         },
-        "required": ["government_code", "name"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
       "Facility_StationProduct": {
         "type": "object",
@@ -4259,7 +4389,7 @@
             "$ref": "#/components/schemas/Product_Product"
           },
           "station": {
-            "$ref": "#/components/schemas/Station2"
+            "$ref": "#/components/schemas/Station1"
           }
         },
         "required": ["storage"]
@@ -4278,13 +4408,32 @@
           "system_type": {
             "$ref": "#/components/schemas/SystemType"
           },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
-          },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
           },
           "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
             "type": "string",
             "maxLength": 255
           },
@@ -4307,7 +4456,17 @@
             "$ref": "#/components/schemas/TankTicket"
           }
         },
-        "required": ["government_code", "name"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
       "Facility_SystemType": {
         "type": "object",
@@ -4327,7 +4486,7 @@
         },
         "required": ["code", "name"]
       },
-      "System2": {
+      "System1": {
         "type": "object",
         "properties": {
           "id": {
@@ -4341,13 +4500,32 @@
           "system_type": {
             "$ref": "#/components/schemas/Facility_SystemType"
           },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
-          },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
           },
           "government_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
             "type": "string",
             "maxLength": 255
           },
@@ -4364,7 +4542,17 @@
             "$ref": "#/components/schemas/TankTicket"
           }
         },
-        "required": ["government_code", "name"]
+        "required": [
+          "government_code",
+          "latitude",
+          "longitude",
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
       "Facility_SystemProduct": {
         "type": "object",
@@ -4374,7 +4562,7 @@
             "readOnly": true
           },
           "system": {
-            "$ref": "#/components/schemas/System2"
+            "$ref": "#/components/schemas/System1"
           },
           "product": {
             "$ref": "#/components/schemas/Product_Product"
@@ -4394,9 +4582,6 @@
           },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
-          },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
           },
           "storage": {
             "nullable": true,
@@ -4448,10 +4633,10 @@
             "$ref": "#/components/schemas/MeterTicket"
           },
           "truck_tickets": {
-            "$ref": "#/components/schemas/TruckTicket1"
+            "$ref": "#/components/schemas/TruckTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket1"
+            "$ref": "#/components/schemas/TankTicket2"
           }
         },
         "required": ["external_id"]
@@ -4469,9 +4654,6 @@
           },
           "entity": {
             "$ref": "#/components/schemas/Entity_Entity"
-          },
-          "facility": {
-            "$ref": "#/components/schemas/Facility"
           },
           "storage": {
             "nullable": true,
@@ -4517,10 +4699,10 @@
             "$ref": "#/components/schemas/MeterTicket"
           },
           "truck_tickets": {
-            "$ref": "#/components/schemas/TruckTicket1"
+            "$ref": "#/components/schemas/TruckTicket"
           },
           "tank_tickets": {
-            "$ref": "#/components/schemas/TankTicket1"
+            "$ref": "#/components/schemas/TankTicket2"
           }
         },
         "required": ["external_id"]
