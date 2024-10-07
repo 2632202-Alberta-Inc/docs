@@ -3623,51 +3623,6 @@
         },
         "required": ["products"]
       },
-      "Facility_Facility": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "latitude": {
-            "type": "number"
-          },
-          "longitude": {
-            "type": "number"
-          },
-          "lsd": {
-            "type": "integer"
-          },
-          "section": {
-            "type": "integer"
-          },
-          "township": {
-            "type": "integer"
-          },
-          "range": {
-            "type": "integer"
-          },
-          "meridian": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "government_code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "government_code",
-          "latitude",
-          "longitude",
-          "lsd",
-          "meridian",
-          "range",
-          "section",
-          "township"
-        ]
-      },
       "Facility_Well": {
         "type": "object",
         "properties": {
