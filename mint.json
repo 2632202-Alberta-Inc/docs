@@ -49,28 +49,6 @@
       ]
     },
     {
-      "group": "Definitions",
-      "pages": [
-        "definitions/overview",
-        "definitions/products",
-        "definitions/currencies",
-        "definitions/entities",
-        "definitions/facilities",
-        "definitions/lines",
-        "definitions/organizations",
-        "definitions/tickets"
-      ]
-    },
-    {
-      "group": "Data",
-      "pages": [
-        "data/overview",
-        "data/classifications",
-        "data/policies",
-        "data/security"
-      ]
-    },
-    {
       "group": "SDKs",
       "pages": ["sdks/overview", "sdks/python", "sdks/net"]
     },
