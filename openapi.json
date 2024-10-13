@@ -3491,19 +3491,26 @@
             "type": "string",
             "readOnly": true
           },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
+          "product_category": {
+            "type": "integer"
           },
           "entity": {
             "type": "integer"
+          },
+          "density": {
+            "type": "number"
+          },
+          "density_measurement_unit": {
+            "type": "integer"
+          },
+          "bsw": {
+            "type": "number"
+          },
+          "bsw_measurement_unit": {
+            "type": "integer"
           }
         },
-        "required": ["name", "short_code"]
+        "required": ["bsw", "density"]
       },
       "Entity_ReferenceEntity": {
         "type": "object",
