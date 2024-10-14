@@ -130,15 +130,21 @@
             "type": "string",
             "maxLength": 255
           },
-          "organization_slug": {
+          "legal_name": {
             "type": "string",
             "default": null,
             "maxLength": 255,
             "nullable": true
           },
-          "stytch_id": {
+          "organization_slug": {
             "type": "string",
             "maxLength": 255
+          },
+          "stytch_id": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
           },
           "url": {
             "type": "string",
@@ -321,7 +327,7 @@
             }
           }
         },
-        "required": ["name", "stytch_id"]
+        "required": ["name", "organization_slug"]
       },
       "UserRoles": {
         "type": "object",
@@ -1499,15 +1505,21 @@
             "type": "string",
             "maxLength": 255
           },
-          "organization_slug": {
+          "legal_name": {
             "type": "string",
             "default": null,
             "maxLength": 255,
             "nullable": true
           },
-          "stytch_id": {
+          "organization_slug": {
             "type": "string",
             "maxLength": 255
+          },
+          "stytch_id": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
           },
           "url": {
             "type": "string",
@@ -1690,7 +1702,7 @@
             }
           }
         },
-        "required": ["name", "stytch_id"]
+        "required": ["name", "organization_slug"]
       },
       "ProductReference": {
         "type": "object",
@@ -3523,15 +3535,21 @@
             "type": "string",
             "maxLength": 255
           },
-          "organization_slug": {
+          "legal_name": {
             "type": "string",
             "default": null,
             "maxLength": 255,
             "nullable": true
           },
-          "stytch_id": {
+          "organization_slug": {
             "type": "string",
             "maxLength": 255
+          },
+          "stytch_id": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
           },
           "url": {
             "type": "string",
@@ -3714,7 +3732,7 @@
             }
           }
         },
-        "required": ["name", "stytch_id"]
+        "required": ["name", "organization_slug"]
       },
       "Entity_ReferenceProducer": {
         "type": "object",
