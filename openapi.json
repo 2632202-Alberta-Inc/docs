@@ -366,6 +366,351 @@
         },
         "required": ["name", "symbol"]
       },
+      "UserReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "stytch_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "organization": {},
+          "first_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "last_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "entity": {
+            "type": "integer"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "email",
+          "first_name",
+          "last_name",
+          "organization",
+          "phone",
+          "stytch_id",
+          "title"
+        ]
+      },
+      "EntityReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "organization": {
+            "default": null,
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "unit": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "street": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "zip_code": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "province": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "regulator_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": ["P"],
+            "maxLength": 255
+          },
+          "jurisdiction": {
+            "type": "string",
+            "enum": ["A", "S"],
+            "maxLength": 255
+          },
+          "status": {
+            "type": "string",
+            "enum": ["S", "I", "L", "N", "D", "C", "A"],
+            "maxLength": 255
+          },
+          "effective_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "successor": {
+            "default": null,
+            "nullable": true
+          },
+          "producers": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "carriers": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "marketers": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "midstreamers": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "refiners": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "governments": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "environmental_services": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "infrastructure_services": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "oilfield_services": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "plants": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "wells": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "terminals": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "storages": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "stations": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "systems": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "meters": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "meter_tickets": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "truck_tickets": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "tank_tickets": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "effective_date",
+          "jurisdiction",
+          "legal_name",
+          "regulator_id",
+          "regulator_system",
+          "status"
+        ]
+      },
+      "Organization_Organization": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "stytch_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "organization": {},
+          "first_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "last_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserReference"
+            }
+          },
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityReference"
+            }
+          }
+        },
+        "required": [
+          "email",
+          "first_name",
+          "last_name",
+          "organization",
+          "phone",
+          "stytch_id",
+          "title"
+        ]
+      },
       "ProducerReference": {
         "type": "object",
         "properties": {
@@ -1983,238 +2328,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TankTicketReference"
-            }
-          }
-        },
-        "required": [
-          "effective_date",
-          "jurisdiction",
-          "legal_name",
-          "regulator_id",
-          "regulator_system",
-          "status"
-        ]
-      },
-      "EntityReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "legal_name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "organization": {
-            "default": null,
-            "nullable": true
-          },
-          "url": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "phone": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "unit": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "street": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "city": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "zip_code": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "province": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "state": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "postal_code": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "country": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "regulator_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "regulator_system": {
-            "type": "string",
-            "enum": ["P"],
-            "maxLength": 255
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": ["A", "S"],
-            "maxLength": 255
-          },
-          "status": {
-            "type": "string",
-            "enum": ["S", "I", "L", "N", "D", "C", "A"],
-            "maxLength": 255
-          },
-          "effective_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "successor": {
-            "default": null,
-            "nullable": true
-          },
-          "producers": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "carriers": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "marketers": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "midstreamers": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "refiners": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "governments": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "environmental_services": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "infrastructure_services": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "oilfield_services": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "plants": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "wells": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "terminals": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "storages": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "stations": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "systems": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "truck_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
             }
           }
         },
@@ -3991,64 +4104,6 @@
           }
         },
         "required": ["external_id"]
-      },
-      "UserReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "stytch_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "organization": {},
-          "first_name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "last_name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "email": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "phone": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "title": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "entity": {
-            "type": "integer"
-          },
-          "roles": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "permissions": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "required": [
-          "email",
-          "first_name",
-          "last_name",
-          "organization",
-          "phone",
-          "stytch_id",
-          "title"
-        ]
       },
       "ProductCategoryReference": {
         "type": "object",
@@ -7029,6 +7084,38 @@
                       "type": "string",
                       "example": "Rail line not found."
                     }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/organization": {
+      "get": {
+        "summary": "Retrieve the current organization.",
+        "description": "Retrieve the current organization.",
+        "operationId": "get_organization",
+        "tags": ["Organization"],
+        "responses": {
+          "200": {
+            "description": "A single organization with related users and entities.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Organization_Organization"
                   }
                 }
               }
