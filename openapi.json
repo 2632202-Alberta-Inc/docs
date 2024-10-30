@@ -48,7 +48,7 @@
     },
     {
       "name": "Facilities",
-      "description": "Operations managing facilities such as wells, terminals, plants, storages, and stations."
+      "description": "Operations managing facilities such as wells, terminals, plants, batteries, and stations."
     },
     {
       "name": "Volumes",
@@ -604,7 +604,7 @@
               "type": "integer"
             }
           },
-          "storages": {
+          "batteries": {
             "type": "array",
             "items": {
               "type": "integer"
@@ -960,8 +960,12 @@
             "enum": ["A", "S"],
             "maxLength": 255
           },
-          "type": {},
-          "sub_type": {},
+          "type": {
+            "type": "integer"
+          },
+          "sub_type": {
+            "type": "integer"
+          },
           "start_date": {
             "type": "string",
             "format": "date"
@@ -1015,9 +1019,6 @@
             "enum": ["P"],
             "maxLength": 255
           },
-          "plant_type": {
-            "type": "integer"
-          },
           "entity": {
             "type": "integer"
           },
@@ -1059,9 +1060,7 @@
           "regulator_system",
           "section",
           "start_date",
-          "sub_type",
-          "township",
-          "type"
+          "township"
         ]
       },
       "WellReference": {
@@ -1235,8 +1234,12 @@
             "enum": ["A", "S"],
             "maxLength": 255
           },
-          "type": {},
-          "sub_type": {},
+          "type": {
+            "type": "integer"
+          },
+          "sub_type": {
+            "type": "integer"
+          },
           "start_date": {
             "type": "string",
             "format": "date"
@@ -1289,9 +1292,6 @@
             "type": "string",
             "enum": ["P"],
             "maxLength": 255
-          },
-          "terminal_type": {
-            "type": "integer"
           },
           "entity": {
             "type": "integer"
@@ -1340,12 +1340,10 @@
           "regulator_system",
           "section",
           "start_date",
-          "sub_type",
-          "township",
-          "type"
+          "township"
         ]
       },
-      "StorageReference": {
+      "BatteryReference": {
         "type": "object",
         "properties": {
           "id": {
@@ -1387,8 +1385,12 @@
             "enum": ["A", "S"],
             "maxLength": 255
           },
-          "type": {},
-          "sub_type": {},
+          "type": {
+            "type": "integer"
+          },
+          "sub_type": {
+            "type": "integer"
+          },
           "start_date": {
             "type": "string",
             "format": "date"
@@ -1442,9 +1444,6 @@
             "enum": ["P"],
             "maxLength": 255
           },
-          "storage_type": {
-            "type": "integer"
-          },
           "entity": {
             "type": "integer"
           },
@@ -1486,9 +1485,7 @@
           "regulator_system",
           "section",
           "start_date",
-          "sub_type",
-          "township",
-          "type"
+          "township"
         ]
       },
       "StationReference": {
@@ -1533,8 +1530,12 @@
             "enum": ["A", "S"],
             "maxLength": 255
           },
-          "type": {},
-          "sub_type": {},
+          "type": {
+            "type": "integer"
+          },
+          "sub_type": {
+            "type": "integer"
+          },
           "start_date": {
             "type": "string",
             "format": "date"
@@ -1588,9 +1589,6 @@
             "enum": ["P"],
             "maxLength": 255
           },
-          "station_type": {
-            "type": "integer"
-          },
           "entity": {
             "type": "integer"
           },
@@ -1632,9 +1630,7 @@
           "regulator_system",
           "section",
           "start_date",
-          "sub_type",
-          "township",
-          "type"
+          "township"
         ]
       },
       "SystemReference": {
@@ -1679,8 +1675,12 @@
             "enum": ["A", "S"],
             "maxLength": 255
           },
-          "type": {},
-          "sub_type": {},
+          "type": {
+            "type": "integer"
+          },
+          "sub_type": {
+            "type": "integer"
+          },
           "start_date": {
             "type": "string",
             "format": "date"
@@ -1734,9 +1734,6 @@
             "enum": ["P"],
             "maxLength": 255
           },
-          "system_type": {
-            "type": "integer"
-          },
           "entity": {
             "type": "integer"
           },
@@ -1778,9 +1775,7 @@
           "regulator_system",
           "section",
           "start_date",
-          "sub_type",
-          "township",
-          "type"
+          "township"
         ]
       },
       "MeterReference": {
@@ -1794,8 +1789,8 @@
             "type": "string",
             "maxLength": 255
           },
-          "storage": {
-            "type": "integer",
+          "battery": {
+            "default": null,
             "nullable": true
           },
           "terminal": {
@@ -1816,6 +1811,10 @@
           },
           "entity": {
             "type": "integer"
+          },
+          "storage": {
+            "type": "integer",
+            "nullable": true
           },
           "codes": {
             "type": "array",
@@ -1875,8 +1874,8 @@
             "type": "integer",
             "nullable": true
           },
-          "storage": {
-            "type": "integer",
+          "battery": {
+            "default": null,
             "nullable": true
           },
           "station": {
@@ -1917,6 +1916,10 @@
           },
           "bsw_measurement_unit": {
             "type": "integer"
+          },
+          "storage": {
+            "type": "integer",
+            "nullable": true
           }
         },
         "required": [
@@ -2052,8 +2055,8 @@
             "type": "integer",
             "nullable": true
           },
-          "storage": {
-            "type": "integer",
+          "battery": {
+            "default": null,
             "nullable": true
           },
           "station": {
@@ -2094,6 +2097,10 @@
           },
           "bsw_measurement_unit": {
             "type": "integer"
+          },
+          "storage": {
+            "type": "integer",
+            "nullable": true
           },
           "product": {
             "type": "integer"
@@ -2288,10 +2295,10 @@
               "$ref": "#/components/schemas/TerminalReference"
             }
           },
-          "storages": {
+          "batteries": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/StorageReference"
+              "$ref": "#/components/schemas/BatteryReference"
             }
           },
           "stations": {
@@ -3525,7 +3532,7 @@
           "township"
         ]
       },
-      "StorageProduct": {
+      "BatteryProduct": {
         "type": "object",
         "properties": {
           "id": {
@@ -3537,7 +3544,7 @@
           }
         }
       },
-      "Facility_Storage": {
+      "Facility_Battery": {
         "type": "object",
         "properties": {
           "id": {
@@ -3644,7 +3651,7 @@
           "products": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/StorageProduct"
+              "$ref": "#/components/schemas/BatteryProduct"
             }
           },
           "meters": {
@@ -3689,12 +3696,10 @@
             "type": "string",
             "readOnly": true
           },
-          "storage": {},
           "product": {
             "$ref": "#/components/schemas/ProductReference"
           }
-        },
-        "required": ["storage"]
+        }
       },
       "Facility_Station": {
         "type": "object",
@@ -4035,11 +4040,11 @@
             "type": "string",
             "maxLength": 255
           },
-          "storage": {
+          "battery": {
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/StorageReference"
+                "$ref": "#/components/schemas/BatteryReference"
               }
             ]
           },
@@ -4289,11 +4294,11 @@
               }
             ]
           },
-          "storage": {
+          "battery": {
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/StorageReference"
+                "$ref": "#/components/schemas/BatteryReference"
               }
             ]
           },
@@ -4394,11 +4399,11 @@
               }
             ]
           },
-          "storage": {
+          "battery": {
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/StorageReference"
+                "$ref": "#/components/schemas/BatteryReference"
               }
             ]
           },
@@ -4807,7 +4812,7 @@
               "type": "integer"
             }
           },
-          "storages": {
+          "batteries": {
             "type": "array",
             "items": {
               "type": "integer"
@@ -5375,8 +5380,12 @@
             "enum": ["A", "S"],
             "maxLength": 255
           },
-          "type": {},
-          "sub_type": {},
+          "type": {
+            "type": "integer"
+          },
+          "sub_type": {
+            "type": "integer"
+          },
           "start_date": {
             "type": "string",
             "format": "date"
@@ -5429,9 +5438,6 @@
             "type": "string",
             "enum": ["P"],
             "maxLength": 255
-          },
-          "terminal_type": {
-            "type": "integer"
           },
           "entity": {
             "type": "integer"
@@ -5480,9 +5486,7 @@
           "regulator_system",
           "section",
           "start_date",
-          "sub_type",
-          "township",
-          "type"
+          "township"
         ]
       },
       "Facility_ReferencePlant": {
@@ -5527,8 +5531,12 @@
             "enum": ["A", "S"],
             "maxLength": 255
           },
-          "type": {},
-          "sub_type": {},
+          "type": {
+            "type": "integer"
+          },
+          "sub_type": {
+            "type": "integer"
+          },
           "start_date": {
             "type": "string",
             "format": "date"
@@ -5582,9 +5590,6 @@
             "enum": ["P"],
             "maxLength": 255
           },
-          "plant_type": {
-            "type": "integer"
-          },
           "entity": {
             "type": "integer"
           },
@@ -5626,12 +5631,10 @@
           "regulator_system",
           "section",
           "start_date",
-          "sub_type",
-          "township",
-          "type"
+          "township"
         ]
       },
-      "Facility_ReferenceStorage": {
+      "Facility_ReferenceBattery": {
         "type": "object",
         "properties": {
           "id": {
@@ -5673,8 +5676,12 @@
             "enum": ["A", "S"],
             "maxLength": 255
           },
-          "type": {},
-          "sub_type": {},
+          "type": {
+            "type": "integer"
+          },
+          "sub_type": {
+            "type": "integer"
+          },
           "start_date": {
             "type": "string",
             "format": "date"
@@ -5728,9 +5735,6 @@
             "enum": ["P"],
             "maxLength": 255
           },
-          "storage_type": {
-            "type": "integer"
-          },
           "entity": {
             "type": "integer"
           },
@@ -5772,9 +5776,7 @@
           "regulator_system",
           "section",
           "start_date",
-          "sub_type",
-          "township",
-          "type"
+          "township"
         ]
       },
       "Facility_ReferenceStation": {
@@ -5819,8 +5821,12 @@
             "enum": ["A", "S"],
             "maxLength": 255
           },
-          "type": {},
-          "sub_type": {},
+          "type": {
+            "type": "integer"
+          },
+          "sub_type": {
+            "type": "integer"
+          },
           "start_date": {
             "type": "string",
             "format": "date"
@@ -5874,9 +5880,6 @@
             "enum": ["P"],
             "maxLength": 255
           },
-          "station_type": {
-            "type": "integer"
-          },
           "entity": {
             "type": "integer"
           },
@@ -5918,9 +5921,7 @@
           "regulator_system",
           "section",
           "start_date",
-          "sub_type",
-          "township",
-          "type"
+          "township"
         ]
       },
       "Facility_ReferenceSystem": {
@@ -5965,8 +5966,12 @@
             "enum": ["A", "S"],
             "maxLength": 255
           },
-          "type": {},
-          "sub_type": {},
+          "type": {
+            "type": "integer"
+          },
+          "sub_type": {
+            "type": "integer"
+          },
           "start_date": {
             "type": "string",
             "format": "date"
@@ -6020,9 +6025,6 @@
             "enum": ["P"],
             "maxLength": 255
           },
-          "system_type": {
-            "type": "integer"
-          },
           "entity": {
             "type": "integer"
           },
@@ -6064,9 +6066,7 @@
           "regulator_system",
           "section",
           "start_date",
-          "sub_type",
-          "township",
-          "type"
+          "township"
         ]
       },
       "Volumes_ReferenceMeter": {
@@ -6080,8 +6080,8 @@
             "type": "string",
             "maxLength": 255
           },
-          "storage": {
-            "type": "integer",
+          "battery": {
+            "default": null,
             "nullable": true
           },
           "terminal": {
@@ -6102,6 +6102,10 @@
           },
           "entity": {
             "type": "integer"
+          },
+          "storage": {
+            "type": "integer",
+            "nullable": true
           },
           "codes": {
             "type": "array",
@@ -6254,8 +6258,8 @@
             "type": "integer",
             "nullable": true
           },
-          "storage": {
-            "type": "integer",
+          "battery": {
+            "default": null,
             "nullable": true
           },
           "station": {
@@ -6296,6 +6300,10 @@
           },
           "bsw_measurement_unit": {
             "type": "integer"
+          },
+          "storage": {
+            "type": "integer",
+            "nullable": true
           },
           "product": {
             "type": "integer"
@@ -6341,8 +6349,8 @@
             "type": "integer",
             "nullable": true
           },
-          "storage": {
-            "type": "integer",
+          "battery": {
+            "default": null,
             "nullable": true
           },
           "station": {
@@ -6383,6 +6391,10 @@
           },
           "bsw_measurement_unit": {
             "type": "integer"
+          },
+          "storage": {
+            "type": "integer",
+            "nullable": true
           }
         },
         "required": [
@@ -6573,21 +6585,21 @@
         }
       }
     },
-    "/storages": {
+    "/batteries": {
       "get": {
-        "summary": "Retrieve a list of storage facilities.",
-        "description": "Retrieve a list of storage facilities.",
-        "operationId": "get_storages",
+        "summary": "Retrieve a list of batteries.",
+        "description": "Retrieve a list of batteries.",
+        "operationId": "get_batteries",
         "tags": ["Facilities"],
         "responses": {
           "200": {
-            "description": "A list of storage facilities.",
+            "description": "A list of batteries.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Facility_ReferenceStorage"
+                    "$ref": "#/components/schemas/Facility_ReferenceBattery"
                   }
                 }
               }
@@ -6605,11 +6617,11 @@
         }
       }
     },
-    "/storages/{id}": {
+    "/batteries/{id}": {
       "get": {
-        "summary": "Retrieve a single storage by ID.",
-        "description": "Retrieve a single storage by ID.",
-        "operationId": "get_storage",
+        "summary": "Retrieve a single battery by ID.",
+        "description": "Retrieve a single battery by ID.",
+        "operationId": "get_battery",
         "tags": ["Facilities"],
         "parameters": [
           {
@@ -6619,22 +6631,22 @@
               "type": "integer"
             },
             "required": true,
-            "description": "The storage ID."
+            "description": "The battery ID."
           }
         ],
         "responses": {
           "200": {
-            "description": "A single storage facility.",
+            "description": "A single battery.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Facility_Storage"
+                  "$ref": "#/components/schemas/Facility_Battery"
                 }
               }
             }
           },
           "404": {
-            "description": "Storage not found.",
+            "description": "Battery not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -6642,7 +6654,7 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "Storage not found."
+                      "example": "Battery not found."
                     }
                   }
                 }
@@ -6663,13 +6675,13 @@
     },
     "/stations": {
       "get": {
-        "summary": "Retrieve a list of station facilities.",
-        "description": "Retrieve a list of station facilities.",
+        "summary": "Retrieve a list of stations.",
+        "description": "Retrieve a list of stations.",
         "operationId": "get_stations",
         "tags": ["Facilities"],
         "responses": {
           "200": {
-            "description": "A list of station facilities.",
+            "description": "A list of stations.",
             "content": {
               "application/json": {
                 "schema": {
@@ -6751,13 +6763,13 @@
     },
     "/systems": {
       "get": {
-        "summary": "Retrieve a list of system facilities.",
-        "description": "Retrieve a list of system facilities.",
+        "summary": "Retrieve a list of systems.",
+        "description": "Retrieve a list of systems.",
         "operationId": "get_systems",
         "tags": ["Facilities"],
         "responses": {
           "200": {
-            "description": "A list of system facilities.",
+            "description": "A list of systems.",
             "content": {
               "application/json": {
                 "schema": {
@@ -6800,7 +6812,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A single system facility.",
+            "description": "A single system.",
             "content": {
               "application/json": {
                 "schema": {
