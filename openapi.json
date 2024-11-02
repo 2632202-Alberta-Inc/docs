@@ -1790,7 +1790,7 @@
             "maxLength": 255
           },
           "battery": {
-            "default": null,
+            "type": "integer",
             "nullable": true
           },
           "terminal": {
@@ -1809,36 +1809,16 @@
             "type": "integer",
             "nullable": true
           },
-          "entity": {
-            "type": "integer"
-          },
-          "storage": {
+          "pipeline": {
             "type": "integer",
             "nullable": true
           },
-          "codes": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
+          "resource": {
+            "default": null,
+            "nullable": true
           },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "truck_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
+          "operator": {
+            "type": "integer"
           }
         },
         "required": ["external_id"]
@@ -4080,6 +4060,15 @@
               }
             ]
           },
+          "pipeline": {
+            "default": null,
+            "nullable": true
+          },
+          "resource": {
+            "default": null,
+            "nullable": true
+          },
+          "operator": {},
           "entity": {
             "$ref": "#/components/schemas/EntityReference"
           },
@@ -4108,7 +4097,7 @@
             }
           }
         },
-        "required": ["external_id"]
+        "required": ["external_id", "operator"]
       },
       "ProductCategoryReference": {
         "type": "object",
@@ -6081,7 +6070,7 @@
             "maxLength": 255
           },
           "battery": {
-            "default": null,
+            "type": "integer",
             "nullable": true
           },
           "terminal": {
@@ -6100,36 +6089,16 @@
             "type": "integer",
             "nullable": true
           },
-          "entity": {
-            "type": "integer"
-          },
-          "storage": {
+          "pipeline": {
             "type": "integer",
             "nullable": true
           },
-          "codes": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
+          "resource": {
+            "default": null,
+            "nullable": true
           },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "truck_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
+          "operator": {
+            "type": "integer"
           }
         },
         "required": ["external_id"]
