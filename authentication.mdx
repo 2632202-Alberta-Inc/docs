@@ -1,6 +1,6 @@
 ---
-title: 'Authentication'
-description: 'Learn how authentication, roles, and permissions work in the Flux OS.'
+title: "Authentication"
+description: "Learn how authentication, roles, and permissions work in the Flux OS."
 ---
 
 ## Authentication
@@ -31,11 +31,13 @@ A user can have more than one role, allowing for flexibility in permissions and 
 
 ## Permissions
 
-Permissions control what a user can do within Flux OS, regardless of their role. Currently, there are two permission levels:
+Permissions control what a user can do within Flux OS, regardless of their role. Currently, there are five permission levels:
 
 - **Admin**: Grants full access to manage settings, data, and system configurations. Admins can also modify roles and permissions.
-- **User**: Grants access to perform operations, but may not use the api nor modify modify settings, roles, or permissions.
-- **Read Only**: Allows users to view data and perform basic operations, but without the ability to modify settings or data.
+- **Front Office**: Grants ability to create and modify deals until execution, enter temporary pricing and rates, and access sandbox environments. Front Office users can initiate but not finalize transactions.
+- **Mid Office**: Grants ability to validate deals, mark deals as executed, and modify system configurations like pricing, tariffs, and rates. Mid Office users maintain core system operations.
+- **Back Office**: Grants read-only access to executed deals and their associated data, without modification capabilities. Back Office users can view but not edit completed transactions.
+- **Read Only**: Grants read-only access to view data across the entire system, without the ability to modify any settings or data.
 
 ### Example of Permissions:
 
