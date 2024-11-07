@@ -1,0 +1,4555 @@
+security:
+- apiKeyAuth: []
+  UserIdAuth: []
+servers:
+- url: https://v1.api.flux-os.com
+  description: v1
+info:
+  description: This API provides access to data on the Flux platform.
+  contact:
+    name: Flux API Support
+    email: support@flux-os.com
+    url: https://www.flux-os.com/contact
+  title: Flux API
+  version: 1.0.0
+tags:
+- name: Service
+  description: Health check and basic service operations, such as the ping endpoint.
+- name: Organization
+  description: Operations related to user management, roles, and permissions within
+    organizations.
+- name: Products
+  description: Operations related to managing products, categories, and specifications.
+- name: Currency
+  description: Operations for handling currencies, conversions, and related financial
+    data.
+- name: Entity
+  description: Operations concerning entities such as producers, carriers, marketers,
+    and other stakeholders.
+- name: Lines
+  description: Operations related to infrastructure lines, including pipelines and
+    rail lines.
+- name: Facilities
+  description: Operations managing facilities such as wells, terminals, plants, storages,
+    and stations.
+- name: Volumes
+  description: Operations for managing volumes, including tickets, meters, and volume
+    transactions.
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+    UserIdAuth:
+      type: apiKey
+      in: header
+      name: x-user-id
+  responses:
+    Unauthorized:
+      description: Unauthorized. The API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: Unauthorized.
+    Forbidden:
+      description: Forbidden. The user does not have the necessary permissions.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: Forbidden.
+    InternalServerError:
+      description: Something went wrong on the server.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: Internal server error.
+  schemas:
+    StorageType:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        code:
+          type: string
+          maxLength: 255
+      required:
+      - code
+      - name
+    Marketer:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        legal_name:
+          type: string
+          maxLength: 255
+        vertically_integrated:
+          type: boolean
+          default: false
+      required:
+      - legal_name
+    Midstreamer:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        legal_name:
+          type: string
+          maxLength: 255
+        vertically_integrated:
+          type: boolean
+          default: false
+      required:
+      - legal_name
+    Refiner:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        legal_name:
+          type: string
+          maxLength: 255
+      required:
+      - legal_name
+    Government:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        legal_name:
+          type: string
+          maxLength: 255
+      required:
+      - legal_name
+    EnvironmentalService:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        legal_name:
+          type: string
+          maxLength: 255
+      required:
+      - legal_name
+    InfrastructureService:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        legal_name:
+          type: string
+          maxLength: 255
+      required:
+      - legal_name
+    OilfieldService:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        legal_name:
+          type: string
+          maxLength: 255
+      required:
+      - legal_name
+    PlantType:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        code:
+          type: string
+          maxLength: 255
+      required:
+      - code
+      - name
+    ProductCategory:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        short_code:
+          type: string
+          maxLength: 255
+      required:
+      - name
+      - short_code
+    MeasurementUnit:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        abbreviation:
+          type: string
+          maxLength: 255
+      required:
+      - abbreviation
+      - name
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        short_code:
+          type: string
+          maxLength: 255
+        product_category:
+          $ref: '#/components/schemas/ProductCategory'
+        measurement_units:
+          type: array
+          items:
+            $ref: '#/components/schemas/MeasurementUnit'
+      required:
+      - name
+      - short_code
+    PlantProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        product:
+          $ref: '#/components/schemas/Product'
+    TerminalType:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        code:
+          type: string
+          maxLength: 255
+      required:
+      - code
+      - name
+    StorageProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        product:
+          $ref: '#/components/schemas/Product'
+    StationType:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        code:
+          type: string
+          maxLength: 255
+      required:
+      - code
+      - name
+    SystemType:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        code:
+          type: string
+          maxLength: 255
+      required:
+      - code
+      - name
+    SystemProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        product:
+          $ref: '#/components/schemas/Product'
+    Code:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+      required:
+      - name
+    MeterCode:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        code:
+          $ref: '#/components/schemas/Code'
+    Well:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        uwi:
+          type: string
+          maxLength: 255
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket'
+        truck_tickets:
+          $ref: '#/components/schemas/TruckTicket'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket'
+      required:
+      - uwi
+    Terminal:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        latitude:
+          type: number
+        longitude:
+          type: number
+        lsd:
+          type: integer
+        section:
+          type: integer
+        township:
+          type: integer
+        range:
+          type: integer
+        meridian:
+          type: string
+          maxLength: 255
+        terminal_type:
+          $ref: '#/components/schemas/TerminalType'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        government_code:
+          type: string
+          maxLength: 255
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket1'
+        pickup_truck_tickets:
+          type: array
+          items:
+            $ref: '#/components/schemas/TruckTicket1'
+        delivery_truck_tickets:
+          type: array
+          items:
+            $ref: '#/components/schemas/TruckTicket'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket1'
+      required:
+      - government_code
+      - latitude
+      - longitude
+      - lsd
+      - meridian
+      - name
+      - range
+      - section
+      - township
+    Plant:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        plant_type:
+          $ref: '#/components/schemas/PlantType'
+        government_code:
+          type: string
+          maxLength: 255
+        latitude:
+          type: number
+        longitude:
+          type: number
+        lsd:
+          type: integer
+        section:
+          type: integer
+        township:
+          type: integer
+        range:
+          type: integer
+        meridian:
+          type: string
+          maxLength: 255
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlantProduct'
+        meters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meter'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket4'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket5'
+      required:
+      - government_code
+      - latitude
+      - longitude
+      - lsd
+      - meridian
+      - name
+      - range
+      - section
+      - township
+    Storage:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        storage_type:
+          $ref: '#/components/schemas/StorageType'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        government_code:
+          type: string
+          maxLength: 255
+        latitude:
+          type: number
+        longitude:
+          type: number
+        lsd:
+          type: integer
+        section:
+          type: integer
+        township:
+          type: integer
+        range:
+          type: integer
+        meridian:
+          type: string
+          maxLength: 255
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/StorageProduct'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket3'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket4'
+      required:
+      - government_code
+      - latitude
+      - longitude
+      - lsd
+      - meridian
+      - name
+      - range
+      - section
+      - township
+    StationProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        storage: {}
+        product:
+          $ref: '#/components/schemas/Product'
+      required:
+      - storage
+    System:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        system_type:
+          $ref: '#/components/schemas/SystemType'
+        government_code:
+          type: string
+          maxLength: 255
+        latitude:
+          type: number
+        longitude:
+          type: number
+        lsd:
+          type: integer
+        section:
+          type: integer
+        township:
+          type: integer
+        range:
+          type: integer
+        meridian:
+          type: string
+          maxLength: 255
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/SystemProduct'
+        meters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meter'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket2'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket3'
+      required:
+      - government_code
+      - latitude
+      - longitude
+      - lsd
+      - meridian
+      - name
+      - range
+      - section
+      - township
+    Product1:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        short_code:
+          type: string
+          maxLength: 255
+        product_category:
+          $ref: '#/components/schemas/ProductCategory'
+      required:
+      - name
+      - short_code
+    ProductUnitConversion:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        product: {}
+        to_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        conversion_factor:
+          type: number
+      required:
+      - conversion_factor
+      - product
+    MeasurementUnit1:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        abbreviation:
+          type: string
+          maxLength: 255
+        product:
+          $ref: '#/components/schemas/Product1'
+        from_conversions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductUnitConversion'
+        to_conversions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductUnitConversion'
+      required:
+      - abbreviation
+      - name
+    MeterTicket:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        producer:
+          $ref: '#/components/schemas/Producer'
+        well:
+          $ref: '#/components/schemas/Well'
+        terminal:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Terminal'
+        plant:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Plant'
+        storage:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Storage'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        system:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/System'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+      required:
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
+    TankTicket:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        well:
+          $ref: '#/components/schemas/Well'
+        terminal:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Terminal'
+        plant:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Plant'
+        storage:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Storage'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        system:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/System'
+        product:
+          $ref: '#/components/schemas/Product'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+      required:
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
+    Station:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        station_type:
+          $ref: '#/components/schemas/StationType'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        government_code:
+          type: string
+          maxLength: 255
+        latitude:
+          type: number
+        longitude:
+          type: number
+        lsd:
+          type: integer
+        section:
+          type: integer
+        township:
+          type: integer
+        range:
+          type: integer
+        meridian:
+          type: string
+          maxLength: 255
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/StationProduct'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket'
+      required:
+      - government_code
+      - latitude
+      - longitude
+      - lsd
+      - meridian
+      - name
+      - range
+      - section
+      - township
+    MeterTicket1:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        producer:
+          $ref: '#/components/schemas/Producer'
+        well:
+          $ref: '#/components/schemas/Well'
+        plant:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Plant'
+        storage:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Storage'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        system:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/System'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+      required:
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
+    TruckTicket:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        bill_of_laiden:
+          type: string
+          maxLength: 255
+        rack_ticket:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        driver:
+          $ref: '#/components/schemas/Organization_User'
+        producer:
+          $ref: '#/components/schemas/Producer'
+        well:
+          $ref: '#/components/schemas/Well'
+        pickup_terminal:
+          $ref: '#/components/schemas/Terminal1'
+        delivery_terminal:
+          $ref: '#/components/schemas/Terminal2'
+        product:
+          $ref: '#/components/schemas/Product'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        load_volume:
+          type: number
+        load_volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+      required:
+      - bill_of_laiden
+      - bsw
+      - density
+      - external_id
+      - load_volume
+      - production_date
+      - rack_ticket
+      - volume
+    TankTicket1:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        well:
+          $ref: '#/components/schemas/Well'
+        plant:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Plant'
+        storage:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Storage'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        system:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/System'
+        product:
+          $ref: '#/components/schemas/Product'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+      required:
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
+    Terminal1:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        latitude:
+          type: number
+        longitude:
+          type: number
+        lsd:
+          type: integer
+        section:
+          type: integer
+        township:
+          type: integer
+        range:
+          type: integer
+        meridian:
+          type: string
+          maxLength: 255
+        terminal_type:
+          $ref: '#/components/schemas/TerminalType'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        government_code:
+          type: string
+          maxLength: 255
+        meters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meter'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket1'
+        delivery_truck_tickets:
+          type: array
+          items:
+            $ref: '#/components/schemas/TruckTicket'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket1'
+      required:
+      - government_code
+      - latitude
+      - longitude
+      - lsd
+      - meridian
+      - name
+      - range
+      - section
+      - township
+    TruckTicket1:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        bill_of_laiden:
+          type: string
+          maxLength: 255
+        rack_ticket:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        carrier:
+          $ref: '#/components/schemas/Carrier'
+        driver:
+          $ref: '#/components/schemas/Organization_User'
+        producer:
+          $ref: '#/components/schemas/Producer'
+        well:
+          $ref: '#/components/schemas/Well'
+        delivery_terminal:
+          $ref: '#/components/schemas/Terminal2'
+        product:
+          $ref: '#/components/schemas/Product'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        load_volume:
+          type: number
+        load_volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+      required:
+      - bill_of_laiden
+      - bsw
+      - density
+      - external_id
+      - load_volume
+      - production_date
+      - rack_ticket
+      - volume
+    Terminal2:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        latitude:
+          type: number
+        longitude:
+          type: number
+        lsd:
+          type: integer
+        section:
+          type: integer
+        township:
+          type: integer
+        range:
+          type: integer
+        meridian:
+          type: string
+          maxLength: 255
+        terminal_type:
+          $ref: '#/components/schemas/TerminalType'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        government_code:
+          type: string
+          maxLength: 255
+        meters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meter'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket1'
+        pickup_truck_tickets:
+          type: array
+          items:
+            $ref: '#/components/schemas/TruckTicket1'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket1'
+      required:
+      - government_code
+      - latitude
+      - longitude
+      - lsd
+      - meridian
+      - name
+      - range
+      - section
+      - township
+    TankTicket2:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        entity:
+          $ref: '#/components/schemas/Entity'
+        well:
+          $ref: '#/components/schemas/Well'
+        terminal:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Terminal'
+        plant:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Plant'
+        storage:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Storage'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        system:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/System'
+        product:
+          $ref: '#/components/schemas/Product'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+      required:
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
+    Meter:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        entity:
+          $ref: '#/components/schemas/Entity'
+        storage:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Storage'
+        terminal:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Terminal'
+        plant:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Plant'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        system:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/System'
+        codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/MeterCode'
+      required:
+      - external_id
+    Entity:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        organization_slug:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        stytch_id:
+          type: string
+          maxLength: 255
+        url:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        phone:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        email:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        unit:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        street:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        city:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        zip_code:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        province:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        state:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        postal_code:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        country:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        producers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Producer'
+        carriers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Carrier'
+        marketers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Marketer'
+        midstreamers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Midstreamer'
+        refiners:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refiner'
+        governments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Government'
+        environmental_services:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentalService'
+        infrastructure_services:
+          type: array
+          items:
+            $ref: '#/components/schemas/InfrastructureService'
+        oilfield_services:
+          type: array
+          items:
+            $ref: '#/components/schemas/OilfieldService'
+        plants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Plant'
+        wells:
+          type: array
+          items:
+            $ref: '#/components/schemas/Well'
+        terminals:
+          type: array
+          items:
+            $ref: '#/components/schemas/Terminal'
+        storages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Storage'
+        stations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Station'
+        systems:
+          type: array
+          items:
+            $ref: '#/components/schemas/System'
+        meters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meter'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket'
+        truck_tickets:
+          $ref: '#/components/schemas/TruckTicket'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket'
+      required:
+      - name
+      - stytch_id
+    MeterTicket2:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        producer:
+          $ref: '#/components/schemas/Producer'
+        well:
+          $ref: '#/components/schemas/Well'
+        terminal:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Terminal'
+        plant:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Plant'
+        storage:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Storage'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+      required:
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
+    TankTicket3:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        well:
+          $ref: '#/components/schemas/Well'
+        terminal:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Terminal'
+        plant:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Plant'
+        storage:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Storage'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        product:
+          $ref: '#/components/schemas/Product'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+      required:
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
+    Producer:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        legal_name:
+          type: string
+          maxLength: 255
+        vertically_integrated:
+          type: boolean
+          default: false
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket'
+        truck_tickets:
+          $ref: '#/components/schemas/TruckTicket'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket'
+      required:
+      - legal_name
+    ProducerProducts:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        producer:
+          $ref: '#/components/schemas/Producer'
+        products:
+          $ref: '#/components/schemas/Product'
+    MeterTicket3:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        producer:
+          $ref: '#/components/schemas/Producer'
+        well:
+          $ref: '#/components/schemas/Well'
+        terminal:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Terminal'
+        plant:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Plant'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        system:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/System'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+      required:
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
+    TankTicket4:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        well:
+          $ref: '#/components/schemas/Well'
+        terminal:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Terminal'
+        plant:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Plant'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        system:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/System'
+        product:
+          $ref: '#/components/schemas/Product'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+      required:
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
+    MeterTicket4:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        producer:
+          $ref: '#/components/schemas/Producer'
+        well:
+          $ref: '#/components/schemas/Well'
+        terminal:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Terminal'
+        storage:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Storage'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        system:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/System'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+      required:
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
+    TankTicket5:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        well:
+          $ref: '#/components/schemas/Well'
+        terminal:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Terminal'
+        storage:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Storage'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        system:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/System'
+        product:
+          $ref: '#/components/schemas/Product'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/MeasurementUnit1'
+      required:
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
+    Carrier:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        legal_name:
+          type: string
+          maxLength: 255
+        truck_tickets:
+          $ref: '#/components/schemas/TruckTicket'
+      required:
+      - legal_name
+    CarrierProducts:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        carrier:
+          $ref: '#/components/schemas/Carrier'
+        products:
+          $ref: '#/components/schemas/Product'
+    UserRoles:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+      required:
+      - name
+    UserPermissions:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        code:
+          type: string
+          maxLength: 255
+      required:
+      - code
+      - name
+    Organization_User:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        stytch_id:
+          type: string
+          maxLength: 255
+        entity:
+          $ref: '#/components/schemas/Entity'
+        first_name:
+          type: string
+          maxLength: 255
+        last_name:
+          type: string
+          maxLength: 255
+        email:
+          type: string
+          maxLength: 255
+        phone:
+          type: string
+          maxLength: 255
+        title:
+          type: string
+          maxLength: 255
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserRoles'
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserPermissions'
+      required:
+      - email
+      - first_name
+      - last_name
+      - phone
+      - stytch_id
+      - title
+    Organization_UserRoles:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+      required:
+      - name
+    Organization_UserPermissions:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        code:
+          type: string
+          maxLength: 255
+      required:
+      - code
+      - name
+    Product_Product:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        short_code:
+          type: string
+          maxLength: 255
+        product_category:
+          $ref: '#/components/schemas/ProductCategory'
+        measurement_units:
+          type: array
+          items:
+            $ref: '#/components/schemas/MeasurementUnit'
+      required:
+      - name
+      - short_code
+    Product_ProductCategory:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        short_code:
+          type: string
+          maxLength: 255
+      required:
+      - name
+      - short_code
+    Product_ProductCategorySpecification:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        short_code:
+          type: string
+          maxLength: 255
+        entity:
+          $ref: '#/components/schemas/Entity'
+      required:
+      - name
+      - short_code
+    Product_MeasurementUnit:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        abbreviation:
+          type: string
+          maxLength: 255
+        product:
+          $ref: '#/components/schemas/Product1'
+        from_conversions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductUnitConversion'
+        to_conversions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductUnitConversion'
+      required:
+      - abbreviation
+      - name
+    CurrencyConversion:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        exchange_rate:
+          type: number
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - exchange_rate
+    Currency_Currency:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        symbol:
+          type: string
+          maxLength: 255
+        conversions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CurrencyConversion'
+      required:
+      - name
+      - symbol
+    Entity_Entity:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        organization_slug:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        stytch_id:
+          type: string
+          maxLength: 255
+        url:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        phone:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        email:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        unit:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        street:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        city:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        zip_code:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        province:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        state:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        postal_code:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        country:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        producers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Producer'
+        carriers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Carrier'
+        marketers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Marketer'
+        midstreamers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Midstreamer'
+        refiners:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refiner'
+        governments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Government'
+        environmental_services:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentalService'
+        infrastructure_services:
+          type: array
+          items:
+            $ref: '#/components/schemas/InfrastructureService'
+        oilfield_services:
+          type: array
+          items:
+            $ref: '#/components/schemas/OilfieldService'
+        plants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Plant'
+        wells:
+          type: array
+          items:
+            $ref: '#/components/schemas/Well'
+        terminals:
+          type: array
+          items:
+            $ref: '#/components/schemas/Terminal'
+        storages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Storage'
+        stations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Station'
+        systems:
+          type: array
+          items:
+            $ref: '#/components/schemas/System'
+        meters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meter'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket'
+        truck_tickets:
+          $ref: '#/components/schemas/TruckTicket'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket'
+      required:
+      - name
+      - stytch_id
+    Entity_Producer:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        entity:
+          $ref: '#/components/schemas/Entity'
+        legal_name:
+          type: string
+          maxLength: 255
+        vertically_integrated:
+          type: boolean
+          default: false
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProducerProducts'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket'
+        truck_tickets:
+          $ref: '#/components/schemas/TruckTicket'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket'
+      required:
+      - legal_name
+    Entity_Carrier:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        entity:
+          $ref: '#/components/schemas/Entity'
+        legal_name:
+          type: string
+          maxLength: 255
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarrierProducts'
+        truck_tickets:
+          $ref: '#/components/schemas/TruckTicket'
+      required:
+      - legal_name
+    Marketer1:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        legal_name:
+          type: string
+          maxLength: 255
+        vertically_integrated:
+          type: boolean
+          default: false
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketerProducts'
+      required:
+      - legal_name
+    MarketerProducts:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        marketer:
+          $ref: '#/components/schemas/Marketer1'
+        products:
+          $ref: '#/components/schemas/Product_Product'
+    Entity_Marketer:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        entity:
+          $ref: '#/components/schemas/Entity'
+        legal_name:
+          type: string
+          maxLength: 255
+        vertically_integrated:
+          type: boolean
+          default: false
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketerProducts'
+      required:
+      - legal_name
+    Entity_Midstreamer:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        entity:
+          $ref: '#/components/schemas/Entity'
+        legal_name:
+          type: string
+          maxLength: 255
+        vertically_integrated:
+          type: boolean
+          default: false
+      required:
+      - legal_name
+    Entity_Refiner:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        entity:
+          $ref: '#/components/schemas/Entity'
+        legal_name:
+          type: string
+          maxLength: 255
+      required:
+      - legal_name
+    Entity_Government:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        entity:
+          $ref: '#/components/schemas/Entity'
+        legal_name:
+          type: string
+          maxLength: 255
+      required:
+      - legal_name
+    Entity_EnvironmentalService:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        entity:
+          $ref: '#/components/schemas/Entity'
+        legal_name:
+          type: string
+          maxLength: 255
+      required:
+      - legal_name
+    Entity_InfrastructureService:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        entity:
+          $ref: '#/components/schemas/Entity'
+        legal_name:
+          type: string
+          maxLength: 255
+      required:
+      - legal_name
+    Entity_OilfieldService:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        entity:
+          $ref: '#/components/schemas/Entity'
+        legal_name:
+          type: string
+          maxLength: 255
+      required:
+      - legal_name
+    PipelineType:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+      required:
+      - name
+    PipelineProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        product:
+          $ref: '#/components/schemas/Product_Product'
+    Lines_Pipeline:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        wadf:
+          type: string
+          maxLength: 255
+        pipeline_type:
+          $ref: '#/components/schemas/PipelineType'
+        entity:
+          $ref: '#/components/schemas/Entity_Entity'
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineProduct'
+      required:
+      - name
+      - wadf
+    RailLineType:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+      required:
+      - name
+    RailLineCategory:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+      required:
+      - name
+    RailLineCarrier:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        carrier:
+          $ref: '#/components/schemas/Entity_Carrier'
+    RailLineProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        products: {}
+        product:
+          $ref: '#/components/schemas/Product_Product'
+      required:
+      - products
+    Lines_RailLine:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        entity:
+          $ref: '#/components/schemas/Entity_Entity'
+        type:
+          $ref: '#/components/schemas/RailLineType'
+        category:
+          $ref: '#/components/schemas/RailLineCategory'
+        max_train_length:
+          type: number
+          default: null
+          nullable: true
+        carriers:
+          type: array
+          items:
+            $ref: '#/components/schemas/RailLineCarrier'
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/RailLineProduct'
+    Facility_Well:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        uwi:
+          type: string
+          maxLength: 255
+        entity:
+          $ref: '#/components/schemas/Entity_Entity'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket'
+        truck_tickets:
+          $ref: '#/components/schemas/TruckTicket'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket'
+      required:
+      - uwi
+    Facility_Terminal:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        latitude:
+          type: number
+        longitude:
+          type: number
+        lsd:
+          type: integer
+        section:
+          type: integer
+        township:
+          type: integer
+        range:
+          type: integer
+        meridian:
+          type: string
+          maxLength: 255
+        terminal_type:
+          $ref: '#/components/schemas/TerminalType'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        government_code:
+          type: string
+          maxLength: 255
+        meters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meter'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket1'
+        pickup_truck_tickets:
+          type: array
+          items:
+            $ref: '#/components/schemas/TruckTicket1'
+        delivery_truck_tickets:
+          type: array
+          items:
+            $ref: '#/components/schemas/TruckTicket'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket1'
+      required:
+      - government_code
+      - latitude
+      - longitude
+      - lsd
+      - meridian
+      - name
+      - range
+      - section
+      - township
+    Facility_Plant:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        plant_type:
+          $ref: '#/components/schemas/PlantType'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        government_code:
+          type: string
+          maxLength: 255
+        latitude:
+          type: number
+        longitude:
+          type: number
+        lsd:
+          type: integer
+        section:
+          type: integer
+        township:
+          type: integer
+        range:
+          type: integer
+        meridian:
+          type: string
+          maxLength: 255
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlantProduct'
+        meters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meter'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket4'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket5'
+      required:
+      - government_code
+      - latitude
+      - longitude
+      - lsd
+      - meridian
+      - name
+      - range
+      - section
+      - township
+    Facility_Storage:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        storage_type:
+          $ref: '#/components/schemas/StorageType'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        government_code:
+          type: string
+          maxLength: 255
+        latitude:
+          type: number
+        longitude:
+          type: number
+        lsd:
+          type: integer
+        section:
+          type: integer
+        township:
+          type: integer
+        range:
+          type: integer
+        meridian:
+          type: string
+          maxLength: 255
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/StorageProduct'
+        meters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meter'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket3'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket4'
+      required:
+      - government_code
+      - latitude
+      - longitude
+      - lsd
+      - meridian
+      - name
+      - range
+      - section
+      - township
+    Facility_Station:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        station_type:
+          $ref: '#/components/schemas/StationType'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        government_code:
+          type: string
+          maxLength: 255
+        latitude:
+          type: number
+        longitude:
+          type: number
+        lsd:
+          type: integer
+        section:
+          type: integer
+        township:
+          type: integer
+        range:
+          type: integer
+        meridian:
+          type: string
+          maxLength: 255
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/StationProduct'
+        meters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meter'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket'
+      required:
+      - government_code
+      - latitude
+      - longitude
+      - lsd
+      - meridian
+      - name
+      - range
+      - section
+      - township
+    Facility_System:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        system_type:
+          $ref: '#/components/schemas/SystemType'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        government_code:
+          type: string
+          maxLength: 255
+        latitude:
+          type: number
+        longitude:
+          type: number
+        lsd:
+          type: integer
+        section:
+          type: integer
+        township:
+          type: integer
+        range:
+          type: integer
+        meridian:
+          type: string
+          maxLength: 255
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/SystemProduct'
+        meters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meter'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket2'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket3'
+      required:
+      - government_code
+      - latitude
+      - longitude
+      - lsd
+      - meridian
+      - name
+      - range
+      - section
+      - township
+    Volumes_Meter:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        entity:
+          $ref: '#/components/schemas/Entity_Entity'
+        storage:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Storage'
+        terminal:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Terminal'
+        plant:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Plant'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        system:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/System'
+        codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/MeterCode'
+        meter_tickets:
+          $ref: '#/components/schemas/MeterTicket'
+        truck_tickets:
+          $ref: '#/components/schemas/TruckTicket'
+        tank_tickets:
+          $ref: '#/components/schemas/TankTicket2'
+      required:
+      - external_id
+    Volumes_TruckTicket:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        bill_of_laiden:
+          type: string
+          maxLength: 255
+        rack_ticket:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        carrier:
+          $ref: '#/components/schemas/Carrier'
+        driver:
+          $ref: '#/components/schemas/Organization_User'
+        producer:
+          $ref: '#/components/schemas/Producer'
+        well:
+          $ref: '#/components/schemas/Well'
+        pickup_terminal:
+          $ref: '#/components/schemas/Terminal1'
+        delivery_terminal:
+          $ref: '#/components/schemas/Terminal2'
+        product:
+          $ref: '#/components/schemas/Product_Product'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/Product_MeasurementUnit'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/Product_MeasurementUnit'
+        load_volume:
+          type: number
+        load_volume_measurement_unit:
+          $ref: '#/components/schemas/Product_MeasurementUnit'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/Product_MeasurementUnit'
+      required:
+      - bill_of_laiden
+      - bsw
+      - density
+      - external_id
+      - load_volume
+      - production_date
+      - rack_ticket
+      - volume
+    Volumes_TankTicket:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        well:
+          $ref: '#/components/schemas/Well'
+        terminal:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Terminal'
+        plant:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Plant'
+        storage:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Storage'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        system:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/System'
+        product:
+          $ref: '#/components/schemas/Product_Product'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/Product_MeasurementUnit'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/Product_MeasurementUnit'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/Product_MeasurementUnit'
+      required:
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
+    Volumes_MeterTicket:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        external_id:
+          type: string
+          maxLength: 255
+        meter:
+          $ref: '#/components/schemas/Meter'
+        entity:
+          $ref: '#/components/schemas/Entity'
+        producer:
+          $ref: '#/components/schemas/Producer'
+        well:
+          $ref: '#/components/schemas/Well'
+        terminal:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Terminal'
+        plant:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Plant'
+        storage:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Storage'
+        station:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Station'
+        system:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/System'
+        production_date:
+          type: string
+          format: date
+        updated_at:
+          type: string
+          format: date-time
+        density:
+          type: number
+        density_measurement_unit:
+          $ref: '#/components/schemas/Product_MeasurementUnit'
+        volume:
+          type: number
+        volume_measurement_unit:
+          $ref: '#/components/schemas/Product_MeasurementUnit'
+        bsw:
+          type: number
+        bsw_measurement_unit:
+          $ref: '#/components/schemas/Product_MeasurementUnit'
+      required:
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
+paths:
+  /ping:
+    get:
+      summary: Check the server health.
+      description: Check the server health.
+      operationId: ping
+      tags:
+      - Service
+      responses:
+        '200':
+          description: Server is running.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: pong
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /users:
+    get:
+      summary: Retrieve a list of users.
+      description: Retrieve a list of users.
+      operationId: get_users
+      tags:
+      - Organization
+      responses:
+        '200':
+          description: A list of users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization_User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /users/{id}:
+    get:
+      summary: Retrieve a single user by ID.
+      description: Retrieve a single user by ID.
+      operationId: get_user
+      tags:
+      - Organization
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The user ID.
+      responses:
+        '200':
+          description: A single user with related roles and permissions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization_User'
+        '404':
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: User not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /roles:
+    get:
+      summary: Retrieve a list of user roles.
+      description: Retrieve a list of user roles.
+      operationId: get_roles
+      tags:
+      - Organization
+      responses:
+        '200':
+          description: A list of user roles.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization_UserRoles'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /permissions:
+    get:
+      summary: Retrieve a list of user permissions.
+      description: Retrieve a list of user permissions.
+      operationId: get_permissions
+      tags:
+      - Organization
+      responses:
+        '200':
+          description: A list of user permissions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization_UserPermissions'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /products:
+    get:
+      summary: Retrieve a list of products.
+      description: Retrieve a list of products.
+      operationId: get_products
+      tags:
+      - Products
+      responses:
+        '200':
+          description: A list of products.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product_Product'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /products/{id}:
+    get:
+      summary: Retrieve a single product by ID.
+      description: Retrieve a single product by ID.
+      operationId: get_product
+      tags:
+      - Products
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The product ID.
+      responses:
+        '200':
+          description: A single product.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product_Product'
+        '404':
+          description: Product not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Product not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /products/categories:
+    get:
+      summary: Retrieve a list of product categories.
+      description: Retrieve a list of product categories.
+      operationId: get_product_categories
+      tags:
+      - Products
+      responses:
+        '200':
+          description: A list of product categories.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product_ProductCategory'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /products/categories/specifications:
+    get:
+      summary: Retrieve a list of product category specifications.
+      description: Retrieve a list of product category specifications.
+      operationId: get_product_categories_specifications
+      tags:
+      - Products
+      responses:
+        '200':
+          description: A list of product category specifications.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product_ProductCategorySpecification'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /currencies:
+    get:
+      summary: Retrieve a list of currencies.
+      description: Retrieve a list of currencies.
+      operationId: get_currencies
+      tags:
+      - Currency
+      responses:
+        '200':
+          description: A list of currencies.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Currency_Currency'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /currencies/convert:
+    get:
+      summary: Retrieve the live exchange rate.
+      description: Retrieve the live exchange rate.
+      operationId: convert_currency
+      tags:
+      - Currency
+      parameters:
+      - in: query
+        name: from_currency
+        schema:
+          type: string
+        required: true
+        description: The symbol of the currency to convert from.
+      - in: query
+        name: to_currency
+        schema:
+          type: string
+        required: true
+        description: The symbol of the currency to convert to.
+      responses:
+        '200':
+          description: The exchange rate between the two currencies.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  from_currency:
+                    type: string
+                  to_currency:
+                    type: string
+                  exchange_rate:
+                    type: number
+        '400':
+          description: Request format incorrect.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: You must include from_currency and to_currency as query
+                      params.
+        '404':
+          description: Conversion not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Conversion not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /entities:
+    get:
+      summary: Retrieve a list of entities.
+      description: Retrieve a list of entities.
+      operationId: get_entities
+      tags:
+      - Entity
+      responses:
+        '200':
+          description: A list of entities.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entity_Entity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /entities/{id}:
+    get:
+      summary: Retrieve a single entity by ID.
+      description: Retrieve a single entity by ID.
+      operationId: get_entity
+      tags:
+      - Entity
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The entity ID.
+      responses:
+        '200':
+          description: A single entity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity_Entity'
+        '404':
+          description: Entity not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Entity not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /producers:
+    get:
+      summary: Retrieve a list of producers.
+      description: Retrieve a list of producers.
+      operationId: get_producers
+      tags:
+      - Entity
+      responses:
+        '200':
+          description: A list of producers.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entity_Producer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /producers/{id}:
+    get:
+      summary: Retrieve a single producer by ID.
+      description: Retrieve a single producer by ID.
+      operationId: get_producer
+      tags:
+      - Entity
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The producer ID.
+      responses:
+        '200':
+          description: A single producer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity_Producer'
+        '404':
+          description: Producer not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Producer not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /carriers:
+    get:
+      summary: Retrieve a list of carriers.
+      description: Retrieve a list of carriers.
+      operationId: get_carriers
+      tags:
+      - Entity
+      responses:
+        '200':
+          description: A list of carriers.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entity_Carrier'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /carriers/{id}:
+    get:
+      summary: Retrieve a single carrier by ID.
+      description: Retrieve a single carrier by ID.
+      operationId: get_carrier
+      tags:
+      - Entity
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The carrier ID.
+      responses:
+        '200':
+          description: A single carrier with products.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity_Carrier'
+        '404':
+          description: Carrier not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Carrier not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /marketers:
+    get:
+      summary: Retrieve a list of marketers.
+      description: Retrieve a list of marketers.
+      operationId: get_marketers
+      tags:
+      - Entity
+      responses:
+        '200':
+          description: A list of marketers.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entity_Marketer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /marketers/{id}:
+    get:
+      summary: Retrieve a single marketer by ID.
+      description: Retrieve a single marketer by ID.
+      operationId: get_marketer
+      tags:
+      - Entity
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The marketer ID.
+      responses:
+        '200':
+          description: A single marketer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity_Marketer'
+        '404':
+          description: Marketer not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Marketer not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /midstreamers:
+    get:
+      summary: Retrieve a list of midstreamers.
+      description: Retrieve a list of midstreamers.
+      operationId: get_midstreamers
+      tags:
+      - Entity
+      responses:
+        '200':
+          description: A list of midstreamers.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entity_Midstreamer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /midstreamers/{id}:
+    get:
+      summary: Retrieve a single midstreamer by ID.
+      description: Retrieve a single midstreamer by ID.
+      operationId: get_midstreamer
+      tags:
+      - Entity
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The midstreamer ID.
+      responses:
+        '200':
+          description: A single midstreamer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity_Midstreamer'
+        '404':
+          description: Midstreamer not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Midstreamer not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /refiners:
+    get:
+      summary: Retrieve a list of refiners.
+      description: Retrieve a list of refiners.
+      operationId: get_refiners
+      tags:
+      - Entity
+      responses:
+        '200':
+          description: A list of refiners.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entity_Refiner'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /refiners/{id}:
+    get:
+      summary: Retrieve a single refiner by ID.
+      description: Retrieve a single refiner by ID.
+      operationId: get_refiner
+      tags:
+      - Entity
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The refiner ID.
+      responses:
+        '200':
+          description: A single refiner.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity_Refiner'
+        '404':
+          description: Refiner not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Refiner not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /governments:
+    get:
+      summary: Retrieve a list of governments.
+      description: Retrieve a list of governments.
+      operationId: get_governments
+      tags:
+      - Entity
+      responses:
+        '200':
+          description: A list of governments.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entity_Government'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /governments/{id}:
+    get:
+      summary: Retrieve a single government entity by ID.
+      description: Retrieve a single government entity by ID.
+      operationId: get_government
+      tags:
+      - Entity
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The government entity ID.
+      responses:
+        '200':
+          description: A single government entity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity_Government'
+        '404':
+          description: Government not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Government not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /environmental_services:
+    get:
+      summary: Retrieve a list of environmental services.
+      description: Retrieve a list of environmental services.
+      operationId: get_environmental_services
+      tags:
+      - Entity
+      responses:
+        '200':
+          description: A list of environmental services.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entity_EnvironmentalService'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /environmental_services/{id}:
+    get:
+      summary: Retrieve a single environmental service by ID.
+      description: Retrieve a single environmental service by ID.
+      operationId: get_environmental_service
+      tags:
+      - Entity
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The environmental service ID.
+      responses:
+        '200':
+          description: A single environmental service.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity_EnvironmentalService'
+        '404':
+          description: Environmental service not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Environmental service not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /infrastructure_services:
+    get:
+      summary: Retrieve a list of infrastructure services.
+      description: Retrieve a list of infrastructure services.
+      operationId: get_infrastructure_services
+      tags:
+      - Entity
+      responses:
+        '200':
+          description: A list of infrastructure services.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entity_InfrastructureService'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /infrastructure_services/{id}:
+    get:
+      summary: Retrieve a single infrastructure service by ID.
+      description: Retrieve a single infrastructure service by ID.
+      operationId: get_infrastructure_service
+      tags:
+      - Entity
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The infrastructure service ID.
+      responses:
+        '200':
+          description: A single infrastructure service.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity_InfrastructureService'
+        '404':
+          description: Infrastructure service not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Infrastructure service not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /oilfield_services:
+    get:
+      summary: Retrieve a list of oilfield services.
+      description: Retrieve a list of oilfield services.
+      operationId: get_oilfield_services
+      tags:
+      - Entity
+      responses:
+        '200':
+          description: A list of oilfield services.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entity_OilfieldService'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /oilfield_services/{id}:
+    get:
+      summary: Retrieve a single oilfield service by ID.
+      description: Retrieve a single oilfield service by ID.
+      operationId: get_oilfield_service
+      tags:
+      - Entity
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The oilfield service ID.
+      responses:
+        '200':
+          description: A single oilfield service.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity_OilfieldService'
+        '404':
+          description: Oilfield service not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Oilfield service not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /pipelines:
+    get:
+      summary: Retrieve a list of pipelines.
+      description: Retrieve a list of pipelines.
+      operationId: get_pipelines
+      tags:
+      - Lines
+      responses:
+        '200':
+          description: A list of pipelines.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Lines_Pipeline'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /pipelines/{id}:
+    get:
+      summary: Retrieve a single pipeline by ID.
+      description: Retrieve a single pipeline by ID.
+      operationId: get_pipeline
+      tags:
+      - Lines
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The pipeline ID.
+      responses:
+        '200':
+          description: A single pipeline.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lines_Pipeline'
+        '404':
+          description: Pipeline not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Pipeline not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /rail_lines:
+    get:
+      summary: Retrieve a list of rail lines.
+      description: Retrieve a list of rail lines.
+      operationId: get_rail_lines
+      tags:
+      - Lines
+      responses:
+        '200':
+          description: A list of rail lines.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Lines_RailLine'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /rail_lines/{id}:
+    get:
+      summary: Retrieve a single rail line by ID.
+      description: Retrieve a single rail line by ID.
+      operationId: get_rail_line
+      tags:
+      - Lines
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The rail line ID.
+      responses:
+        '200':
+          description: A single rail line with related data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lines_RailLine'
+        '404':
+          description: Rail line not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Rail line not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /wells:
+    get:
+      summary: Retrieve a list of wells.
+      description: Retrieve a list of wells.
+      operationId: get_wells
+      tags:
+      - Facilities
+      responses:
+        '200':
+          description: A list of wells.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Facility_Well'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /wells/{id}:
+    get:
+      summary: Retrieve a single well by ID.
+      description: Retrieve a single well by ID.
+      operationId: get_well
+      tags:
+      - Facilities
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The well ID.
+      responses:
+        '200':
+          description: A single well.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facility_Well'
+        '404':
+          description: Well not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Well not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /terminals:
+    get:
+      summary: Retrieve a list of terminals.
+      description: Retrieve a list of terminals.
+      operationId: get_terminals
+      tags:
+      - Facilities
+      responses:
+        '200':
+          description: A list of terminals.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Facility_Terminal'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /terminals/{id}:
+    get:
+      summary: Retrieve a single terminal by ID.
+      description: Retrieve a single terminal by ID.
+      operationId: get_terminal
+      tags:
+      - Facilities
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The terminal ID.
+      responses:
+        '200':
+          description: A single terminal.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facility_Terminal'
+        '404':
+          description: Terminal not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Terminal not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /plants:
+    get:
+      summary: Retrieve a list of plants.
+      description: Retrieve a list of plants.
+      operationId: get_plants
+      tags:
+      - Facilities
+      responses:
+        '200':
+          description: A list of plants.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Facility_Plant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /plants/{id}:
+    get:
+      summary: Retrieve a single plant by ID.
+      description: Retrieve a single plant by ID.
+      operationId: get_plant
+      tags:
+      - Facilities
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The plant ID.
+      responses:
+        '200':
+          description: A single plant.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facility_Plant'
+        '404':
+          description: Plant not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Plant not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /storages:
+    get:
+      summary: Retrieve a list of storage facilities.
+      description: Retrieve a list of storage facilities.
+      operationId: get_storages
+      tags:
+      - Facilities
+      responses:
+        '200':
+          description: A list of storage facilities.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Facility_Storage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /storages/{id}:
+    get:
+      summary: Retrieve a single storage by ID.
+      description: Retrieve a single storage by ID.
+      operationId: get_storage
+      tags:
+      - Facilities
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The storage ID.
+      responses:
+        '200':
+          description: A single storage facility.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facility_Storage'
+        '404':
+          description: Storage not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Storage not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /stations:
+    get:
+      summary: Retrieve a list of station facilities.
+      description: Retrieve a list of station facilities.
+      operationId: get_stations
+      tags:
+      - Facilities
+      responses:
+        '200':
+          description: A list of station facilities.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Facility_Station'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /stations/{id}:
+    get:
+      summary: Retrieve a single station by ID.
+      description: Retrieve a single station by ID.
+      operationId: get_station
+      tags:
+      - Facilities
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The station ID.
+      responses:
+        '200':
+          description: A single station facility.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facility_Station'
+        '404':
+          description: Station not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Station not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /systems:
+    get:
+      summary: Retrieve a list of system facilities.
+      description: Retrieve a list of system facilities.
+      operationId: get_systems
+      tags:
+      - Facilities
+      responses:
+        '200':
+          description: A list of system facilities.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Facility_System'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /systems/{id}:
+    get:
+      summary: Retrieve a single system by ID.
+      description: Retrieve a single system by ID.
+      operationId: get_system
+      tags:
+      - Facilities
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The system ID.
+      responses:
+        '200':
+          description: A single system facility.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facility_System'
+        '404':
+          description: System not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: System not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /meters:
+    get:
+      summary: Retrieve a list of meters.
+      description: Retrieve a list of meters.
+      operationId: get_meters
+      tags:
+      - Volumes
+      responses:
+        '200':
+          description: A list of meters.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Volumes_Meter'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /meters/{id}:
+    get:
+      summary: Retrieve a single meter by ID.
+      description: Retrieve a single meter by ID.
+      operationId: get_meter
+      tags:
+      - Volumes
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The meter ID.
+      responses:
+        '200':
+          description: A single meter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volumes_Meter'
+        '404':
+          description: Meter not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Meter not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /truck-tickets:
+    get:
+      summary: Retrieve a list of truck tickets.
+      description: Retrieve a list of truck tickets.
+      operationId: get_truck_tickets
+      tags:
+      - Volumes
+      responses:
+        '200':
+          description: A list of truck tickets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Volumes_TruckTicket'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /truck-tickets/{id}:
+    get:
+      summary: Retrieve a single truck ticket by ID.
+      description: Retrieve a single truck ticket by ID.
+      operationId: get_truck_ticket
+      tags:
+      - Volumes
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The truck ticket ID.
+      responses:
+        '200':
+          description: A single truck ticket.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volumes_TruckTicket'
+        '404':
+          description: Truck ticket not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Truck ticket not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /tank-tickets:
+    get:
+      summary: Retrieve a list of tank tickets.
+      description: Retrieve a list of tank tickets.
+      operationId: get_tank_tickets
+      tags:
+      - Volumes
+      responses:
+        '200':
+          description: A list of tank tickets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Volumes_TankTicket'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /tank-tickets/{id}:
+    get:
+      summary: Retrieve a single tank ticket by ID.
+      description: Retrieve a single tank ticket by ID.
+      operationId: get_tank_ticket
+      tags:
+      - Volumes
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The tank ticket ID.
+      responses:
+        '200':
+          description: A single tank ticket.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volumes_TankTicket'
+        '404':
+          description: Tank ticket not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Tank ticket not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /meter-tickets:
+    get:
+      summary: Retrieve a list of meter tickets.
+      description: Retrieve a list of meter tickets.
+      operationId: get_meter_tickets
+      tags:
+      - Volumes
+      responses:
+        '200':
+          description: A list of meter tickets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Volumes_MeterTicket'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /meter-tickets/{id}:
+    get:
+      summary: Retrieve a single meter ticket by ID.
+      description: Retrieve a single meter ticket by ID.
+      operationId: get_meter_ticket
+      tags:
+      - Volumes
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The meter ticket ID.
+      responses:
+        '200':
+          description: A single meter ticket.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volumes_MeterTicket'
+        '404':
+          description: Meter ticket not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Meter ticket not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+openapi: 3.0.2

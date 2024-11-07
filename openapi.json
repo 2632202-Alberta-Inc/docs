@@ -7,10 +7,6 @@
   ],
   "servers": [
     {
-      "url": "http://localhost:5001",
-      "description": "Local Development"
-    },
-    {
       "url": "https://v1.api.flux-os.com",
       "description": "v1"
     }
@@ -393,110 +389,6 @@
           "title"
         ]
       },
-      "ProductCategory": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": ["name", "short_code"]
-      },
-      "MeasurementUnit": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "abbreviation": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": ["abbreviation", "name"]
-      },
-      "Product_Product": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "product_category": {
-            "$ref": "#/components/schemas/ProductCategory"
-          },
-          "measurement_units": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MeasurementUnit"
-            }
-          }
-        },
-        "required": ["name", "short_code"]
-      },
-      "CurrencyConversion": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "exchange_rate": {
-            "type": "number"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": ["exchange_rate"]
-      },
-      "Currency_Currency": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "symbol": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "conversions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CurrencyConversion"
-            }
-          }
-        },
-        "required": ["name", "symbol"]
-      },
       "OrganizationReference1": {
         "type": "object",
         "properties": {
@@ -676,7 +568,21 @@
         },
         "required": ["name", "slug"]
       },
-      "PlantReference": {
+      "OrganizationReference2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["name"]
+      },
+      "BatteryReference": {
         "type": "object",
         "properties": {
           "id": {
@@ -704,7 +610,7 @@
         },
         "required": ["name"]
       },
-      "BatteryReference": {
+      "PlantReference": {
         "type": "object",
         "properties": {
           "id": {
@@ -759,6 +665,276 @@
           }
         },
         "required": ["name"]
+      },
+      "CommercialFacilityFacilityReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "battery": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BatteryReference"
+              }
+            ]
+          },
+          "terminal": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TerminalReference"
+              }
+            ]
+          },
+          "plant": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlantReference"
+              }
+            ]
+          },
+          "station": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StationReference"
+              }
+            ]
+          },
+          "system": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SystemReference"
+              }
+            ]
+          },
+          "pipeline": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PipelineReference"
+              }
+            ]
+          }
+        }
+      },
+      "Organization_CommercialFacility": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationReference2"
+          },
+          "facilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommercialFacilityFacilityReference"
+            },
+            "nullable": true
+          }
+        },
+        "required": ["lsd", "meridian", "name", "range", "section", "township"]
+      },
+      "Organization_CommercialFacilityFacility": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "commercial_facility": {},
+          "battery": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BatteryReference"
+              }
+            ]
+          },
+          "terminal": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TerminalReference"
+              }
+            ]
+          },
+          "plant": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlantReference"
+              }
+            ]
+          },
+          "station": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StationReference"
+              }
+            ]
+          },
+          "system": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SystemReference"
+              }
+            ]
+          },
+          "pipeline": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PipelineReference"
+              }
+            ]
+          }
+        },
+        "required": ["commercial_facility"]
+      },
+      "ProductCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["name", "short_code"]
+      },
+      "MeasurementUnit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "abbreviation": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["abbreviation", "name"]
+      },
+      "Product_Product": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "product_category": {
+            "$ref": "#/components/schemas/ProductCategory"
+          },
+          "measurement_units": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MeasurementUnit"
+            }
+          }
+        },
+        "required": ["name", "short_code"]
+      },
+      "CurrencyConversion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "exchange_rate": {
+            "type": "number"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["exchange_rate"]
+      },
+      "Currency_Currency": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "symbol": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "conversions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CurrencyConversion"
+            }
+          }
+        },
+        "required": ["name", "symbol"]
       },
       "WellReference": {
         "type": "object",
@@ -1012,7 +1188,7 @@
         },
         "required": ["legal_name"]
       },
-      "ProductReference": {
+      "PipelineTypeReference": {
         "type": "object",
         "properties": {
           "id": {
@@ -1022,34 +1198,9 @@
           "name": {
             "type": "string",
             "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "product_category": {
-            "type": "integer"
-          },
-          "measurement_units": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
           }
         },
-        "required": ["name", "short_code"]
-      },
-      "PipelineProduct": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "product": {
-            "$ref": "#/components/schemas/ProductReference"
-          }
-        }
+        "required": ["name"]
       },
       "Lines_Pipeline": {
         "type": "object",
@@ -1127,11 +1278,8 @@
             "enum": ["P"],
             "maxLength": 255
           },
-          "products": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PipelineProduct"
-            }
+          "pipeline_type": {
+            "$ref": "#/components/schemas/PipelineTypeReference"
           }
         },
         "required": [
@@ -1212,6 +1360,33 @@
             "$ref": "#/components/schemas/CarrierReference"
           }
         }
+      },
+      "ProductReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "product_category": {
+            "type": "integer"
+          },
+          "measurement_units": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": ["name", "short_code"]
       },
       "RailLineProduct": {
         "type": "object",
@@ -1452,64 +1627,7 @@
         },
         "required": ["code", "facility_type", "jurisdiction", "name"]
       },
-      "MeterReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "external_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "battery": {
-            "type": "integer",
-            "nullable": true
-          },
-          "terminal": {
-            "type": "integer",
-            "nullable": true
-          },
-          "plant": {
-            "type": "integer",
-            "nullable": true
-          },
-          "station": {
-            "type": "integer",
-            "nullable": true
-          },
-          "system": {
-            "type": "integer",
-            "nullable": true
-          },
-          "pipeline": {
-            "type": "integer",
-            "nullable": true
-          },
-          "resource": {
-            "default": null,
-            "nullable": true
-          },
-          "operator": {
-            "type": "integer"
-          }
-        },
-        "required": ["external_id"]
-      },
-      "TerminalProduct": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "product": {
-            "$ref": "#/components/schemas/ProductReference"
-          }
-        }
-      },
-      "PipelineReference1": {
+      "FacilityTypeReference1": {
         "type": "object",
         "properties": {
           "id": {
@@ -1520,13 +1638,87 @@
             "type": "string",
             "maxLength": 255
           },
+          "code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "model": {
+            "type": "string"
+          }
+        },
+        "required": ["code", "name"]
+      },
+      "FacilitySubTypeReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "jurisdiction": {
+            "type": "string",
+            "enum": ["A", "S"],
+            "maxLength": 255
+          }
+        },
+        "required": ["code", "jurisdiction", "name"]
+      },
+      "Facility_Terminal": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
           "jurisdiction": {
             "type": "string",
             "enum": ["A", "S"],
             "maxLength": 255
           },
-          "type": {},
-          "sub_type": {},
+          "type": {
+            "$ref": "#/components/schemas/FacilityTypeReference1"
+          },
+          "sub_type": {
+            "$ref": "#/components/schemas/FacilitySubTypeReference1"
+          },
           "start_date": {
             "type": "string",
             "format": "date"
@@ -1584,17 +1776,20 @@
         },
         "required": [
           "jurisdiction",
+          "lsd",
+          "meridian",
           "name",
           "operational_status",
           "operator_start_date",
+          "range",
           "regulator_id",
           "regulator_system",
+          "section",
           "start_date",
-          "sub_type",
-          "type"
+          "township"
         ]
       },
-      "TerminalConnectionType": {
+      "Facility_Plant": {
         "type": "object",
         "properties": {
           "id": {
@@ -1604,98 +1799,1261 @@
           "name": {
             "type": "string",
             "maxLength": 255
-          }
-        },
-        "required": ["name"]
-      },
-      "TerminalPipelineConnection": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
           },
-          "pipeline": {
-            "$ref": "#/components/schemas/PipelineReference1"
-          },
-          "connection_type": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TerminalConnectionType"
-              }
-            ]
-          }
-        }
-      },
-      "RailLineTypeReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": ["name"]
-      },
-      "RailLineCategoryReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": ["name"]
-      },
-      "RailLineReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "operator": {
-            "$ref": "#/components/schemas/EntityReference2"
-          },
-          "type": {
-            "$ref": "#/components/schemas/RailLineTypeReference"
-          },
-          "category": {
-            "$ref": "#/components/schemas/RailLineCategoryReference"
-          },
-          "max_train_length": {
+          "latitude": {
             "type": "number",
             "default": null,
             "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "jurisdiction": {
+            "type": "string",
+            "enum": ["A", "S"],
+            "maxLength": 255
+          },
+          "type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
+          },
+          "sub_type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "operational_status": {
+            "type": "string",
+            "enum": ["A", "C", "M", "N", "R", "S"],
+            "maxLength": 255
+          },
+          "operator_start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "licensee": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "license_status": {
+            "type": "string",
+            "default": null,
+            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_type": {
+            "type": "string",
+            "default": null,
+            "enum": ["W", "F", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_number": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_issued": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          },
+          "regulator_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": ["P"],
+            "maxLength": 255
           }
-        }
+        },
+        "required": [
+          "jurisdiction",
+          "lsd",
+          "meridian",
+          "name",
+          "operational_status",
+          "operator_start_date",
+          "range",
+          "regulator_id",
+          "regulator_system",
+          "section",
+          "start_date",
+          "township"
+        ]
       },
-      "TerminalRailineConnection": {
+      "Facility_Battery": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "readOnly": true
           },
-          "railine": {
-            "$ref": "#/components/schemas/RailLineReference"
+          "name": {
+            "type": "string",
+            "maxLength": 255
           },
-          "connection_type": {
-            "nullable": true,
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "jurisdiction": {
+            "type": "string",
+            "enum": ["A", "S"],
+            "maxLength": 255
+          },
+          "type": {
+            "readOnly": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/TerminalConnectionType"
+                "$ref": "#/components/schemas/FacilityTypeReference"
               }
             ]
+          },
+          "sub_type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "operational_status": {
+            "type": "string",
+            "enum": ["A", "C", "M", "N", "R", "S"],
+            "maxLength": 255
+          },
+          "operator_start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "licensee": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "license_status": {
+            "type": "string",
+            "default": null,
+            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_type": {
+            "type": "string",
+            "default": null,
+            "enum": ["W", "F", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_number": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_issued": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          },
+          "regulator_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": ["P"],
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "jurisdiction",
+          "lsd",
+          "meridian",
+          "name",
+          "operational_status",
+          "operator_start_date",
+          "range",
+          "regulator_id",
+          "regulator_system",
+          "section",
+          "start_date",
+          "township"
+        ]
+      },
+      "Facility_Station": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "jurisdiction": {
+            "type": "string",
+            "enum": ["A", "S"],
+            "maxLength": 255
+          },
+          "type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
+          },
+          "sub_type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "operational_status": {
+            "type": "string",
+            "enum": ["A", "C", "M", "N", "R", "S"],
+            "maxLength": 255
+          },
+          "operator_start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "licensee": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "license_status": {
+            "type": "string",
+            "default": null,
+            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_type": {
+            "type": "string",
+            "default": null,
+            "enum": ["W", "F", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_number": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_issued": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          },
+          "regulator_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": ["P"],
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "jurisdiction",
+          "lsd",
+          "meridian",
+          "name",
+          "operational_status",
+          "operator_start_date",
+          "range",
+          "regulator_id",
+          "regulator_system",
+          "section",
+          "start_date",
+          "township"
+        ]
+      },
+      "Facility_System": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "jurisdiction": {
+            "type": "string",
+            "enum": ["A", "S"],
+            "maxLength": 255
+          },
+          "type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
+          },
+          "sub_type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "operational_status": {
+            "type": "string",
+            "enum": ["A", "C", "M", "N", "R", "S"],
+            "maxLength": 255
+          },
+          "operator_start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "licensee": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "license_status": {
+            "type": "string",
+            "default": null,
+            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_type": {
+            "type": "string",
+            "default": null,
+            "enum": ["W", "F", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_number": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_issued": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          },
+          "regulator_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": ["P"],
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "jurisdiction",
+          "lsd",
+          "meridian",
+          "name",
+          "operational_status",
+          "operator_start_date",
+          "range",
+          "regulator_id",
+          "regulator_system",
+          "section",
+          "start_date",
+          "township"
+        ]
+      },
+      "BatteryReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "jurisdiction": {
+            "type": "string",
+            "enum": ["A", "S"],
+            "maxLength": 255
+          },
+          "type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
+          },
+          "sub_type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "operational_status": {
+            "type": "string",
+            "enum": ["A", "C", "M", "N", "R", "S"],
+            "maxLength": 255
+          },
+          "operator_start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "licensee": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "license_status": {
+            "type": "string",
+            "default": null,
+            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_type": {
+            "type": "string",
+            "default": null,
+            "enum": ["W", "F", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_number": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_issued": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          },
+          "regulator_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": ["P"],
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "jurisdiction",
+          "lsd",
+          "meridian",
+          "name",
+          "operational_status",
+          "operator_start_date",
+          "range",
+          "regulator_id",
+          "regulator_system",
+          "section",
+          "start_date",
+          "township"
+        ]
+      },
+      "TerminalReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "jurisdiction": {
+            "type": "string",
+            "enum": ["A", "S"],
+            "maxLength": 255
+          },
+          "type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
+          },
+          "sub_type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "operational_status": {
+            "type": "string",
+            "enum": ["A", "C", "M", "N", "R", "S"],
+            "maxLength": 255
+          },
+          "operator_start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "licensee": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "license_status": {
+            "type": "string",
+            "default": null,
+            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_type": {
+            "type": "string",
+            "default": null,
+            "enum": ["W", "F", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_number": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_issued": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          },
+          "regulator_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": ["P"],
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "jurisdiction",
+          "lsd",
+          "meridian",
+          "name",
+          "operational_status",
+          "operator_start_date",
+          "range",
+          "regulator_id",
+          "regulator_system",
+          "section",
+          "start_date",
+          "township"
+        ]
+      },
+      "PlantReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "jurisdiction": {
+            "type": "string",
+            "enum": ["A", "S"],
+            "maxLength": 255
+          },
+          "type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
+          },
+          "sub_type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "operational_status": {
+            "type": "string",
+            "enum": ["A", "C", "M", "N", "R", "S"],
+            "maxLength": 255
+          },
+          "operator_start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "licensee": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "license_status": {
+            "type": "string",
+            "default": null,
+            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_type": {
+            "type": "string",
+            "default": null,
+            "enum": ["W", "F", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_number": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_issued": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          },
+          "regulator_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": ["P"],
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "jurisdiction",
+          "lsd",
+          "meridian",
+          "name",
+          "operational_status",
+          "operator_start_date",
+          "range",
+          "regulator_id",
+          "regulator_system",
+          "section",
+          "start_date",
+          "township"
+        ]
+      },
+      "StationReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "jurisdiction": {
+            "type": "string",
+            "enum": ["A", "S"],
+            "maxLength": 255
+          },
+          "type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
+          },
+          "sub_type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "operational_status": {
+            "type": "string",
+            "enum": ["A", "C", "M", "N", "R", "S"],
+            "maxLength": 255
+          },
+          "operator_start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "licensee": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "license_status": {
+            "type": "string",
+            "default": null,
+            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_type": {
+            "type": "string",
+            "default": null,
+            "enum": ["W", "F", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_number": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_issued": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          },
+          "regulator_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": ["P"],
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "jurisdiction",
+          "lsd",
+          "meridian",
+          "name",
+          "operational_status",
+          "operator_start_date",
+          "range",
+          "regulator_id",
+          "regulator_system",
+          "section",
+          "start_date",
+          "township"
+        ]
+      },
+      "SystemReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "jurisdiction": {
+            "type": "string",
+            "enum": ["A", "S"],
+            "maxLength": 255
+          },
+          "type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
+          },
+          "sub_type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "operational_status": {
+            "type": "string",
+            "enum": ["A", "C", "M", "N", "R", "S"],
+            "maxLength": 255
+          },
+          "operator_start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "licensee": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
+          "license_status": {
+            "type": "string",
+            "default": null,
+            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_type": {
+            "type": "string",
+            "default": null,
+            "enum": ["W", "F", null],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_number": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_issued": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          },
+          "regulator_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": ["P"],
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "jurisdiction",
+          "lsd",
+          "meridian",
+          "name",
+          "operational_status",
+          "operator_start_date",
+          "range",
+          "regulator_id",
+          "regulator_system",
+          "section",
+          "start_date",
+          "township"
+        ]
+      },
+      "CodeReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["name"]
+      },
+      "MeterCode": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "code": {
+            "$ref": "#/components/schemas/CodeReference"
           }
         }
       },
@@ -1971,1560 +3329,6 @@
           "volume"
         ]
       },
-      "Facility_Terminal": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "latitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "longitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "lsd": {
-            "type": "integer"
-          },
-          "section": {
-            "type": "integer"
-          },
-          "township": {
-            "type": "integer"
-          },
-          "range": {
-            "type": "integer"
-          },
-          "meridian": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": ["A", "S"],
-            "maxLength": 255
-          },
-          "type": {
-            "$ref": "#/components/schemas/Facility_FacilityType"
-          },
-          "sub_type": {
-            "$ref": "#/components/schemas/Facility_FacilitySubType"
-          },
-          "start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "operator": {},
-          "operational_status": {
-            "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
-            "maxLength": 255
-          },
-          "operator_start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "licensee": {
-            "default": null,
-            "nullable": true
-          },
-          "license_status": {
-            "type": "string",
-            "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_type": {
-            "type": "string",
-            "default": null,
-            "enum": ["W", "F", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_number": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_issued": {
-            "type": "string",
-            "format": "date",
-            "default": null,
-            "nullable": true
-          },
-          "regulator_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "regulator_system": {
-            "type": "string",
-            "enum": ["P"],
-            "maxLength": 255
-          },
-          "entity": {
-            "$ref": "#/components/schemas/EntityReference1"
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MeterReference"
-            }
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TerminalProduct"
-            }
-          },
-          "connected_pipelines": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TerminalPipelineConnection"
-            }
-          },
-          "connected_railines": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TerminalRailineConnection"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MeterTicketReference"
-            }
-          },
-          "pickup_truck_tickets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TruckTicketReference"
-            }
-          },
-          "delivery_truck_tickets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TruckTicketReference"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TankTicketReference"
-            }
-          }
-        },
-        "required": [
-          "jurisdiction",
-          "lsd",
-          "meridian",
-          "name",
-          "operational_status",
-          "operator",
-          "operator_start_date",
-          "range",
-          "regulator_id",
-          "regulator_system",
-          "section",
-          "start_date",
-          "township"
-        ]
-      },
-      "PlantProduct": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "product": {
-            "$ref": "#/components/schemas/ProductReference"
-          }
-        }
-      },
-      "Facility_Plant": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "latitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "longitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "lsd": {
-            "type": "integer"
-          },
-          "section": {
-            "type": "integer"
-          },
-          "township": {
-            "type": "integer"
-          },
-          "range": {
-            "type": "integer"
-          },
-          "meridian": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": ["A", "S"],
-            "maxLength": 255
-          },
-          "type": {
-            "$ref": "#/components/schemas/Facility_FacilityType"
-          },
-          "sub_type": {
-            "$ref": "#/components/schemas/Facility_FacilitySubType"
-          },
-          "start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "operator": {},
-          "operational_status": {
-            "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
-            "maxLength": 255
-          },
-          "operator_start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "licensee": {
-            "default": null,
-            "nullable": true
-          },
-          "license_status": {
-            "type": "string",
-            "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_type": {
-            "type": "string",
-            "default": null,
-            "enum": ["W", "F", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_number": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_issued": {
-            "type": "string",
-            "format": "date",
-            "default": null,
-            "nullable": true
-          },
-          "regulator_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "regulator_system": {
-            "type": "string",
-            "enum": ["P"],
-            "maxLength": 255
-          },
-          "entity": {
-            "$ref": "#/components/schemas/EntityReference1"
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PlantProduct"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MeterReference"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MeterTicketReference"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TankTicketReference"
-            }
-          }
-        },
-        "required": [
-          "jurisdiction",
-          "lsd",
-          "meridian",
-          "name",
-          "operational_status",
-          "operator",
-          "operator_start_date",
-          "range",
-          "regulator_id",
-          "regulator_system",
-          "section",
-          "start_date",
-          "township"
-        ]
-      },
-      "BatteryProduct": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "product": {
-            "$ref": "#/components/schemas/ProductReference"
-          }
-        }
-      },
-      "Facility_Battery": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "latitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "longitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "lsd": {
-            "type": "integer"
-          },
-          "section": {
-            "type": "integer"
-          },
-          "township": {
-            "type": "integer"
-          },
-          "range": {
-            "type": "integer"
-          },
-          "meridian": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": ["A", "S"],
-            "maxLength": 255
-          },
-          "type": {
-            "$ref": "#/components/schemas/Facility_FacilityType"
-          },
-          "sub_type": {
-            "$ref": "#/components/schemas/Facility_FacilitySubType"
-          },
-          "start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "operator": {},
-          "operational_status": {
-            "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
-            "maxLength": 255
-          },
-          "operator_start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "licensee": {
-            "default": null,
-            "nullable": true
-          },
-          "license_status": {
-            "type": "string",
-            "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_type": {
-            "type": "string",
-            "default": null,
-            "enum": ["W", "F", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_number": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_issued": {
-            "type": "string",
-            "format": "date",
-            "default": null,
-            "nullable": true
-          },
-          "regulator_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "regulator_system": {
-            "type": "string",
-            "enum": ["P"],
-            "maxLength": 255
-          },
-          "entity": {
-            "$ref": "#/components/schemas/EntityReference1"
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BatteryProduct"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MeterReference"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MeterTicketReference"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TankTicketReference"
-            }
-          }
-        },
-        "required": [
-          "jurisdiction",
-          "lsd",
-          "meridian",
-          "name",
-          "operational_status",
-          "operator",
-          "operator_start_date",
-          "range",
-          "regulator_id",
-          "regulator_system",
-          "section",
-          "start_date",
-          "township"
-        ]
-      },
-      "StationProduct": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "product": {
-            "$ref": "#/components/schemas/ProductReference"
-          }
-        }
-      },
-      "Facility_Station": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "latitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "longitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "lsd": {
-            "type": "integer"
-          },
-          "section": {
-            "type": "integer"
-          },
-          "township": {
-            "type": "integer"
-          },
-          "range": {
-            "type": "integer"
-          },
-          "meridian": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": ["A", "S"],
-            "maxLength": 255
-          },
-          "type": {
-            "$ref": "#/components/schemas/Facility_FacilityType"
-          },
-          "sub_type": {
-            "$ref": "#/components/schemas/Facility_FacilitySubType"
-          },
-          "start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "operator": {},
-          "operational_status": {
-            "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
-            "maxLength": 255
-          },
-          "operator_start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "licensee": {
-            "default": null,
-            "nullable": true
-          },
-          "license_status": {
-            "type": "string",
-            "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_type": {
-            "type": "string",
-            "default": null,
-            "enum": ["W", "F", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_number": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_issued": {
-            "type": "string",
-            "format": "date",
-            "default": null,
-            "nullable": true
-          },
-          "regulator_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "regulator_system": {
-            "type": "string",
-            "enum": ["P"],
-            "maxLength": 255
-          },
-          "entity": {
-            "$ref": "#/components/schemas/EntityReference1"
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StationProduct"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MeterReference"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MeterTicketReference"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TankTicketReference"
-            }
-          }
-        },
-        "required": [
-          "jurisdiction",
-          "lsd",
-          "meridian",
-          "name",
-          "operational_status",
-          "operator",
-          "operator_start_date",
-          "range",
-          "regulator_id",
-          "regulator_system",
-          "section",
-          "start_date",
-          "township"
-        ]
-      },
-      "SystemProduct": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "product": {
-            "$ref": "#/components/schemas/ProductReference"
-          }
-        }
-      },
-      "Facility_System": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "latitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "longitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "lsd": {
-            "type": "integer"
-          },
-          "section": {
-            "type": "integer"
-          },
-          "township": {
-            "type": "integer"
-          },
-          "range": {
-            "type": "integer"
-          },
-          "meridian": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": ["A", "S"],
-            "maxLength": 255
-          },
-          "type": {
-            "$ref": "#/components/schemas/Facility_FacilityType"
-          },
-          "sub_type": {
-            "$ref": "#/components/schemas/Facility_FacilitySubType"
-          },
-          "start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "operator": {},
-          "operational_status": {
-            "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
-            "maxLength": 255
-          },
-          "operator_start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "licensee": {
-            "default": null,
-            "nullable": true
-          },
-          "license_status": {
-            "type": "string",
-            "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_type": {
-            "type": "string",
-            "default": null,
-            "enum": ["W", "F", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_number": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_issued": {
-            "type": "string",
-            "format": "date",
-            "default": null,
-            "nullable": true
-          },
-          "regulator_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "regulator_system": {
-            "type": "string",
-            "enum": ["P"],
-            "maxLength": 255
-          },
-          "entity": {
-            "$ref": "#/components/schemas/EntityReference1"
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SystemProduct"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MeterReference"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MeterTicketReference"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TankTicketReference"
-            }
-          }
-        },
-        "required": [
-          "jurisdiction",
-          "lsd",
-          "meridian",
-          "name",
-          "operational_status",
-          "operator",
-          "operator_start_date",
-          "range",
-          "regulator_id",
-          "regulator_system",
-          "section",
-          "start_date",
-          "township"
-        ]
-      },
-      "BatteryReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "latitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "longitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "lsd": {
-            "type": "integer"
-          },
-          "section": {
-            "type": "integer"
-          },
-          "township": {
-            "type": "integer"
-          },
-          "range": {
-            "type": "integer"
-          },
-          "meridian": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": ["A", "S"],
-            "maxLength": 255
-          },
-          "type": {
-            "type": "integer"
-          },
-          "sub_type": {
-            "type": "integer"
-          },
-          "start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "operator": {},
-          "operational_status": {
-            "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
-            "maxLength": 255
-          },
-          "operator_start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "licensee": {
-            "default": null,
-            "nullable": true
-          },
-          "license_status": {
-            "type": "string",
-            "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_type": {
-            "type": "string",
-            "default": null,
-            "enum": ["W", "F", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_number": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_issued": {
-            "type": "string",
-            "format": "date",
-            "default": null,
-            "nullable": true
-          },
-          "regulator_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "regulator_system": {
-            "type": "string",
-            "enum": ["P"],
-            "maxLength": 255
-          },
-          "entity": {
-            "type": "integer"
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "required": [
-          "jurisdiction",
-          "lsd",
-          "meridian",
-          "name",
-          "operational_status",
-          "operator",
-          "operator_start_date",
-          "range",
-          "regulator_id",
-          "regulator_system",
-          "section",
-          "start_date",
-          "township"
-        ]
-      },
-      "TerminalReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "latitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "longitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "lsd": {
-            "type": "integer"
-          },
-          "section": {
-            "type": "integer"
-          },
-          "township": {
-            "type": "integer"
-          },
-          "range": {
-            "type": "integer"
-          },
-          "meridian": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": ["A", "S"],
-            "maxLength": 255
-          },
-          "type": {
-            "type": "integer"
-          },
-          "sub_type": {
-            "type": "integer"
-          },
-          "start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "operator": {},
-          "operational_status": {
-            "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
-            "maxLength": 255
-          },
-          "operator_start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "licensee": {
-            "default": null,
-            "nullable": true
-          },
-          "license_status": {
-            "type": "string",
-            "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_type": {
-            "type": "string",
-            "default": null,
-            "enum": ["W", "F", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_number": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_issued": {
-            "type": "string",
-            "format": "date",
-            "default": null,
-            "nullable": true
-          },
-          "regulator_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "regulator_system": {
-            "type": "string",
-            "enum": ["P"],
-            "maxLength": 255
-          },
-          "entity": {
-            "type": "integer"
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "pickup_truck_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "delivery_truck_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "required": [
-          "jurisdiction",
-          "lsd",
-          "meridian",
-          "name",
-          "operational_status",
-          "operator",
-          "operator_start_date",
-          "range",
-          "regulator_id",
-          "regulator_system",
-          "section",
-          "start_date",
-          "township"
-        ]
-      },
-      "PlantReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "latitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "longitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "lsd": {
-            "type": "integer"
-          },
-          "section": {
-            "type": "integer"
-          },
-          "township": {
-            "type": "integer"
-          },
-          "range": {
-            "type": "integer"
-          },
-          "meridian": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": ["A", "S"],
-            "maxLength": 255
-          },
-          "type": {
-            "type": "integer"
-          },
-          "sub_type": {
-            "type": "integer"
-          },
-          "start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "operator": {},
-          "operational_status": {
-            "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
-            "maxLength": 255
-          },
-          "operator_start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "licensee": {
-            "default": null,
-            "nullable": true
-          },
-          "license_status": {
-            "type": "string",
-            "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_type": {
-            "type": "string",
-            "default": null,
-            "enum": ["W", "F", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_number": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_issued": {
-            "type": "string",
-            "format": "date",
-            "default": null,
-            "nullable": true
-          },
-          "regulator_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "regulator_system": {
-            "type": "string",
-            "enum": ["P"],
-            "maxLength": 255
-          },
-          "entity": {
-            "type": "integer"
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "required": [
-          "jurisdiction",
-          "lsd",
-          "meridian",
-          "name",
-          "operational_status",
-          "operator",
-          "operator_start_date",
-          "range",
-          "regulator_id",
-          "regulator_system",
-          "section",
-          "start_date",
-          "township"
-        ]
-      },
-      "StationReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "latitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "longitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "lsd": {
-            "type": "integer"
-          },
-          "section": {
-            "type": "integer"
-          },
-          "township": {
-            "type": "integer"
-          },
-          "range": {
-            "type": "integer"
-          },
-          "meridian": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": ["A", "S"],
-            "maxLength": 255
-          },
-          "type": {
-            "type": "integer"
-          },
-          "sub_type": {
-            "type": "integer"
-          },
-          "start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "operator": {},
-          "operational_status": {
-            "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
-            "maxLength": 255
-          },
-          "operator_start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "licensee": {
-            "default": null,
-            "nullable": true
-          },
-          "license_status": {
-            "type": "string",
-            "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_type": {
-            "type": "string",
-            "default": null,
-            "enum": ["W", "F", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_number": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_issued": {
-            "type": "string",
-            "format": "date",
-            "default": null,
-            "nullable": true
-          },
-          "regulator_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "regulator_system": {
-            "type": "string",
-            "enum": ["P"],
-            "maxLength": 255
-          },
-          "entity": {
-            "type": "integer"
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "required": [
-          "jurisdiction",
-          "lsd",
-          "meridian",
-          "name",
-          "operational_status",
-          "operator",
-          "operator_start_date",
-          "range",
-          "regulator_id",
-          "regulator_system",
-          "section",
-          "start_date",
-          "township"
-        ]
-      },
-      "SystemReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "latitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "longitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "lsd": {
-            "type": "integer"
-          },
-          "section": {
-            "type": "integer"
-          },
-          "township": {
-            "type": "integer"
-          },
-          "range": {
-            "type": "integer"
-          },
-          "meridian": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": ["A", "S"],
-            "maxLength": 255
-          },
-          "type": {
-            "type": "integer"
-          },
-          "sub_type": {
-            "type": "integer"
-          },
-          "start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "operator": {},
-          "operational_status": {
-            "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
-            "maxLength": 255
-          },
-          "operator_start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "licensee": {
-            "default": null,
-            "nullable": true
-          },
-          "license_status": {
-            "type": "string",
-            "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_type": {
-            "type": "string",
-            "default": null,
-            "enum": ["W", "F", null],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_number": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_issued": {
-            "type": "string",
-            "format": "date",
-            "default": null,
-            "nullable": true
-          },
-          "regulator_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "regulator_system": {
-            "type": "string",
-            "enum": ["P"],
-            "maxLength": 255
-          },
-          "entity": {
-            "type": "integer"
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "required": [
-          "jurisdiction",
-          "lsd",
-          "meridian",
-          "name",
-          "operational_status",
-          "operator",
-          "operator_start_date",
-          "range",
-          "regulator_id",
-          "regulator_system",
-          "section",
-          "start_date",
-          "township"
-        ]
-      },
-      "CodeReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": ["name"]
-      },
-      "MeterCode": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "code": {
-            "$ref": "#/components/schemas/CodeReference"
-          }
-        }
-      },
       "Volumes_Meter": {
         "type": "object",
         "properties": {
@@ -3615,19 +3419,50 @@
         },
         "required": ["external_id", "operator"]
       },
-      "OrganizationReference2": {
+      "MeterReference": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "readOnly": true
           },
-          "name": {
+          "external_id": {
             "type": "string",
             "maxLength": 255
+          },
+          "battery": {
+            "type": "integer",
+            "nullable": true
+          },
+          "terminal": {
+            "type": "integer",
+            "nullable": true
+          },
+          "plant": {
+            "type": "integer",
+            "nullable": true
+          },
+          "station": {
+            "type": "integer",
+            "nullable": true
+          },
+          "system": {
+            "type": "integer",
+            "nullable": true
+          },
+          "pipeline": {
+            "type": "integer",
+            "nullable": true
+          },
+          "resource": {
+            "default": null,
+            "nullable": true
+          },
+          "operator": {
+            "type": "integer"
           }
         },
-        "required": ["name"]
+        "required": ["external_id"]
       },
       "UserRolesReference": {
         "type": "object",
@@ -3814,7 +3649,9 @@
             "enum": ["A", "S"],
             "maxLength": 255
           },
-          "licensee": {},
+          "licensee": {
+            "$ref": "#/components/schemas/EntityReference2"
+          },
           "license_status": {
             "type": "string",
             "default": null,
@@ -3849,15 +3686,11 @@
             "type": "string",
             "enum": ["P"],
             "maxLength": 255
-          },
-          "entity": {
-            "$ref": "#/components/schemas/EntityReference2"
           }
         },
         "required": [
           "event_sequence",
           "jurisdiction",
-          "licensee",
           "location_exception",
           "lsd",
           "meridian",
@@ -4316,6 +4149,108 @@
         },
         "required": ["code", "name"]
       },
+      "Organization_ReferenceCommercialFacility": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationReference2"
+          }
+        },
+        "required": ["lsd", "meridian", "name", "range", "section", "township"]
+      },
+      "Organization_ReferenceCommercialFacilityFacility": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "commercial_facility": {},
+          "battery": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BatteryReference"
+              }
+            ]
+          },
+          "terminal": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TerminalReference"
+              }
+            ]
+          },
+          "plant": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlantReference"
+              }
+            ]
+          },
+          "station": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StationReference"
+              }
+            ]
+          },
+          "system": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SystemReference"
+              }
+            ]
+          },
+          "pipeline": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PipelineReference"
+              }
+            ]
+          }
+        },
+        "required": ["commercial_facility"]
+      },
       "Product_ReferenceProduct": {
         "type": "object",
         "properties": {
@@ -4577,6 +4512,9 @@
             "type": "string",
             "enum": ["P"],
             "maxLength": 255
+          },
+          "pipeline_type": {
+            "$ref": "#/components/schemas/PipelineTypeReference"
           }
         },
         "required": [
@@ -4590,6 +4528,48 @@
           "sub_type",
           "type"
         ]
+      },
+      "Lines_ReferencePipelineType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["name"]
+      },
+      "RailLineTypeReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["name"]
+      },
+      "RailLineCategoryReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["name"]
       },
       "Lines_ReferenceRailLine": {
         "type": "object",
@@ -4613,6 +4593,34 @@
             "nullable": true
           }
         }
+      },
+      "Lines_ReferenceRailLineType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["name"]
+      },
+      "Lines_ReferenceRailLineCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": ["name"]
       },
       "Facility_ReferenceFacilityType": {
         "type": "object",
@@ -4650,14 +4658,13 @@
             "type": "string",
             "maxLength": 255
           },
-          "facility_type": {},
           "jurisdiction": {
             "type": "string",
             "enum": ["A", "S"],
             "maxLength": 255
           }
         },
-        "required": ["code", "facility_type", "jurisdiction", "name"]
+        "required": ["code", "jurisdiction", "name"]
       },
       "Facility_ReferenceTerminal": {
         "type": "object",
@@ -4702,16 +4709,33 @@
             "maxLength": 255
           },
           "type": {
-            "type": "integer"
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
           },
           "sub_type": {
-            "type": "integer"
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
           },
           "start_date": {
             "type": "string",
             "format": "date"
           },
-          "operator": {},
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
           "operational_status": {
             "type": "string",
             "enum": ["A", "C", "M", "N", "R", "S"],
@@ -4722,8 +4746,12 @@
             "format": "date"
           },
           "licensee": {
-            "default": null,
-            "nullable": true
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
           },
           "license_status": {
             "type": "string",
@@ -4759,39 +4787,6 @@
             "type": "string",
             "enum": ["P"],
             "maxLength": 255
-          },
-          "entity": {
-            "type": "integer"
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "pickup_truck_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "delivery_truck_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
           }
         },
         "required": [
@@ -4800,7 +4795,6 @@
           "meridian",
           "name",
           "operational_status",
-          "operator",
           "operator_start_date",
           "range",
           "regulator_id",
@@ -4853,16 +4847,33 @@
             "maxLength": 255
           },
           "type": {
-            "type": "integer"
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
           },
           "sub_type": {
-            "type": "integer"
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
           },
           "start_date": {
             "type": "string",
             "format": "date"
           },
-          "operator": {},
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
           "operational_status": {
             "type": "string",
             "enum": ["A", "C", "M", "N", "R", "S"],
@@ -4873,8 +4884,12 @@
             "format": "date"
           },
           "licensee": {
-            "default": null,
-            "nullable": true
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
           },
           "license_status": {
             "type": "string",
@@ -4910,33 +4925,6 @@
             "type": "string",
             "enum": ["P"],
             "maxLength": 255
-          },
-          "entity": {
-            "type": "integer"
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
           }
         },
         "required": [
@@ -4945,7 +4933,6 @@
           "meridian",
           "name",
           "operational_status",
-          "operator",
           "operator_start_date",
           "range",
           "regulator_id",
@@ -4998,16 +4985,33 @@
             "maxLength": 255
           },
           "type": {
-            "type": "integer"
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
           },
           "sub_type": {
-            "type": "integer"
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
           },
           "start_date": {
             "type": "string",
             "format": "date"
           },
-          "operator": {},
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
           "operational_status": {
             "type": "string",
             "enum": ["A", "C", "M", "N", "R", "S"],
@@ -5018,8 +5022,12 @@
             "format": "date"
           },
           "licensee": {
-            "default": null,
-            "nullable": true
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
           },
           "license_status": {
             "type": "string",
@@ -5055,33 +5063,6 @@
             "type": "string",
             "enum": ["P"],
             "maxLength": 255
-          },
-          "entity": {
-            "type": "integer"
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
           }
         },
         "required": [
@@ -5090,7 +5071,6 @@
           "meridian",
           "name",
           "operational_status",
-          "operator",
           "operator_start_date",
           "range",
           "regulator_id",
@@ -5143,16 +5123,33 @@
             "maxLength": 255
           },
           "type": {
-            "type": "integer"
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
           },
           "sub_type": {
-            "type": "integer"
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
           },
           "start_date": {
             "type": "string",
             "format": "date"
           },
-          "operator": {},
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
           "operational_status": {
             "type": "string",
             "enum": ["A", "C", "M", "N", "R", "S"],
@@ -5163,8 +5160,12 @@
             "format": "date"
           },
           "licensee": {
-            "default": null,
-            "nullable": true
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
           },
           "license_status": {
             "type": "string",
@@ -5200,33 +5201,6 @@
             "type": "string",
             "enum": ["P"],
             "maxLength": 255
-          },
-          "entity": {
-            "type": "integer"
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
           }
         },
         "required": [
@@ -5235,7 +5209,6 @@
           "meridian",
           "name",
           "operational_status",
-          "operator",
           "operator_start_date",
           "range",
           "regulator_id",
@@ -5288,16 +5261,33 @@
             "maxLength": 255
           },
           "type": {
-            "type": "integer"
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
           },
           "sub_type": {
-            "type": "integer"
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
           },
           "start_date": {
             "type": "string",
             "format": "date"
           },
-          "operator": {},
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
+          },
           "operational_status": {
             "type": "string",
             "enum": ["A", "C", "M", "N", "R", "S"],
@@ -5308,8 +5298,12 @@
             "format": "date"
           },
           "licensee": {
-            "default": null,
-            "nullable": true
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference2"
+              }
+            ]
           },
           "license_status": {
             "type": "string",
@@ -5345,33 +5339,6 @@
             "type": "string",
             "enum": ["P"],
             "maxLength": 255
-          },
-          "entity": {
-            "type": "integer"
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meters": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
           }
         },
         "required": [
@@ -5380,7 +5347,6 @@
           "meridian",
           "name",
           "operational_status",
-          "operator",
           "operator_start_date",
           "range",
           "regulator_id",
@@ -5446,7 +5412,9 @@
             "enum": ["A", "S"],
             "maxLength": 255
           },
-          "licensee": {},
+          "licensee": {
+            "$ref": "#/components/schemas/EntityReference2"
+          },
           "license_status": {
             "type": "string",
             "default": null,
@@ -5481,15 +5449,11 @@
             "type": "string",
             "enum": ["P"],
             "maxLength": 255
-          },
-          "entity": {
-            "$ref": "#/components/schemas/EntityReference2"
           }
         },
         "required": [
           "event_sequence",
           "jurisdiction",
-          "licensee",
           "location_exception",
           "lsd",
           "meridian",
@@ -5946,6 +5910,14 @@
               "enum": ["ALBERTA", "SASKATCHEWAN"]
             },
             "description": "Filter by jurisdiction"
+          },
+          {
+            "in": "query",
+            "name": "facility_type",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by facility type ID"
           }
         ],
         "responses": {
@@ -6024,19 +5996,19 @@
           },
           {
             "in": "query",
-            "name": "type",
+            "name": "type_id",
             "schema": {
-              "type": "string"
+              "type": "integer"
             },
-            "description": "Filter by terminal type"
+            "description": "Filter by facility type ID"
           },
           {
             "in": "query",
-            "name": "subtype",
+            "name": "subtype_id",
             "schema": {
-              "type": "string"
+              "type": "integer"
             },
-            "description": "Filter by terminal subtype"
+            "description": "Filter by facility subtype ID"
           },
           {
             "in": "query",
@@ -6044,15 +6016,31 @@
             "schema": {
               "type": "string"
             },
-            "description": "Filter by terminal status"
+            "description": "Filter by facility status"
           },
           {
             "in": "query",
-            "name": "entity_id",
+            "name": "operator_id",
             "schema": {
               "type": "integer"
             },
-            "description": "Filter by entity ID"
+            "description": "Filter by operator ID"
+          },
+          {
+            "in": "query",
+            "name": "licensee_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by licensee ID"
+          },
+          {
+            "in": "query",
+            "name": "regulator_id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by regulator ID"
           }
         ],
         "responses": {
@@ -6063,20 +6051,28 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "items": {
+                    "data": {
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/Facility_ReferenceTerminal"
                       }
                     },
-                    "total": {
-                      "type": "integer"
-                    },
-                    "page": {
-                      "type": "integer"
-                    },
-                    "pages": {
-                      "type": "integer"
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
                     }
                   }
                 }
@@ -6120,7 +6116,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "item": {
+                    "data": {
                       "$ref": "#/components/schemas/Facility_Terminal"
                     }
                   }
@@ -6159,18 +6155,109 @@
     "/plants": {
       "get": {
         "summary": "Retrieve a list of plants.",
-        "description": "Retrieve a list of plants.",
+        "description": "Retrieve a list of plants with pagination and filtering options.",
         "operationId": "get_plants",
         "tags": ["Facilities"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by facility name"
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by facility type ID"
+          },
+          {
+            "in": "query",
+            "name": "subtype",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by facility subtype ID"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by facility status"
+          },
+          {
+            "in": "query",
+            "name": "operator_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by operator ID"
+          },
+          {
+            "in": "query",
+            "name": "licensee_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by licensee ID"
+          },
+          {
+            "in": "query",
+            "name": "regulator_id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by regulator ID"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "A list of plants.",
+            "description": "A paginated list of plants.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Facility_ReferencePlant"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Facility_ReferencePlant"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -6211,7 +6298,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Facility_Plant"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Facility_Plant"
+                    }
+                  }
                 }
               }
             }
@@ -6247,18 +6339,109 @@
     "/batteries": {
       "get": {
         "summary": "Retrieve a list of batteries.",
-        "description": "Retrieve a list of batteries.",
+        "description": "Retrieve a list of batteries with pagination and filtering options.",
         "operationId": "get_batteries",
         "tags": ["Facilities"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by facility name"
+          },
+          {
+            "in": "query",
+            "name": "type_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by facility type ID"
+          },
+          {
+            "in": "query",
+            "name": "subtype_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by facility subtype ID"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by facility status"
+          },
+          {
+            "in": "query",
+            "name": "operator_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by operator ID"
+          },
+          {
+            "in": "query",
+            "name": "licensee_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by licensee ID"
+          },
+          {
+            "in": "query",
+            "name": "regulator_id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by regulator ID"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "A list of batteries.",
+            "description": "A paginated list of batteries.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Facility_ReferenceBattery"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Facility_ReferenceBattery"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -6299,7 +6482,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Facility_Battery"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Facility_Battery"
+                    }
+                  }
                 }
               }
             }
@@ -6335,18 +6523,109 @@
     "/stations": {
       "get": {
         "summary": "Retrieve a list of stations.",
-        "description": "Retrieve a list of stations.",
+        "description": "Retrieve a list of stations with pagination and filtering options.",
         "operationId": "get_stations",
         "tags": ["Facilities"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by facility name"
+          },
+          {
+            "in": "query",
+            "name": "type_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by facility type ID"
+          },
+          {
+            "in": "query",
+            "name": "subtype_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by facility subtype ID"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by facility status"
+          },
+          {
+            "in": "query",
+            "name": "operator_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by operator ID"
+          },
+          {
+            "in": "query",
+            "name": "licensee_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by licensee ID"
+          },
+          {
+            "in": "query",
+            "name": "regulator_id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by regulator ID"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "A list of stations.",
+            "description": "A paginated list of stations.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Facility_ReferenceStation"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Facility_ReferenceStation"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -6387,7 +6666,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Facility_Station"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Facility_Station"
+                    }
+                  }
                 }
               }
             }
@@ -6423,18 +6707,109 @@
     "/systems": {
       "get": {
         "summary": "Retrieve a list of systems.",
-        "description": "Retrieve a list of systems.",
+        "description": "Retrieve a list of systems with pagination and filtering options.",
         "operationId": "get_systems",
         "tags": ["Facilities"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by facility name"
+          },
+          {
+            "in": "query",
+            "name": "type_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by facility type ID"
+          },
+          {
+            "in": "query",
+            "name": "subtype_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by facility subtype ID"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by facility status"
+          },
+          {
+            "in": "query",
+            "name": "operator_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by operator ID"
+          },
+          {
+            "in": "query",
+            "name": "licensee_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by licensee ID"
+          },
+          {
+            "in": "query",
+            "name": "regulator_id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by regulator ID"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "A list of systems.",
+            "description": "A paginated list of systems.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Facility_ReferenceSystem"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Facility_ReferenceSystem"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -6475,7 +6850,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Facility_System"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Facility_System"
+                    }
+                  }
                 }
               }
             }
@@ -6490,6 +6870,73 @@
                     "error": {
                       "type": "string",
                       "example": "System not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/pipelines/types": {
+      "get": {
+        "summary": "Retrieve a list of pipeline types.",
+        "description": "Retrieve all available pipeline types.",
+        "operationId": "get_pipeline_types",
+        "tags": ["Lines"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of pipeline types.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Lines_ReferencePipelineType"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
                     }
                   }
                 }
@@ -6691,6 +7138,140 @@
         }
       }
     },
+    "/rail-lines/categories": {
+      "get": {
+        "summary": "Retrieve a list of rail line categories.",
+        "description": "Retrieve all available rail line categories.",
+        "operationId": "get_rail_line_categories",
+        "tags": ["Lines"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of rail line categories.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Lines_ReferenceRailLineCategory"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/rail-lines/types": {
+      "get": {
+        "summary": "Retrieve a list of rail line types.",
+        "description": "Retrieve all available rail line types.",
+        "operationId": "get_rail_line_types",
+        "tags": ["Lines"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of rail line types.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Lines_ReferenceRailLineType"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/rail-lines": {
       "get": {
         "summary": "Retrieve a list of rail lines.",
@@ -6708,6 +7289,35 @@
             },
             "required": false,
             "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "string",
+              "enum": ["Mainline", "Branch Line", "Spur Line"]
+            },
+            "required": false,
+            "description": "Filter by rail line type"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "string",
+              "enum": ["Private", "Public"]
+            },
+            "required": false,
+            "description": "Filter by rail line category"
+          },
+          {
+            "in": "query",
+            "name": "max_train_length",
+            "schema": {
+              "type": "number"
+            },
+            "required": false,
+            "description": "Filter by maximum train length the rail line can accommodate"
           }
         ],
         "responses": {
@@ -6853,10 +7463,10 @@
         }
       }
     },
-    "/users": {
+    "/organization/users": {
       "get": {
-        "summary": "Retrieve a list of users.",
-        "description": "Retrieve a list of users with pagination and filtering options.",
+        "summary": "Retrieve a list of users in the current organization.",
+        "description": "Retrieve a list of users in the current organization with pagination and filtering options.",
         "operationId": "get_users",
         "tags": ["Organization"],
         "parameters": [
@@ -6950,10 +7560,10 @@
         }
       }
     },
-    "/users/{id}": {
+    "/organization/users/{id}": {
       "get": {
-        "summary": "Retrieve a single user by ID.",
-        "description": "Retrieve details about a specific user including their roles and permissions.",
+        "summary": "Retrieve a single user in the current organization by ID.",
+        "description": "Retrieve details about a specific user in the current organization including their roles and permissions.",
         "operationId": "get_user",
         "tags": ["Organization"],
         "parameters": [
@@ -7011,10 +7621,10 @@
         }
       }
     },
-    "/roles": {
+    "/organization/roles": {
       "get": {
-        "summary": "Retrieve a list of user roles.",
-        "description": "Retrieve a list of user roles.",
+        "summary": "Retrieve a list of user roles in the current organization.",
+        "description": "Retrieve a list of user roles in the current organization.",
         "operationId": "get_roles",
         "tags": ["Organization"],
         "parameters": [
@@ -7078,10 +7688,10 @@
         }
       }
     },
-    "/permissions": {
+    "/organization/permissions": {
       "get": {
-        "summary": "Retrieve a list of user permissions.",
-        "description": "Retrieve a list of user permissions.",
+        "summary": "Retrieve a list of user permissions in the current organization.",
+        "description": "Retrieve a list of user permissions in the current organization.",
         "operationId": "get_permissions",
         "tags": ["Organization"],
         "parameters": [
@@ -7145,12 +7755,12 @@
         }
       }
     },
-    "/entities": {
+    "/organization/commercial-facilities": {
       "get": {
-        "summary": "Retrieve a list of entities.",
-        "description": "Retrieve a list of entities with pagination and filtering options.",
-        "operationId": "get_entities",
-        "tags": ["Entity"],
+        "summary": "Retrieve a list of commercial facilities in the current organization.",
+        "description": "Retrieve a list of facility types in the current organization with pagination and filtering options.",
+        "operationId": "get_commercial_facilities",
+        "tags": ["Organization"],
         "parameters": [
           {
             "in": "query",
@@ -7165,16 +7775,53 @@
           },
           {
             "in": "query",
-            "name": "legal_name",
+            "name": "section",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Section"
+          },
+          {
+            "in": "query",
+            "name": "lsd",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Legal subdivision"
+          },
+          {
+            "in": "query",
+            "name": "meridian",
             "schema": {
               "type": "string"
             },
-            "description": "Filter by legal name"
+            "required": false,
+            "description": "Meridian"
+          },
+          {
+            "in": "query",
+            "name": "range",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Range"
+          },
+          {
+            "in": "query",
+            "name": "township",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Township"
           }
         ],
         "responses": {
           "200": {
-            "description": "A paginated list of entities.",
+            "description": "A paginated list of commercial facilities.",
             "content": {
               "application/json": {
                 "schema": {
@@ -7183,7 +7830,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Entity_ReferenceEntity"
+                        "$ref": "#/components/schemas/Organization_ReferenceCommercialFacility"
                       }
                     },
                     "meta": {
@@ -7220,12 +7867,12 @@
         }
       }
     },
-    "/entities/{id}": {
+    "/organization/commercial-facilities/{id}": {
       "get": {
-        "summary": "Retrieve a single entity by ID.",
-        "description": "Retrieve details about a specific entity including associated producer, carrier, marketer and other entity types.",
-        "operationId": "get_entity",
-        "tags": ["Entity"],
+        "summary": "Retrieve a single commercial facility in the current organization by ID.",
+        "description": "Retrieve details about a specific commercial facility in the current organization including their related their associated terminals, batteries, plants, pipelines, stations, etc.",
+        "operationId": "get_commercial_facility",
+        "tags": ["Organization"],
         "parameters": [
           {
             "in": "path",
@@ -7234,19 +7881,19 @@
               "type": "integer"
             },
             "required": true,
-            "description": "The entity ID."
+            "description": "The commercial facility ID."
           }
         ],
         "responses": {
           "200": {
-            "description": "A single entity object containing entity details along with related entity type information.",
+            "description": "A single commercial facility object containing facility details along with related terminals, batteries, plants, stations, etc.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Entity_Entity"
+                      "$ref": "#/components/schemas/Organization_CommercialFacility"
                     }
                   }
                 }
@@ -7254,7 +7901,7 @@
             }
           },
           "404": {
-            "description": "Entity not found.",
+            "description": "Commercial facility not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -7262,7 +7909,7 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "Entity not found."
+                      "example": "Commercial facility not found."
                     }
                   }
                 }
@@ -7405,21 +8052,21 @@
         }
       }
     },
-    "/products/categories/specifications": {
+    "/products/categories": {
       "get": {
-        "summary": "Retrieve a list of product category specifications.",
-        "description": "Retrieve a list of product category specifications.",
-        "operationId": "get_product_categories_specifications",
+        "summary": "Retrieve a list of product categories.",
+        "description": "Retrieve a list of product categories.",
+        "operationId": "get_product_categories",
         "tags": ["Products"],
         "responses": {
           "200": {
-            "description": "A list of product category specifications.",
+            "description": "A list of product categories.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Product_ReferenceProductCategorySpecification"
+                    "$ref": "#/components/schemas/Product_ReferenceProductCategory"
                   }
                 }
               }
@@ -7437,21 +8084,21 @@
         }
       }
     },
-    "/products/categories": {
+    "/products/categories/specifications": {
       "get": {
-        "summary": "Retrieve a list of product categories.",
-        "description": "Retrieve a list of product categories.",
-        "operationId": "get_product_categories",
+        "summary": "Retrieve a list of product category specifications.",
+        "description": "Retrieve a list of product category specifications.",
+        "operationId": "get_product_categories_specifications",
         "tags": ["Products"],
         "responses": {
           "200": {
-            "description": "A list of product categories.",
+            "description": "A list of product category specifications.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Product_ReferenceProductCategory"
+                    "$ref": "#/components/schemas/Product_ReferenceProductCategorySpecification"
                   }
                 }
               }
@@ -7952,7 +8599,7 @@
     "/wells": {
       "get": {
         "summary": "Retrieve a list of wells.",
-        "description": "Retrieve a list of wells.",
+        "description": "Retrieve a list of wells with pagination and filtering options.",
         "operationId": "get_wells",
         "tags": ["Wells"],
         "parameters": [
@@ -7966,6 +8613,164 @@
             },
             "required": false,
             "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "jurisdiction",
+            "schema": {
+              "type": "string",
+              "enum": ["ALBERTA", "SASKATCHEWAN"]
+            },
+            "required": false,
+            "description": "Jurisdiction"
+          },
+          {
+            "in": "query",
+            "name": "license_issued",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false,
+            "description": "License issue date"
+          },
+          {
+            "in": "query",
+            "name": "license_number",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "License number"
+          },
+          {
+            "in": "query",
+            "name": "license_status",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ABANDONED",
+                "AMMENDED",
+                "CANCELLED",
+                "DECOMMISSION",
+                "ISSUED",
+                "RE-ENTERED",
+                "RECCERTIFIED",
+                "RECEXEMPT",
+                "SUSPENDED",
+                "SUSPENSION"
+              ]
+            },
+            "required": false,
+            "description": "License status"
+          },
+          {
+            "in": "query",
+            "name": "license_type",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "License type"
+          },
+          {
+            "in": "query",
+            "name": "licensee_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Licensee entity ID"
+          },
+          {
+            "in": "query",
+            "name": "regulator_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Regulator ID"
+          },
+          {
+            "in": "query",
+            "name": "section",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Section"
+          },
+          {
+            "in": "query",
+            "name": "event_sequence",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Event sequence number"
+          },
+          {
+            "in": "query",
+            "name": "location_exception",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Location exception"
+          },
+          {
+            "in": "query",
+            "name": "lsd",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Legal subdivision"
+          },
+          {
+            "in": "query",
+            "name": "meridian",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Meridian"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Well name"
+          },
+          {
+            "in": "query",
+            "name": "range",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Range"
+          },
+          {
+            "in": "query",
+            "name": "township",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Township"
+          },
+          {
+            "in": "query",
+            "name": "uwi",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Unique Well Identifier"
           }
         ],
         "responses": {
@@ -8003,6 +8808,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
@@ -8059,6 +8867,142 @@
                     "error": {
                       "type": "string",
                       "example": "Well not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/entities": {
+      "get": {
+        "summary": "Retrieve a list of entities.",
+        "description": "Retrieve a list of entities with pagination and filtering options.",
+        "operationId": "get_entities",
+        "tags": ["Entity"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "legal_name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by legal name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of entities.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Entity_ReferenceEntity"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/entities/{id}": {
+      "get": {
+        "summary": "Retrieve a single entity by ID.",
+        "description": "Retrieve details about a specific entity including associated producer, carrier, marketer and other entity types.",
+        "operationId": "get_entity",
+        "tags": ["Entity"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The entity ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single entity object containing entity details along with related entity type information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Entity_Entity"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Entity not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Entity not found."
                     }
                   }
                 }
