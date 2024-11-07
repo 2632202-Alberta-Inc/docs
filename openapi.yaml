@@ -6806,7 +6806,7 @@ paths:
           $ref: "#/components/responses/InternalServerError"
   /entities:
     get:
-      summary: Retrieve a list of entities.
+      summary: List Entities
       description: Retrieve a list of entities with pagination and filtering options.
       operationId: get_entities
       tags:
@@ -6856,7 +6856,7 @@ paths:
           $ref: "#/components/responses/InternalServerError"
   /entities/{id}:
     get:
-      summary: Retrieve a single entity by ID.
+      summary: Get Entity
       description:
         Retrieve details about a specific entity including associated producer,
         carrier, marketer and other entity types.
