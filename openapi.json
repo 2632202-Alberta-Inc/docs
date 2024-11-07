@@ -8804,7 +8804,7 @@
     },
     "/products/categories": {
       "get": {
-        "summary": "List Product Categories",
+        "summary": "List Categories",
         "description": "Retrieve a list of product categories.",
         "operationId": "get_product_categories",
         "tags": [
@@ -8838,7 +8838,7 @@
     },
     "/products/categories/specifications": {
       "get": {
-        "summary": "List Product Category Specs",
+        "summary": "List Category Specs",
         "description": "Retrieve a list of product category specifications.",
         "operationId": "get_product_categories_specifications",
         "tags": [
@@ -8964,7 +8964,7 @@
     },
     "/ping": {
       "get": {
-        "summary": "Ping",
+        "summary": "Ping Server",
         "description": "Check the server health.",
         "operationId": "ping",
         "tags": [
