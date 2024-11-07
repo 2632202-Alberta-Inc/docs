@@ -222,17 +222,30 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "status": {
             "type": "string",
-            "enum": ["S", "I", "L", "N", "D", "C", "A"],
+            "enum": [
+              "S",
+              "I",
+              "L",
+              "N",
+              "D",
+              "C",
+              "A"
+            ],
             "maxLength": 255
           },
           "effective_date": {
@@ -299,7 +312,10 @@
             }
           }
         },
-        "required": ["name", "slug"]
+        "required": [
+          "name",
+          "slug"
+        ]
       },
       "UserRoles": {
         "type": "object",
@@ -313,7 +329,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "UserPermissions": {
         "type": "object",
@@ -331,7 +349,10 @@
             "maxLength": 255
           }
         },
-        "required": ["code", "name"]
+        "required": [
+          "code",
+          "name"
+        ]
       },
       "Organization_User": {
         "type": "object",
@@ -401,7 +422,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "EntityReference1": {
         "type": "object",
@@ -489,17 +512,30 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "status": {
             "type": "string",
-            "enum": ["S", "I", "L", "N", "D", "C", "A"],
+            "enum": [
+              "S",
+              "I",
+              "L",
+              "N",
+              "D",
+              "C",
+              "A"
+            ],
             "maxLength": 255
           },
           "effective_date": {
@@ -566,7 +602,10 @@
             }
           }
         },
-        "required": ["name", "slug"]
+        "required": [
+          "name",
+          "slug"
+        ]
       },
       "OrganizationReference2": {
         "type": "object",
@@ -580,7 +619,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "BatteryReference": {
         "type": "object",
@@ -594,7 +635,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "TerminalReference": {
         "type": "object",
@@ -608,7 +651,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "PlantReference": {
         "type": "object",
@@ -622,7 +667,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "StationReference": {
         "type": "object",
@@ -636,7 +683,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "SystemReference": {
         "type": "object",
@@ -650,7 +699,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "PipelineReference": {
         "type": "object",
@@ -664,7 +715,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "CommercialFacilityFacilityReference": {
         "type": "object",
@@ -771,7 +824,14 @@
             "nullable": true
           }
         },
-        "required": ["lsd", "meridian", "name", "range", "section", "township"]
+        "required": [
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
       "Organization_CommercialFacilityFacility": {
         "type": "object",
@@ -830,7 +890,9 @@
             ]
           }
         },
-        "required": ["commercial_facility"]
+        "required": [
+          "commercial_facility"
+        ]
       },
       "ProductCategory": {
         "type": "object",
@@ -848,7 +910,10 @@
             "maxLength": 255
           }
         },
-        "required": ["name", "short_code"]
+        "required": [
+          "name",
+          "short_code"
+        ]
       },
       "MeasurementUnit": {
         "type": "object",
@@ -866,7 +931,10 @@
             "maxLength": 255
           }
         },
-        "required": ["abbreviation", "name"]
+        "required": [
+          "abbreviation",
+          "name"
+        ]
       },
       "Product_Product": {
         "type": "object",
@@ -893,7 +961,10 @@
             }
           }
         },
-        "required": ["name", "short_code"]
+        "required": [
+          "name",
+          "short_code"
+        ]
       },
       "CurrencyConversion": {
         "type": "object",
@@ -910,7 +981,9 @@
             "format": "date-time"
           }
         },
-        "required": ["exchange_rate"]
+        "required": [
+          "exchange_rate"
+        ]
       },
       "Currency_Currency": {
         "type": "object",
@@ -934,7 +1007,10 @@
             }
           }
         },
-        "required": ["name", "symbol"]
+        "required": [
+          "name",
+          "symbol"
+        ]
       },
       "WellReference": {
         "type": "object",
@@ -1037,17 +1113,30 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "status": {
             "type": "string",
-            "enum": ["S", "I", "L", "N", "D", "C", "A"],
+            "enum": [
+              "S",
+              "I",
+              "L",
+              "N",
+              "D",
+              "C",
+              "A"
+            ],
             "maxLength": 255
           },
           "effective_date": {
@@ -1158,7 +1247,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "FacilitySubTypeReference": {
         "type": "object",
@@ -1172,7 +1263,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "EntityReference2": {
         "type": "object",
@@ -1186,7 +1279,9 @@
             "maxLength": 255
           }
         },
-        "required": ["legal_name"]
+        "required": [
+          "legal_name"
+        ]
       },
       "PipelineTypeReference": {
         "type": "object",
@@ -1200,7 +1295,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "Lines_Pipeline": {
         "type": "object",
@@ -1215,7 +1312,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -1233,7 +1333,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -1246,14 +1353,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -1275,7 +1394,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           },
           "pipeline_type": {
@@ -1304,7 +1425,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "RailLineCategory": {
         "type": "object",
@@ -1318,7 +1441,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "CarrierReference": {
         "type": "object",
@@ -1347,7 +1472,9 @@
             }
           }
         },
-        "required": ["legal_name"]
+        "required": [
+          "legal_name"
+        ]
       },
       "RailLineCarrier": {
         "type": "object",
@@ -1386,7 +1513,10 @@
             }
           }
         },
-        "required": ["name", "short_code"]
+        "required": [
+          "name",
+          "short_code"
+        ]
       },
       "RailLineProduct": {
         "type": "object",
@@ -1400,7 +1530,9 @@
             "$ref": "#/components/schemas/ProductReference"
           }
         },
-        "required": ["products"]
+        "required": [
+          "products"
+        ]
       },
       "Lines_RailLine": {
         "type": "object",
@@ -1437,7 +1569,9 @@
             }
           }
         },
-        "required": ["operator"]
+        "required": [
+          "operator"
+        ]
       },
       "Wells_Well": {
         "type": "object",
@@ -1492,21 +1626,36 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "licensee": {},
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -1528,7 +1677,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           },
           "entity": {
@@ -1568,11 +1719,19 @@
           "facility_type": {},
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           }
         },
-        "required": ["code", "facility_type", "jurisdiction", "name"]
+        "required": [
+          "code",
+          "facility_type",
+          "jurisdiction",
+          "name"
+        ]
       },
       "Facility_FacilityType": {
         "type": "object",
@@ -1591,7 +1750,12 @@
           },
           "model": {
             "type": "string",
-            "enum": ["T", "S", "P", "B"],
+            "enum": [
+              "T",
+              "S",
+              "P",
+              "B"
+            ],
             "maxLength": 255
           },
           "sub_types": {
@@ -1601,7 +1765,11 @@
             }
           }
         },
-        "required": ["code", "model", "name"]
+        "required": [
+          "code",
+          "model",
+          "name"
+        ]
       },
       "Facility_FacilitySubType": {
         "type": "object",
@@ -1621,11 +1789,19 @@
           "facility_type": {},
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           }
         },
-        "required": ["code", "facility_type", "jurisdiction", "name"]
+        "required": [
+          "code",
+          "facility_type",
+          "jurisdiction",
+          "name"
+        ]
       },
       "FacilityTypeReference1": {
         "type": "object",
@@ -1646,7 +1822,10 @@
             "type": "string"
           }
         },
-        "required": ["code", "name"]
+        "required": [
+          "code",
+          "name"
+        ]
       },
       "FacilitySubTypeReference1": {
         "type": "object",
@@ -1665,11 +1844,18 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           }
         },
-        "required": ["code", "jurisdiction", "name"]
+        "required": [
+          "code",
+          "jurisdiction",
+          "name"
+        ]
       },
       "Facility_Terminal": {
         "type": "object",
@@ -1710,7 +1896,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -1728,7 +1917,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -1741,14 +1937,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -1770,7 +1978,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -1828,7 +2038,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -1861,7 +2074,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -1879,14 +2099,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -1908,7 +2140,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -1966,7 +2200,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -1999,7 +2236,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -2017,14 +2261,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -2046,7 +2302,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -2104,7 +2362,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -2137,7 +2398,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -2155,14 +2423,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -2184,7 +2464,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -2242,7 +2524,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -2275,7 +2560,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -2293,14 +2585,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -2322,7 +2626,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -2380,7 +2686,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -2413,7 +2722,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -2431,14 +2747,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -2460,7 +2788,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -2518,7 +2848,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -2551,7 +2884,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -2569,14 +2909,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -2598,7 +2950,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -2656,7 +3010,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -2689,7 +3046,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -2707,14 +3071,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -2736,7 +3112,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -2794,7 +3172,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -2827,7 +3208,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -2845,14 +3233,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -2874,7 +3274,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -2932,7 +3334,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -2965,7 +3370,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -2983,14 +3395,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -3012,7 +3436,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -3043,7 +3469,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "MeterCode": {
         "type": "object",
@@ -3417,7 +3845,10 @@
             }
           }
         },
-        "required": ["external_id", "operator"]
+        "required": [
+          "external_id",
+          "operator"
+        ]
       },
       "MeterReference": {
         "type": "object",
@@ -3462,7 +3893,9 @@
             "type": "integer"
           }
         },
-        "required": ["external_id"]
+        "required": [
+          "external_id"
+        ]
       },
       "UserRolesReference": {
         "type": "object",
@@ -3476,7 +3909,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "UserPermissionsReference": {
         "type": "object",
@@ -3490,7 +3925,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "UserReference": {
         "type": "object",
@@ -3591,7 +4028,9 @@
             }
           }
         },
-        "required": ["legal_name"]
+        "required": [
+          "legal_name"
+        ]
       },
       "WellReference1": {
         "type": "object",
@@ -3646,7 +4085,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "licensee": {
@@ -3655,14 +4097,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -3684,7 +4138,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -3718,7 +4174,10 @@
             "maxLength": 255
           }
         },
-        "required": ["name", "short_code"]
+        "required": [
+          "name",
+          "short_code"
+        ]
       },
       "MeasurementUnitReference": {
         "type": "object",
@@ -3751,7 +4210,10 @@
             }
           }
         },
-        "required": ["abbreviation", "name"]
+        "required": [
+          "abbreviation",
+          "name"
+        ]
       },
       "Volumes_TruckTicket": {
         "type": "object",
@@ -4129,7 +4591,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "Organization_ReferenceUserPermissions": {
         "type": "object",
@@ -4147,7 +4611,10 @@
             "maxLength": 255
           }
         },
-        "required": ["code", "name"]
+        "required": [
+          "code",
+          "name"
+        ]
       },
       "Organization_ReferenceCommercialFacility": {
         "type": "object",
@@ -4190,7 +4657,14 @@
             "$ref": "#/components/schemas/OrganizationReference2"
           }
         },
-        "required": ["lsd", "meridian", "name", "range", "section", "township"]
+        "required": [
+          "lsd",
+          "meridian",
+          "name",
+          "range",
+          "section",
+          "township"
+        ]
       },
       "Organization_ReferenceCommercialFacilityFacility": {
         "type": "object",
@@ -4249,7 +4723,9 @@
             ]
           }
         },
-        "required": ["commercial_facility"]
+        "required": [
+          "commercial_facility"
+        ]
       },
       "Product_ReferenceProduct": {
         "type": "object",
@@ -4276,7 +4752,10 @@
             }
           }
         },
-        "required": ["name", "short_code"]
+        "required": [
+          "name",
+          "short_code"
+        ]
       },
       "Product_ReferenceProductCategory": {
         "type": "object",
@@ -4294,7 +4773,10 @@
             "maxLength": 255
           }
         },
-        "required": ["name", "short_code"]
+        "required": [
+          "name",
+          "short_code"
+        ]
       },
       "Product_ReferenceProductCategorySpecification": {
         "type": "object",
@@ -4322,7 +4804,10 @@
             "type": "integer"
           }
         },
-        "required": ["bsw", "density"]
+        "required": [
+          "bsw",
+          "density"
+        ]
       },
       "Entity_ReferenceEntity": {
         "type": "object",
@@ -4410,17 +4895,30 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "status": {
             "type": "string",
-            "enum": ["S", "I", "L", "N", "D", "C", "A"],
+            "enum": [
+              "S",
+              "I",
+              "L",
+              "N",
+              "D",
+              "C",
+              "A"
+            ],
             "maxLength": 255
           },
           "effective_date": {
@@ -4454,7 +4952,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {},
@@ -4468,7 +4969,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -4481,14 +4989,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -4510,7 +5030,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           },
           "pipeline_type": {
@@ -4541,7 +5063,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "RailLineTypeReference": {
         "type": "object",
@@ -4555,7 +5079,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "RailLineCategoryReference": {
         "type": "object",
@@ -4569,7 +5095,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "Lines_ReferenceRailLine": {
         "type": "object",
@@ -4606,7 +5134,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "Lines_ReferenceRailLineCategory": {
         "type": "object",
@@ -4620,7 +5150,9 @@
             "maxLength": 255
           }
         },
-        "required": ["name"]
+        "required": [
+          "name"
+        ]
       },
       "Facility_ReferenceFacilityType": {
         "type": "object",
@@ -4641,7 +5173,10 @@
             "type": "string"
           }
         },
-        "required": ["code", "name"]
+        "required": [
+          "code",
+          "name"
+        ]
       },
       "Facility_ReferenceFacilitySubType": {
         "type": "object",
@@ -4660,11 +5195,18 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           }
         },
-        "required": ["code", "jurisdiction", "name"]
+        "required": [
+          "code",
+          "jurisdiction",
+          "name"
+        ]
       },
       "Facility_ReferenceTerminal": {
         "type": "object",
@@ -4705,7 +5247,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -4738,7 +5283,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -4756,14 +5308,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -4785,7 +5349,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -4843,7 +5409,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -4876,7 +5445,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -4894,14 +5470,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -4923,7 +5511,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -4981,7 +5571,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -5014,7 +5607,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -5032,14 +5632,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -5061,7 +5673,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -5119,7 +5733,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -5152,7 +5769,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -5170,14 +5794,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -5199,7 +5835,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -5257,7 +5895,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "type": {
@@ -5290,7 +5931,14 @@
           },
           "operational_status": {
             "type": "string",
-            "enum": ["A", "C", "M", "N", "R", "S"],
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
             "maxLength": 255
           },
           "operator_start_date": {
@@ -5308,14 +5956,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -5337,7 +5997,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -5409,7 +6071,10 @@
           },
           "jurisdiction": {
             "type": "string",
-            "enum": ["A", "S"],
+            "enum": [
+              "A",
+              "S"
+            ],
             "maxLength": 255
           },
           "licensee": {
@@ -5418,14 +6083,26 @@
           "license_status": {
             "type": "string",
             "default": null,
-            "enum": ["A", "C", "D", "I", "R", "S", null],
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
           "license_type": {
             "type": "string",
             "default": null,
-            "enum": ["W", "F", null],
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
             "maxLength": 255,
             "nullable": true
           },
@@ -5447,7 +6124,9 @@
           },
           "regulator_system": {
             "type": "string",
-            "enum": ["P"],
+            "enum": [
+              "P"
+            ],
             "maxLength": 255
           }
         },
@@ -5508,7 +6187,9 @@
             "type": "integer"
           }
         },
-        "required": ["external_id"]
+        "required": [
+          "external_id"
+        ]
       },
       "Volumes_ReferenceTruckTicket": {
         "type": "object",
@@ -5787,10 +6468,12 @@
   "paths": {
     "/facility-types": {
       "get": {
-        "summary": "Retrieve a list of facility types.",
+        "summary": "List Types",
         "description": "Retrieve a list of facility types with pagination and filtering options.",
         "operationId": "get_facility_types",
-        "tags": ["Facilities"],
+        "tags": [
+          "Facilities"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -5878,10 +6561,12 @@
     },
     "/facility-subtypes": {
       "get": {
-        "summary": "Retrieve a list of facility subtypes.",
+        "summary": "List Sub Types",
         "description": "Retrieve a list of facility subtypes with pagination and filtering options.",
         "operationId": "get_facility_subtypes",
-        "tags": ["Facilities"],
+        "tags": [
+          "Facilities"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -5907,7 +6592,10 @@
             "name": "jurisdiction",
             "schema": {
               "type": "string",
-              "enum": ["ALBERTA", "SASKATCHEWAN"]
+              "enum": [
+                "ALBERTA",
+                "SASKATCHEWAN"
+              ]
             },
             "description": "Filter by jurisdiction"
           },
@@ -5970,10 +6658,12 @@
     },
     "/terminals": {
       "get": {
-        "summary": "Retrieve a list of terminals.",
+        "summary": "List Terminals",
         "description": "Retrieve a list of terminals with pagination and filtering options.",
         "operationId": "get_terminals",
-        "tags": ["Facilities"],
+        "tags": [
+          "Facilities"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -6093,10 +6783,12 @@
     },
     "/terminals/{id}": {
       "get": {
-        "summary": "Retrieve a single terminal by ID.",
+        "summary": "Get Terminal",
         "description": "Retrieve details of a specific terminal, including its name, type, subtype, status and associated entity.",
         "operationId": "get_terminal",
-        "tags": ["Facilities"],
+        "tags": [
+          "Facilities"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -6154,10 +6846,12 @@
     },
     "/plants": {
       "get": {
-        "summary": "Retrieve a list of plants.",
+        "summary": "List Plants",
         "description": "Retrieve a list of plants with pagination and filtering options.",
         "operationId": "get_plants",
-        "tags": ["Facilities"],
+        "tags": [
+          "Facilities"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -6277,10 +6971,12 @@
     },
     "/plants/{id}": {
       "get": {
-        "summary": "Retrieve a single plant by ID.",
+        "summary": "Get Plant",
         "description": "Retrieve a single plant by ID.",
         "operationId": "get_plant",
-        "tags": ["Facilities"],
+        "tags": [
+          "Facilities"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -6338,10 +7034,12 @@
     },
     "/batteries": {
       "get": {
-        "summary": "Retrieve a list of batteries.",
+        "summary": "List Batteries",
         "description": "Retrieve a list of batteries with pagination and filtering options.",
         "operationId": "get_batteries",
-        "tags": ["Facilities"],
+        "tags": [
+          "Facilities"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -6461,10 +7159,12 @@
     },
     "/batteries/{id}": {
       "get": {
-        "summary": "Retrieve a single battery by ID.",
+        "summary": "Get Battery",
         "description": "Retrieve a single battery by ID.",
         "operationId": "get_battery",
-        "tags": ["Facilities"],
+        "tags": [
+          "Facilities"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -6522,10 +7222,12 @@
     },
     "/stations": {
       "get": {
-        "summary": "Retrieve a list of stations.",
+        "summary": "List Stations",
         "description": "Retrieve a list of stations with pagination and filtering options.",
         "operationId": "get_stations",
-        "tags": ["Facilities"],
+        "tags": [
+          "Facilities"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -6645,10 +7347,12 @@
     },
     "/stations/{id}": {
       "get": {
-        "summary": "Retrieve a single station by ID.",
+        "summary": "Get Station",
         "description": "Retrieve a single station by ID.",
         "operationId": "get_station",
-        "tags": ["Facilities"],
+        "tags": [
+          "Facilities"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -6706,10 +7410,12 @@
     },
     "/systems": {
       "get": {
-        "summary": "Retrieve a list of systems.",
+        "summary": "List Systems",
         "description": "Retrieve a list of systems with pagination and filtering options.",
         "operationId": "get_systems",
-        "tags": ["Facilities"],
+        "tags": [
+          "Facilities"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -6829,10 +7535,12 @@
     },
     "/systems/{id}": {
       "get": {
-        "summary": "Retrieve a single system by ID.",
+        "summary": "Get System",
         "description": "Retrieve a single system by ID.",
         "operationId": "get_system",
-        "tags": ["Facilities"],
+        "tags": [
+          "Facilities"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -6890,10 +7598,12 @@
     },
     "/pipelines/types": {
       "get": {
-        "summary": "Retrieve a list of pipeline types.",
+        "summary": "List Pipeline Types",
         "description": "Retrieve all available pipeline types.",
         "operationId": "get_pipeline_types",
-        "tags": ["Lines"],
+        "tags": [
+          "Lines"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -6957,10 +7667,12 @@
     },
     "/pipelines": {
       "get": {
-        "summary": "Retrieve a list of pipelines.",
+        "summary": "List Pipelines",
         "description": "Retrieve a list of pipelines with pagination and filtering options.",
         "operationId": "get_pipelines",
-        "tags": ["Lines"],
+        "tags": [
+          "Lines"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -6978,7 +7690,10 @@
             "name": "jurisdiction",
             "schema": {
               "type": "string",
-              "enum": ["ALBERTA", "SASKATCHEWAN"]
+              "enum": [
+                "ALBERTA",
+                "SASKATCHEWAN"
+              ]
             },
             "required": false,
             "description": "Filter by jurisdiction"
@@ -7079,10 +7794,12 @@
     },
     "/pipelines/{id}": {
       "get": {
-        "summary": "Retrieve a single pipeline by ID.",
+        "summary": "Get Pipeline",
         "description": "Retrieve a single pipeline by ID.",
         "operationId": "get_pipeline",
-        "tags": ["Lines"],
+        "tags": [
+          "Lines"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -7140,10 +7857,12 @@
     },
     "/rail-lines/categories": {
       "get": {
-        "summary": "Retrieve a list of rail line categories.",
+        "summary": "List Railine Categories",
         "description": "Retrieve all available rail line categories.",
         "operationId": "get_rail_line_categories",
-        "tags": ["Lines"],
+        "tags": [
+          "Lines"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -7207,10 +7926,12 @@
     },
     "/rail-lines/types": {
       "get": {
-        "summary": "Retrieve a list of rail line types.",
+        "summary": "List Railine Types",
         "description": "Retrieve all available rail line types.",
         "operationId": "get_rail_line_types",
-        "tags": ["Lines"],
+        "tags": [
+          "Lines"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -7274,10 +7995,12 @@
     },
     "/rail-lines": {
       "get": {
-        "summary": "Retrieve a list of rail lines.",
+        "summary": "List Railines",
         "description": "Retrieve a list of rail lines with pagination and filtering options.",
         "operationId": "get_rail_lines",
-        "tags": ["Lines"],
+        "tags": [
+          "Lines"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -7295,7 +8018,11 @@
             "name": "type",
             "schema": {
               "type": "string",
-              "enum": ["Mainline", "Branch Line", "Spur Line"]
+              "enum": [
+                "Mainline",
+                "Branch Line",
+                "Spur Line"
+              ]
             },
             "required": false,
             "description": "Filter by rail line type"
@@ -7305,7 +8032,10 @@
             "name": "category",
             "schema": {
               "type": "string",
-              "enum": ["Private", "Public"]
+              "enum": [
+                "Private",
+                "Public"
+              ]
             },
             "required": false,
             "description": "Filter by rail line category"
@@ -7370,10 +8100,12 @@
     },
     "/rail-lines/{id}": {
       "get": {
-        "summary": "Retrieve a single rail line.",
+        "summary": "Get Railine",
         "description": "Retrieve a single rail line with pagination and filtering options.",
         "operationId": "get_rail_line",
-        "tags": ["Lines"],
+        "tags": [
+          "Lines"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -7431,10 +8163,12 @@
     },
     "/organization": {
       "get": {
-        "summary": "Retrieve the current organization.",
+        "summary": "Get Organization",
         "description": "Retrieve details about the current organization including associated entities, wells, and facilities.",
         "operationId": "get_organization",
-        "tags": ["Organization"],
+        "tags": [
+          "Organization"
+        ],
         "responses": {
           "200": {
             "description": "A single organization object containing organization details along with related entities, wells, terminals, plants, batteries, stations, systems and pipelines.",
@@ -7465,10 +8199,12 @@
     },
     "/organization/users": {
       "get": {
-        "summary": "Retrieve a list of users in the current organization.",
+        "summary": "List Users",
         "description": "Retrieve a list of users in the current organization with pagination and filtering options.",
         "operationId": "get_users",
-        "tags": ["Organization"],
+        "tags": [
+          "Organization"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -7562,10 +8298,12 @@
     },
     "/organization/users/{id}": {
       "get": {
-        "summary": "Retrieve a single user in the current organization by ID.",
+        "summary": "Get User",
         "description": "Retrieve details about a specific user in the current organization including their roles and permissions.",
         "operationId": "get_user",
-        "tags": ["Organization"],
+        "tags": [
+          "Organization"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -7623,10 +8361,12 @@
     },
     "/organization/roles": {
       "get": {
-        "summary": "Retrieve a list of user roles in the current organization.",
+        "summary": "List Roles",
         "description": "Retrieve a list of user roles in the current organization.",
         "operationId": "get_roles",
-        "tags": ["Organization"],
+        "tags": [
+          "Organization"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -7690,10 +8430,12 @@
     },
     "/organization/permissions": {
       "get": {
-        "summary": "Retrieve a list of user permissions in the current organization.",
+        "summary": "List Permissions",
         "description": "Retrieve a list of user permissions in the current organization.",
         "operationId": "get_permissions",
-        "tags": ["Organization"],
+        "tags": [
+          "Organization"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -7757,10 +8499,12 @@
     },
     "/organization/commercial-facilities": {
       "get": {
-        "summary": "Retrieve a list of commercial facilities in the current organization.",
-        "description": "Retrieve a list of facility types in the current organization with pagination and filtering options.",
+        "summary": "List Commercial Facilities",
+        "description": "List commercial facilities in the current organization with pagination and filtering options.",
         "operationId": "get_commercial_facilities",
-        "tags": ["Organization"],
+        "tags": [
+          "Organization"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -7869,10 +8613,12 @@
     },
     "/organization/commercial-facilities/{id}": {
       "get": {
-        "summary": "Retrieve a single commercial facility in the current organization by ID.",
+        "summary": "Get Commercial Facility",
         "description": "Retrieve details about a specific commercial facility in the current organization including their related their associated terminals, batteries, plants, pipelines, stations, etc.",
         "operationId": "get_commercial_facility",
-        "tags": ["Organization"],
+        "tags": [
+          "Organization"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -7930,10 +8676,12 @@
     },
     "/currencies": {
       "get": {
-        "summary": "Retrieve a list of currencies.",
+        "summary": "List Currencies",
         "description": "Retrieve a list of currencies.",
         "operationId": "get_currencies",
-        "tags": ["Currency"],
+        "tags": [
+          "Currency"
+        ],
         "responses": {
           "200": {
             "description": "A list of currencies.",
@@ -7962,10 +8710,12 @@
     },
     "/currencies/convert": {
       "get": {
-        "summary": "Retrieve the live exchange rate.",
+        "summary": "Get Exchange Rate",
         "description": "Retrieve the live exchange rate.",
         "operationId": "convert_currency",
-        "tags": ["Currency"],
+        "tags": [
+          "Currency"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -8054,10 +8804,12 @@
     },
     "/products/categories": {
       "get": {
-        "summary": "Retrieve a list of product categories.",
+        "summary": "List Product Categories",
         "description": "Retrieve a list of product categories.",
         "operationId": "get_product_categories",
-        "tags": ["Products"],
+        "tags": [
+          "Products"
+        ],
         "responses": {
           "200": {
             "description": "A list of product categories.",
@@ -8086,10 +8838,12 @@
     },
     "/products/categories/specifications": {
       "get": {
-        "summary": "Retrieve a list of product category specifications.",
+        "summary": "List Product Category Specs",
         "description": "Retrieve a list of product category specifications.",
         "operationId": "get_product_categories_specifications",
-        "tags": ["Products"],
+        "tags": [
+          "Products"
+        ],
         "responses": {
           "200": {
             "description": "A list of product category specifications.",
@@ -8118,10 +8872,12 @@
     },
     "/products": {
       "get": {
-        "summary": "Retrieve a list of products.",
+        "summary": "List Products",
         "description": "Retrieve a list of products.",
         "operationId": "get_products",
-        "tags": ["Products"],
+        "tags": [
+          "Products"
+        ],
         "responses": {
           "200": {
             "description": "A list of products.",
@@ -8150,10 +8906,12 @@
     },
     "/products/{id}": {
       "get": {
-        "summary": "Retrieve a single product by ID.",
+        "summary": "Get Product",
         "description": "Retrieve a single product by ID.",
         "operationId": "get_product",
-        "tags": ["Products"],
+        "tags": [
+          "Products"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -8206,10 +8964,12 @@
     },
     "/ping": {
       "get": {
-        "summary": "Check the server health.",
+        "summary": "Ping",
         "description": "Check the server health.",
         "operationId": "ping",
-        "tags": ["Service"],
+        "tags": [
+          "Service"
+        ],
         "responses": {
           "200": {
             "description": "Server is running.",
@@ -8246,10 +9006,12 @@
     },
     "/meters": {
       "get": {
-        "summary": "Retrieve a list of meters.",
+        "summary": "List Meters",
         "description": "Retrieve a list of meters.",
         "operationId": "get_meters",
-        "tags": ["Volumes"],
+        "tags": [
+          "Volumes"
+        ],
         "responses": {
           "200": {
             "description": "A list of meters.",
@@ -8278,10 +9040,12 @@
     },
     "/meters/{id}": {
       "get": {
-        "summary": "Retrieve a single meter by ID.",
+        "summary": "Get Meter",
         "description": "Retrieve a single meter by ID.",
         "operationId": "get_meter",
-        "tags": ["Volumes"],
+        "tags": [
+          "Volumes"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -8334,10 +9098,12 @@
     },
     "/truck-tickets": {
       "get": {
-        "summary": "Retrieve a list of truck tickets.",
+        "summary": "List Truck Tickets",
         "description": "Retrieve a list of truck tickets.",
         "operationId": "get_truck_tickets",
-        "tags": ["Volumes"],
+        "tags": [
+          "Volumes"
+        ],
         "responses": {
           "200": {
             "description": "A list of truck tickets.",
@@ -8366,10 +9132,12 @@
     },
     "/truck-tickets/{id}": {
       "get": {
-        "summary": "Retrieve a single truck ticket by ID.",
+        "summary": "Get Truck Ticket",
         "description": "Retrieve a single truck ticket by ID.",
         "operationId": "get_truck_ticket",
-        "tags": ["Volumes"],
+        "tags": [
+          "Volumes"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -8422,10 +9190,12 @@
     },
     "/tank-tickets": {
       "get": {
-        "summary": "Retrieve a list of tank tickets.",
+        "summary": "List Tank Tickets",
         "description": "Retrieve a list of tank tickets.",
         "operationId": "get_tank_tickets",
-        "tags": ["Volumes"],
+        "tags": [
+          "Volumes"
+        ],
         "responses": {
           "200": {
             "description": "A list of tank tickets.",
@@ -8454,10 +9224,12 @@
     },
     "/tank-tickets/{id}": {
       "get": {
-        "summary": "Retrieve a single tank ticket by ID.",
+        "summary": "Get Tank Ticket",
         "description": "Retrieve a single tank ticket by ID.",
         "operationId": "get_tank_ticket",
-        "tags": ["Volumes"],
+        "tags": [
+          "Volumes"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -8510,10 +9282,12 @@
     },
     "/meter-tickets": {
       "get": {
-        "summary": "Retrieve a list of meter tickets.",
+        "summary": "List Meter Tickets",
         "description": "Retrieve a list of meter tickets.",
         "operationId": "get_meter_tickets",
-        "tags": ["Volumes"],
+        "tags": [
+          "Volumes"
+        ],
         "responses": {
           "200": {
             "description": "A list of meter tickets.",
@@ -8542,10 +9316,12 @@
     },
     "/meter-tickets/{id}": {
       "get": {
-        "summary": "Retrieve a single meter ticket by ID.",
+        "summary": "Get Meter Ticket",
         "description": "Retrieve a single meter ticket by ID.",
         "operationId": "get_meter_ticket",
-        "tags": ["Volumes"],
+        "tags": [
+          "Volumes"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -8598,10 +9374,12 @@
     },
     "/wells": {
       "get": {
-        "summary": "Retrieve a list of wells.",
+        "summary": "List Wells",
         "description": "Retrieve a list of wells with pagination and filtering options.",
         "operationId": "get_wells",
-        "tags": ["Wells"],
+        "tags": [
+          "Wells"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -8619,7 +9397,10 @@
             "name": "jurisdiction",
             "schema": {
               "type": "string",
-              "enum": ["ALBERTA", "SASKATCHEWAN"]
+              "enum": [
+                "ALBERTA",
+                "SASKATCHEWAN"
+              ]
             },
             "required": false,
             "description": "Jurisdiction"
@@ -8826,10 +9607,12 @@
     },
     "/wells/{id}": {
       "get": {
-        "summary": "Retrieve a single well by ID.",
+        "summary": "Get Well",
         "description": "Retrieve details about a specific well including associated entity information.",
         "operationId": "get_well",
-        "tags": ["Wells"],
+        "tags": [
+          "Wells"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -8890,7 +9673,9 @@
         "summary": "List Entities",
         "description": "Retrieve a list of entities with pagination and filtering options.",
         "operationId": "get_entities",
-        "tags": ["Entity"],
+        "tags": [
+          "Entity"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -8965,7 +9750,9 @@
         "summary": "Get Entity",
         "description": "Retrieve details about a specific entity including associated producer, carrier, marketer and other entity types.",
         "operationId": "get_entity",
-        "tags": ["Entity"],
+        "tags": [
+          "Entity"
+        ],
         "parameters": [
           {
             "in": "path",

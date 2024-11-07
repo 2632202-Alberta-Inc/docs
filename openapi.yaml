@@ -1,9 +1,9 @@
 security:
-  - apiKeyAuth: []
-    UserIdAuth: []
+- apiKeyAuth: []
+  UserIdAuth: []
 servers:
-  - url: https://v1.api.flux-os.com
-    description: v1
+- url: https://v1.api.flux-os.com
+  description: v1
 info:
   description: This API provides access to data on the Flux platform.
   contact:
@@ -13,36 +13,30 @@ info:
   title: Flux API
   version: 1.0.0
 tags:
-  - name: Service
-    description: Health check and basic service operations, such as the ping endpoint.
-  - name: Organization
-    description:
-      Operations related to user management, roles, and permissions within
-      organizations.
-  - name: Products
-    description: Operations related to managing products, categories, and specifications.
-  - name: Currency
-    description:
-      Operations for handling currencies, conversions, and related financial
-      data.
-  - name: Entity
-    description:
-      Operations concerning entities such as producers, carriers, marketers,
-      and other stakeholders.
-  - name: Lines
-    description:
-      Operations related to infrastructure lines, including pipelines and
-      rail lines.
-  - name: Facilities
-    description:
-      Operations managing facilities such as terminals, plants, batteries,
-      and stations.
-  - name: Wells
-    description: Operations related to wells.
-  - name: Volumes
-    description:
-      Operations for managing volumes, including tickets, meters, and volume
-      transactions.
+- name: Service
+  description: Health check and basic service operations, such as the ping endpoint.
+- name: Organization
+  description: Operations related to user management, roles, and permissions within
+    organizations.
+- name: Products
+  description: Operations related to managing products, categories, and specifications.
+- name: Currency
+  description: Operations for handling currencies, conversions, and related financial
+    data.
+- name: Entity
+  description: Operations concerning entities such as producers, carriers, marketers,
+    and other stakeholders.
+- name: Lines
+  description: Operations related to infrastructure lines, including pipelines and
+    rail lines.
+- name: Facilities
+  description: Operations managing facilities such as terminals, plants, batteries,
+    and stations.
+- name: Wells
+  description: Operations related to wells.
+- name: Volumes
+  description: Operations for managing volumes, including tickets, meters, and volume
+    transactions.
 components:
   securitySchemes:
     apiKeyAuth:
@@ -93,7 +87,7 @@ components:
             properties:
               error:
                 type: string
-                example: "Invalid parameter format: page must be a positive integer."
+                example: 'Invalid parameter format: page must be a positive integer.'
   schemas:
     EntityReference:
       type: object
@@ -165,24 +159,24 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         status:
           type: string
           enum:
-            - S
-            - I
-            - L
-            - N
-            - D
-            - C
-            - A
+          - S
+          - I
+          - L
+          - N
+          - D
+          - C
+          - A
           maxLength: 255
         effective_date:
           type: string
@@ -191,12 +185,12 @@ components:
           default: null
           nullable: true
       required:
-        - effective_date
-        - jurisdiction
-        - legal_name
-        - regulator_id
-        - regulator_system
-        - status
+      - effective_date
+      - jurisdiction
+      - legal_name
+      - regulator_id
+      - regulator_system
+      - status
     OrganizationReference:
       type: object
       properties:
@@ -232,10 +226,10 @@ components:
         entities:
           type: array
           items:
-            $ref: "#/components/schemas/EntityReference"
+            $ref: '#/components/schemas/EntityReference'
       required:
-        - name
-        - slug
+      - name
+      - slug
     UserRoles:
       type: object
       properties:
@@ -246,7 +240,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     UserPermissions:
       type: object
       properties:
@@ -260,8 +254,8 @@ components:
           type: string
           maxLength: 255
       required:
-        - code
-        - name
+      - code
+      - name
     Organization_User:
       type: object
       properties:
@@ -272,7 +266,7 @@ components:
           type: string
           maxLength: 255
         organization:
-          $ref: "#/components/schemas/OrganizationReference"
+          $ref: '#/components/schemas/OrganizationReference'
         first_name:
           type: string
           maxLength: 255
@@ -291,18 +285,18 @@ components:
         roles:
           type: array
           items:
-            $ref: "#/components/schemas/UserRoles"
+            $ref: '#/components/schemas/UserRoles'
         permissions:
           type: array
           items:
-            $ref: "#/components/schemas/UserPermissions"
+            $ref: '#/components/schemas/UserPermissions'
       required:
-        - email
-        - first_name
-        - last_name
-        - phone
-        - stytch_id
-        - title
+      - email
+      - first_name
+      - last_name
+      - phone
+      - stytch_id
+      - title
     OrganizationReference1:
       type: object
       properties:
@@ -313,7 +307,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     EntityReference1:
       type: object
       properties:
@@ -324,7 +318,7 @@ components:
           type: string
           maxLength: 255
         organization:
-          $ref: "#/components/schemas/OrganizationReference1"
+          $ref: '#/components/schemas/OrganizationReference1'
         url:
           type: string
           default: null
@@ -386,24 +380,24 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         status:
           type: string
           enum:
-            - S
-            - I
-            - L
-            - N
-            - D
-            - C
-            - A
+          - S
+          - I
+          - L
+          - N
+          - D
+          - C
+          - A
           maxLength: 255
         effective_date:
           type: string
@@ -412,12 +406,12 @@ components:
           default: null
           nullable: true
       required:
-        - effective_date
-        - jurisdiction
-        - legal_name
-        - regulator_id
-        - regulator_system
-        - status
+      - effective_date
+      - jurisdiction
+      - legal_name
+      - regulator_id
+      - regulator_system
+      - status
     Organization_Organization:
       type: object
       properties:
@@ -453,10 +447,10 @@ components:
         entities:
           type: array
           items:
-            $ref: "#/components/schemas/EntityReference1"
+            $ref: '#/components/schemas/EntityReference1'
       required:
-        - name
-        - slug
+      - name
+      - slug
     OrganizationReference2:
       type: object
       properties:
@@ -467,7 +461,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     BatteryReference:
       type: object
       properties:
@@ -478,7 +472,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     TerminalReference:
       type: object
       properties:
@@ -489,7 +483,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     PlantReference:
       type: object
       properties:
@@ -500,7 +494,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     StationReference:
       type: object
       properties:
@@ -511,7 +505,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     SystemReference:
       type: object
       properties:
@@ -522,7 +516,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     PipelineReference:
       type: object
       properties:
@@ -533,7 +527,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     CommercialFacilityFacilityReference:
       type: object
       properties:
@@ -543,27 +537,27 @@ components:
         battery:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/BatteryReference"
+          - $ref: '#/components/schemas/BatteryReference'
         terminal:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/TerminalReference"
+          - $ref: '#/components/schemas/TerminalReference'
         plant:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/PlantReference"
+          - $ref: '#/components/schemas/PlantReference'
         station:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/StationReference"
+          - $ref: '#/components/schemas/StationReference'
         system:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/SystemReference"
+          - $ref: '#/components/schemas/SystemReference'
         pipeline:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/PipelineReference"
+          - $ref: '#/components/schemas/PipelineReference'
     Organization_CommercialFacility:
       type: object
       properties:
@@ -593,19 +587,19 @@ components:
           type: string
           maxLength: 255
         organization:
-          $ref: "#/components/schemas/OrganizationReference2"
+          $ref: '#/components/schemas/OrganizationReference2'
         facilities:
           type: array
           items:
-            $ref: "#/components/schemas/CommercialFacilityFacilityReference"
+            $ref: '#/components/schemas/CommercialFacilityFacilityReference'
           nullable: true
       required:
-        - lsd
-        - meridian
-        - name
-        - range
-        - section
-        - township
+      - lsd
+      - meridian
+      - name
+      - range
+      - section
+      - township
     Organization_CommercialFacilityFacility:
       type: object
       properties:
@@ -616,29 +610,29 @@ components:
         battery:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/BatteryReference"
+          - $ref: '#/components/schemas/BatteryReference'
         terminal:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/TerminalReference"
+          - $ref: '#/components/schemas/TerminalReference'
         plant:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/PlantReference"
+          - $ref: '#/components/schemas/PlantReference'
         station:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/StationReference"
+          - $ref: '#/components/schemas/StationReference'
         system:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/SystemReference"
+          - $ref: '#/components/schemas/SystemReference'
         pipeline:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/PipelineReference"
+          - $ref: '#/components/schemas/PipelineReference'
       required:
-        - commercial_facility
+      - commercial_facility
     ProductCategory:
       type: object
       properties:
@@ -652,8 +646,8 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
-        - short_code
+      - name
+      - short_code
     MeasurementUnit:
       type: object
       properties:
@@ -667,8 +661,8 @@ components:
           type: string
           maxLength: 255
       required:
-        - abbreviation
-        - name
+      - abbreviation
+      - name
     Product_Product:
       type: object
       properties:
@@ -682,14 +676,14 @@ components:
           type: string
           maxLength: 255
         product_category:
-          $ref: "#/components/schemas/ProductCategory"
+          $ref: '#/components/schemas/ProductCategory'
         measurement_units:
           type: array
           items:
-            $ref: "#/components/schemas/MeasurementUnit"
+            $ref: '#/components/schemas/MeasurementUnit'
       required:
-        - name
-        - short_code
+      - name
+      - short_code
     CurrencyConversion:
       type: object
       properties:
@@ -702,7 +696,7 @@ components:
           type: string
           format: date-time
       required:
-        - exchange_rate
+      - exchange_rate
     Currency_Currency:
       type: object
       properties:
@@ -718,10 +712,10 @@ components:
         conversions:
           type: array
           items:
-            $ref: "#/components/schemas/CurrencyConversion"
+            $ref: '#/components/schemas/CurrencyConversion'
       required:
-        - name
-        - symbol
+      - name
+      - symbol
     WellReference:
       type: object
       properties:
@@ -743,7 +737,7 @@ components:
           type: string
           maxLength: 255
         organization:
-          $ref: "#/components/schemas/OrganizationReference1"
+          $ref: '#/components/schemas/OrganizationReference1'
         url:
           type: string
           default: null
@@ -805,24 +799,24 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         status:
           type: string
           enum:
-            - S
-            - I
-            - L
-            - N
-            - D
-            - C
-            - A
+          - S
+          - I
+          - L
+          - N
+          - D
+          - C
+          - A
           maxLength: 255
         effective_date:
           type: string
@@ -833,62 +827,62 @@ components:
         operated_plants:
           type: array
           items:
-            $ref: "#/components/schemas/PlantReference"
+            $ref: '#/components/schemas/PlantReference'
         licensed_plants:
           type: array
           items:
-            $ref: "#/components/schemas/PlantReference"
+            $ref: '#/components/schemas/PlantReference'
         operated_terminals:
           type: array
           items:
-            $ref: "#/components/schemas/TerminalReference"
+            $ref: '#/components/schemas/TerminalReference'
         licensed_terminals:
           type: array
           items:
-            $ref: "#/components/schemas/TerminalReference"
+            $ref: '#/components/schemas/TerminalReference'
         operated_batteries:
           type: array
           items:
-            $ref: "#/components/schemas/BatteryReference"
+            $ref: '#/components/schemas/BatteryReference'
         licensed_batteries:
           type: array
           items:
-            $ref: "#/components/schemas/BatteryReference"
+            $ref: '#/components/schemas/BatteryReference'
         operated_stations:
           type: array
           items:
-            $ref: "#/components/schemas/StationReference"
+            $ref: '#/components/schemas/StationReference'
         licensed_stations:
           type: array
           items:
-            $ref: "#/components/schemas/StationReference"
+            $ref: '#/components/schemas/StationReference'
         operated_systems:
           type: array
           items:
-            $ref: "#/components/schemas/SystemReference"
+            $ref: '#/components/schemas/SystemReference'
         licensed_systems:
           type: array
           items:
-            $ref: "#/components/schemas/SystemReference"
+            $ref: '#/components/schemas/SystemReference'
         licensed_pipelines:
           type: array
           items:
-            $ref: "#/components/schemas/PipelineReference"
+            $ref: '#/components/schemas/PipelineReference'
         operated_pipelines:
           type: array
           items:
-            $ref: "#/components/schemas/PipelineReference"
+            $ref: '#/components/schemas/PipelineReference'
         licensed_wells:
           type: array
           items:
-            $ref: "#/components/schemas/WellReference"
+            $ref: '#/components/schemas/WellReference'
       required:
-        - effective_date
-        - jurisdiction
-        - legal_name
-        - regulator_id
-        - regulator_system
-        - status
+      - effective_date
+      - jurisdiction
+      - legal_name
+      - regulator_id
+      - regulator_system
+      - status
     FacilityTypeReference:
       type: object
       properties:
@@ -899,7 +893,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     FacilitySubTypeReference:
       type: object
       properties:
@@ -910,7 +904,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     EntityReference2:
       type: object
       properties:
@@ -921,7 +915,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - legal_name
+      - legal_name
     PipelineTypeReference:
       type: object
       properties:
@@ -932,7 +926,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     Lines_Pipeline:
       type: object
       properties:
@@ -945,53 +939,53 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
-          $ref: "#/components/schemas/FacilityTypeReference"
+          $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
-          $ref: "#/components/schemas/FacilitySubTypeReference"
+          $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
-          $ref: "#/components/schemas/EntityReference2"
+          $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
           format: date
         licensee:
-          $ref: "#/components/schemas/EntityReference2"
+          $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -1010,18 +1004,18 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
         pipeline_type:
-          $ref: "#/components/schemas/PipelineTypeReference"
+          $ref: '#/components/schemas/PipelineTypeReference'
       required:
-        - jurisdiction
-        - name
-        - operational_status
-        - operator_start_date
-        - regulator_id
-        - regulator_system
-        - start_date
+      - jurisdiction
+      - name
+      - operational_status
+      - operator_start_date
+      - regulator_id
+      - regulator_system
+      - start_date
     RailLineType:
       type: object
       properties:
@@ -1032,7 +1026,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     RailLineCategory:
       type: object
       properties:
@@ -1043,7 +1037,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     CarrierReference:
       type: object
       properties:
@@ -1064,7 +1058,7 @@ components:
           items:
             type: integer
       required:
-        - legal_name
+      - legal_name
     RailLineCarrier:
       type: object
       properties:
@@ -1072,7 +1066,7 @@ components:
           type: string
           readOnly: true
         carrier:
-          $ref: "#/components/schemas/CarrierReference"
+          $ref: '#/components/schemas/CarrierReference'
     ProductReference:
       type: object
       properties:
@@ -1092,8 +1086,8 @@ components:
           items:
             type: integer
       required:
-        - name
-        - short_code
+      - name
+      - short_code
     RailLineProduct:
       type: object
       properties:
@@ -1102,9 +1096,9 @@ components:
           readOnly: true
         products: {}
         product:
-          $ref: "#/components/schemas/ProductReference"
+          $ref: '#/components/schemas/ProductReference'
       required:
-        - products
+      - products
     Lines_RailLine:
       type: object
       properties:
@@ -1113,25 +1107,25 @@ components:
           readOnly: true
         operator: {}
         type:
-          $ref: "#/components/schemas/RailLineType"
+          $ref: '#/components/schemas/RailLineType'
         category:
-          $ref: "#/components/schemas/RailLineCategory"
+          $ref: '#/components/schemas/RailLineCategory'
         max_train_length:
           type: number
           default: null
           nullable: true
         entity:
-          $ref: "#/components/schemas/EntityReference1"
+          $ref: '#/components/schemas/EntityReference1'
         carriers:
           type: array
           items:
-            $ref: "#/components/schemas/RailLineCarrier"
+            $ref: '#/components/schemas/RailLineCarrier'
         products:
           type: array
           items:
-            $ref: "#/components/schemas/RailLineProduct"
+            $ref: '#/components/schemas/RailLineProduct'
       required:
-        - operator
+      - operator
     Wells_Well:
       type: object
       properties:
@@ -1174,30 +1168,30 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         licensee: {}
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -1216,23 +1210,23 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
         entity:
-          $ref: "#/components/schemas/EntityReference2"
+          $ref: '#/components/schemas/EntityReference2'
       required:
-        - event_sequence
-        - jurisdiction
-        - licensee
-        - location_exception
-        - lsd
-        - meridian
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - township
-        - uwi
+      - event_sequence
+      - jurisdiction
+      - licensee
+      - location_exception
+      - lsd
+      - meridian
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - township
+      - uwi
     FacilitySubType:
       type: object
       properties:
@@ -1249,14 +1243,14 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
       required:
-        - code
-        - facility_type
-        - jurisdiction
-        - name
+      - code
+      - facility_type
+      - jurisdiction
+      - name
     Facility_FacilityType:
       type: object
       properties:
@@ -1272,19 +1266,19 @@ components:
         model:
           type: string
           enum:
-            - T
-            - S
-            - P
-            - B
+          - T
+          - S
+          - P
+          - B
           maxLength: 255
         sub_types:
           type: array
           items:
-            $ref: "#/components/schemas/FacilitySubType"
+            $ref: '#/components/schemas/FacilitySubType'
       required:
-        - code
-        - model
-        - name
+      - code
+      - model
+      - name
     Facility_FacilitySubType:
       type: object
       properties:
@@ -1301,14 +1295,14 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
       required:
-        - code
-        - facility_type
-        - jurisdiction
-        - name
+      - code
+      - facility_type
+      - jurisdiction
+      - name
     FacilityTypeReference1:
       type: object
       properties:
@@ -1324,8 +1318,8 @@ components:
         model:
           type: string
       required:
-        - code
-        - name
+      - code
+      - name
     FacilitySubTypeReference1:
       type: object
       properties:
@@ -1341,13 +1335,13 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
       required:
-        - code
-        - jurisdiction
-        - name
+      - code
+      - jurisdiction
+      - name
     Facility_Terminal:
       type: object
       properties:
@@ -1379,53 +1373,53 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
-          $ref: "#/components/schemas/FacilityTypeReference1"
+          $ref: '#/components/schemas/FacilityTypeReference1'
         sub_type:
-          $ref: "#/components/schemas/FacilitySubTypeReference1"
+          $ref: '#/components/schemas/FacilitySubTypeReference1'
         start_date:
           type: string
           format: date
         operator:
-          $ref: "#/components/schemas/EntityReference2"
+          $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
           format: date
         licensee:
-          $ref: "#/components/schemas/EntityReference2"
+          $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -1444,21 +1438,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     Facility_Plant:
       type: object
       properties:
@@ -1490,33 +1484,33 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilityTypeReference"
+          - $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilitySubTypeReference"
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
@@ -1524,27 +1518,27 @@ components:
         licensee:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -1563,21 +1557,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     Facility_Battery:
       type: object
       properties:
@@ -1609,33 +1603,33 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilityTypeReference"
+          - $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilitySubTypeReference"
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
@@ -1643,27 +1637,27 @@ components:
         licensee:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -1682,21 +1676,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     Facility_Station:
       type: object
       properties:
@@ -1728,33 +1722,33 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilityTypeReference"
+          - $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilitySubTypeReference"
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
@@ -1762,27 +1756,27 @@ components:
         licensee:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -1801,21 +1795,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     Facility_System:
       type: object
       properties:
@@ -1847,33 +1841,33 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilityTypeReference"
+          - $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilitySubTypeReference"
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
@@ -1881,27 +1875,27 @@ components:
         licensee:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -1920,21 +1914,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     BatteryReference1:
       type: object
       properties:
@@ -1966,33 +1960,33 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilityTypeReference"
+          - $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilitySubTypeReference"
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
@@ -2000,27 +1994,27 @@ components:
         licensee:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -2039,21 +2033,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     TerminalReference1:
       type: object
       properties:
@@ -2085,33 +2079,33 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilityTypeReference"
+          - $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilitySubTypeReference"
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
@@ -2119,27 +2113,27 @@ components:
         licensee:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -2158,21 +2152,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     PlantReference1:
       type: object
       properties:
@@ -2204,33 +2198,33 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilityTypeReference"
+          - $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilitySubTypeReference"
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
@@ -2238,27 +2232,27 @@ components:
         licensee:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -2277,21 +2271,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     StationReference1:
       type: object
       properties:
@@ -2323,33 +2317,33 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilityTypeReference"
+          - $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilitySubTypeReference"
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
@@ -2357,27 +2351,27 @@ components:
         licensee:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -2396,21 +2390,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     SystemReference1:
       type: object
       properties:
@@ -2442,33 +2436,33 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilityTypeReference"
+          - $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilitySubTypeReference"
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
@@ -2476,27 +2470,27 @@ components:
         licensee:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -2515,21 +2509,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     CodeReference:
       type: object
       properties:
@@ -2540,7 +2534,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     MeterCode:
       type: object
       properties:
@@ -2548,7 +2542,7 @@ components:
           type: string
           readOnly: true
         code:
-          $ref: "#/components/schemas/CodeReference"
+          $ref: '#/components/schemas/CodeReference'
     MeterTicketReference:
       type: object
       properties:
@@ -2607,12 +2601,12 @@ components:
           type: integer
           nullable: true
       required:
-        - bsw
-        - density
-        - external_id
-        - product_category
-        - production_date
-        - volume
+      - bsw
+      - density
+      - external_id
+      - product_category
+      - production_date
+      - volume
     TruckTicketReference:
       type: object
       properties:
@@ -2673,15 +2667,15 @@ components:
         bsw_measurement_unit:
           type: integer
       required:
-        - bill_of_laiden
-        - bsw
-        - density
-        - external_id
-        - load_volume
-        - product_category
-        - production_date
-        - rack_ticket
-        - volume
+      - bill_of_laiden
+      - bsw
+      - density
+      - external_id
+      - load_volume
+      - product_category
+      - production_date
+      - rack_ticket
+      - volume
     TankTicketReference:
       type: object
       properties:
@@ -2740,12 +2734,12 @@ components:
         product:
           type: integer
       required:
-        - bsw
-        - density
-        - external_id
-        - product_category
-        - production_date
-        - volume
+      - bsw
+      - density
+      - external_id
+      - product_category
+      - production_date
+      - volume
     Volumes_Meter:
       type: object
       properties:
@@ -2758,23 +2752,23 @@ components:
         battery:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/BatteryReference1"
+          - $ref: '#/components/schemas/BatteryReference1'
         terminal:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/TerminalReference1"
+          - $ref: '#/components/schemas/TerminalReference1'
         plant:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/PlantReference1"
+          - $ref: '#/components/schemas/PlantReference1'
         station:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/StationReference1"
+          - $ref: '#/components/schemas/StationReference1'
         system:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/SystemReference1"
+          - $ref: '#/components/schemas/SystemReference1'
         pipeline:
           default: null
           nullable: true
@@ -2783,26 +2777,26 @@ components:
           nullable: true
         operator: {}
         entity:
-          $ref: "#/components/schemas/EntityReference1"
+          $ref: '#/components/schemas/EntityReference1'
         codes:
           type: array
           items:
-            $ref: "#/components/schemas/MeterCode"
+            $ref: '#/components/schemas/MeterCode'
         meter_tickets:
           type: array
           items:
-            $ref: "#/components/schemas/MeterTicketReference"
+            $ref: '#/components/schemas/MeterTicketReference'
         truck_tickets:
           type: array
           items:
-            $ref: "#/components/schemas/TruckTicketReference"
+            $ref: '#/components/schemas/TruckTicketReference'
         tank_tickets:
           type: array
           items:
-            $ref: "#/components/schemas/TankTicketReference"
+            $ref: '#/components/schemas/TankTicketReference'
       required:
-        - external_id
-        - operator
+      - external_id
+      - operator
     MeterReference:
       type: object
       properties:
@@ -2836,7 +2830,7 @@ components:
         operator:
           type: integer
       required:
-        - external_id
+      - external_id
     UserRolesReference:
       type: object
       properties:
@@ -2847,7 +2841,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     UserPermissionsReference:
       type: object
       properties:
@@ -2858,7 +2852,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     UserReference:
       type: object
       properties:
@@ -2869,7 +2863,7 @@ components:
           type: string
           maxLength: 255
         organization:
-          $ref: "#/components/schemas/OrganizationReference2"
+          $ref: '#/components/schemas/OrganizationReference2'
         first_name:
           type: string
           maxLength: 255
@@ -2888,18 +2882,18 @@ components:
         roles:
           type: array
           items:
-            $ref: "#/components/schemas/UserRolesReference"
+            $ref: '#/components/schemas/UserRolesReference'
         permissions:
           type: array
           items:
-            $ref: "#/components/schemas/UserPermissionsReference"
+            $ref: '#/components/schemas/UserPermissionsReference'
       required:
-        - email
-        - first_name
-        - last_name
-        - phone
-        - stytch_id
-        - title
+      - email
+      - first_name
+      - last_name
+      - phone
+      - stytch_id
+      - title
     ProducerReference:
       type: object
       properties:
@@ -2931,7 +2925,7 @@ components:
           items:
             type: integer
       required:
-        - legal_name
+      - legal_name
     WellReference1:
       type: object
       properties:
@@ -2974,31 +2968,31 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         licensee:
-          $ref: "#/components/schemas/EntityReference2"
+          $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -3017,20 +3011,20 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - event_sequence
-        - jurisdiction
-        - location_exception
-        - lsd
-        - meridian
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - township
-        - uwi
+      - event_sequence
+      - jurisdiction
+      - location_exception
+      - lsd
+      - meridian
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - township
+      - uwi
     ProductCategoryReference:
       type: object
       properties:
@@ -3044,8 +3038,8 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
-        - short_code
+      - name
+      - short_code
     MeasurementUnitReference:
       type: object
       properties:
@@ -3069,8 +3063,8 @@ components:
           items:
             type: integer
       required:
-        - abbreviation
-        - name
+      - abbreviation
+      - name
     Volumes_TruckTicket:
       type: object
       properties:
@@ -3087,25 +3081,25 @@ components:
           type: string
           maxLength: 255
         meter:
-          $ref: "#/components/schemas/MeterReference"
+          $ref: '#/components/schemas/MeterReference'
         entity:
-          $ref: "#/components/schemas/EntityReference1"
+          $ref: '#/components/schemas/EntityReference1'
         carrier:
-          $ref: "#/components/schemas/CarrierReference"
+          $ref: '#/components/schemas/CarrierReference'
         driver:
-          $ref: "#/components/schemas/UserReference"
+          $ref: '#/components/schemas/UserReference'
         producer:
-          $ref: "#/components/schemas/ProducerReference"
+          $ref: '#/components/schemas/ProducerReference'
         well:
-          $ref: "#/components/schemas/WellReference1"
+          $ref: '#/components/schemas/WellReference1'
         pickup_terminal:
-          $ref: "#/components/schemas/TerminalReference1"
+          $ref: '#/components/schemas/TerminalReference1'
         delivery_terminal:
-          $ref: "#/components/schemas/TerminalReference1"
+          $ref: '#/components/schemas/TerminalReference1'
         product:
-          $ref: "#/components/schemas/ProductReference"
+          $ref: '#/components/schemas/ProductReference'
         product_category:
-          $ref: "#/components/schemas/ProductCategoryReference"
+          $ref: '#/components/schemas/ProductCategoryReference'
         production_date:
           type: string
           format: date
@@ -3118,28 +3112,28 @@ components:
         density:
           type: number
         density_measurement_unit:
-          $ref: "#/components/schemas/MeasurementUnitReference"
+          $ref: '#/components/schemas/MeasurementUnitReference'
         volume:
           type: number
         volume_measurement_unit:
-          $ref: "#/components/schemas/MeasurementUnitReference"
+          $ref: '#/components/schemas/MeasurementUnitReference'
         load_volume:
           type: number
         load_volume_measurement_unit:
-          $ref: "#/components/schemas/MeasurementUnitReference"
+          $ref: '#/components/schemas/MeasurementUnitReference'
         bsw:
           type: number
         bsw_measurement_unit:
-          $ref: "#/components/schemas/MeasurementUnitReference"
+          $ref: '#/components/schemas/MeasurementUnitReference'
       required:
-        - bill_of_laiden
-        - bsw
-        - density
-        - external_id
-        - load_volume
-        - production_date
-        - rack_ticket
-        - volume
+      - bill_of_laiden
+      - bsw
+      - density
+      - external_id
+      - load_volume
+      - production_date
+      - rack_ticket
+      - volume
     Volumes_TankTicket:
       type: object
       properties:
@@ -3150,33 +3144,33 @@ components:
           type: string
           maxLength: 255
         meter:
-          $ref: "#/components/schemas/MeterReference"
+          $ref: '#/components/schemas/MeterReference'
         entity:
-          $ref: "#/components/schemas/EntityReference1"
+          $ref: '#/components/schemas/EntityReference1'
         well:
-          $ref: "#/components/schemas/WellReference1"
+          $ref: '#/components/schemas/WellReference1'
         terminal:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/TerminalReference1"
+          - $ref: '#/components/schemas/TerminalReference1'
         plant:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/PlantReference1"
+          - $ref: '#/components/schemas/PlantReference1'
         battery:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/BatteryReference1"
+          - $ref: '#/components/schemas/BatteryReference1'
         station:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/StationReference1"
+          - $ref: '#/components/schemas/StationReference1'
         system:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/SystemReference1"
+          - $ref: '#/components/schemas/SystemReference1'
         product_category:
-          $ref: "#/components/schemas/ProductCategoryReference"
+          $ref: '#/components/schemas/ProductCategoryReference'
         production_date:
           type: string
           format: date
@@ -3189,21 +3183,21 @@ components:
         density:
           type: number
         density_measurement_unit:
-          $ref: "#/components/schemas/MeasurementUnitReference"
+          $ref: '#/components/schemas/MeasurementUnitReference'
         volume:
           type: number
         volume_measurement_unit:
-          $ref: "#/components/schemas/MeasurementUnitReference"
+          $ref: '#/components/schemas/MeasurementUnitReference'
         bsw:
           type: number
         bsw_measurement_unit:
-          $ref: "#/components/schemas/MeasurementUnitReference"
+          $ref: '#/components/schemas/MeasurementUnitReference'
       required:
-        - bsw
-        - density
-        - external_id
-        - production_date
-        - volume
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
     Volumes_MeterTicket:
       type: object
       properties:
@@ -3214,33 +3208,33 @@ components:
           type: string
           maxLength: 255
         meter:
-          $ref: "#/components/schemas/MeterReference"
+          $ref: '#/components/schemas/MeterReference'
         entity:
-          $ref: "#/components/schemas/EntityReference1"
+          $ref: '#/components/schemas/EntityReference1'
         producer:
-          $ref: "#/components/schemas/ProducerReference"
+          $ref: '#/components/schemas/ProducerReference'
         well:
-          $ref: "#/components/schemas/WellReference1"
+          $ref: '#/components/schemas/WellReference1'
         terminal:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/TerminalReference1"
+          - $ref: '#/components/schemas/TerminalReference1'
         plant:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/PlantReference1"
+          - $ref: '#/components/schemas/PlantReference1'
         battery:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/BatteryReference1"
+          - $ref: '#/components/schemas/BatteryReference1'
         station:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/StationReference1"
+          - $ref: '#/components/schemas/StationReference1'
         system:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/SystemReference1"
+          - $ref: '#/components/schemas/SystemReference1'
         production_date:
           type: string
           format: date
@@ -3250,27 +3244,27 @@ components:
         product:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/ProductReference"
+          - $ref: '#/components/schemas/ProductReference'
         product_category:
-          $ref: "#/components/schemas/ProductCategoryReference"
+          $ref: '#/components/schemas/ProductCategoryReference'
         density:
           type: number
         density_measurement_unit:
-          $ref: "#/components/schemas/MeasurementUnitReference"
+          $ref: '#/components/schemas/MeasurementUnitReference'
         volume:
           type: number
         volume_measurement_unit:
-          $ref: "#/components/schemas/MeasurementUnitReference"
+          $ref: '#/components/schemas/MeasurementUnitReference'
         bsw:
           type: number
         bsw_measurement_unit:
-          $ref: "#/components/schemas/MeasurementUnitReference"
+          $ref: '#/components/schemas/MeasurementUnitReference'
       required:
-        - bsw
-        - density
-        - external_id
-        - production_date
-        - volume
+      - bsw
+      - density
+      - external_id
+      - production_date
+      - volume
     Organization_ReferenceUser:
       type: object
       properties:
@@ -3281,7 +3275,7 @@ components:
           type: string
           maxLength: 255
         organization:
-          $ref: "#/components/schemas/OrganizationReference2"
+          $ref: '#/components/schemas/OrganizationReference2'
         first_name:
           type: string
           maxLength: 255
@@ -3300,18 +3294,18 @@ components:
         roles:
           type: array
           items:
-            $ref: "#/components/schemas/UserRolesReference"
+            $ref: '#/components/schemas/UserRolesReference'
         permissions:
           type: array
           items:
-            $ref: "#/components/schemas/UserPermissionsReference"
+            $ref: '#/components/schemas/UserPermissionsReference'
       required:
-        - email
-        - first_name
-        - last_name
-        - phone
-        - stytch_id
-        - title
+      - email
+      - first_name
+      - last_name
+      - phone
+      - stytch_id
+      - title
     Organization_ReferenceUserRoles:
       type: object
       properties:
@@ -3322,7 +3316,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     Organization_ReferenceUserPermissions:
       type: object
       properties:
@@ -3336,8 +3330,8 @@ components:
           type: string
           maxLength: 255
       required:
-        - code
-        - name
+      - code
+      - name
     Organization_ReferenceCommercialFacility:
       type: object
       properties:
@@ -3367,14 +3361,14 @@ components:
           type: string
           maxLength: 255
         organization:
-          $ref: "#/components/schemas/OrganizationReference2"
+          $ref: '#/components/schemas/OrganizationReference2'
       required:
-        - lsd
-        - meridian
-        - name
-        - range
-        - section
-        - township
+      - lsd
+      - meridian
+      - name
+      - range
+      - section
+      - township
     Organization_ReferenceCommercialFacilityFacility:
       type: object
       properties:
@@ -3385,29 +3379,29 @@ components:
         battery:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/BatteryReference"
+          - $ref: '#/components/schemas/BatteryReference'
         terminal:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/TerminalReference"
+          - $ref: '#/components/schemas/TerminalReference'
         plant:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/PlantReference"
+          - $ref: '#/components/schemas/PlantReference'
         station:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/StationReference"
+          - $ref: '#/components/schemas/StationReference'
         system:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/SystemReference"
+          - $ref: '#/components/schemas/SystemReference'
         pipeline:
           nullable: true
           allOf:
-            - $ref: "#/components/schemas/PipelineReference"
+          - $ref: '#/components/schemas/PipelineReference'
       required:
-        - commercial_facility
+      - commercial_facility
     Product_ReferenceProduct:
       type: object
       properties:
@@ -3427,8 +3421,8 @@ components:
           items:
             type: integer
       required:
-        - name
-        - short_code
+      - name
+      - short_code
     Product_ReferenceProductCategory:
       type: object
       properties:
@@ -3442,8 +3436,8 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
-        - short_code
+      - name
+      - short_code
     Product_ReferenceProductCategorySpecification:
       type: object
       properties:
@@ -3463,8 +3457,8 @@ components:
         bsw_measurement_unit:
           type: integer
       required:
-        - bsw
-        - density
+      - bsw
+      - density
     Entity_ReferenceEntity:
       type: object
       properties:
@@ -3475,7 +3469,7 @@ components:
           type: string
           maxLength: 255
         organization:
-          $ref: "#/components/schemas/OrganizationReference1"
+          $ref: '#/components/schemas/OrganizationReference1'
         url:
           type: string
           default: null
@@ -3537,24 +3531,24 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         status:
           type: string
           enum:
-            - S
-            - I
-            - L
-            - N
-            - D
-            - C
-            - A
+          - S
+          - I
+          - L
+          - N
+          - D
+          - C
+          - A
           maxLength: 255
         effective_date:
           type: string
@@ -3563,12 +3557,12 @@ components:
           default: null
           nullable: true
       required:
-        - effective_date
-        - jurisdiction
-        - legal_name
-        - regulator_id
-        - regulator_system
-        - status
+      - effective_date
+      - jurisdiction
+      - legal_name
+      - regulator_id
+      - regulator_system
+      - status
     Lines_ReferencePipeline:
       type: object
       properties:
@@ -3581,8 +3575,8 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type: {}
         sub_type: {}
@@ -3590,42 +3584,42 @@ components:
           type: string
           format: date
         operator:
-          $ref: "#/components/schemas/EntityReference2"
+          $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
           format: date
         licensee:
-          $ref: "#/components/schemas/EntityReference2"
+          $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -3644,20 +3638,20 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
         pipeline_type:
-          $ref: "#/components/schemas/PipelineTypeReference"
+          $ref: '#/components/schemas/PipelineTypeReference'
       required:
-        - jurisdiction
-        - name
-        - operational_status
-        - operator_start_date
-        - regulator_id
-        - regulator_system
-        - start_date
-        - sub_type
-        - type
+      - jurisdiction
+      - name
+      - operational_status
+      - operator_start_date
+      - regulator_id
+      - regulator_system
+      - start_date
+      - sub_type
+      - type
     Lines_ReferencePipelineType:
       type: object
       properties:
@@ -3668,7 +3662,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     RailLineTypeReference:
       type: object
       properties:
@@ -3679,7 +3673,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     RailLineCategoryReference:
       type: object
       properties:
@@ -3690,7 +3684,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     Lines_ReferenceRailLine:
       type: object
       properties:
@@ -3698,11 +3692,11 @@ components:
           type: string
           readOnly: true
         operator:
-          $ref: "#/components/schemas/EntityReference2"
+          $ref: '#/components/schemas/EntityReference2'
         type:
-          $ref: "#/components/schemas/RailLineTypeReference"
+          $ref: '#/components/schemas/RailLineTypeReference'
         category:
-          $ref: "#/components/schemas/RailLineCategoryReference"
+          $ref: '#/components/schemas/RailLineCategoryReference'
         max_train_length:
           type: number
           default: null
@@ -3717,7 +3711,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     Lines_ReferenceRailLineCategory:
       type: object
       properties:
@@ -3728,7 +3722,7 @@ components:
           type: string
           maxLength: 255
       required:
-        - name
+      - name
     Facility_ReferenceFacilityType:
       type: object
       properties:
@@ -3744,8 +3738,8 @@ components:
         model:
           type: string
       required:
-        - code
-        - name
+      - code
+      - name
     Facility_ReferenceFacilitySubType:
       type: object
       properties:
@@ -3761,13 +3755,13 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
       required:
-        - code
-        - jurisdiction
-        - name
+      - code
+      - jurisdiction
+      - name
     Facility_ReferenceTerminal:
       type: object
       properties:
@@ -3799,33 +3793,33 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilityTypeReference"
+          - $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilitySubTypeReference"
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
@@ -3833,27 +3827,27 @@ components:
         licensee:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -3872,21 +3866,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     Facility_ReferencePlant:
       type: object
       properties:
@@ -3918,33 +3912,33 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilityTypeReference"
+          - $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilitySubTypeReference"
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
@@ -3952,27 +3946,27 @@ components:
         licensee:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -3991,21 +3985,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     Facility_ReferenceBattery:
       type: object
       properties:
@@ -4037,33 +4031,33 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilityTypeReference"
+          - $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilitySubTypeReference"
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
@@ -4071,27 +4065,27 @@ components:
         licensee:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -4110,21 +4104,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     Facility_ReferenceStation:
       type: object
       properties:
@@ -4156,33 +4150,33 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilityTypeReference"
+          - $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilitySubTypeReference"
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
@@ -4190,27 +4184,27 @@ components:
         licensee:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -4229,21 +4223,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     Facility_ReferenceSystem:
       type: object
       properties:
@@ -4275,33 +4269,33 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilityTypeReference"
+          - $ref: '#/components/schemas/FacilityTypeReference'
         sub_type:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/FacilitySubTypeReference"
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
         start_date:
           type: string
           format: date
         operator:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         operational_status:
           type: string
           enum:
-            - A
-            - C
-            - M
-            - N
-            - R
-            - S
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
         operator_start_date:
           type: string
@@ -4309,27 +4303,27 @@ components:
         licensee:
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/EntityReference2"
+          - $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -4348,21 +4342,21 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - jurisdiction
-        - lsd
-        - meridian
-        - name
-        - operational_status
-        - operator_start_date
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - start_date
-        - township
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     Wells_ReferenceWell:
       type: object
       properties:
@@ -4405,31 +4399,31 @@ components:
         jurisdiction:
           type: string
           enum:
-            - A
-            - S
+          - A
+          - S
           maxLength: 255
         licensee:
-          $ref: "#/components/schemas/EntityReference2"
+          $ref: '#/components/schemas/EntityReference2'
         license_status:
           type: string
           default: null
           enum:
-            - A
-            - C
-            - D
-            - I
-            - R
-            - S
-            - null
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
           maxLength: 255
           nullable: true
         license_type:
           type: string
           default: null
           enum:
-            - W
-            - F
-            - null
+          - W
+          - F
+          - null
           maxLength: 255
           nullable: true
         license_number:
@@ -4448,20 +4442,20 @@ components:
         regulator_system:
           type: string
           enum:
-            - P
+          - P
           maxLength: 255
       required:
-        - event_sequence
-        - jurisdiction
-        - location_exception
-        - lsd
-        - meridian
-        - range
-        - regulator_id
-        - regulator_system
-        - section
-        - township
-        - uwi
+      - event_sequence
+      - jurisdiction
+      - location_exception
+      - lsd
+      - meridian
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - township
+      - uwi
     Volumes_ReferenceMeter:
       type: object
       properties:
@@ -4495,7 +4489,7 @@ components:
         operator:
           type: integer
       required:
-        - external_id
+      - external_id
     Volumes_ReferenceTruckTicket:
       type: object
       properties:
@@ -4556,15 +4550,15 @@ components:
         bsw_measurement_unit:
           type: integer
       required:
-        - bill_of_laiden
-        - bsw
-        - density
-        - external_id
-        - load_volume
-        - product_category
-        - production_date
-        - rack_ticket
-        - volume
+      - bill_of_laiden
+      - bsw
+      - density
+      - external_id
+      - load_volume
+      - product_category
+      - production_date
+      - rack_ticket
+      - volume
     Volumes_ReferenceTankTicket:
       type: object
       properties:
@@ -4623,12 +4617,12 @@ components:
         product:
           type: integer
       required:
-        - bsw
-        - density
-        - external_id
-        - product_category
-        - production_date
-        - volume
+      - bsw
+      - density
+      - external_id
+      - product_category
+      - production_date
+      - volume
     Volumes_ReferenceMeterTicket:
       type: object
       properties:
@@ -4687,50 +4681,49 @@ components:
           type: integer
           nullable: true
       required:
-        - bsw
-        - density
-        - external_id
-        - product_category
-        - production_date
-        - volume
+      - bsw
+      - density
+      - external_id
+      - product_category
+      - production_date
+      - volume
 paths:
   /facility-types:
     get:
-      summary: Retrieve a list of facility types.
-      description:
-        Retrieve a list of facility types with pagination and filtering
+      summary: List Types
+      description: Retrieve a list of facility types with pagination and filtering
         options.
       operationId: get_facility_types
       tags:
-        - Facilities
+      - Facilities
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
-        - in: query
-          name: code
-          schema:
-            type: string
-          description: Filter by facility type code
-        - in: query
-          name: model
-          schema:
-            type: string
-            enum:
-              - Terminal
-              - Station
-              - Plant
-              - Battery
-              - System
-              - Pipeline
-          description: Filter by facility model type
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: code
+        schema:
+          type: string
+        description: Filter by facility type code
+      - in: query
+        name: model
+        schema:
+          type: string
+          enum:
+          - Terminal
+          - Station
+          - Plant
+          - Battery
+          - System
+          - Pipeline
+        description: Filter by facility model type
       responses:
-        "200":
+        '200':
           description: A paginated list of facility types.
           content:
             application/json:
@@ -4740,7 +4733,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Facility_ReferenceFacilityType"
+                      $ref: '#/components/schemas/Facility_ReferenceFacilityType'
                   meta:
                     type: object
                     properties:
@@ -4752,50 +4745,49 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /facility-subtypes:
     get:
-      summary: Retrieve a list of facility subtypes.
-      description:
-        Retrieve a list of facility subtypes with pagination and filtering
+      summary: List Sub Types
+      description: Retrieve a list of facility subtypes with pagination and filtering
         options.
       operationId: get_facility_subtypes
       tags:
-        - Facilities
+      - Facilities
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
-        - in: query
-          name: code
-          schema:
-            type: string
-          description: Filter by facility subtype code
-        - in: query
-          name: jurisdiction
-          schema:
-            type: string
-            enum:
-              - ALBERTA
-              - SASKATCHEWAN
-          description: Filter by jurisdiction
-        - in: query
-          name: facility_type
-          schema:
-            type: string
-          description: Filter by facility type ID
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: code
+        schema:
+          type: string
+        description: Filter by facility subtype code
+      - in: query
+        name: jurisdiction
+        schema:
+          type: string
+          enum:
+          - ALBERTA
+          - SASKATCHEWAN
+        description: Filter by jurisdiction
+      - in: query
+        name: facility_type
+        schema:
+          type: string
+        description: Filter by facility type ID
       responses:
-        "200":
+        '200':
           description: A paginated list of facility subtypes.
           content:
             application/json:
@@ -4805,7 +4797,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Facility_FacilitySubType"
+                      $ref: '#/components/schemas/Facility_FacilitySubType'
                   meta:
                     type: object
                     properties:
@@ -4817,65 +4809,65 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /terminals:
     get:
-      summary: Retrieve a list of terminals.
+      summary: List Terminals
       description: Retrieve a list of terminals with pagination and filtering options.
       operationId: get_terminals
       tags:
-        - Facilities
+      - Facilities
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
-        - in: query
-          name: name
-          schema:
-            type: string
-          description: Filter by terminal name
-        - in: query
-          name: type_id
-          schema:
-            type: integer
-          description: Filter by facility type ID
-        - in: query
-          name: subtype_id
-          schema:
-            type: integer
-          description: Filter by facility subtype ID
-        - in: query
-          name: status
-          schema:
-            type: string
-          description: Filter by facility status
-        - in: query
-          name: operator_id
-          schema:
-            type: integer
-          description: Filter by operator ID
-        - in: query
-          name: licensee_id
-          schema:
-            type: integer
-          description: Filter by licensee ID
-        - in: query
-          name: regulator_id
-          schema:
-            type: string
-          description: Filter by regulator ID
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: name
+        schema:
+          type: string
+        description: Filter by terminal name
+      - in: query
+        name: type_id
+        schema:
+          type: integer
+        description: Filter by facility type ID
+      - in: query
+        name: subtype_id
+        schema:
+          type: integer
+        description: Filter by facility subtype ID
+      - in: query
+        name: status
+        schema:
+          type: string
+        description: Filter by facility status
+      - in: query
+        name: operator_id
+        schema:
+          type: integer
+        description: Filter by operator ID
+      - in: query
+        name: licensee_id
+        schema:
+          type: integer
+        description: Filter by licensee ID
+      - in: query
+        name: regulator_id
+        schema:
+          type: string
+        description: Filter by regulator ID
       responses:
-        "200":
+        '200':
           description: A paginated list of terminals.
           content:
             application/json:
@@ -4885,7 +4877,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Facility_ReferenceTerminal"
+                      $ref: '#/components/schemas/Facility_ReferenceTerminal'
                   meta:
                     type: object
                     properties:
@@ -4897,30 +4889,29 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /terminals/{id}:
     get:
-      summary: Retrieve a single terminal by ID.
-      description:
-        Retrieve details of a specific terminal, including its name, type,
+      summary: Get Terminal
+      description: Retrieve details of a specific terminal, including its name, type,
         subtype, status and associated entity.
       operationId: get_terminal
       tags:
-        - Facilities
+      - Facilities
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The terminal ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The terminal ID.
       responses:
-        "200":
+        '200':
           description: A single terminal.
           content:
             application/json:
@@ -4928,8 +4919,8 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: "#/components/schemas/Facility_Terminal"
-        "404":
+                    $ref: '#/components/schemas/Facility_Terminal'
+        '404':
           description: Terminal not found.
           content:
             application/json:
@@ -4939,65 +4930,65 @@ paths:
                   error:
                     type: string
                     example: Terminal not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /plants:
     get:
-      summary: Retrieve a list of plants.
+      summary: List Plants
       description: Retrieve a list of plants with pagination and filtering options.
       operationId: get_plants
       tags:
-        - Facilities
+      - Facilities
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
-        - in: query
-          name: name
-          schema:
-            type: string
-          description: Filter by facility name
-        - in: query
-          name: type
-          schema:
-            type: integer
-          description: Filter by facility type ID
-        - in: query
-          name: subtype
-          schema:
-            type: integer
-          description: Filter by facility subtype ID
-        - in: query
-          name: status
-          schema:
-            type: string
-          description: Filter by facility status
-        - in: query
-          name: operator_id
-          schema:
-            type: integer
-          description: Filter by operator ID
-        - in: query
-          name: licensee_id
-          schema:
-            type: integer
-          description: Filter by licensee ID
-        - in: query
-          name: regulator_id
-          schema:
-            type: string
-          description: Filter by regulator ID
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: name
+        schema:
+          type: string
+        description: Filter by facility name
+      - in: query
+        name: type
+        schema:
+          type: integer
+        description: Filter by facility type ID
+      - in: query
+        name: subtype
+        schema:
+          type: integer
+        description: Filter by facility subtype ID
+      - in: query
+        name: status
+        schema:
+          type: string
+        description: Filter by facility status
+      - in: query
+        name: operator_id
+        schema:
+          type: integer
+        description: Filter by operator ID
+      - in: query
+        name: licensee_id
+        schema:
+          type: integer
+        description: Filter by licensee ID
+      - in: query
+        name: regulator_id
+        schema:
+          type: string
+        description: Filter by regulator ID
       responses:
-        "200":
+        '200':
           description: A paginated list of plants.
           content:
             application/json:
@@ -5007,7 +4998,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Facility_ReferencePlant"
+                      $ref: '#/components/schemas/Facility_ReferencePlant'
                   meta:
                     type: object
                     properties:
@@ -5019,28 +5010,28 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /plants/{id}:
     get:
-      summary: Retrieve a single plant by ID.
+      summary: Get Plant
       description: Retrieve a single plant by ID.
       operationId: get_plant
       tags:
-        - Facilities
+      - Facilities
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The plant ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The plant ID.
       responses:
-        "200":
+        '200':
           description: A single plant.
           content:
             application/json:
@@ -5048,8 +5039,8 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: "#/components/schemas/Facility_Plant"
-        "404":
+                    $ref: '#/components/schemas/Facility_Plant'
+        '404':
           description: Plant not found.
           content:
             application/json:
@@ -5059,65 +5050,65 @@ paths:
                   error:
                     type: string
                     example: Plant not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /batteries:
     get:
-      summary: Retrieve a list of batteries.
+      summary: List Batteries
       description: Retrieve a list of batteries with pagination and filtering options.
       operationId: get_batteries
       tags:
-        - Facilities
+      - Facilities
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
-        - in: query
-          name: name
-          schema:
-            type: string
-          description: Filter by facility name
-        - in: query
-          name: type_id
-          schema:
-            type: integer
-          description: Filter by facility type ID
-        - in: query
-          name: subtype_id
-          schema:
-            type: integer
-          description: Filter by facility subtype ID
-        - in: query
-          name: status
-          schema:
-            type: string
-          description: Filter by facility status
-        - in: query
-          name: operator_id
-          schema:
-            type: integer
-          description: Filter by operator ID
-        - in: query
-          name: licensee_id
-          schema:
-            type: integer
-          description: Filter by licensee ID
-        - in: query
-          name: regulator_id
-          schema:
-            type: string
-          description: Filter by regulator ID
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: name
+        schema:
+          type: string
+        description: Filter by facility name
+      - in: query
+        name: type_id
+        schema:
+          type: integer
+        description: Filter by facility type ID
+      - in: query
+        name: subtype_id
+        schema:
+          type: integer
+        description: Filter by facility subtype ID
+      - in: query
+        name: status
+        schema:
+          type: string
+        description: Filter by facility status
+      - in: query
+        name: operator_id
+        schema:
+          type: integer
+        description: Filter by operator ID
+      - in: query
+        name: licensee_id
+        schema:
+          type: integer
+        description: Filter by licensee ID
+      - in: query
+        name: regulator_id
+        schema:
+          type: string
+        description: Filter by regulator ID
       responses:
-        "200":
+        '200':
           description: A paginated list of batteries.
           content:
             application/json:
@@ -5127,7 +5118,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Facility_ReferenceBattery"
+                      $ref: '#/components/schemas/Facility_ReferenceBattery'
                   meta:
                     type: object
                     properties:
@@ -5139,28 +5130,28 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /batteries/{id}:
     get:
-      summary: Retrieve a single battery by ID.
+      summary: Get Battery
       description: Retrieve a single battery by ID.
       operationId: get_battery
       tags:
-        - Facilities
+      - Facilities
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The battery ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The battery ID.
       responses:
-        "200":
+        '200':
           description: A single battery.
           content:
             application/json:
@@ -5168,8 +5159,8 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: "#/components/schemas/Facility_Battery"
-        "404":
+                    $ref: '#/components/schemas/Facility_Battery'
+        '404':
           description: Battery not found.
           content:
             application/json:
@@ -5179,65 +5170,65 @@ paths:
                   error:
                     type: string
                     example: Battery not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /stations:
     get:
-      summary: Retrieve a list of stations.
+      summary: List Stations
       description: Retrieve a list of stations with pagination and filtering options.
       operationId: get_stations
       tags:
-        - Facilities
+      - Facilities
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
-        - in: query
-          name: name
-          schema:
-            type: string
-          description: Filter by facility name
-        - in: query
-          name: type_id
-          schema:
-            type: integer
-          description: Filter by facility type ID
-        - in: query
-          name: subtype_id
-          schema:
-            type: integer
-          description: Filter by facility subtype ID
-        - in: query
-          name: status
-          schema:
-            type: string
-          description: Filter by facility status
-        - in: query
-          name: operator_id
-          schema:
-            type: integer
-          description: Filter by operator ID
-        - in: query
-          name: licensee_id
-          schema:
-            type: integer
-          description: Filter by licensee ID
-        - in: query
-          name: regulator_id
-          schema:
-            type: string
-          description: Filter by regulator ID
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: name
+        schema:
+          type: string
+        description: Filter by facility name
+      - in: query
+        name: type_id
+        schema:
+          type: integer
+        description: Filter by facility type ID
+      - in: query
+        name: subtype_id
+        schema:
+          type: integer
+        description: Filter by facility subtype ID
+      - in: query
+        name: status
+        schema:
+          type: string
+        description: Filter by facility status
+      - in: query
+        name: operator_id
+        schema:
+          type: integer
+        description: Filter by operator ID
+      - in: query
+        name: licensee_id
+        schema:
+          type: integer
+        description: Filter by licensee ID
+      - in: query
+        name: regulator_id
+        schema:
+          type: string
+        description: Filter by regulator ID
       responses:
-        "200":
+        '200':
           description: A paginated list of stations.
           content:
             application/json:
@@ -5247,7 +5238,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Facility_ReferenceStation"
+                      $ref: '#/components/schemas/Facility_ReferenceStation'
                   meta:
                     type: object
                     properties:
@@ -5259,28 +5250,28 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /stations/{id}:
     get:
-      summary: Retrieve a single station by ID.
+      summary: Get Station
       description: Retrieve a single station by ID.
       operationId: get_station
       tags:
-        - Facilities
+      - Facilities
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The station ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The station ID.
       responses:
-        "200":
+        '200':
           description: A single station facility.
           content:
             application/json:
@@ -5288,8 +5279,8 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: "#/components/schemas/Facility_Station"
-        "404":
+                    $ref: '#/components/schemas/Facility_Station'
+        '404':
           description: Station not found.
           content:
             application/json:
@@ -5299,65 +5290,65 @@ paths:
                   error:
                     type: string
                     example: Station not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /systems:
     get:
-      summary: Retrieve a list of systems.
+      summary: List Systems
       description: Retrieve a list of systems with pagination and filtering options.
       operationId: get_systems
       tags:
-        - Facilities
+      - Facilities
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
-        - in: query
-          name: name
-          schema:
-            type: string
-          description: Filter by facility name
-        - in: query
-          name: type_id
-          schema:
-            type: integer
-          description: Filter by facility type ID
-        - in: query
-          name: subtype_id
-          schema:
-            type: integer
-          description: Filter by facility subtype ID
-        - in: query
-          name: status
-          schema:
-            type: string
-          description: Filter by facility status
-        - in: query
-          name: operator_id
-          schema:
-            type: integer
-          description: Filter by operator ID
-        - in: query
-          name: licensee_id
-          schema:
-            type: integer
-          description: Filter by licensee ID
-        - in: query
-          name: regulator_id
-          schema:
-            type: string
-          description: Filter by regulator ID
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: name
+        schema:
+          type: string
+        description: Filter by facility name
+      - in: query
+        name: type_id
+        schema:
+          type: integer
+        description: Filter by facility type ID
+      - in: query
+        name: subtype_id
+        schema:
+          type: integer
+        description: Filter by facility subtype ID
+      - in: query
+        name: status
+        schema:
+          type: string
+        description: Filter by facility status
+      - in: query
+        name: operator_id
+        schema:
+          type: integer
+        description: Filter by operator ID
+      - in: query
+        name: licensee_id
+        schema:
+          type: integer
+        description: Filter by licensee ID
+      - in: query
+        name: regulator_id
+        schema:
+          type: string
+        description: Filter by regulator ID
       responses:
-        "200":
+        '200':
           description: A paginated list of systems.
           content:
             application/json:
@@ -5367,7 +5358,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Facility_ReferenceSystem"
+                      $ref: '#/components/schemas/Facility_ReferenceSystem'
                   meta:
                     type: object
                     properties:
@@ -5379,28 +5370,28 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /systems/{id}:
     get:
-      summary: Retrieve a single system by ID.
+      summary: Get System
       description: Retrieve a single system by ID.
       operationId: get_system
       tags:
-        - Facilities
+      - Facilities
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The system ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The system ID.
       responses:
-        "200":
+        '200':
           description: A single system.
           content:
             application/json:
@@ -5408,8 +5399,8 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: "#/components/schemas/Facility_System"
-        "404":
+                    $ref: '#/components/schemas/Facility_System'
+        '404':
           description: System not found.
           content:
             application/json:
@@ -5419,30 +5410,30 @@ paths:
                   error:
                     type: string
                     example: System not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /pipelines/types:
     get:
-      summary: Retrieve a list of pipeline types.
+      summary: List Pipeline Types
       description: Retrieve all available pipeline types.
       operationId: get_pipeline_types
       tags:
-        - Lines
+      - Lines
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
       responses:
-        "200":
+        '200':
           description: A list of pipeline types.
           content:
             application/json:
@@ -5452,7 +5443,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Lines_ReferencePipelineType"
+                      $ref: '#/components/schemas/Lines_ReferencePipelineType'
                   meta:
                     type: object
                     properties:
@@ -5464,73 +5455,73 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /pipelines:
     get:
-      summary: Retrieve a list of pipelines.
+      summary: List Pipelines
       description: Retrieve a list of pipelines with pagination and filtering options.
       operationId: get_pipelines
       tags:
-        - Lines
+      - Lines
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
-        - in: query
-          name: jurisdiction
-          schema:
-            type: string
-            enum:
-              - ALBERTA
-              - SASKATCHEWAN
-          required: false
-          description: Filter by jurisdiction
-        - in: query
-          name: licensing_status
-          schema:
-            type: string
-            enum:
-              - ABANDONED
-              - AMMENDED
-              - CANCELLED
-              - DECOMMISSION
-              - ISSUED
-              - RE-ENTERED
-              - RECCERTIFIED
-              - RECEXEMPT
-              - SUSPENDED
-              - SUSPENSION
-          required: false
-          description: Filter by licensing status
-        - in: query
-          name: operational_status
-          schema:
-            type: string
-            enum:
-              - ABANDONED
-              - ACTIVE
-              - CANCELLED
-              - MINSUSPEND
-              - NEW
-              - NONREPORTING
-              - RECCERTIFIED
-              - RECEXEMPT
-              - RETIRED
-              - SUSPENDED
-          required: false
-          description: Filter by operational status
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: jurisdiction
+        schema:
+          type: string
+          enum:
+          - ALBERTA
+          - SASKATCHEWAN
+        required: false
+        description: Filter by jurisdiction
+      - in: query
+        name: licensing_status
+        schema:
+          type: string
+          enum:
+          - ABANDONED
+          - AMMENDED
+          - CANCELLED
+          - DECOMMISSION
+          - ISSUED
+          - RE-ENTERED
+          - RECCERTIFIED
+          - RECEXEMPT
+          - SUSPENDED
+          - SUSPENSION
+        required: false
+        description: Filter by licensing status
+      - in: query
+        name: operational_status
+        schema:
+          type: string
+          enum:
+          - ABANDONED
+          - ACTIVE
+          - CANCELLED
+          - MINSUSPEND
+          - NEW
+          - NONREPORTING
+          - RECCERTIFIED
+          - RECEXEMPT
+          - RETIRED
+          - SUSPENDED
+        required: false
+        description: Filter by operational status
       responses:
-        "200":
+        '200':
           description: A paginated list of pipelines.
           content:
             application/json:
@@ -5540,7 +5531,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Lines_ReferencePipeline"
+                      $ref: '#/components/schemas/Lines_ReferencePipeline'
                   meta:
                     type: object
                     properties:
@@ -5552,30 +5543,30 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /pipelines/{id}:
     get:
-      summary: Retrieve a single pipeline by ID.
+      summary: Get Pipeline
       description: Retrieve a single pipeline by ID.
       operationId: get_pipeline
       tags:
-        - Lines
+      - Lines
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The pipeline ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The pipeline ID.
       responses:
-        "200":
+        '200':
           description: A single pipeline.
           content:
             application/json:
@@ -5583,8 +5574,8 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: "#/components/schemas/Lines_Pipeline"
-        "404":
+                    $ref: '#/components/schemas/Lines_Pipeline'
+        '404':
           description: Pipeline not found.
           content:
             application/json:
@@ -5594,30 +5585,30 @@ paths:
                   error:
                     type: string
                     example: Pipeline not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /rail-lines/categories:
     get:
-      summary: Retrieve a list of rail line categories.
+      summary: List Railine Categories
       description: Retrieve all available rail line categories.
       operationId: get_rail_line_categories
       tags:
-        - Lines
+      - Lines
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
       responses:
-        "200":
+        '200':
           description: A list of rail line categories.
           content:
             application/json:
@@ -5627,7 +5618,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Lines_ReferenceRailLineCategory"
+                      $ref: '#/components/schemas/Lines_ReferenceRailLineCategory'
                   meta:
                     type: object
                     properties:
@@ -5639,30 +5630,30 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /rail-lines/types:
     get:
-      summary: Retrieve a list of rail line types.
+      summary: List Railine Types
       description: Retrieve all available rail line types.
       operationId: get_rail_line_types
       tags:
-        - Lines
+      - Lines
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
       responses:
-        "200":
+        '200':
           description: A list of rail line types.
           content:
             application/json:
@@ -5672,7 +5663,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Lines_ReferenceRailLineType"
+                      $ref: '#/components/schemas/Lines_ReferenceRailLineType'
                   meta:
                     type: object
                     properties:
@@ -5684,55 +5675,55 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /rail-lines:
     get:
-      summary: Retrieve a list of rail lines.
+      summary: List Railines
       description: Retrieve a list of rail lines with pagination and filtering options.
       operationId: get_rail_lines
       tags:
-        - Lines
+      - Lines
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
-        - in: query
-          name: type
-          schema:
-            type: string
-            enum:
-              - Mainline
-              - Branch Line
-              - Spur Line
-          required: false
-          description: Filter by rail line type
-        - in: query
-          name: category
-          schema:
-            type: string
-            enum:
-              - Private
-              - Public
-          required: false
-          description: Filter by rail line category
-        - in: query
-          name: max_train_length
-          schema:
-            type: number
-          required: false
-          description: Filter by maximum train length the rail line can accommodate
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: type
+        schema:
+          type: string
+          enum:
+          - Mainline
+          - Branch Line
+          - Spur Line
+        required: false
+        description: Filter by rail line type
+      - in: query
+        name: category
+        schema:
+          type: string
+          enum:
+          - Private
+          - Public
+        required: false
+        description: Filter by rail line category
+      - in: query
+        name: max_train_length
+        schema:
+          type: number
+        required: false
+        description: Filter by maximum train length the rail line can accommodate
       responses:
-        "200":
+        '200':
           description: A paginated list of rail lines.
           content:
             application/json:
@@ -5742,7 +5733,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Lines_ReferenceRailLine"
+                      $ref: '#/components/schemas/Lines_ReferenceRailLine'
                   meta:
                     type: object
                     properties:
@@ -5754,28 +5745,28 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /rail-lines/{id}:
     get:
-      summary: Retrieve a single rail line.
+      summary: Get Railine
       description: Retrieve a single rail line with pagination and filtering options.
       operationId: get_rail_line
       tags:
-        - Lines
+      - Lines
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The rail line ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The rail line ID.
       responses:
-        "200":
+        '200':
           description: A single rail line.
           content:
             application/json:
@@ -5783,8 +5774,8 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: "#/components/schemas/Lines_RailLine"
-        "404":
+                    $ref: '#/components/schemas/Lines_RailLine'
+        '404':
           description: Rail line not found.
           content:
             application/json:
@@ -5794,25 +5785,23 @@ paths:
                   error:
                     type: string
                     example: Rail line not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /organization:
     get:
-      summary: Retrieve the current organization.
-      description:
-        Retrieve details about the current organization including associated
+      summary: Get Organization
+      description: Retrieve details about the current organization including associated
         entities, wells, and facilities.
       operationId: get_organization
       tags:
-        - Organization
+      - Organization
       responses:
-        "200":
-          description:
-            A single organization object containing organization details
+        '200':
+          description: A single organization object containing organization details
             along with related entities, wells, terminals, plants, batteries, stations,
             systems and pipelines.
           content:
@@ -5821,52 +5810,51 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: "#/components/schemas/Organization_Organization"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+                    $ref: '#/components/schemas/Organization_Organization'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /organization/users:
     get:
-      summary: Retrieve a list of users in the current organization.
-      description:
-        Retrieve a list of users in the current organization with pagination
+      summary: List Users
+      description: Retrieve a list of users in the current organization with pagination
         and filtering options.
       operationId: get_users
       tags:
-        - Organization
+      - Organization
       parameters:
-        - in: query
-          name: page
-          schema:
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: role_ids
+        schema:
+          type: array
+          items:
             type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
-        - in: query
-          name: role_ids
-          schema:
-            type: array
-            items:
-              type: integer
-          description: Filter by role IDs
-        - in: query
-          name: permission_ids
-          schema:
-            type: array
-            items:
-              type: integer
-          description: Filter by permission IDs
-        - in: query
-          name: title
-          schema:
-            type: string
-          description: Filter by title
+        description: Filter by role IDs
+      - in: query
+        name: permission_ids
+        schema:
+          type: array
+          items:
+            type: integer
+        description: Filter by permission IDs
+      - in: query
+        name: title
+        schema:
+          type: string
+        description: Filter by title
       responses:
-        "200":
+        '200':
           description: A paginated list of users.
           content:
             application/json:
@@ -5876,7 +5864,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Organization_ReferenceUser"
+                      $ref: '#/components/schemas/Organization_ReferenceUser'
                   meta:
                     type: object
                     properties:
@@ -5888,32 +5876,30 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /organization/users/{id}:
     get:
-      summary: Retrieve a single user in the current organization by ID.
-      description:
-        Retrieve details about a specific user in the current organization
+      summary: Get User
+      description: Retrieve details about a specific user in the current organization
         including their roles and permissions.
       operationId: get_user
       tags:
-        - Organization
+      - Organization
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The user ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The user ID.
       responses:
-        "200":
-          description:
-            A single user object containing user details along with related
+        '200':
+          description: A single user object containing user details along with related
             roles and permissions.
           content:
             application/json:
@@ -5921,8 +5907,8 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: "#/components/schemas/Organization_ReferenceUser"
-        "404":
+                    $ref: '#/components/schemas/Organization_ReferenceUser'
+        '404':
           description: User not found.
           content:
             application/json:
@@ -5932,30 +5918,30 @@ paths:
                   error:
                     type: string
                     example: User not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /organization/roles:
     get:
-      summary: Retrieve a list of user roles in the current organization.
+      summary: List Roles
       description: Retrieve a list of user roles in the current organization.
       operationId: get_roles
       tags:
-        - Organization
+      - Organization
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
       responses:
-        "200":
+        '200':
           description: A list of user roles.
           content:
             application/json:
@@ -5965,7 +5951,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Organization_ReferenceUserRoles"
+                      $ref: '#/components/schemas/Organization_ReferenceUserRoles'
                   meta:
                     type: object
                     properties:
@@ -5977,30 +5963,30 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /organization/permissions:
     get:
-      summary: Retrieve a list of user permissions in the current organization.
+      summary: List Permissions
       description: Retrieve a list of user permissions in the current organization.
       operationId: get_permissions
       tags:
-        - Organization
+      - Organization
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
       responses:
-        "200":
+        '200':
           description: A list of user permissions.
           content:
             application/json:
@@ -6010,7 +5996,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Organization_ReferenceUserPermissions"
+                      $ref: '#/components/schemas/Organization_ReferenceUserPermissions'
                   meta:
                     type: object
                     properties:
@@ -6022,62 +6008,61 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /organization/commercial-facilities:
     get:
-      summary: Retrieve a list of commercial facilities in the current organization.
-      description:
-        Retrieve a list of facility types in the current organization with
-        pagination and filtering options.
+      summary: List Commercial Facilities
+      description: List commercial facilities in the current organization with pagination
+        and filtering options.
       operationId: get_commercial_facilities
       tags:
-        - Organization
+      - Organization
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
-        - in: query
-          name: section
-          schema:
-            type: integer
-          required: false
-          description: Section
-        - in: query
-          name: lsd
-          schema:
-            type: integer
-          required: false
-          description: Legal subdivision
-        - in: query
-          name: meridian
-          schema:
-            type: string
-          required: false
-          description: Meridian
-        - in: query
-          name: range
-          schema:
-            type: integer
-          required: false
-          description: Range
-        - in: query
-          name: township
-          schema:
-            type: integer
-          required: false
-          description: Township
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: section
+        schema:
+          type: integer
+        required: false
+        description: Section
+      - in: query
+        name: lsd
+        schema:
+          type: integer
+        required: false
+        description: Legal subdivision
+      - in: query
+        name: meridian
+        schema:
+          type: string
+        required: false
+        description: Meridian
+      - in: query
+        name: range
+        schema:
+          type: integer
+        required: false
+        description: Range
+      - in: query
+        name: township
+        schema:
+          type: integer
+        required: false
+        description: Township
       responses:
-        "200":
+        '200':
           description: A paginated list of commercial facilities.
           content:
             application/json:
@@ -6087,7 +6072,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Organization_ReferenceCommercialFacility"
+                      $ref: '#/components/schemas/Organization_ReferenceCommercialFacility'
                   meta:
                     type: object
                     properties:
@@ -6099,35 +6084,31 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /organization/commercial-facilities/{id}:
     get:
-      summary:
-        Retrieve a single commercial facility in the current organization by
-        ID.
-      description:
-        Retrieve details about a specific commercial facility in the current
+      summary: Get Commercial Facility
+      description: Retrieve details about a specific commercial facility in the current
         organization including their related their associated terminals, batteries,
         plants, pipelines, stations, etc.
       operationId: get_commercial_facility
       tags:
-        - Organization
+      - Organization
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The commercial facility ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The commercial facility ID.
       responses:
-        "200":
-          description:
-            A single commercial facility object containing facility details
+        '200':
+          description: A single commercial facility object containing facility details
             along with related terminals, batteries, plants, stations, etc.
           content:
             application/json:
@@ -6135,8 +6116,8 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: "#/components/schemas/Organization_CommercialFacility"
-        "404":
+                    $ref: '#/components/schemas/Organization_CommercialFacility'
+        '404':
           description: Commercial facility not found.
           content:
             application/json:
@@ -6146,56 +6127,56 @@ paths:
                   error:
                     type: string
                     example: Commercial facility not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /currencies:
     get:
-      summary: Retrieve a list of currencies.
+      summary: List Currencies
       description: Retrieve a list of currencies.
       operationId: get_currencies
       tags:
-        - Currency
+      - Currency
       responses:
-        "200":
+        '200':
           description: A list of currencies.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Currency_Currency"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+                  $ref: '#/components/schemas/Currency_Currency'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /currencies/convert:
     get:
-      summary: Retrieve the live exchange rate.
+      summary: Get Exchange Rate
       description: Retrieve the live exchange rate.
       operationId: convert_currency
       tags:
-        - Currency
+      - Currency
       parameters:
-        - in: query
-          name: from_currency
-          schema:
-            type: string
-          required: true
-          description: The symbol of the currency to convert from.
-        - in: query
-          name: to_currency
-          schema:
-            type: string
-          required: true
-          description: The symbol of the currency to convert to.
+      - in: query
+        name: from_currency
+        schema:
+          type: string
+        required: true
+        description: The symbol of the currency to convert from.
+      - in: query
+        name: to_currency
+        schema:
+          type: string
+        required: true
+        description: The symbol of the currency to convert to.
       responses:
-        "200":
+        '200':
           description: The exchange rate between the two currencies.
           content:
             application/json:
@@ -6208,7 +6189,7 @@ paths:
                     type: string
                   exchange_rate:
                     type: number
-        "400":
+        '400':
           description: Request format incorrect.
           content:
             application/json:
@@ -6217,10 +6198,9 @@ paths:
                 properties:
                   error:
                     type: string
-                    example:
-                      You must include from_currency and to_currency as query
+                    example: You must include from_currency and to_currency as query
                       params.
-        "404":
+        '404':
           description: Conversion not found.
           content:
             application/json:
@@ -6230,100 +6210,100 @@ paths:
                   error:
                     type: string
                     example: Conversion not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /products/categories:
     get:
-      summary: Retrieve a list of product categories.
+      summary: List Product Categories
       description: Retrieve a list of product categories.
       operationId: get_product_categories
       tags:
-        - Products
+      - Products
       responses:
-        "200":
+        '200':
           description: A list of product categories.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Product_ReferenceProductCategory"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+                  $ref: '#/components/schemas/Product_ReferenceProductCategory'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /products/categories/specifications:
     get:
-      summary: Retrieve a list of product category specifications.
+      summary: List Product Category Specs
       description: Retrieve a list of product category specifications.
       operationId: get_product_categories_specifications
       tags:
-        - Products
+      - Products
       responses:
-        "200":
+        '200':
           description: A list of product category specifications.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Product_ReferenceProductCategorySpecification"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+                  $ref: '#/components/schemas/Product_ReferenceProductCategorySpecification'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /products:
     get:
-      summary: Retrieve a list of products.
+      summary: List Products
       description: Retrieve a list of products.
       operationId: get_products
       tags:
-        - Products
+      - Products
       responses:
-        "200":
+        '200':
           description: A list of products.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Product_ReferenceProduct"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+                  $ref: '#/components/schemas/Product_ReferenceProduct'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /products/{id}:
     get:
-      summary: Retrieve a single product by ID.
+      summary: Get Product
       description: Retrieve a single product by ID.
       operationId: get_product
       tags:
-        - Products
+      - Products
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The product ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The product ID.
       responses:
-        "200":
+        '200':
           description: A single product.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Product_Product"
-        "404":
+                $ref: '#/components/schemas/Product_Product'
+        '404':
           description: Product not found.
           content:
             application/json:
@@ -6333,21 +6313,21 @@ paths:
                   error:
                     type: string
                     example: Product not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /ping:
     get:
-      summary: Check the server health.
+      summary: Ping
       description: Check the server health.
       operationId: ping
       tags:
-        - Service
+      - Service
       responses:
-        "200":
+        '200':
           description: Server is running.
           content:
             application/json:
@@ -6360,56 +6340,56 @@ paths:
                       message:
                         type: string
                         example: pong
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /meters:
     get:
-      summary: Retrieve a list of meters.
+      summary: List Meters
       description: Retrieve a list of meters.
       operationId: get_meters
       tags:
-        - Volumes
+      - Volumes
       responses:
-        "200":
+        '200':
           description: A list of meters.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Volumes_ReferenceMeter"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+                  $ref: '#/components/schemas/Volumes_ReferenceMeter'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /meters/{id}:
     get:
-      summary: Retrieve a single meter by ID.
+      summary: Get Meter
       description: Retrieve a single meter by ID.
       operationId: get_meter
       tags:
-        - Volumes
+      - Volumes
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The meter ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The meter ID.
       responses:
-        "200":
+        '200':
           description: A single meter.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Volumes_Meter"
-        "404":
+                $ref: '#/components/schemas/Volumes_Meter'
+        '404':
           description: Meter not found.
           content:
             application/json:
@@ -6419,56 +6399,56 @@ paths:
                   error:
                     type: string
                     example: Meter not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /truck-tickets:
     get:
-      summary: Retrieve a list of truck tickets.
+      summary: List Truck Tickets
       description: Retrieve a list of truck tickets.
       operationId: get_truck_tickets
       tags:
-        - Volumes
+      - Volumes
       responses:
-        "200":
+        '200':
           description: A list of truck tickets.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Volumes_ReferenceTruckTicket"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+                  $ref: '#/components/schemas/Volumes_ReferenceTruckTicket'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /truck-tickets/{id}:
     get:
-      summary: Retrieve a single truck ticket by ID.
+      summary: Get Truck Ticket
       description: Retrieve a single truck ticket by ID.
       operationId: get_truck_ticket
       tags:
-        - Volumes
+      - Volumes
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The truck ticket ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The truck ticket ID.
       responses:
-        "200":
+        '200':
           description: A single truck ticket.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Volumes_TruckTicket"
-        "404":
+                $ref: '#/components/schemas/Volumes_TruckTicket'
+        '404':
           description: Truck ticket not found.
           content:
             application/json:
@@ -6478,56 +6458,56 @@ paths:
                   error:
                     type: string
                     example: Truck ticket not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /tank-tickets:
     get:
-      summary: Retrieve a list of tank tickets.
+      summary: List Tank Tickets
       description: Retrieve a list of tank tickets.
       operationId: get_tank_tickets
       tags:
-        - Volumes
+      - Volumes
       responses:
-        "200":
+        '200':
           description: A list of tank tickets.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Volumes_ReferenceTankTicket"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+                  $ref: '#/components/schemas/Volumes_ReferenceTankTicket'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /tank-tickets/{id}:
     get:
-      summary: Retrieve a single tank ticket by ID.
+      summary: Get Tank Ticket
       description: Retrieve a single tank ticket by ID.
       operationId: get_tank_ticket
       tags:
-        - Volumes
+      - Volumes
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The tank ticket ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The tank ticket ID.
       responses:
-        "200":
+        '200':
           description: A single tank ticket.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Volumes_TankTicket"
-        "404":
+                $ref: '#/components/schemas/Volumes_TankTicket'
+        '404':
           description: Tank ticket not found.
           content:
             application/json:
@@ -6537,56 +6517,56 @@ paths:
                   error:
                     type: string
                     example: Tank ticket not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /meter-tickets:
     get:
-      summary: Retrieve a list of meter tickets.
+      summary: List Meter Tickets
       description: Retrieve a list of meter tickets.
       operationId: get_meter_tickets
       tags:
-        - Volumes
+      - Volumes
       responses:
-        "200":
+        '200':
           description: A list of meter tickets.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Volumes_ReferenceMeterTicket"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+                  $ref: '#/components/schemas/Volumes_ReferenceMeterTicket'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /meter-tickets/{id}:
     get:
-      summary: Retrieve a single meter ticket by ID.
+      summary: Get Meter Ticket
       description: Retrieve a single meter ticket by ID.
       operationId: get_meter_ticket
       tags:
-        - Volumes
+      - Volumes
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The meter ticket ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The meter ticket ID.
       responses:
-        "200":
+        '200':
           description: A single meter ticket.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Volumes_MeterTicket"
-        "404":
+                $ref: '#/components/schemas/Volumes_MeterTicket'
+        '404':
           description: Meter ticket not found.
           content:
             application/json:
@@ -6596,141 +6576,141 @@ paths:
                   error:
                     type: string
                     example: Meter ticket not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /wells:
     get:
-      summary: Retrieve a list of wells.
+      summary: List Wells
       description: Retrieve a list of wells with pagination and filtering options.
       operationId: get_wells
       tags:
-        - Wells
+      - Wells
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
-        - in: query
-          name: jurisdiction
-          schema:
-            type: string
-            enum:
-              - ALBERTA
-              - SASKATCHEWAN
-          required: false
-          description: Jurisdiction
-        - in: query
-          name: license_issued
-          schema:
-            type: string
-            format: date
-          required: false
-          description: License issue date
-        - in: query
-          name: license_number
-          schema:
-            type: string
-          required: false
-          description: License number
-        - in: query
-          name: license_status
-          schema:
-            type: string
-            enum:
-              - ABANDONED
-              - AMMENDED
-              - CANCELLED
-              - DECOMMISSION
-              - ISSUED
-              - RE-ENTERED
-              - RECCERTIFIED
-              - RECEXEMPT
-              - SUSPENDED
-              - SUSPENSION
-          required: false
-          description: License status
-        - in: query
-          name: license_type
-          schema:
-            type: string
-          required: false
-          description: License type
-        - in: query
-          name: licensee_id
-          schema:
-            type: string
-          required: false
-          description: Licensee entity ID
-        - in: query
-          name: regulator_id
-          schema:
-            type: string
-          required: false
-          description: Regulator ID
-        - in: query
-          name: section
-          schema:
-            type: integer
-          required: false
-          description: Section
-        - in: query
-          name: event_sequence
-          schema:
-            type: string
-          required: false
-          description: Event sequence number
-        - in: query
-          name: location_exception
-          schema:
-            type: string
-          required: false
-          description: Location exception
-        - in: query
-          name: lsd
-          schema:
-            type: integer
-          required: false
-          description: Legal subdivision
-        - in: query
-          name: meridian
-          schema:
-            type: string
-          required: false
-          description: Meridian
-        - in: query
-          name: name
-          schema:
-            type: string
-          required: false
-          description: Well name
-        - in: query
-          name: range
-          schema:
-            type: integer
-          required: false
-          description: Range
-        - in: query
-          name: township
-          schema:
-            type: integer
-          required: false
-          description: Township
-        - in: query
-          name: uwi
-          schema:
-            type: string
-          required: false
-          description: Unique Well Identifier
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: jurisdiction
+        schema:
+          type: string
+          enum:
+          - ALBERTA
+          - SASKATCHEWAN
+        required: false
+        description: Jurisdiction
+      - in: query
+        name: license_issued
+        schema:
+          type: string
+          format: date
+        required: false
+        description: License issue date
+      - in: query
+        name: license_number
+        schema:
+          type: string
+        required: false
+        description: License number
+      - in: query
+        name: license_status
+        schema:
+          type: string
+          enum:
+          - ABANDONED
+          - AMMENDED
+          - CANCELLED
+          - DECOMMISSION
+          - ISSUED
+          - RE-ENTERED
+          - RECCERTIFIED
+          - RECEXEMPT
+          - SUSPENDED
+          - SUSPENSION
+        required: false
+        description: License status
+      - in: query
+        name: license_type
+        schema:
+          type: string
+        required: false
+        description: License type
+      - in: query
+        name: licensee_id
+        schema:
+          type: string
+        required: false
+        description: Licensee entity ID
+      - in: query
+        name: regulator_id
+        schema:
+          type: string
+        required: false
+        description: Regulator ID
+      - in: query
+        name: section
+        schema:
+          type: integer
+        required: false
+        description: Section
+      - in: query
+        name: event_sequence
+        schema:
+          type: string
+        required: false
+        description: Event sequence number
+      - in: query
+        name: location_exception
+        schema:
+          type: string
+        required: false
+        description: Location exception
+      - in: query
+        name: lsd
+        schema:
+          type: integer
+        required: false
+        description: Legal subdivision
+      - in: query
+        name: meridian
+        schema:
+          type: string
+        required: false
+        description: Meridian
+      - in: query
+        name: name
+        schema:
+          type: string
+        required: false
+        description: Well name
+      - in: query
+        name: range
+        schema:
+          type: integer
+        required: false
+        description: Range
+      - in: query
+        name: township
+        schema:
+          type: integer
+        required: false
+        description: Township
+      - in: query
+        name: uwi
+        schema:
+          type: string
+        required: false
+        description: Unique Well Identifier
       responses:
-        "200":
+        '200':
           description: A list of wells.
           content:
             application/json:
@@ -6740,7 +6720,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Wells_ReferenceWell"
+                      $ref: '#/components/schemas/Wells_ReferenceWell'
                   meta:
                     type: object
                     properties:
@@ -6752,34 +6732,32 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /wells/{id}:
     get:
-      summary: Retrieve a single well by ID.
-      description:
-        Retrieve details about a specific well including associated entity
+      summary: Get Well
+      description: Retrieve details about a specific well including associated entity
         information.
       operationId: get_well
       tags:
-        - Wells
+      - Wells
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The well ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The well ID.
       responses:
-        "200":
-          description:
-            A single well object containing well details along with related
+        '200':
+          description: A single well object containing well details along with related
             entity information.
           content:
             application/json:
@@ -6787,8 +6765,8 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: "#/components/schemas/Wells_Well"
-        "404":
+                    $ref: '#/components/schemas/Wells_Well'
+        '404':
           description: Well not found.
           content:
             application/json:
@@ -6798,35 +6776,35 @@ paths:
                   error:
                     type: string
                     example: Well not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /entities:
     get:
       summary: List Entities
       description: Retrieve a list of entities with pagination and filtering options.
       operationId: get_entities
       tags:
-        - Entity
+      - Entity
       parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-          required: false
-          description: Page number for pagination
-        - in: query
-          name: legal_name
-          schema:
-            type: string
-          description: Filter by legal name
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: legal_name
+        schema:
+          type: string
+        description: Filter by legal name
       responses:
-        "200":
+        '200':
           description: A paginated list of entities.
           content:
             application/json:
@@ -6836,7 +6814,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Entity_ReferenceEntity"
+                      $ref: '#/components/schemas/Entity_ReferenceEntity'
                   meta:
                     type: object
                     properties:
@@ -6848,32 +6826,30 @@ paths:
                         type: integer
                       per_page:
                         type: integer
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /entities/{id}:
     get:
       summary: Get Entity
-      description:
-        Retrieve details about a specific entity including associated producer,
+      description: Retrieve details about a specific entity including associated producer,
         carrier, marketer and other entity types.
       operationId: get_entity
       tags:
-        - Entity
+      - Entity
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: The entity ID.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The entity ID.
       responses:
-        "200":
-          description:
-            A single entity object containing entity details along with
+        '200':
+          description: A single entity object containing entity details along with
             related entity type information.
           content:
             application/json:
@@ -6881,8 +6857,8 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: "#/components/schemas/Entity_Entity"
-        "404":
+                    $ref: '#/components/schemas/Entity_Entity'
+        '404':
           description: Entity not found.
           content:
             application/json:
@@ -6892,10 +6868,10 @@ paths:
                   error:
                     type: string
                     example: Entity not found.
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
 openapi: 3.0.2
