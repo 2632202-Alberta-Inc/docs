@@ -3806,6 +3806,91 @@
           "external_id"
         ]
       },
+      "TicketStatusReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "CarrierReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "legal_name"
+        ]
+      },
+      "UserReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "first_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "last_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name"
+        ]
+      },
+      "CommercialFacilityReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ResourceReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
       "MeterReference": {
         "type": "object",
         "properties": {
@@ -3816,41 +3901,831 @@
           "external_id": {
             "type": "string",
             "maxLength": 255
-          },
-          "battery": {
-            "type": "integer",
-            "nullable": true
-          },
-          "terminal": {
-            "type": "integer",
-            "nullable": true
-          },
-          "plant": {
-            "type": "integer",
-            "nullable": true
-          },
-          "station": {
-            "type": "integer",
-            "nullable": true
-          },
-          "system": {
-            "type": "integer",
-            "nullable": true
-          },
-          "pipeline": {
-            "type": "integer",
-            "nullable": true
-          },
-          "resource": {
-            "default": null,
-            "nullable": true
-          },
-          "operator": {
-            "type": "integer"
           }
         },
         "required": [
           "external_id"
+        ]
+      },
+      "MeasurementUnitReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "abbreviation": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "abbreviation",
+          "name"
+        ]
+      },
+      "CodeReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Volumes_TruckTicket": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "external_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "status": {
+            "$ref": "#/components/schemas/TicketStatusReference"
+          },
+          "bill_of_laiden": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "rack_ticket": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "carrier": {
+            "$ref": "#/components/schemas/CarrierReference1"
+          },
+          "driver": {
+            "$ref": "#/components/schemas/UserReference"
+          },
+          "pickup_commercial_facility": {
+            "$ref": "#/components/schemas/CommercialFacilityReference"
+          },
+          "pickup_commercial_entity": {
+            "$ref": "#/components/schemas/EntityReference2"
+          },
+          "pickup_facility_operator": {
+            "$ref": "#/components/schemas/EntityReference2"
+          },
+          "pickup_battery": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BatteryReference"
+              }
+            ]
+          },
+          "pickup_terminal": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TerminalReference"
+              }
+            ]
+          },
+          "pickup_plant": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlantReference"
+              }
+            ]
+          },
+          "pickup_station": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StationReference"
+              }
+            ]
+          },
+          "pickup_system": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SystemReference"
+              }
+            ]
+          },
+          "pickup_pipeline": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PipelineReference"
+              }
+            ]
+          },
+          "pickup_resource": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourceReference1"
+              }
+            ]
+          },
+          "pickup_well": {
+            "$ref": "#/components/schemas/WellReference"
+          },
+          "delivery_commercial_facility": {
+            "$ref": "#/components/schemas/CommercialFacilityReference"
+          },
+          "delivery_commercial_entity": {
+            "$ref": "#/components/schemas/EntityReference2"
+          },
+          "delivery_facility_operator": {
+            "$ref": "#/components/schemas/EntityReference2"
+          },
+          "delivery_battery": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BatteryReference"
+              }
+            ]
+          },
+          "delivery_terminal": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TerminalReference"
+              }
+            ]
+          },
+          "delivery_plant": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlantReference"
+              }
+            ]
+          },
+          "delivery_station": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StationReference"
+              }
+            ]
+          },
+          "delivery_system": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SystemReference"
+              }
+            ]
+          },
+          "delivery_pipeline": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PipelineReference"
+              }
+            ]
+          },
+          "delivery_resource": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourceReference1"
+              }
+            ]
+          },
+          "production_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "meter": {
+            "$ref": "#/components/schemas/MeterReference"
+          },
+          "meter_start": {
+            "type": "number"
+          },
+          "meter_end": {
+            "type": "number"
+          },
+          "meter_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "meter_factor": {
+            "type": "number"
+          },
+          "tank_opening_oil": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "tank_opening_water": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "tank_ending_oil": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "tank_ending_water": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "tank_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "load_volume": {
+            "type": "number"
+          },
+          "load_volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "product_volume": {
+            "type": "number"
+          },
+          "product_volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "density": {
+            "type": "number"
+          },
+          "density_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "bsw": {
+            "type": "number"
+          },
+          "bsw_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "solids": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "solids_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "saltwater": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "saltwater_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "sulfur": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "sulfur_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "vapor_pressure": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "vapor_pressure_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "temperature": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "temperature_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "codes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeReference"
+            }
+          }
+        },
+        "required": [
+          "bill_of_laiden",
+          "bsw",
+          "density",
+          "end",
+          "external_id",
+          "load_volume",
+          "meter_end",
+          "meter_factor",
+          "meter_start",
+          "product_volume",
+          "production_date",
+          "start",
+          "volume"
+        ]
+      },
+      "Volumes_TankTicket": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "external_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "status": {
+            "$ref": "#/components/schemas/TicketStatusReference"
+          },
+          "commercial_facility": {
+            "$ref": "#/components/schemas/CommercialFacilityReference"
+          },
+          "commercial_entity": {
+            "$ref": "#/components/schemas/EntityReference2"
+          },
+          "facility_operator": {
+            "$ref": "#/components/schemas/EntityReference2"
+          },
+          "battery": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BatteryReference"
+              }
+            ]
+          },
+          "terminal": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TerminalReference"
+              }
+            ]
+          },
+          "plant": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlantReference"
+              }
+            ]
+          },
+          "station": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StationReference"
+              }
+            ]
+          },
+          "system": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SystemReference"
+              }
+            ]
+          },
+          "resource": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourceReference1"
+              }
+            ]
+          },
+          "production_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "meter": {
+            "$ref": "#/components/schemas/MeterReference"
+          },
+          "meter_start": {
+            "type": "number"
+          },
+          "meter_end": {
+            "type": "number"
+          },
+          "meter_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "meter_factor": {
+            "type": "number"
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "product_volume": {
+            "type": "number"
+          },
+          "product_volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "density": {
+            "type": "number"
+          },
+          "density_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "bsw": {
+            "type": "number"
+          },
+          "bsw_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "solids": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "solids_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "saltwater": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "saltwater_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "sulfur": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "sulfur_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "vapor_pressure": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "vapor_pressure_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "temperature": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "temperature__measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "temperature_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "codes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeReference"
+            }
+          }
+        },
+        "required": [
+          "bsw",
+          "density",
+          "end",
+          "external_id",
+          "meter_end",
+          "meter_factor",
+          "meter_start",
+          "product_volume",
+          "production_date",
+          "start",
+          "volume"
+        ]
+      },
+      "Volumes_MeterTicket": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "external_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "status": {
+            "$ref": "#/components/schemas/TicketStatusReference"
+          },
+          "commercial_facility": {
+            "$ref": "#/components/schemas/CommercialFacilityReference"
+          },
+          "commercial_entity": {
+            "$ref": "#/components/schemas/EntityReference2"
+          },
+          "facility_operator": {
+            "$ref": "#/components/schemas/EntityReference2"
+          },
+          "battery": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BatteryReference"
+              }
+            ]
+          },
+          "terminal": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TerminalReference"
+              }
+            ]
+          },
+          "plant": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlantReference"
+              }
+            ]
+          },
+          "station": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StationReference"
+              }
+            ]
+          },
+          "system": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SystemReference"
+              }
+            ]
+          },
+          "pipeline": {
+            "default": null,
+            "nullable": true
+          },
+          "resource": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourceReference1"
+              }
+            ]
+          },
+          "production_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "meter": {
+            "$ref": "#/components/schemas/MeterReference"
+          },
+          "meter_start": {
+            "type": "number"
+          },
+          "meter_end": {
+            "type": "number"
+          },
+          "meter_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "meter_factor": {
+            "type": "number"
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "product_volume": {
+            "type": "number"
+          },
+          "product_volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "density": {
+            "type": "number"
+          },
+          "density_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "bsw": {
+            "type": "number"
+          },
+          "bsw_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "solids": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "solids_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "saltwater": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "saltwater_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "sulfur": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "sulfur_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "vapor_pressure": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "vapor_pressure_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "temperature": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "temperature_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "codes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeReference"
+            }
+          }
+        },
+        "required": [
+          "bsw",
+          "density",
+          "end",
+          "external_id",
+          "meter_end",
+          "meter_factor",
+          "meter_start",
+          "product_volume",
+          "production_date",
+          "start",
+          "volume"
         ]
       },
       "UserRolesReference": {
@@ -3883,600 +4758,6 @@
         },
         "required": [
           "name"
-        ]
-      },
-      "UserReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "stytch_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "organization": {
-            "$ref": "#/components/schemas/OrganizationReference2"
-          },
-          "first_name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "last_name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "email": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "phone": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "title": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "roles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserRolesReference"
-            }
-          },
-          "permissions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserPermissionsReference"
-            }
-          }
-        },
-        "required": [
-          "email",
-          "first_name",
-          "last_name",
-          "phone",
-          "stytch_id",
-          "title"
-        ]
-      },
-      "ProducerReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "entity": {
-            "type": "integer"
-          },
-          "legal_name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "vertically_integrated": {
-            "type": "boolean",
-            "default": false
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "meter_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "truck_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "tank_tickets": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "required": [
-          "legal_name"
-        ]
-      },
-      "WellReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "uwi": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "name": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "latitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "longitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "location_exception": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "event_sequence": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "lsd": {
-            "type": "integer"
-          },
-          "section": {
-            "type": "integer"
-          },
-          "township": {
-            "type": "integer"
-          },
-          "range": {
-            "type": "integer"
-          },
-          "meridian": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": [
-              "A",
-              "S"
-            ],
-            "maxLength": 255
-          },
-          "licensee": {
-            "$ref": "#/components/schemas/EntityReference2"
-          },
-          "license_status": {
-            "type": "string",
-            "default": null,
-            "enum": [
-              "A",
-              "C",
-              "D",
-              "I",
-              "R",
-              "S",
-              null
-            ],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_type": {
-            "type": "string",
-            "default": null,
-            "enum": [
-              "W",
-              "F",
-              null
-            ],
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_number": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "license_issued": {
-            "type": "string",
-            "format": "date",
-            "default": null,
-            "nullable": true
-          },
-          "regulator_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "regulator_system": {
-            "type": "string",
-            "enum": [
-              "P"
-            ],
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "event_sequence",
-          "jurisdiction",
-          "location_exception",
-          "lsd",
-          "meridian",
-          "range",
-          "regulator_id",
-          "regulator_system",
-          "section",
-          "township",
-          "uwi"
-        ]
-      },
-      "ProductCategoryReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
-      },
-      "MeasurementUnitReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "abbreviation": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "product": {
-            "type": "integer"
-          },
-          "from_conversions": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "to_conversions": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "required": [
-          "abbreviation",
-          "name"
-        ]
-      },
-      "Volumes_TruckTicket": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "external_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "bill_of_laiden": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "rack_ticket": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "meter": {
-            "$ref": "#/components/schemas/MeterReference"
-          },
-          "entity": {
-            "$ref": "#/components/schemas/EntityReference1"
-          },
-          "carrier": {
-            "$ref": "#/components/schemas/CarrierReference"
-          },
-          "driver": {
-            "$ref": "#/components/schemas/UserReference"
-          },
-          "producer": {
-            "$ref": "#/components/schemas/ProducerReference"
-          },
-          "well": {
-            "$ref": "#/components/schemas/WellReference1"
-          },
-          "pickup_terminal": {
-            "$ref": "#/components/schemas/TerminalReference1"
-          },
-          "delivery_terminal": {
-            "$ref": "#/components/schemas/TerminalReference1"
-          },
-          "product": {
-            "$ref": "#/components/schemas/ProductReference"
-          },
-          "product_category": {
-            "$ref": "#/components/schemas/ProductCategoryReference"
-          },
-          "production_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "density": {
-            "type": "number"
-          },
-          "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
-          },
-          "volume": {
-            "type": "number"
-          },
-          "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
-          },
-          "load_volume": {
-            "type": "number"
-          },
-          "load_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
-          },
-          "bsw": {
-            "type": "number"
-          },
-          "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
-          }
-        },
-        "required": [
-          "bill_of_laiden",
-          "bsw",
-          "density",
-          "external_id",
-          "load_volume",
-          "production_date",
-          "rack_ticket",
-          "volume"
-        ]
-      },
-      "Volumes_TankTicket": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "external_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "meter": {
-            "$ref": "#/components/schemas/MeterReference"
-          },
-          "entity": {
-            "$ref": "#/components/schemas/EntityReference1"
-          },
-          "well": {
-            "$ref": "#/components/schemas/WellReference1"
-          },
-          "terminal": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TerminalReference1"
-              }
-            ]
-          },
-          "plant": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PlantReference1"
-              }
-            ]
-          },
-          "battery": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BatteryReference1"
-              }
-            ]
-          },
-          "station": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StationReference1"
-              }
-            ]
-          },
-          "system": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SystemReference1"
-              }
-            ]
-          },
-          "product_category": {
-            "$ref": "#/components/schemas/ProductCategoryReference"
-          },
-          "production_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "density": {
-            "type": "number"
-          },
-          "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
-          },
-          "volume": {
-            "type": "number"
-          },
-          "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
-          },
-          "bsw": {
-            "type": "number"
-          },
-          "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
-          }
-        },
-        "required": [
-          "bsw",
-          "density",
-          "external_id",
-          "production_date",
-          "volume"
-        ]
-      },
-      "Volumes_MeterTicket": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "external_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "meter": {
-            "$ref": "#/components/schemas/MeterReference"
-          },
-          "entity": {
-            "$ref": "#/components/schemas/EntityReference1"
-          },
-          "producer": {
-            "$ref": "#/components/schemas/ProducerReference"
-          },
-          "well": {
-            "$ref": "#/components/schemas/WellReference1"
-          },
-          "terminal": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TerminalReference1"
-              }
-            ]
-          },
-          "plant": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PlantReference1"
-              }
-            ]
-          },
-          "battery": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BatteryReference1"
-              }
-            ]
-          },
-          "station": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StationReference1"
-              }
-            ]
-          },
-          "system": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SystemReference1"
-              }
-            ]
-          },
-          "production_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "product": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ProductReference"
-              }
-            ]
-          },
-          "product_category": {
-            "$ref": "#/components/schemas/ProductCategoryReference"
-          },
-          "density": {
-            "type": "number"
-          },
-          "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
-          },
-          "volume": {
-            "type": "number"
-          },
-          "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
-          },
-          "bsw": {
-            "type": "number"
-          },
-          "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
-          }
-        },
-        "required": [
-          "bsw",
-          "density",
-          "external_id",
-          "production_date",
-          "volume"
         ]
       },
       "Organization_ReferenceUser": {
@@ -4609,14 +4890,13 @@
             "type": "string",
             "maxLength": 255
           },
-          "organization": {
-            "$ref": "#/components/schemas/OrganizationReference2"
-          }
+          "organization": {}
         },
         "required": [
           "lsd",
           "meridian",
           "name",
+          "organization",
           "range",
           "section",
           "township"
@@ -6147,6 +6427,28 @@
           "external_id"
         ]
       },
+      "Volumes_ReferenceTicketStatus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
       "Volumes_ReferenceTruckTicket": {
         "type": "object",
         "properties": {
@@ -6158,45 +6460,99 @@
             "type": "string",
             "maxLength": 255
           },
+          "status": {
+            "type": "string",
+            "maxLength": 255
+          },
           "bill_of_laiden": {
             "type": "string",
             "maxLength": 255
           },
           "rack_ticket": {
             "type": "string",
-            "maxLength": 255
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
           },
-          "meter": {
-            "type": "integer"
-          },
-          "entity": {
-            "type": "integer"
-          },
-          "carrier": {
-            "type": "integer"
-          },
+          "carrier": {},
           "driver": {
-            "type": "integer"
+            "default": null,
+            "nullable": true
           },
-          "producer": {
-            "type": "integer"
-          },
-          "well": {
-            "type": "integer"
+          "pickup_commercial_facility": {},
+          "pickup_commercial_entity": {},
+          "pickup_facility_operator": {},
+          "pickup_battery": {
+            "default": null,
+            "nullable": true
           },
           "pickup_terminal": {
-            "type": "integer"
+            "default": null,
+            "nullable": true
+          },
+          "pickup_plant": {
+            "default": null,
+            "nullable": true
+          },
+          "pickup_station": {
+            "default": null,
+            "nullable": true
+          },
+          "pickup_system": {
+            "default": null,
+            "nullable": true
+          },
+          "pickup_pipeline": {
+            "default": null,
+            "nullable": true
+          },
+          "pickup_resource": {
+            "default": null,
+            "nullable": true
+          },
+          "pickup_well": {},
+          "delivery_commercial_facility": {},
+          "delivery_commercial_entity": {},
+          "delivery_facility_operator": {},
+          "delivery_battery": {
+            "default": null,
+            "nullable": true
           },
           "delivery_terminal": {
-            "type": "integer"
+            "default": null,
+            "nullable": true
           },
-          "product": {
-            "type": "integer"
+          "delivery_plant": {
+            "default": null,
+            "nullable": true
           },
-          "product_category": {},
+          "delivery_station": {
+            "default": null,
+            "nullable": true
+          },
+          "delivery_system": {
+            "default": null,
+            "nullable": true
+          },
+          "delivery_pipeline": {
+            "default": null,
+            "nullable": true
+          },
+          "delivery_resource": {
+            "default": null,
+            "nullable": true
+          },
           "production_date": {
             "type": "string",
             "format": "date"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
           },
           "updated_at": {
             "type": "string",
@@ -6206,41 +6562,136 @@
             "type": "string",
             "format": "date-time"
           },
-          "density": {
+          "meter": {},
+          "meter_start": {
             "type": "number"
           },
-          "density_measurement_unit": {
-            "type": "integer"
+          "meter_end": {
+            "type": "number"
+          },
+          "meter_measurement_unit": {},
+          "meter_factor": {
+            "type": "number"
+          },
+          "tank_opening_oil": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "tank_opening_water": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "tank_ending_oil": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "tank_ending_water": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "tank_measurement_unit": {
+            "default": null,
+            "nullable": true
           },
           "volume": {
             "type": "number"
           },
-          "volume_measurement_unit": {
-            "type": "integer"
-          },
+          "volume_measurement_unit": {},
           "load_volume": {
             "type": "number"
           },
-          "load_volume_measurement_unit": {
-            "type": "integer"
+          "load_volume_measurement_unit": {},
+          "product_volume": {
+            "type": "number"
           },
+          "product_volume_measurement_unit": {},
+          "density": {
+            "type": "number"
+          },
+          "density_measurement_unit": {},
           "bsw": {
             "type": "number"
           },
-          "bsw_measurement_unit": {
-            "type": "integer"
+          "bsw_measurement_unit": {},
+          "solids": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "solids_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "saltwater": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "saltwater_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "sulfur": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "sulfur_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "vapor_pressure": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "vapor_pressure_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "temperature": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "temperature_measurement_unit": {
+            "default": null,
+            "nullable": true
           }
         },
         "required": [
           "bill_of_laiden",
           "bsw",
+          "bsw_measurement_unit",
+          "carrier",
+          "delivery_commercial_entity",
+          "delivery_commercial_facility",
+          "delivery_facility_operator",
           "density",
+          "density_measurement_unit",
+          "end",
           "external_id",
           "load_volume",
-          "product_category",
+          "load_volume_measurement_unit",
+          "meter",
+          "meter_end",
+          "meter_factor",
+          "meter_measurement_unit",
+          "meter_start",
+          "pickup_commercial_entity",
+          "pickup_commercial_facility",
+          "pickup_facility_operator",
+          "pickup_well",
+          "product_volume",
+          "product_volume_measurement_unit",
           "production_date",
-          "rack_ticket",
-          "volume"
+          "start",
+          "volume",
+          "volume_measurement_unit"
         ]
       },
       "Volumes_ReferenceTankTicket": {
@@ -6254,39 +6705,48 @@
             "type": "string",
             "maxLength": 255
           },
-          "meter": {
-            "type": "integer"
+          "status": {
+            "type": "string",
+            "maxLength": 255
           },
-          "entity": {
-            "type": "integer"
-          },
-          "well": {
-            "type": "integer"
-          },
-          "terminal": {
-            "type": "integer",
-            "nullable": true
-          },
-          "plant": {
-            "type": "integer",
-            "nullable": true
-          },
+          "commercial_facility": {},
+          "commercial_entity": {},
+          "facility_operator": {},
           "battery": {
             "default": null,
             "nullable": true
           },
+          "terminal": {
+            "default": null,
+            "nullable": true
+          },
+          "plant": {
+            "default": null,
+            "nullable": true
+          },
           "station": {
-            "type": "integer",
+            "default": null,
             "nullable": true
           },
           "system": {
-            "type": "integer",
+            "default": null,
             "nullable": true
           },
-          "product_category": {},
+          "resource": {
+            "default": null,
+            "nullable": true
+          },
           "production_date": {
             "type": "string",
             "format": "date"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
           },
           "updated_at": {
             "type": "string",
@@ -6296,39 +6756,100 @@
             "type": "string",
             "format": "date-time"
           },
-          "density": {
+          "meter": {},
+          "meter_start": {
             "type": "number"
           },
-          "density_measurement_unit": {
-            "type": "integer"
+          "meter_end": {
+            "type": "number"
+          },
+          "meter_measurement_unit": {},
+          "meter_factor": {
+            "type": "number"
           },
           "volume": {
             "type": "number"
           },
-          "volume_measurement_unit": {
-            "type": "integer"
+          "volume_measurement_unit": {},
+          "product_volume": {
+            "type": "number"
           },
+          "product_volume_measurement_unit": {},
+          "density": {
+            "type": "number"
+          },
+          "density_measurement_unit": {},
           "bsw": {
             "type": "number"
           },
-          "bsw_measurement_unit": {
-            "type": "integer"
-          },
-          "storage": {
-            "type": "integer",
+          "bsw_measurement_unit": {},
+          "solids": {
+            "type": "number",
+            "default": null,
             "nullable": true
           },
-          "product": {
-            "type": "integer"
+          "solids_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "saltwater": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "saltwater_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "sulfur": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "sulfur_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "vapor_pressure": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "vapor_pressure_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "temperature": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "temperature__measurement_unit": {
+            "default": null,
+            "nullable": true
           }
         },
         "required": [
           "bsw",
+          "bsw_measurement_unit",
+          "commercial_entity",
+          "commercial_facility",
           "density",
+          "density_measurement_unit",
+          "end",
           "external_id",
-          "product_category",
+          "facility_operator",
+          "meter",
+          "meter_end",
+          "meter_factor",
+          "meter_measurement_unit",
+          "meter_start",
+          "product_volume",
+          "product_volume_measurement_unit",
           "production_date",
-          "volume"
+          "start",
+          "volume",
+          "volume_measurement_unit"
         ]
       },
       "Volumes_ReferenceMeterTicket": {
@@ -6342,81 +6863,155 @@
             "type": "string",
             "maxLength": 255
           },
-          "meter": {
-            "type": "integer"
+          "status": {
+            "type": "string",
+            "maxLength": 255
           },
-          "entity": {
-            "type": "integer"
-          },
-          "producer": {
-            "type": "integer"
-          },
-          "well": {
-            "type": "integer"
-          },
-          "terminal": {
-            "type": "integer",
-            "nullable": true
-          },
-          "plant": {
-            "type": "integer",
-            "nullable": true
-          },
+          "commercial_facility": {},
+          "commercial_entity": {},
+          "facility_operator": {},
           "battery": {
             "default": null,
             "nullable": true
           },
+          "terminal": {
+            "default": null,
+            "nullable": true
+          },
+          "plant": {
+            "default": null,
+            "nullable": true
+          },
           "station": {
-            "type": "integer",
+            "default": null,
             "nullable": true
           },
           "system": {
-            "type": "integer",
+            "default": null,
+            "nullable": true
+          },
+          "pipeline": {
+            "default": null,
+            "nullable": true
+          },
+          "resource": {
+            "default": null,
             "nullable": true
           },
           "production_date": {
             "type": "string",
             "format": "date"
           },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
           "updated_at": {
             "type": "string",
             "format": "date-time"
           },
-          "product": {
-            "default": null,
-            "nullable": true
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
           },
-          "product_category": {},
-          "density": {
+          "meter": {},
+          "meter_start": {
             "type": "number"
           },
-          "density_measurement_unit": {
-            "type": "integer"
+          "meter_end": {
+            "type": "number"
+          },
+          "meter_measurement_unit": {},
+          "meter_factor": {
+            "type": "number"
           },
           "volume": {
             "type": "number"
           },
-          "volume_measurement_unit": {
-            "type": "integer"
+          "volume_measurement_unit": {},
+          "product_volume": {
+            "type": "number"
           },
+          "product_volume_measurement_unit": {},
+          "density": {
+            "type": "number"
+          },
+          "density_measurement_unit": {},
           "bsw": {
             "type": "number"
           },
-          "bsw_measurement_unit": {
-            "type": "integer"
+          "bsw_measurement_unit": {},
+          "solids": {
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
-          "storage": {
-            "type": "integer",
+          "solids_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "saltwater": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "saltwater_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "sulfur": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "sulfur_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "vapor_pressure": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "vapor_pressure_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "temperature": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "temperature_measurement_unit": {
+            "default": null,
             "nullable": true
           }
         },
         "required": [
           "bsw",
+          "bsw_measurement_unit",
+          "commercial_entity",
+          "commercial_facility",
           "density",
+          "density_measurement_unit",
+          "end",
           "external_id",
-          "product_category",
+          "facility_operator",
+          "meter",
+          "meter_end",
+          "meter_factor",
+          "meter_measurement_unit",
+          "meter_start",
+          "product_volume",
+          "product_volume_measurement_unit",
           "production_date",
-          "volume"
+          "start",
+          "volume",
+          "volume_measurement_unit"
         ]
       }
     }
@@ -9352,23 +9947,58 @@
         }
       }
     },
-    "/truck-tickets": {
+    "/tickets/statuses": {
       "get": {
-        "summary": "List Truck Tickets",
-        "description": "Retrieve a list of truck tickets.",
-        "operationId": "get_truck_tickets",
+        "summary": "List Ticket Statuses",
+        "description": "Retrieve a list of ticket statuses with pagination options.",
+        "operationId": "get_ticket_statuses",
         "tags": [
           "Volumes"
         ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "A list of truck tickets.",
+            "description": "A paginated list of ticket statuses.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Volumes_ReferenceTruckTicket"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Volumes_ReferenceTicketStatus"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -9386,7 +10016,76 @@
         }
       }
     },
-    "/truck-tickets/{id}": {
+    "/tickets/truck": {
+      "get": {
+        "summary": "List Truck Tickets",
+        "description": "Retrieve a list of truck tickets with pagination.",
+        "operationId": "get_truck_tickets",
+        "tags": [
+          "Volumes"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of truck tickets.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Volumes_ReferenceTruckTicket"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/tickets/truck/{id}": {
       "get": {
         "summary": "Get Truck Ticket",
         "description": "Retrieve a single truck ticket by ID.",
@@ -9411,7 +10110,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Volumes_TruckTicket"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Volumes_TruckTicket"
+                    }
+                  }
                 }
               }
             }
@@ -9444,23 +10148,58 @@
         }
       }
     },
-    "/tank-tickets": {
+    "/tickets/tank": {
       "get": {
         "summary": "List Tank Tickets",
-        "description": "Retrieve a list of tank tickets.",
+        "description": "Retrieve a list of tank tickets with pagination.",
         "operationId": "get_tank_tickets",
         "tags": [
           "Volumes"
         ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "A list of tank tickets.",
+            "description": "A paginated list of tank tickets.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Volumes_ReferenceTankTicket"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Volumes_ReferenceTankTicket"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -9478,7 +10217,7 @@
         }
       }
     },
-    "/tank-tickets/{id}": {
+    "/tickets/tank/{id}": {
       "get": {
         "summary": "Get Tank Ticket",
         "description": "Retrieve a single tank ticket by ID.",
@@ -9503,7 +10242,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Volumes_TankTicket"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Volumes_TankTicket"
+                    }
+                  }
                 }
               }
             }
@@ -9536,23 +10280,58 @@
         }
       }
     },
-    "/meter-tickets": {
+    "/tickets/meter": {
       "get": {
         "summary": "List Meter Tickets",
-        "description": "Retrieve a list of meter tickets.",
+        "description": "Retrieve a list of meter tickets with pagination.",
         "operationId": "get_meter_tickets",
         "tags": [
           "Volumes"
         ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "A list of meter tickets.",
+            "description": "A paginated list of meter tickets.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Volumes_ReferenceMeterTicket"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Volumes_ReferenceMeterTicket"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -9570,7 +10349,7 @@
         }
       }
     },
-    "/meter-tickets/{id}": {
+    "/tickets/meter/{id}": {
       "get": {
         "summary": "Get Meter Ticket",
         "description": "Retrieve a single meter ticket by ID.",
@@ -9595,7 +10374,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Volumes_MeterTicket"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Volumes_MeterTicket"
+                    }
+                  }
                 }
               }
             }
