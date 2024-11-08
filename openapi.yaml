@@ -2524,7 +2524,7 @@ components:
       - section
       - start_date
       - township
-    CodeReference:
+    PipelineReference1:
       type: object
       properties:
         id:
@@ -2533,213 +2533,205 @@ components:
         name:
           type: string
           maxLength: 255
+        jurisdiction:
+          type: string
+          enum:
+          - A
+          - S
+          maxLength: 255
+        type: {}
+        sub_type: {}
+        start_date:
+          type: string
+          format: date
+        operator:
+          $ref: '#/components/schemas/EntityReference2'
+        operational_status:
+          type: string
+          enum:
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
+          maxLength: 255
+        operator_start_date:
+          type: string
+          format: date
+        licensee:
+          $ref: '#/components/schemas/EntityReference2'
+        license_status:
+          type: string
+          default: null
+          enum:
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
+          maxLength: 255
+          nullable: true
+        license_type:
+          type: string
+          default: null
+          enum:
+          - W
+          - F
+          - null
+          maxLength: 255
+          nullable: true
+        license_number:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        license_issued:
+          type: string
+          format: date
+          default: null
+          nullable: true
+        regulator_id:
+          type: string
+          maxLength: 255
+        regulator_system:
+          type: string
+          enum:
+          - P
+          maxLength: 255
+        pipeline_type:
+          $ref: '#/components/schemas/PipelineTypeReference'
       required:
+      - jurisdiction
       - name
-    MeterCode:
+      - operational_status
+      - operator_start_date
+      - regulator_id
+      - regulator_system
+      - start_date
+      - sub_type
+      - type
+    ResourceReference:
       type: object
       properties:
         id:
           type: string
           readOnly: true
-        code:
-          $ref: '#/components/schemas/CodeReference'
-    MeterTicketReference:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        external_id:
+        name:
           type: string
           maxLength: 255
-        meter:
-          type: integer
-        entity:
-          type: integer
-        producer:
-          type: integer
-        well:
-          type: integer
-        terminal:
-          type: integer
-          nullable: true
-        plant:
-          type: integer
-          nullable: true
-        battery:
+        latitude:
+          type: number
           default: null
           nullable: true
-        station:
-          type: integer
-          nullable: true
-        system:
-          type: integer
-          nullable: true
-        production_date:
-          type: string
-          format: date
-        updated_at:
-          type: string
-          format: date-time
-        product:
+        longitude:
+          type: number
           default: null
           nullable: true
-        product_category: {}
-        density:
-          type: number
-        density_measurement_unit:
+        lsd:
           type: integer
-        volume:
-          type: number
-        volume_measurement_unit:
+        section:
           type: integer
-        bsw:
-          type: number
-        bsw_measurement_unit:
+        township:
           type: integer
-        storage:
+        range:
           type: integer
-          nullable: true
-      required:
-      - bsw
-      - density
-      - external_id
-      - product_category
-      - production_date
-      - volume
-    TruckTicketReference:
-      type: object
-      properties:
-        id:
+        meridian:
           type: string
+          maxLength: 255
+        jurisdiction:
+          type: string
+          enum:
+          - A
+          - S
+          maxLength: 255
+        type:
           readOnly: true
-        external_id:
-          type: string
-          maxLength: 255
-        bill_of_laiden:
-          type: string
-          maxLength: 255
-        rack_ticket:
-          type: string
-          maxLength: 255
-        meter:
-          type: integer
-        entity:
-          type: integer
-        carrier:
-          type: integer
-        driver:
-          type: integer
-        producer:
-          type: integer
-        well:
-          type: integer
-        pickup_terminal:
-          type: integer
-        delivery_terminal:
-          type: integer
-        product:
-          type: integer
-        product_category: {}
-        production_date:
+          allOf:
+          - $ref: '#/components/schemas/FacilityTypeReference'
+        sub_type:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/FacilitySubTypeReference'
+        start_date:
           type: string
           format: date
-        updated_at:
-          type: string
-          format: date-time
-        created_at:
-          type: string
-          format: date-time
-        density:
-          type: number
-        density_measurement_unit:
-          type: integer
-        volume:
-          type: number
-        volume_measurement_unit:
-          type: integer
-        load_volume:
-          type: number
-        load_volume_measurement_unit:
-          type: integer
-        bsw:
-          type: number
-        bsw_measurement_unit:
-          type: integer
-      required:
-      - bill_of_laiden
-      - bsw
-      - density
-      - external_id
-      - load_volume
-      - product_category
-      - production_date
-      - rack_ticket
-      - volume
-    TankTicketReference:
-      type: object
-      properties:
-        id:
-          type: string
+        operator:
           readOnly: true
-        external_id:
+          allOf:
+          - $ref: '#/components/schemas/EntityReference2'
+        operational_status:
           type: string
+          enum:
+          - A
+          - C
+          - M
+          - N
+          - R
+          - S
           maxLength: 255
-        meter:
-          type: integer
-        entity:
-          type: integer
-        well:
-          type: integer
-        terminal:
-          type: integer
+        operator_start_date:
+          type: string
+          format: date
+        licensee:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/EntityReference2'
+        license_status:
+          type: string
+          default: null
+          enum:
+          - A
+          - C
+          - D
+          - I
+          - R
+          - S
+          - null
+          maxLength: 255
           nullable: true
-        plant:
-          type: integer
+        license_type:
+          type: string
+          default: null
+          enum:
+          - W
+          - F
+          - null
+          maxLength: 255
           nullable: true
-        battery:
+        license_number:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        license_issued:
+          type: string
+          format: date
           default: null
           nullable: true
-        station:
-          type: integer
-          nullable: true
-        system:
-          type: integer
-          nullable: true
-        product_category: {}
-        production_date:
+        regulator_id:
           type: string
-          format: date
-        updated_at:
+          maxLength: 255
+        regulator_system:
           type: string
-          format: date-time
-        created_at:
-          type: string
-          format: date-time
-        density:
-          type: number
-        density_measurement_unit:
-          type: integer
-        volume:
-          type: number
-        volume_measurement_unit:
-          type: integer
-        bsw:
-          type: number
-        bsw_measurement_unit:
-          type: integer
-        storage:
-          type: integer
-          nullable: true
-        product:
-          type: integer
+          enum:
+          - P
+          maxLength: 255
       required:
-      - bsw
-      - density
-      - external_id
-      - product_category
-      - production_date
-      - volume
+      - jurisdiction
+      - lsd
+      - meridian
+      - name
+      - operational_status
+      - operator_start_date
+      - range
+      - regulator_id
+      - regulator_system
+      - section
+      - start_date
+      - township
     Volumes_Meter:
       type: object
       properties:
@@ -2770,33 +2762,17 @@ components:
           allOf:
           - $ref: '#/components/schemas/SystemReference1'
         pipeline:
-          default: null
           nullable: true
+          allOf:
+          - $ref: '#/components/schemas/PipelineReference1'
         resource:
-          default: null
           nullable: true
-        operator: {}
-        entity:
+          allOf:
+          - $ref: '#/components/schemas/ResourceReference'
+        operator:
           $ref: '#/components/schemas/EntityReference1'
-        codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/MeterCode'
-        meter_tickets:
-          type: array
-          items:
-            $ref: '#/components/schemas/MeterTicketReference'
-        truck_tickets:
-          type: array
-          items:
-            $ref: '#/components/schemas/TruckTicketReference'
-        tank_tickets:
-          type: array
-          items:
-            $ref: '#/components/schemas/TankTicketReference'
       required:
       - external_id
-      - operator
     MeterReference:
       type: object
       properties:
@@ -5416,6 +5392,126 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '500':
           $ref: '#/components/responses/InternalServerError'
+  /resources:
+    get:
+      summary: List Resources
+      description: Retrieve a list of resources with pagination and filtering options.
+      operationId: get_resources
+      tags:
+      - Facilities
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: name
+        schema:
+          type: string
+        description: Filter by facility name
+      - in: query
+        name: type_id
+        schema:
+          type: integer
+        description: Filter by facility type ID
+      - in: query
+        name: subtype_id
+        schema:
+          type: integer
+        description: Filter by facility subtype ID
+      - in: query
+        name: status
+        schema:
+          type: string
+        description: Filter by facility status
+      - in: query
+        name: operator_id
+        schema:
+          type: integer
+        description: Filter by operator ID
+      - in: query
+        name: licensee_id
+        schema:
+          type: integer
+        description: Filter by licensee ID
+      - in: query
+        name: regulator_id
+        schema:
+          type: string
+        description: Filter by regulator ID
+      responses:
+        '200':
+          description: A paginated list of resources.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Facility_ReferenceResource'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                      total_pages:
+                        type: integer
+                      total_items:
+                        type: integer
+                      per_page:
+                        type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /resources/{id}:
+    get:
+      summary: Get Resource
+      description: Retrieve a single resource by ID.
+      operationId: get_resource
+      tags:
+      - Facilities
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The resource ID.
+      responses:
+        '200':
+          description: A single resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Facility_Resource'
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Resource not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /pipelines/types:
     get:
       summary: List Pipeline Types
@@ -6353,15 +6449,83 @@ paths:
       operationId: get_meters
       tags:
       - Volumes
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Page number for pagination
+      - in: query
+        name: regulator_id
+        schema:
+          type: string
+        description: Filter by regulator ID (searches across connected facilities)
+      - in: query
+        name: terminal_id
+        schema:
+          type: integer
+        description: Filter by terminal ID
+      - in: query
+        name: battery_id
+        schema:
+          type: integer
+        description: Filter by battery ID
+      - in: query
+        name: plant_id
+        schema:
+          type: integer
+        description: Filter by plant ID
+      - in: query
+        name: station_id
+        schema:
+          type: integer
+        description: Filter by station ID
+      - in: query
+        name: system_id
+        schema:
+          type: integer
+        description: Filter by system ID
+      - in: query
+        name: pipeline_id
+        schema:
+          type: integer
+        description: Filter by pipeline ID
+      - in: query
+        name: resource_id
+        schema:
+          type: integer
+        description: Filter by resource ID
+      - in: query
+        name: operator_id
+        schema:
+          type: integer
+        description: Filter by operator ID
       responses:
         '200':
           description: A list of meters.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Volumes_ReferenceMeter'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Volumes_ReferenceMeter'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                      total_pages:
+                        type: integer
+                      total_items:
+                        type: integer
+                      per_page:
+                        type: integer
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -6388,7 +6552,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Volumes_Meter'
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Volumes_Meter'
         '404':
           description: Meter not found.
           content:
