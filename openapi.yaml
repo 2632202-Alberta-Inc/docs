@@ -297,121 +297,6 @@ components:
       - phone
       - stytch_id
       - title
-    OrganizationReference1:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-      required:
-      - name
-    EntityReference1:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        legal_name:
-          type: string
-          maxLength: 255
-        organization:
-          $ref: '#/components/schemas/OrganizationReference1'
-        url:
-          type: string
-          default: null
-          maxLength: 255
-          nullable: true
-        phone:
-          type: string
-          default: null
-          maxLength: 255
-          nullable: true
-        email:
-          type: string
-          default: null
-          maxLength: 255
-          nullable: true
-        unit:
-          type: string
-          default: null
-          maxLength: 255
-          nullable: true
-        street:
-          type: string
-          default: null
-          maxLength: 255
-          nullable: true
-        city:
-          type: string
-          default: null
-          maxLength: 255
-          nullable: true
-        zip_code:
-          type: string
-          default: null
-          maxLength: 255
-          nullable: true
-        province:
-          type: string
-          default: null
-          maxLength: 255
-          nullable: true
-        state:
-          type: string
-          default: null
-          maxLength: 255
-          nullable: true
-        postal_code:
-          type: string
-          default: null
-          maxLength: 255
-          nullable: true
-        country:
-          type: string
-          default: null
-          maxLength: 255
-          nullable: true
-        regulator_id:
-          type: string
-          maxLength: 255
-        regulator_system:
-          type: string
-          enum:
-          - P
-          maxLength: 255
-        jurisdiction:
-          type: string
-          enum:
-          - A
-          - S
-          maxLength: 255
-        status:
-          type: string
-          enum:
-          - S
-          - I
-          - L
-          - N
-          - D
-          - C
-          - A
-          maxLength: 255
-        effective_date:
-          type: string
-          format: date
-        successor:
-          default: null
-          nullable: true
-      required:
-      - effective_date
-      - jurisdiction
-      - legal_name
-      - regulator_id
-      - regulator_system
-      - status
     Organization_Organization:
       type: object
       properties:
@@ -447,11 +332,11 @@ components:
         entities:
           type: array
           items:
-            $ref: '#/components/schemas/EntityReference1'
+            $ref: '#/components/schemas/EntityReference'
       required:
       - name
       - slug
-    OrganizationReference2:
+    OrganizationReference1:
       type: object
       properties:
         id:
@@ -587,7 +472,7 @@ components:
           type: string
           maxLength: 255
         organization:
-          $ref: '#/components/schemas/OrganizationReference2'
+          $ref: '#/components/schemas/OrganizationReference1'
         facilities:
           type: array
           items:
@@ -716,6 +601,17 @@ components:
       required:
       - name
       - symbol
+    OrganizationReference2:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+      required:
+      - name
     WellReference:
       type: object
       properties:
@@ -737,7 +633,7 @@ components:
           type: string
           maxLength: 255
         organization:
-          $ref: '#/components/schemas/OrganizationReference1'
+          $ref: '#/components/schemas/OrganizationReference2'
         url:
           type: string
           default: null
@@ -905,7 +801,7 @@ components:
           maxLength: 255
       required:
       - name
-    EntityReference2:
+    EntityReference1:
       type: object
       properties:
         id:
@@ -950,7 +846,7 @@ components:
           type: string
           format: date
         operator:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -965,7 +861,7 @@ components:
           type: string
           format: date
         licensee:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -1038,6 +934,110 @@ components:
           maxLength: 255
       required:
       - name
+    EntityReference2:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        legal_name:
+          type: string
+          maxLength: 255
+        organization:
+          $ref: '#/components/schemas/OrganizationReference2'
+        url:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        phone:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        email:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        unit:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        street:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        city:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        zip_code:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        province:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        state:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        postal_code:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        country:
+          type: string
+          default: null
+          maxLength: 255
+          nullable: true
+        regulator_id:
+          type: string
+          maxLength: 255
+        regulator_system:
+          type: string
+          enum:
+          - P
+          maxLength: 255
+        jurisdiction:
+          type: string
+          enum:
+          - A
+          - S
+          maxLength: 255
+        status:
+          type: string
+          enum:
+          - S
+          - I
+          - L
+          - N
+          - D
+          - C
+          - A
+          maxLength: 255
+        effective_date:
+          type: string
+          format: date
+        successor:
+          default: null
+          nullable: true
+      required:
+      - effective_date
+      - jurisdiction
+      - legal_name
+      - regulator_id
+      - regulator_system
+      - status
     CarrierReference:
       type: object
       properties:
@@ -1115,7 +1115,7 @@ components:
           default: null
           nullable: true
         entity:
-          $ref: '#/components/schemas/EntityReference1'
+          $ref: '#/components/schemas/EntityReference2'
         carriers:
           type: array
           items:
@@ -1213,7 +1213,7 @@ components:
           - P
           maxLength: 255
         entity:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
       required:
       - event_sequence
       - jurisdiction
@@ -1384,7 +1384,7 @@ components:
           type: string
           format: date
         operator:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -1399,7 +1399,7 @@ components:
           type: string
           format: date
         licensee:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -1501,7 +1501,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -1518,7 +1518,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -1620,7 +1620,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -1637,7 +1637,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -1739,7 +1739,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -1756,7 +1756,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -1858,7 +1858,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -1875,7 +1875,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -1977,7 +1977,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -1994,7 +1994,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -2096,7 +2096,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -2113,7 +2113,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -2215,7 +2215,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -2232,7 +2232,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -2334,7 +2334,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -2351,7 +2351,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -2453,7 +2453,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -2470,7 +2470,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -2545,7 +2545,7 @@ components:
           type: string
           format: date
         operator:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -2560,7 +2560,7 @@ components:
           type: string
           format: date
         licensee:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -2661,7 +2661,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -2678,7 +2678,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -2770,7 +2770,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/ResourceReference'
         operator:
-          $ref: '#/components/schemas/EntityReference1'
+          $ref: '#/components/schemas/EntityReference2'
       required:
       - external_id
     TicketStatusReference:
@@ -2869,6 +2869,36 @@ components:
           maxLength: 255
       required:
       - name
+    TruckTicketErrorReference:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        field_name:
+          type: string
+          maxLength: 255
+        error_message:
+          type: string
+        error_type:
+          type: string
+          maxLength: 255
+        created_at:
+          type: string
+          format: date-time
+        resolved_at:
+          type: string
+          format: date-time
+          default: null
+          nullable: true
+        resolved_by:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/UserReference'
+      required:
+      - error_message
+      - error_type
+      - field_name
     Volumes_TruckTicket:
       type: object
       properties:
@@ -2877,12 +2907,19 @@ components:
           readOnly: true
         external_id:
           type: string
+          default: null
           maxLength: 255
+          nullable: true
         status:
           $ref: '#/components/schemas/TicketStatusReference'
+        organization:
+          default: null
+          nullable: true
         bill_of_laiden:
           type: string
+          default: null
           maxLength: 255
+          nullable: true
         rack_ticket:
           type: string
           default: null
@@ -2895,9 +2932,9 @@ components:
         pickup_commercial_facility:
           $ref: '#/components/schemas/CommercialFacilityReference'
         pickup_commercial_entity:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         pickup_facility_operator:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         pickup_battery:
           nullable: true
           allOf:
@@ -2931,9 +2968,9 @@ components:
         delivery_commercial_facility:
           $ref: '#/components/schemas/CommercialFacilityReference'
         delivery_commercial_entity:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         delivery_facility_operator:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         delivery_battery:
           nullable: true
           allOf:
@@ -2965,12 +3002,18 @@ components:
         production_date:
           type: string
           format: date
+          default: null
+          nullable: true
         start:
           type: string
           format: date-time
+          default: null
+          nullable: true
         end:
           type: string
           format: date-time
+          default: null
+          nullable: true
         updated_at:
           type: string
           format: date-time
@@ -2981,12 +3024,18 @@ components:
           $ref: '#/components/schemas/MeterReference'
         meter_start:
           type: number
+          default: null
+          nullable: true
         meter_end:
           type: number
+          default: null
+          nullable: true
         meter_measurement_unit:
           $ref: '#/components/schemas/MeasurementUnitReference'
         meter_factor:
           type: number
+          default: null
+          nullable: true
         tank_opening_oil:
           type: number
           default: null
@@ -3009,22 +3058,32 @@ components:
           - $ref: '#/components/schemas/MeasurementUnitReference'
         volume:
           type: number
+          default: null
+          nullable: true
         volume_measurement_unit:
           $ref: '#/components/schemas/MeasurementUnitReference'
         load_volume:
           type: number
+          default: null
+          nullable: true
         load_volume_measurement_unit:
           $ref: '#/components/schemas/MeasurementUnitReference'
         product_volume:
           type: number
+          default: null
+          nullable: true
         product_volume_measurement_unit:
           $ref: '#/components/schemas/MeasurementUnitReference'
         density:
           type: number
+          default: null
+          nullable: true
         density_measurement_unit:
           $ref: '#/components/schemas/MeasurementUnitReference'
         bsw:
           type: number
+          default: null
+          nullable: true
         bsw_measurement_unit:
           $ref: '#/components/schemas/MeasurementUnitReference'
         solids:
@@ -3071,20 +3130,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CodeReference'
-      required:
-      - bill_of_laiden
-      - bsw
-      - density
-      - end
-      - external_id
-      - load_volume
-      - meter_end
-      - meter_factor
-      - meter_start
-      - product_volume
-      - production_date
-      - start
-      - volume
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/TruckTicketErrorReference'
     Volumes_TankTicket:
       type: object
       properties:
@@ -3096,12 +3145,13 @@ components:
           maxLength: 255
         status:
           $ref: '#/components/schemas/TicketStatusReference'
+        organization: {}
         commercial_facility:
           $ref: '#/components/schemas/CommercialFacilityReference'
         commercial_entity:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         facility_operator:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         battery:
           nullable: true
           allOf:
@@ -3222,6 +3272,7 @@ components:
       - meter_end
       - meter_factor
       - meter_start
+      - organization
       - product_volume
       - production_date
       - start
@@ -3237,12 +3288,13 @@ components:
           maxLength: 255
         status:
           $ref: '#/components/schemas/TicketStatusReference'
+        organization: {}
         commercial_facility:
           $ref: '#/components/schemas/CommercialFacilityReference'
         commercial_entity:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         facility_operator:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         battery:
           nullable: true
           allOf:
@@ -3363,6 +3415,7 @@ components:
       - meter_end
       - meter_factor
       - meter_start
+      - organization
       - product_volume
       - production_date
       - start
@@ -3399,7 +3452,7 @@ components:
           type: string
           maxLength: 255
         organization:
-          $ref: '#/components/schemas/OrganizationReference2'
+          $ref: '#/components/schemas/OrganizationReference1'
         first_name:
           type: string
           maxLength: 255
@@ -3593,7 +3646,7 @@ components:
           type: string
           maxLength: 255
         organization:
-          $ref: '#/components/schemas/OrganizationReference1'
+          $ref: '#/components/schemas/OrganizationReference2'
         url:
           type: string
           default: null
@@ -3708,7 +3761,7 @@ components:
           type: string
           format: date
         operator:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -3723,7 +3776,7 @@ components:
           type: string
           format: date
         licensee:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -3816,7 +3869,7 @@ components:
           type: string
           readOnly: true
         operator:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         type:
           $ref: '#/components/schemas/RailLineTypeReference'
         category:
@@ -3934,7 +3987,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -3951,7 +4004,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -4053,7 +4106,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -4070,7 +4123,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -4172,7 +4225,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -4189,7 +4242,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -4291,7 +4344,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -4308,7 +4361,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -4410,7 +4463,7 @@ components:
         operator:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         operational_status:
           type: string
           enum:
@@ -4427,7 +4480,7 @@ components:
         licensee:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/EntityReference2'
+          - $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -4527,7 +4580,7 @@ components:
           - S
           maxLength: 255
         licensee:
-          $ref: '#/components/schemas/EntityReference2'
+          $ref: '#/components/schemas/EntityReference1'
         license_status:
           type: string
           default: null
@@ -4638,25 +4691,42 @@ components:
           readOnly: true
         external_id:
           type: string
+          default: null
           maxLength: 255
+          nullable: true
         status:
+          readOnly: true
           type: string
           maxLength: 255
+        organization:
+          default: null
+          readOnly: true
+          nullable: true
         bill_of_laiden:
           type: string
+          default: null
           maxLength: 255
+          nullable: true
         rack_ticket:
           type: string
           default: null
           maxLength: 255
           nullable: true
-        carrier: {}
+        carrier:
+          default: null
+          nullable: true
         driver:
           default: null
           nullable: true
-        pickup_commercial_facility: {}
-        pickup_commercial_entity: {}
-        pickup_facility_operator: {}
+        pickup_commercial_facility:
+          default: null
+          nullable: true
+        pickup_commercial_entity:
+          default: null
+          nullable: true
+        pickup_facility_operator:
+          default: null
+          nullable: true
         pickup_battery:
           default: null
           nullable: true
@@ -4678,10 +4748,18 @@ components:
         pickup_resource:
           default: null
           nullable: true
-        pickup_well: {}
-        delivery_commercial_facility: {}
-        delivery_commercial_entity: {}
-        delivery_facility_operator: {}
+        pickup_well:
+          default: null
+          nullable: true
+        delivery_commercial_facility:
+          default: null
+          nullable: true
+        delivery_commercial_entity:
+          default: null
+          nullable: true
+        delivery_facility_operator:
+          default: null
+          nullable: true
         delivery_battery:
           default: null
           nullable: true
@@ -4706,26 +4784,44 @@ components:
         production_date:
           type: string
           format: date
+          default: null
+          nullable: true
         start:
           type: string
           format: date-time
+          default: null
+          nullable: true
         end:
           type: string
           format: date-time
+          default: null
+          nullable: true
         updated_at:
           type: string
           format: date-time
+          readOnly: true
         created_at:
           type: string
           format: date-time
-        meter: {}
+          readOnly: true
+        meter:
+          default: null
+          nullable: true
         meter_start:
           type: number
+          default: null
+          nullable: true
         meter_end:
           type: number
-        meter_measurement_unit: {}
+          default: null
+          nullable: true
+        meter_measurement_unit:
+          default: null
+          nullable: true
         meter_factor:
           type: number
+          default: null
+          nullable: true
         tank_opening_oil:
           type: number
           default: null
@@ -4747,19 +4843,39 @@ components:
           nullable: true
         volume:
           type: number
-        volume_measurement_unit: {}
+          default: null
+          nullable: true
+        volume_measurement_unit:
+          default: null
+          nullable: true
         load_volume:
           type: number
-        load_volume_measurement_unit: {}
+          default: null
+          nullable: true
+        load_volume_measurement_unit:
+          default: null
+          nullable: true
         product_volume:
           type: number
-        product_volume_measurement_unit: {}
+          default: null
+          nullable: true
+        product_volume_measurement_unit:
+          default: null
+          nullable: true
         density:
           type: number
-        density_measurement_unit: {}
+          default: null
+          nullable: true
+        density_measurement_unit:
+          default: null
+          nullable: true
         bsw:
           type: number
-        bsw_measurement_unit: {}
+          default: null
+          nullable: true
+        bsw_measurement_unit:
+          default: null
+          nullable: true
         solids:
           type: number
           default: null
@@ -4795,35 +4911,38 @@ components:
         temperature_measurement_unit:
           default: null
           nullable: true
+    Volumes_ReferenceTruckTicketError:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        ticket: {}
+        field_name:
+          type: string
+          maxLength: 255
+        error_message:
+          type: string
+        error_type:
+          type: string
+          maxLength: 255
+        created_at:
+          type: string
+          format: date-time
+        resolved_at:
+          type: string
+          format: date-time
+          default: null
+          nullable: true
+        resolved_by:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/UserReference'
       required:
-      - bill_of_laiden
-      - bsw
-      - bsw_measurement_unit
-      - carrier
-      - delivery_commercial_entity
-      - delivery_commercial_facility
-      - delivery_facility_operator
-      - density
-      - density_measurement_unit
-      - end
-      - external_id
-      - load_volume
-      - load_volume_measurement_unit
-      - meter
-      - meter_end
-      - meter_factor
-      - meter_measurement_unit
-      - meter_start
-      - pickup_commercial_entity
-      - pickup_commercial_facility
-      - pickup_facility_operator
-      - pickup_well
-      - product_volume
-      - product_volume_measurement_unit
-      - production_date
-      - start
-      - volume
-      - volume_measurement_unit
+      - error_message
+      - error_type
+      - field_name
+      - ticket
     Volumes_ReferenceTankTicket:
       type: object
       properties:
@@ -4836,6 +4955,7 @@ components:
         status:
           type: string
           maxLength: 255
+        organization: {}
         commercial_facility: {}
         commercial_entity: {}
         facility_operator: {}
@@ -4942,6 +5062,7 @@ components:
       - meter_factor
       - meter_measurement_unit
       - meter_start
+      - organization
       - product_volume
       - product_volume_measurement_unit
       - production_date
@@ -4960,6 +5081,7 @@ components:
         status:
           type: string
           maxLength: 255
+        organization: {}
         commercial_facility: {}
         commercial_entity: {}
         facility_operator: {}
@@ -5069,6 +5191,7 @@ components:
       - meter_factor
       - meter_measurement_unit
       - meter_start
+      - organization
       - product_volume
       - product_volume_measurement_unit
       - production_date
@@ -7068,6 +7191,38 @@ paths:
                         type: integer
                       per_page:
                         type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      summary: Create Truck Ticket
+      description: Create a new truck ticket
+      operationId: create_truck_ticket
+      tags:
+      - Volumes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Volumes_ReferenceTruckTicket'
+      responses:
+        '201':
+          description: Truck ticket created (may include validation errors.)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Volumes_ReferenceTruckTicket'
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Volumes_ReferenceTruckTicketError'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
