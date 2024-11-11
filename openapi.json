@@ -10609,6 +10609,70 @@
             "$ref": "#/components/responses/InternalServerError"
           }
         }
+      },
+      "patch": {
+        "summary": "Update Truck Ticket",
+        "description": "Update an existing truck ticket by ID.",
+        "operationId": "update_truck_ticket",
+        "tags": [
+          "Volumes"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The truck ticket ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Volumes_ReferenceTruckTicket"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated truck ticket.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Volumes_ReferenceTruckTicket"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Volumes_ReferenceTruckTicketError"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Truck ticket not found."
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
       }
     },
     "/tickets/tank": {
