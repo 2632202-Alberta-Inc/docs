@@ -10201,6 +10201,250 @@
             },
             "required": false,
             "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Filter by ticket status name"
+          },
+          {
+            "in": "query",
+            "name": "production_date",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false,
+            "description": "Filter by production date (YYYY-MM-DD)"
+          },
+          {
+            "in": "query",
+            "name": "carrier_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by carrier ID"
+          },
+          {
+            "in": "query",
+            "name": "bill_of_laiden",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Filter by bill of laiden"
+          },
+          {
+            "in": "query",
+            "name": "rack_ticket",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Filter by rack ticket"
+          },
+          {
+            "in": "query",
+            "name": "pickup_commercial_facility_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by pickup commercial facility ID"
+          },
+          {
+            "in": "query",
+            "name": "pickup_commercial_entity_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by pickup commercial entity ID"
+          },
+          {
+            "in": "query",
+            "name": "pickup_facility_operator_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by pickup facility operator ID"
+          },
+          {
+            "in": "query",
+            "name": "pickup_battery_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by pickup battery ID"
+          },
+          {
+            "in": "query",
+            "name": "pickup_terminal_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by pickup terminal ID"
+          },
+          {
+            "in": "query",
+            "name": "pickup_plant_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by pickup plant ID"
+          },
+          {
+            "in": "query",
+            "name": "pickup_station_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by pickup station ID"
+          },
+          {
+            "in": "query",
+            "name": "pickup_system_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by pickup system ID"
+          },
+          {
+            "in": "query",
+            "name": "pickup_pipeline_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by pickup pipeline ID"
+          },
+          {
+            "in": "query",
+            "name": "pickup_resource_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by pickup resource ID"
+          },
+          {
+            "in": "query",
+            "name": "pickup_well_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by pickup well ID"
+          },
+          {
+            "in": "query",
+            "name": "delivery_commercial_facility_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by delivery commercial facility ID"
+          },
+          {
+            "in": "query",
+            "name": "delivery_commercial_entity_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by delivery commercial entity ID"
+          },
+          {
+            "in": "query",
+            "name": "delivery_facility_operator_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by delivery facility operator ID"
+          },
+          {
+            "in": "query",
+            "name": "delivery_battery_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by delivery battery ID"
+          },
+          {
+            "in": "query",
+            "name": "delivery_terminal_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by delivery terminal ID"
+          },
+          {
+            "in": "query",
+            "name": "delivery_plant_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by delivery plant ID"
+          },
+          {
+            "in": "query",
+            "name": "delivery_station_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by delivery station ID"
+          },
+          {
+            "in": "query",
+            "name": "delivery_system_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by delivery system ID"
+          },
+          {
+            "in": "query",
+            "name": "delivery_pipeline_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by delivery pipeline ID"
+          },
+          {
+            "in": "query",
+            "name": "delivery_resource_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by delivery resource ID"
+          },
+          {
+            "in": "query",
+            "name": "meter_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by meter ID"
           }
         ],
         "responses": {
@@ -10238,6 +10482,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
