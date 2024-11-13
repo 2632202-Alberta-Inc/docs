@@ -5069,6 +5069,38 @@ components:
       - start
       - volume
       - volume_measurement_unit
+    Volumes_ReferenceTankTicketError:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        ticket: {}
+        field_name:
+          type: string
+          maxLength: 255
+        error_message:
+          type: string
+        error_type:
+          type: string
+          maxLength: 255
+        created_at:
+          type: string
+          format: date-time
+        resolved_at:
+          type: string
+          format: date-time
+          default: null
+          nullable: true
+        resolved_by:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/UserReference'
+      required:
+      - error_message
+      - error_type
+      - field_name
+      - ticket
     Volumes_ReferenceMeterTicket:
       type: object
       properties:
@@ -5198,6 +5230,38 @@ components:
       - start
       - volume
       - volume_measurement_unit
+    Volumes_ReferenceMeterTicketError:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        ticket: {}
+        field_name:
+          type: string
+          maxLength: 255
+        error_message:
+          type: string
+        error_type:
+          type: string
+          maxLength: 255
+        created_at:
+          type: string
+          format: date-time
+        resolved_at:
+          type: string
+          format: date-time
+          default: null
+          nullable: true
+        resolved_by:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/UserReference'
+      required:
+      - error_message
+      - error_type
+      - field_name
+      - ticket
 paths:
   /facility-types:
     get:
@@ -7491,6 +7555,79 @@ paths:
           minimum: 1
         required: false
         description: Page number for pagination
+      - in: query
+        name: status
+        schema:
+          type: string
+        required: false
+        description: Filter by ticket status name
+      - in: query
+        name: production_date
+        schema:
+          type: string
+          format: date
+        required: false
+        description: Filter by production date (YYYY-MM-DD)
+      - in: query
+        name: commercial_facility_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by commercial facility ID
+      - in: query
+        name: commercial_entity_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by commercial entity ID
+      - in: query
+        name: facility_operator_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by facility operator ID
+      - in: query
+        name: battery_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by battery ID
+      - in: query
+        name: terminal_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by terminal ID
+      - in: query
+        name: plant_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by plant ID
+      - in: query
+        name: station_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by station ID
+      - in: query
+        name: system_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by system ID
+      - in: query
+        name: resource_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by resource ID
+      - in: query
+        name: meter_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by meter ID
       responses:
         '200':
           description: A paginated list of tank tickets.
@@ -7514,6 +7651,40 @@ paths:
                         type: integer
                       per_page:
                         type: integer
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      summary: Create Tank Ticket
+      description: Create a new tank ticket
+      operationId: create_tank_ticket
+      tags:
+      - Volumes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Volumes_ReferenceTankTicket'
+      responses:
+        '201':
+          description: Tank ticket created (may include validation errors.)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Volumes_ReferenceTankTicket'
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Volumes_ReferenceTankTicketError'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -7560,6 +7731,47 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '500':
           $ref: '#/components/responses/InternalServerError'
+    patch:
+      summary: Update Tank Ticket
+      description: Update an existing tank ticket by ID.
+      operationId: update_tank_ticket
+      tags:
+      - Volumes
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The tank ticket ID.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Volumes_ReferenceTankTicket'
+      responses:
+        '200':
+          description: Updated tank ticket.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Volumes_ReferenceTankTicket'
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Volumes_ReferenceTankTicketError'
+        '404':
+          description: Tank ticket not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /tickets/meter:
     get:
       summary: List Meter Tickets
@@ -7576,6 +7788,79 @@ paths:
           minimum: 1
         required: false
         description: Page number for pagination
+      - in: query
+        name: status
+        schema:
+          type: string
+        required: false
+        description: Filter by ticket status name
+      - in: query
+        name: production_date
+        schema:
+          type: string
+          format: date
+        required: false
+        description: Filter by production date (YYYY-MM-DD)
+      - in: query
+        name: commercial_facility_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by commercial facility ID
+      - in: query
+        name: commercial_entity_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by commercial entity ID
+      - in: query
+        name: facility_operator_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by facility operator ID
+      - in: query
+        name: battery_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by battery ID
+      - in: query
+        name: terminal_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by terminal ID
+      - in: query
+        name: plant_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by plant ID
+      - in: query
+        name: station_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by station ID
+      - in: query
+        name: system_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by system ID
+      - in: query
+        name: resource_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by resource ID
+      - in: query
+        name: meter_id
+        schema:
+          type: integer
+        required: false
+        description: Filter by meter ID
       responses:
         '200':
           description: A paginated list of meter tickets.
@@ -7599,6 +7884,40 @@ paths:
                         type: integer
                       per_page:
                         type: integer
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      summary: Create Meter Ticket
+      description: Create a new meter ticket
+      operationId: create_meter_ticket
+      tags:
+      - Volumes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Volumes_ReferenceMeterTicket'
+      responses:
+        '201':
+          description: Meter ticket created (may include validation errors.)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Volumes_ReferenceMeterTicket'
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Volumes_ReferenceMeterTicketError'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -7639,6 +7958,47 @@ paths:
                   error:
                     type: string
                     example: Meter ticket not found.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    patch:
+      summary: Update Meter Ticket
+      description: Update an existing meter ticket by ID.
+      operationId: update_meter_ticket
+      tags:
+      - Volumes
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The meter ticket ID.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Volumes_ReferenceMeterTicket'
+      responses:
+        '200':
+          description: Updated meter ticket.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Volumes_ReferenceMeterTicket'
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Volumes_ReferenceMeterTicketError'
+        '404':
+          description: Meter ticket not found.
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
