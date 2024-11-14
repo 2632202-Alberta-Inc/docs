@@ -820,6 +820,125 @@
           "short_code"
         ]
       },
+      "ProductReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "product_category": {
+            "type": "integer"
+          },
+          "measurement_units": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "ProductUnitConversion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product": {},
+          "to_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit1"
+          },
+          "conversion_factor": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "conversion_factor",
+          "product"
+        ]
+      },
+      "MeasurementUnit1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "abbreviation": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "from_conversions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductUnitConversion"
+            }
+          },
+          "to_conversions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductUnitConversion"
+            }
+          }
+        },
+        "required": [
+          "abbreviation",
+          "name"
+        ]
+      },
+      "Product_MeasurementUnit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "abbreviation": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProductReference"
+          },
+          "from_conversions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductUnitConversion"
+            }
+          },
+          "to_conversions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductUnitConversion"
+            }
+          }
+        },
+        "required": [
+          "abbreviation",
+          "name"
+        ]
+      },
       "CurrencyConversion": {
         "type": "object",
         "properties": {
@@ -1487,36 +1606,6 @@
             "$ref": "#/components/schemas/CarrierReference"
           }
         }
-      },
-      "ProductReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "product_category": {
-            "type": "integer"
-          },
-          "measurement_units": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
       },
       "RailLineProduct": {
         "type": "object",
@@ -2486,6 +2575,168 @@
         ]
       },
       "Facility_System": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "jurisdiction": {
+            "type": "string",
+            "enum": [
+              "A",
+              "S"
+            ],
+            "maxLength": 255
+          },
+          "type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
+          },
+          "sub_type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference1"
+              }
+            ]
+          },
+          "operational_status": {
+            "type": "string",
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
+            "maxLength": 255
+          },
+          "operator_start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "licensee": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference1"
+              }
+            ]
+          },
+          "license_status": {
+            "type": "string",
+            "default": null,
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_type": {
+            "type": "string",
+            "default": null,
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_number": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_issued": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          },
+          "regulator_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": [
+              "P"
+            ],
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "jurisdiction",
+          "lsd",
+          "meridian",
+          "name",
+          "operational_status",
+          "operator_start_date",
+          "range",
+          "regulator_id",
+          "regulator_system",
+          "section",
+          "start_date",
+          "township"
+        ]
+      },
+      "Facility_Resource": {
         "type": "object",
         "properties": {
           "id": {
@@ -6322,6 +6573,168 @@
           "township"
         ]
       },
+      "Facility_ReferenceResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "integer"
+          },
+          "section": {
+            "type": "integer"
+          },
+          "township": {
+            "type": "integer"
+          },
+          "range": {
+            "type": "integer"
+          },
+          "meridian": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "jurisdiction": {
+            "type": "string",
+            "enum": [
+              "A",
+              "S"
+            ],
+            "maxLength": 255
+          },
+          "type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityTypeReference"
+              }
+            ]
+          },
+          "sub_type": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilitySubTypeReference"
+              }
+            ]
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "operator": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference1"
+              }
+            ]
+          },
+          "operational_status": {
+            "type": "string",
+            "enum": [
+              "A",
+              "C",
+              "M",
+              "N",
+              "R",
+              "S"
+            ],
+            "maxLength": 255
+          },
+          "operator_start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "licensee": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference1"
+              }
+            ]
+          },
+          "license_status": {
+            "type": "string",
+            "default": null,
+            "enum": [
+              "A",
+              "C",
+              "D",
+              "I",
+              "R",
+              "S",
+              null
+            ],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_type": {
+            "type": "string",
+            "default": null,
+            "enum": [
+              "W",
+              "F",
+              null
+            ],
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_number": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "license_issued": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          },
+          "regulator_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": [
+              "P"
+            ],
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "jurisdiction",
+          "lsd",
+          "meridian",
+          "name",
+          "operational_status",
+          "operator_start_date",
+          "range",
+          "regulator_id",
+          "regulator_system",
+          "section",
+          "start_date",
+          "township"
+        ]
+      },
       "Wells_ReferenceWell": {
         "type": "object",
         "properties": {
@@ -6856,7 +7269,7 @@
           "ticket"
         ]
       },
-      "Volumes_ReferenceTruckTicketRequest": {
+      "Volumes_RequestTruckTicket": {
         "type": "object",
         "properties": {
           "id": {
@@ -11164,7 +11577,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Volumes_ReferenceTruckTicketRequest"
+                "$ref": "#/components/schemas/Volumes_RequestTruckTicket"
               }
             }
           }
