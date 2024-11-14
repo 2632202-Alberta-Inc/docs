@@ -7474,61 +7474,145 @@
               "type": "integer"
             }
           },
-          "delivery_battery": {
-            "type": "integer",
-            "nullable": true
+          "delivery_facility": {
+            "type": "object",
+            "properties": {
+              "delivery_battery": {
+                "type": "integer",
+                "nullable": true
+              },
+              "delivery_terminal": {
+                "type": "integer",
+                "nullable": true
+              },
+              "delivery_plant": {
+                "type": "integer",
+                "nullable": true
+              },
+              "delivery_station": {
+                "type": "integer",
+                "nullable": true
+              },
+              "delivery_system": {
+                "type": "integer",
+                "nullable": true
+              },
+              "delivery_pipeline": {
+                "type": "integer",
+                "nullable": true
+              },
+              "delivery_resource": {
+                "type": "integer",
+                "nullable": true
+              }
+            },
+            "oneOf": [
+              {
+                "required": [
+                  "delivery_battery"
+                ]
+              },
+              {
+                "required": [
+                  "delivery_terminal"
+                ]
+              },
+              {
+                "required": [
+                  "delivery_plant"
+                ]
+              },
+              {
+                "required": [
+                  "delivery_station"
+                ]
+              },
+              {
+                "required": [
+                  "delivery_system"
+                ]
+              },
+              {
+                "required": [
+                  "delivery_pipeline"
+                ]
+              },
+              {
+                "required": [
+                  "delivery_resource"
+                ]
+              }
+            ]
           },
-          "delivery_terminal": {
-            "type": "integer",
-            "nullable": true
-          },
-          "delivery_plant": {
-            "type": "integer",
-            "nullable": true
-          },
-          "delivery_station": {
-            "type": "integer",
-            "nullable": true
-          },
-          "delivery_system": {
-            "type": "integer",
-            "nullable": true
-          },
-          "delivery_pipeline": {
-            "type": "integer",
-            "nullable": true
-          },
-          "delivery_resource": {
-            "type": "integer",
-            "nullable": true
-          },
-          "pickup_battery": {
-            "type": "integer",
-            "nullable": true
-          },
-          "pickup_terminal": {
-            "type": "integer",
-            "nullable": true
-          },
-          "pickup_plant": {
-            "type": "integer",
-            "nullable": true
-          },
-          "pickup_station": {
-            "type": "integer",
-            "nullable": true
-          },
-          "pickup_system": {
-            "type": "integer",
-            "nullable": true
-          },
-          "pickup_pipeline": {
-            "type": "integer",
-            "nullable": true
-          },
-          "pickup_resource": {
-            "type": "integer",
-            "nullable": true
+          "pickup_facility": {
+            "type": "object",
+            "properties": {
+              "pickup_battery": {
+                "type": "integer",
+                "nullable": true
+              },
+              "pickup_terminal": {
+                "type": "integer",
+                "nullable": true
+              },
+              "pickup_plant": {
+                "type": "integer",
+                "nullable": true
+              },
+              "pickup_station": {
+                "type": "integer",
+                "nullable": true
+              },
+              "pickup_system": {
+                "type": "integer",
+                "nullable": true
+              },
+              "pickup_pipeline": {
+                "type": "integer",
+                "nullable": true
+              },
+              "pickup_resource": {
+                "type": "integer",
+                "nullable": true
+              }
+            },
+            "oneOf": [
+              {
+                "required": [
+                  "pickup_battery"
+                ]
+              },
+              {
+                "required": [
+                  "pickup_terminal"
+                ]
+              },
+              {
+                "required": [
+                  "pickup_plant"
+                ]
+              },
+              {
+                "required": [
+                  "pickup_station"
+                ]
+              },
+              {
+                "required": [
+                  "pickup_system"
+                ]
+              },
+              {
+                "required": [
+                  "pickup_pipeline"
+                ]
+              },
+              {
+                "required": [
+                  "pickup_resource"
+                ]
+              }
+            ]
           }
         },
         "required": [
@@ -7552,81 +7636,9 @@
           "pickup_well",
           "product_volume",
           "start",
-          "volume"
-        ],
-        "oneOf": [
-          {
-            "required": [
-              "delivery_battery"
-            ]
-          },
-          {
-            "required": [
-              "delivery_terminal"
-            ]
-          },
-          {
-            "required": [
-              "delivery_plant"
-            ]
-          },
-          {
-            "required": [
-              "delivery_station"
-            ]
-          },
-          {
-            "required": [
-              "delivery_system"
-            ]
-          },
-          {
-            "required": [
-              "delivery_pipeline"
-            ]
-          },
-          {
-            "required": [
-              "delivery_resource"
-            ]
-          }
-        ],
-        "anyOf": [
-          {
-            "required": [
-              "pickup_battery"
-            ]
-          },
-          {
-            "required": [
-              "pickup_terminal"
-            ]
-          },
-          {
-            "required": [
-              "pickup_plant"
-            ]
-          },
-          {
-            "required": [
-              "pickup_station"
-            ]
-          },
-          {
-            "required": [
-              "pickup_system"
-            ]
-          },
-          {
-            "required": [
-              "pickup_pipeline"
-            ]
-          },
-          {
-            "required": [
-              "pickup_resource"
-            ]
-          }
+          "volume",
+          "delivery_facility",
+          "pickup_facility"
         ]
       },
       "Volumes_ReferenceTankTicket": {
