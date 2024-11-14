@@ -6856,6 +6856,376 @@
           "ticket"
         ]
       },
+      "Volumes_ReferenceTruckTicketRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "external_id": {
+            "type": "string"
+          },
+          "status": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TicketStatusReference"
+              }
+            ]
+          },
+          "organization": {
+            "default": null,
+            "nullable": true
+          },
+          "bill_of_laiden": {
+            "type": "string"
+          },
+          "rack_ticket": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "carrier": {
+            "$ref": "#/components/schemas/CarrierReference1"
+          },
+          "driver": {
+            "$ref": "#/components/schemas/UserReference"
+          },
+          "pickup_commercial_facility": {
+            "$ref": "#/components/schemas/CommercialFacilityReference"
+          },
+          "pickup_commercial_entity": {
+            "$ref": "#/components/schemas/EntityReference1"
+          },
+          "pickup_facility_operator": {
+            "$ref": "#/components/schemas/EntityReference1"
+          },
+          "pickup_battery": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BatteryReference"
+              }
+            ]
+          },
+          "pickup_terminal": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TerminalReference"
+              }
+            ]
+          },
+          "pickup_plant": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlantReference"
+              }
+            ]
+          },
+          "pickup_station": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StationReference"
+              }
+            ]
+          },
+          "pickup_system": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SystemReference"
+              }
+            ]
+          },
+          "pickup_pipeline": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PipelineReference"
+              }
+            ]
+          },
+          "pickup_resource": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourceReference1"
+              }
+            ]
+          },
+          "pickup_well": {
+            "$ref": "#/components/schemas/WellReference"
+          },
+          "delivery_commercial_facility": {
+            "$ref": "#/components/schemas/CommercialFacilityReference"
+          },
+          "delivery_commercial_entity": {
+            "$ref": "#/components/schemas/EntityReference1"
+          },
+          "delivery_facility_operator": {
+            "$ref": "#/components/schemas/EntityReference1"
+          },
+          "delivery_battery": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BatteryReference"
+              }
+            ]
+          },
+          "delivery_terminal": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TerminalReference"
+              }
+            ]
+          },
+          "delivery_plant": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlantReference"
+              }
+            ]
+          },
+          "delivery_station": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StationReference"
+              }
+            ]
+          },
+          "delivery_system": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SystemReference"
+              }
+            ]
+          },
+          "delivery_pipeline": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PipelineReference"
+              }
+            ]
+          },
+          "delivery_resource": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourceReference1"
+              }
+            ]
+          },
+          "production_date": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "meter": {
+            "$ref": "#/components/schemas/MeterReference"
+          },
+          "meter_start": {
+            "type": "number"
+          },
+          "meter_end": {
+            "type": "number"
+          },
+          "meter_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "meter_factor": {
+            "type": "number"
+          },
+          "tank_opening_oil": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "tank_opening_water": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "tank_ending_oil": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "tank_ending_water": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "tank_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "load_volume": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "load_volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "product_volume": {
+            "type": "number"
+          },
+          "product_volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "density": {
+            "type": "number"
+          },
+          "density_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "bsw": {
+            "type": "number"
+          },
+          "bsw_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "solids": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "solids_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "saltwater": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "saltwater_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "sulfur": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "sulfur_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "vapor_pressure": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "vapor_pressure_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "temperature": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "temperature_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference"
+              }
+            ]
+          },
+          "codes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeReference"
+            }
+          },
+          "errors": {
+            "readOnly": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TruckTicketErrorReference"
+            }
+          }
+        },
+        "required": [
+          "bill_of_laiden",
+          "bsw",
+          "carrier",
+          "codes",
+          "delivery_commercial_entity",
+          "delivery_commercial_facility",
+          "delivery_facility_operator",
+          "density",
+          "end",
+          "external_id",
+          "meter",
+          "meter_end",
+          "meter_factor",
+          "meter_start",
+          "pickup_commercial_entity",
+          "pickup_commercial_facility",
+          "pickup_facility_operator",
+          "pickup_well",
+          "product_volume",
+          "start",
+          "volume"
+        ]
+      },
       "Volumes_ReferenceTankTicket": {
         "type": "object",
         "properties": {
@@ -9797,91 +10167,58 @@
         }
       }
     },
-    "/products/categories": {
-      "get": {
-        "summary": "List Categories",
-        "description": "Retrieve a list of product categories.",
-        "operationId": "get_product_categories",
-        "tags": [
-          "Products"
-        ],
-        "responses": {
-          "200": {
-            "description": "A list of product categories.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Product_ReferenceProductCategory"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/products/categories/specifications": {
-      "get": {
-        "summary": "List Category Specs",
-        "description": "Retrieve a list of product category specifications.",
-        "operationId": "get_product_categories_specifications",
-        "tags": [
-          "Products"
-        ],
-        "responses": {
-          "200": {
-            "description": "A list of product category specifications.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Product_ReferenceProductCategorySpecification"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      }
-    },
     "/products": {
       "get": {
         "summary": "List Products",
-        "description": "Retrieve a list of products.",
+        "description": "Retrieve a list of products with pagination and filtering options.",
         "operationId": "get_products",
         "tags": [
           "Products"
         ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "A list of products.",
+            "description": "A paginated list of products.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Product_ReferenceProduct"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Product_ReferenceProduct"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -9902,7 +10239,7 @@
     "/products/{id}": {
       "get": {
         "summary": "Get Product",
-        "description": "Retrieve a single product by ID.",
+        "description": "Retrieve details of a specific product, including its name, category, measurement units and unit conversions.",
         "operationId": "get_product",
         "tags": [
           "Products"
@@ -9924,7 +10261,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Product_Product"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Product_Product"
+                    }
+                  }
                 }
               }
             }
@@ -9939,6 +10281,229 @@
                     "error": {
                       "type": "string",
                       "example": "Product not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/products/categories": {
+      "get": {
+        "summary": "List Categories",
+        "description": "Retrieve a list of product categories with pagination and filtering options.",
+        "operationId": "get_product_categories",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of product categories.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Product_ReferenceProductCategory"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/products/categories/specifications": {
+      "get": {
+        "summary": "List Category Specifications",
+        "description": "Retrieve a list of product category specifications with pagination and filtering options.",
+        "operationId": "get_product_categories_specifications",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of product category specifications.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Product_ReferenceProductCategorySpecification"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/products/measurement-units": {
+      "get": {
+        "summary": "List Measurement Units",
+        "description": "Retrieve a list of measurement units with pagination and filtering options.",
+        "operationId": "get_measurement_units",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by measurement unit name"
+          },
+          {
+            "in": "query",
+            "name": "abbreviation",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by measurement unit abbreviation"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of measurement units.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Product_MeasurementUnit"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
                     }
                   }
                 }
@@ -10599,7 +11164,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Volumes_ReferenceTruckTicket"
+                "$ref": "#/components/schemas/Volumes_ReferenceTruckTicketRequest"
               }
             }
           }
