@@ -7473,48 +7473,6 @@
             "items": {
               "type": "integer"
             }
-          },
-          "delivery_battery": {
-            "type": "integer"
-          },
-          "delivery_terminal": {
-            "type": "integer"
-          },
-          "delivery_plant": {
-            "type": "integer"
-          },
-          "delivery_station": {
-            "type": "integer"
-          },
-          "delivery_system": {
-            "type": "integer"
-          },
-          "delivery_pipeline": {
-            "type": "integer"
-          },
-          "delivery_resource": {
-            "type": "integer"
-          },
-          "pickup_battery": {
-            "type": "integer"
-          },
-          "pickup_terminal": {
-            "type": "integer"
-          },
-          "pickup_plant": {
-            "type": "integer"
-          },
-          "pickup_station": {
-            "type": "integer"
-          },
-          "pickup_system": {
-            "type": "integer"
-          },
-          "pickup_pipeline": {
-            "type": "integer"
-          },
-          "pickup_resource": {
-            "type": "integer"
           }
         },
         "required": [
