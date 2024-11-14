@@ -5243,6 +5243,108 @@ components:
       - error_type
       - field_name
       - ticket
+    TicketStatusReference1:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    OrganizationReference3:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    CarrierReference2:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    UserReference1:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    CommercialFacilityReference1:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    EntityReference3:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    BatteryReference2:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    TerminalReference2:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    PlantReference2:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    StationReference2:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    SystemReference2:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    PipelineReference2:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    ResourceReference2:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    WellReference1:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    MeterReference1:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    MeasurementUnitReference1:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+    CodeReference1:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
     Volumes_RequestTruckTicket:
       type: object
       properties:
@@ -5254,10 +5356,11 @@ components:
         status:
           readOnly: true
           allOf:
-          - $ref: '#/components/schemas/TicketStatusReference'
+          - $ref: '#/components/schemas/TicketStatusReference1'
         organization:
-          default: null
-          nullable: true
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/OrganizationReference3'
         bill_of_laiden:
           type: string
         rack_ticket:
@@ -5266,79 +5369,79 @@ components:
           maxLength: 255
           nullable: true
         carrier:
-          $ref: '#/components/schemas/CarrierReference1'
+          $ref: '#/components/schemas/CarrierReference2'
         driver:
-          $ref: '#/components/schemas/UserReference'
+          $ref: '#/components/schemas/UserReference1'
         pickup_commercial_facility:
-          $ref: '#/components/schemas/CommercialFacilityReference'
+          $ref: '#/components/schemas/CommercialFacilityReference1'
         pickup_commercial_entity:
-          $ref: '#/components/schemas/EntityReference1'
+          $ref: '#/components/schemas/EntityReference3'
         pickup_facility_operator:
-          $ref: '#/components/schemas/EntityReference1'
+          $ref: '#/components/schemas/EntityReference3'
         pickup_battery:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/BatteryReference'
+          - $ref: '#/components/schemas/BatteryReference2'
         pickup_terminal:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/TerminalReference'
+          - $ref: '#/components/schemas/TerminalReference2'
         pickup_plant:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/PlantReference'
+          - $ref: '#/components/schemas/PlantReference2'
         pickup_station:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/StationReference'
+          - $ref: '#/components/schemas/StationReference2'
         pickup_system:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/SystemReference'
+          - $ref: '#/components/schemas/SystemReference2'
         pickup_pipeline:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/PipelineReference'
+          - $ref: '#/components/schemas/PipelineReference2'
         pickup_resource:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/ResourceReference1'
+          - $ref: '#/components/schemas/ResourceReference2'
         pickup_well:
-          $ref: '#/components/schemas/WellReference'
+          $ref: '#/components/schemas/WellReference1'
         delivery_commercial_facility:
-          $ref: '#/components/schemas/CommercialFacilityReference'
+          $ref: '#/components/schemas/CommercialFacilityReference1'
         delivery_commercial_entity:
-          $ref: '#/components/schemas/EntityReference1'
+          $ref: '#/components/schemas/EntityReference3'
         delivery_facility_operator:
-          $ref: '#/components/schemas/EntityReference1'
+          $ref: '#/components/schemas/EntityReference3'
         delivery_battery:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/BatteryReference'
+          - $ref: '#/components/schemas/BatteryReference2'
         delivery_terminal:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/TerminalReference'
+          - $ref: '#/components/schemas/TerminalReference2'
         delivery_plant:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/PlantReference'
+          - $ref: '#/components/schemas/PlantReference2'
         delivery_station:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/StationReference'
+          - $ref: '#/components/schemas/StationReference2'
         delivery_system:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/SystemReference'
+          - $ref: '#/components/schemas/SystemReference2'
         delivery_pipeline:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/PipelineReference'
+          - $ref: '#/components/schemas/PipelineReference2'
         delivery_resource:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/ResourceReference1'
+          - $ref: '#/components/schemas/ResourceReference2'
         production_date:
           type: string
           format: date
@@ -5357,13 +5460,13 @@ components:
           type: string
           format: date-time
         meter:
-          $ref: '#/components/schemas/MeterReference'
+          $ref: '#/components/schemas/MeterReference1'
         meter_start:
           type: number
         meter_end:
           type: number
         meter_measurement_unit:
-          $ref: '#/components/schemas/MeasurementUnitReference'
+          $ref: '#/components/schemas/MeasurementUnitReference1'
         meter_factor:
           type: number
         tank_opening_oil:
@@ -5385,29 +5488,29 @@ components:
         tank_measurement_unit:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/MeasurementUnitReference'
+          - $ref: '#/components/schemas/MeasurementUnitReference1'
         volume:
           type: number
         volume_measurement_unit:
-          $ref: '#/components/schemas/MeasurementUnitReference'
+          $ref: '#/components/schemas/MeasurementUnitReference1'
         load_volume:
           type: number
           default: null
           nullable: true
         load_volume_measurement_unit:
-          $ref: '#/components/schemas/MeasurementUnitReference'
+          $ref: '#/components/schemas/MeasurementUnitReference1'
         product_volume:
           type: number
         product_volume_measurement_unit:
-          $ref: '#/components/schemas/MeasurementUnitReference'
+          $ref: '#/components/schemas/MeasurementUnitReference1'
         density:
           type: number
         density_measurement_unit:
-          $ref: '#/components/schemas/MeasurementUnitReference'
+          $ref: '#/components/schemas/MeasurementUnitReference1'
         bsw:
           type: number
         bsw_measurement_unit:
-          $ref: '#/components/schemas/MeasurementUnitReference'
+          $ref: '#/components/schemas/MeasurementUnitReference1'
         solids:
           type: number
           default: null
@@ -5415,7 +5518,7 @@ components:
         solids_measurement_unit:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/MeasurementUnitReference'
+          - $ref: '#/components/schemas/MeasurementUnitReference1'
         saltwater:
           type: number
           default: null
@@ -5423,7 +5526,7 @@ components:
         saltwater_measurement_unit:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/MeasurementUnitReference'
+          - $ref: '#/components/schemas/MeasurementUnitReference1'
         sulfur:
           type: number
           default: null
@@ -5431,7 +5534,7 @@ components:
         sulfur_measurement_unit:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/MeasurementUnitReference'
+          - $ref: '#/components/schemas/MeasurementUnitReference1'
         vapor_pressure:
           type: number
           default: null
@@ -5439,7 +5542,7 @@ components:
         vapor_pressure_measurement_unit:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/MeasurementUnitReference'
+          - $ref: '#/components/schemas/MeasurementUnitReference1'
         temperature:
           type: number
           default: null
@@ -5447,11 +5550,11 @@ components:
         temperature_measurement_unit:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/MeasurementUnitReference'
+          - $ref: '#/components/schemas/MeasurementUnitReference1'
         codes:
           type: array
           items:
-            $ref: '#/components/schemas/CodeReference'
+            $ref: '#/components/schemas/CodeReference1'
         errors:
           readOnly: true
           type: array
