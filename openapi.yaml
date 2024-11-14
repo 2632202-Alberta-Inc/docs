@@ -5243,108 +5243,6 @@ components:
       - error_type
       - field_name
       - ticket
-    TicketStatusReference1:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    OrganizationReference3:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    CarrierReference2:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    UserReference1:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    CommercialFacilityReference1:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    EntityReference3:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    BatteryReference2:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    TerminalReference2:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    PlantReference2:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    StationReference2:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    SystemReference2:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    PipelineReference2:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    ResourceReference2:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    WellReference1:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    MeterReference1:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    MeasurementUnitReference1:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-    CodeReference1:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
     Volumes_RequestTruckTicket:
       type: object
       properties:
@@ -5354,13 +5252,11 @@ components:
         external_id:
           type: string
         status:
+          type: integer
           readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/TicketStatusReference1'
         organization:
+          type: integer
           readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/OrganizationReference3'
         bill_of_laiden:
           type: string
         rack_ticket:
@@ -5369,79 +5265,65 @@ components:
           maxLength: 255
           nullable: true
         carrier:
-          $ref: '#/components/schemas/CarrierReference2'
+          type: integer
         driver:
-          $ref: '#/components/schemas/UserReference1'
+          type: integer
         pickup_commercial_facility:
-          $ref: '#/components/schemas/CommercialFacilityReference1'
+          type: integer
         pickup_commercial_entity:
-          $ref: '#/components/schemas/EntityReference3'
+          type: integer
         pickup_facility_operator:
-          $ref: '#/components/schemas/EntityReference3'
+          type: integer
         pickup_battery:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/BatteryReference2'
         pickup_terminal:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/TerminalReference2'
         pickup_plant:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/PlantReference2'
         pickup_station:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/StationReference2'
         pickup_system:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/SystemReference2'
         pickup_pipeline:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/PipelineReference2'
         pickup_resource:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/ResourceReference2'
         pickup_well:
-          $ref: '#/components/schemas/WellReference1'
+          type: integer
         delivery_commercial_facility:
-          $ref: '#/components/schemas/CommercialFacilityReference1'
+          type: integer
         delivery_commercial_entity:
-          $ref: '#/components/schemas/EntityReference3'
+          type: integer
         delivery_facility_operator:
-          $ref: '#/components/schemas/EntityReference3'
+          type: integer
         delivery_battery:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/BatteryReference2'
         delivery_terminal:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/TerminalReference2'
         delivery_plant:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/PlantReference2'
         delivery_station:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/StationReference2'
         delivery_system:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/SystemReference2'
         delivery_pipeline:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/PipelineReference2'
         delivery_resource:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/ResourceReference2'
         production_date:
           type: string
           format: date
@@ -5460,13 +5342,13 @@ components:
           type: string
           format: date-time
         meter:
-          $ref: '#/components/schemas/MeterReference1'
+          type: integer
         meter_start:
           type: number
         meter_end:
           type: number
         meter_measurement_unit:
-          $ref: '#/components/schemas/MeasurementUnitReference1'
+          type: integer
         meter_factor:
           type: number
         tank_opening_oil:
@@ -5486,80 +5368,74 @@ components:
           default: null
           nullable: true
         tank_measurement_unit:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/MeasurementUnitReference1'
         volume:
           type: number
         volume_measurement_unit:
-          $ref: '#/components/schemas/MeasurementUnitReference1'
+          type: integer
         load_volume:
           type: number
           default: null
           nullable: true
         load_volume_measurement_unit:
-          $ref: '#/components/schemas/MeasurementUnitReference1'
+          type: integer
         product_volume:
           type: number
         product_volume_measurement_unit:
-          $ref: '#/components/schemas/MeasurementUnitReference1'
+          type: integer
         density:
           type: number
         density_measurement_unit:
-          $ref: '#/components/schemas/MeasurementUnitReference1'
+          type: integer
         bsw:
           type: number
         bsw_measurement_unit:
-          $ref: '#/components/schemas/MeasurementUnitReference1'
+          type: integer
         solids:
           type: number
           default: null
           nullable: true
         solids_measurement_unit:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/MeasurementUnitReference1'
         saltwater:
           type: number
           default: null
           nullable: true
         saltwater_measurement_unit:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/MeasurementUnitReference1'
         sulfur:
           type: number
           default: null
           nullable: true
         sulfur_measurement_unit:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/MeasurementUnitReference1'
         vapor_pressure:
           type: number
           default: null
           nullable: true
         vapor_pressure_measurement_unit:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/MeasurementUnitReference1'
         temperature:
           type: number
           default: null
           nullable: true
         temperature_measurement_unit:
+          type: integer
           nullable: true
-          allOf:
-          - $ref: '#/components/schemas/MeasurementUnitReference1'
         codes:
           type: array
           items:
-            $ref: '#/components/schemas/CodeReference1'
+            type: integer
         errors:
-          readOnly: true
           type: array
+          readOnly: true
           items:
-            $ref: '#/components/schemas/TruckTicketErrorReference'
+            type: integer
       required:
       - bill_of_laiden
       - bsw

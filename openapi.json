@@ -7269,159 +7269,6 @@
           "ticket"
         ]
       },
-      "TicketStatusReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "OrganizationReference3": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "CarrierReference2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "UserReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "CommercialFacilityReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "EntityReference3": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "BatteryReference2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "TerminalReference2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "PlantReference2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "StationReference2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "SystemReference2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "PipelineReference2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "ResourceReference2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "WellReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "MeterReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "MeasurementUnitReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
-      "CodeReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
       "Volumes_RequestTruckTicket": {
         "type": "object",
         "properties": {
@@ -7433,20 +7280,12 @@
             "type": "string"
           },
           "status": {
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TicketStatusReference1"
-              }
-            ]
+            "type": "integer",
+            "readOnly": true
           },
           "organization": {
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/OrganizationReference3"
-              }
-            ]
+            "type": "integer",
+            "readOnly": true
           },
           "bill_of_laiden": {
             "type": "string"
@@ -7458,143 +7297,87 @@
             "nullable": true
           },
           "carrier": {
-            "$ref": "#/components/schemas/CarrierReference2"
+            "type": "integer"
           },
           "driver": {
-            "$ref": "#/components/schemas/UserReference1"
+            "type": "integer"
           },
           "pickup_commercial_facility": {
-            "$ref": "#/components/schemas/CommercialFacilityReference1"
+            "type": "integer"
           },
           "pickup_commercial_entity": {
-            "$ref": "#/components/schemas/EntityReference3"
+            "type": "integer"
           },
           "pickup_facility_operator": {
-            "$ref": "#/components/schemas/EntityReference3"
+            "type": "integer"
           },
           "pickup_battery": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BatteryReference2"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "pickup_terminal": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TerminalReference2"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "pickup_plant": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PlantReference2"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "pickup_station": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StationReference2"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "pickup_system": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SystemReference2"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "pickup_pipeline": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PipelineReference2"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "pickup_resource": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceReference2"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "pickup_well": {
-            "$ref": "#/components/schemas/WellReference1"
+            "type": "integer"
           },
           "delivery_commercial_facility": {
-            "$ref": "#/components/schemas/CommercialFacilityReference1"
+            "type": "integer"
           },
           "delivery_commercial_entity": {
-            "$ref": "#/components/schemas/EntityReference3"
+            "type": "integer"
           },
           "delivery_facility_operator": {
-            "$ref": "#/components/schemas/EntityReference3"
+            "type": "integer"
           },
           "delivery_battery": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BatteryReference2"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "delivery_terminal": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TerminalReference2"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "delivery_plant": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PlantReference2"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "delivery_station": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StationReference2"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "delivery_system": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SystemReference2"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "delivery_pipeline": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PipelineReference2"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "delivery_resource": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ResourceReference2"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "production_date": {
             "type": "string",
@@ -7619,7 +7402,7 @@
             "format": "date-time"
           },
           "meter": {
-            "$ref": "#/components/schemas/MeterReference1"
+            "type": "integer"
           },
           "meter_start": {
             "type": "number"
@@ -7628,7 +7411,7 @@
             "type": "number"
           },
           "meter_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "type": "integer"
           },
           "meter_factor": {
             "type": "number"
@@ -7654,18 +7437,14 @@
             "nullable": true
           },
           "tank_measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "volume": {
             "type": "number"
           },
           "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "type": "integer"
           },
           "load_volume": {
             "type": "number",
@@ -7673,25 +7452,25 @@
             "nullable": true
           },
           "load_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "type": "integer"
           },
           "product_volume": {
             "type": "number"
           },
           "product_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "type": "integer"
           },
           "density": {
             "type": "number"
           },
           "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "type": "integer"
           },
           "bsw": {
             "type": "number"
           },
           "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "type": "integer"
           },
           "solids": {
             "type": "number",
@@ -7699,12 +7478,8 @@
             "nullable": true
           },
           "solids_measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "saltwater": {
             "type": "number",
@@ -7712,12 +7487,8 @@
             "nullable": true
           },
           "saltwater_measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "sulfur": {
             "type": "number",
@@ -7725,12 +7496,8 @@
             "nullable": true
           },
           "sulfur_measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "vapor_pressure": {
             "type": "number",
@@ -7738,12 +7505,8 @@
             "nullable": true
           },
           "vapor_pressure_measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "temperature": {
             "type": "number",
@@ -7751,24 +7514,20 @@
             "nullable": true
           },
           "temperature_measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
+            "type": "integer",
+            "nullable": true
           },
           "codes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CodeReference1"
+              "type": "integer"
             }
           },
           "errors": {
-            "readOnly": true,
             "type": "array",
+            "readOnly": true,
             "items": {
-              "$ref": "#/components/schemas/TruckTicketErrorReference"
+              "type": "integer"
             }
           }
         },
