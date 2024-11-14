@@ -7473,6 +7473,62 @@
             "items": {
               "type": "integer"
             }
+          },
+          "delivery_battery": {
+            "type": "integer",
+            "nullable": true
+          },
+          "delivery_terminal": {
+            "type": "integer",
+            "nullable": true
+          },
+          "delivery_plant": {
+            "type": "integer",
+            "nullable": true
+          },
+          "delivery_station": {
+            "type": "integer",
+            "nullable": true
+          },
+          "delivery_system": {
+            "type": "integer",
+            "nullable": true
+          },
+          "delivery_pipeline": {
+            "type": "integer",
+            "nullable": true
+          },
+          "delivery_resource": {
+            "type": "integer",
+            "nullable": true
+          },
+          "pickup_battery": {
+            "type": "integer",
+            "nullable": true
+          },
+          "pickup_terminal": {
+            "type": "integer",
+            "nullable": true
+          },
+          "pickup_plant": {
+            "type": "integer",
+            "nullable": true
+          },
+          "pickup_station": {
+            "type": "integer",
+            "nullable": true
+          },
+          "pickup_system": {
+            "type": "integer",
+            "nullable": true
+          },
+          "pickup_pipeline": {
+            "type": "integer",
+            "nullable": true
+          },
+          "pickup_resource": {
+            "type": "integer",
+            "nullable": true
           }
         },
         "required": [
