@@ -1,121 +1,171 @@
-# Truck Ticket Documentation
-
 ## Overview
 
 A truck ticket represents a complete record of a product transfer via truck, including pickup and delivery details, measurements, and quality data.
 
-## Identification Fields
+## Attributes
 
-- **External ID**: Unique identifier provided by external system
-- **Bill of Laden**: Official transport document
-- **Rack Ticket**: Optional loading rack ticket number
+* **External ID**: The internal idenitifier used inside the organization
+
+* **Bill of Laden**: BOL number
+
+* **Rack Ticket**: Loading rack ticket number
 
 ## Transport Details
 
-- **Carrier**: Transport company ID (references `id` in Carrier model)
-- **Driver**: Driver ID (references `id` in Driver model)
+* **Carrier**: Carrier that is transporting the product (references `id` in Carrier model)
+
+* **Driver**: Driver of the carrier transporting the product (references `id` in User model)
 
 ## Locations
 
 ### Pickup Location
 
-- **Commercial Facility**: Facility ID where product is picked up (references `id` in CommercialFacility model)
-- **Commercial Entity**: Entity ID that owns the pickup facility (references `id` in Entity model)
-- **Facility Operator**: Entity ID that operates the pickup facility (references `id` in Entity model)
-- **Well**: Well ID where product originates (references `id` in Well model)
+* **Commercial Facility**: Commercial facility where product is picked up (references `id` in CommercialFacility model)
+  - Commercial facilities are unique to each organization and used for internal tracking and reporting
+  - Multiple facilities can be associated with a single commercial facility (e.g. multiple batteries with unique `regulator_id`'s are commonly referred to as location internally).
+
+* **Commercial Entity**: Entity that is transferring custody of the product (references `id` in Entity model)
+
+* **Facility Operator**: Entity that operates the pickup facility (references `id` in Entity model)
+
+* **Well**: Well ID where product originates (references `id` in Well model)
 
 #### Pickup Facility Types (only one should be specified)
 
 Each ID references the `id` field in their respective models:
 
-- Battery (Battery model)
-- Terminal (Terminal model)
-- Plant (Plant model)
-- Station (Station model)
-- System (System model)
-- Pipeline (Pipeline model)
-- Resource (Resource model)
+* Battery
+
+* Terminal
+
+* Plant
+
+* Station
+
+* System
+
+* Pipeline 
+
+* Resource
+
+Each facility is unique by their `regulator_id` (e.g. ABBT0030001), `jurisdiction` (e.g. Alberta), and 'regulator_system' (e.g. Petrinex) primarily used for production accounting purposes.
 
 ### Delivery Location
 
-- **Commercial Facility**: Facility ID where product is delivered (references `id` in CommercialFacility model)
-- **Commercial Entity**: Entity ID that owns the delivery facility (references `id` in Entity model)
-- **Facility Operator**: Entity ID that operates the delivery facility (references `id` in Entity model)
+* **Commercial Facility**: Facility where product is delivered to (references `id` in CommercialFacility model)
+
+* **Commercial Entity**: Entity that is taking custody of the product (references `id` in Entity model)
+
+* **Facility Operator**: Entity that operates the delivery facility (references `id` in Entity model)
 
 #### Delivery Facility Types (only one should be specified)
 
 Each ID references the `id` field in their respective models:
 
-- Battery (Battery model)
-- Terminal (Terminal model)
-- Plant (Plant model)
-- Station (Station model)
-- System (System model)
-- Pipeline (Pipeline model)
-- Resource (Resource model)
+* Battery
+
+* Terminal
+
+* Plant
+
+* Station
+
+* System 
+
+* Pipeline 
+
+* Resource
 
 ## Timing
 
-- **Production Date**: Date product was produced
-- **Start**: Start time of transfer
-- **End**: End time of transfer
-- **Created At**: Record creation timestamp
-- **Updated At**: Last update timestamp
+* **Production Date**: Date the ticket corresponds to
+
+* **Start**: Start time of ticket
+
+* **End**: End time of ticket
+
+* **Created At**: Timestamp of when the ticket was created in Flux
+
+* **Updated At**: Timestamp of when the ticket was last updated in Flux
 
 ## Measurements
 
 ### Meter Readings
 
-- **Meter**: Meter ID used (references `id` in Meter model)
-- **Start Reading**: Initial meter reading
-- **End Reading**: Final meter reading
-- **Measurement Unit**: Unit for meter readings (references `id` in MeasurementUnit model)
-  - Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
-- **Meter Factor**: Calibration factor
+* **Meter**: Meter ID used (references `id` in Meter model)
+
+* **Start Reading**: Initial meter reading
+
+* **End Reading**: Final meter reading
+
+* **Measurement Unit**: Unit for meter readings (references `id` in MeasurementUnit model)
+
+  * Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
+
+* **Meter Factor**: Correction factor applied to meter readings to account for meter calibration, temperature effects, pressure effects, product characteristics, etc.
 
 ### Tank Readings
 
-- **Opening Oil**: Initial oil level
-- **Opening Water**: Initial water level
-- **Ending Oil**: Final oil level
-- **Ending Water**: Final water level
-- **Measurement Unit**: Unit for tank readings (references `id` in MeasurementUnit model)
-  - Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
+* **Opening Oil**: Initial oil level in the truck
+
+* **Opening Water**: Initial water level in the truck
+
+* **Ending Oil**: Final oil level in the truck
+
+* **Ending Water**: Final water level in the truck
+
+* **Measurement Unit**: Unit for tank readings (references `id` in MeasurementUnit model)
+
+  * Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
 
 ### Volume Measurements
 
 All measurement units reference `id` in MeasurementUnit model
 
-- **Volume**: Total volume
-- **Load Volume**: Loaded volume
-- **Product Volume**: Product volume
-- Each with corresponding measurement units (e.g., m³, bbl, GJ)
+* **Volume**: Total volume
+
+* **Load Volume**: Loaded volume
+
+* **Product Volume**: Volume of the product only (without water, etc)
+
+* Each with corresponding measurement units (e.g., m³, bbl, GJ)
 
 ### Quality Measurements
 
 All measurement units reference `id` in MeasurementUnit model. Common units include:
 
-- **Density**: kg/m³, lb/ft³
-- **BSW** (Basic Sediment and Water): Percentage (%)
-- **Solids**: Percentage (%), ppm
-- **Saltwater**: Percentage (%), ppm
-- **Sulfur**: Percentage (%), ppm
-- **Vapor Pressure**: kPa, psi
-- **Temperature**: °C, °F
+* **Density**: kg/m³, lb/ft³
+
+* **BSW** (Basic Sediment and Water): Percentage (%)
+
+* **Solids**: Percentage (%), ppm
+
+* **Saltwater**: Percentage (%), ppm
+
+* **Sulfur**: Percentage (%), ppm
+
+* **Vapor Pressure**: kPa, psi
+
+* **Temperature**: °C, °F
 
 ## Additional Data
 
-- **Codes**: Array of reference codes associated with the ticket
+* **Codes**: Array of reference codes associated with the ticket
 
 ## Validation
 
 The system performs extensive validation including:
 
-- Existence checks for all referenced entities (facilities, wells, meters, etc.)
-- Required field validation
-- Facility type validation (only one pickup/delivery facility type allowed)
-- Measurement unit validation
-- Timestamp validation
-- Volume and reading validations
+* Existence checks for all referenced entities (facilities, wells, meters, etc.)
+
+* Required field validation
+
+* Facility type validation (only one pickup/delivery facility type allowed)
+
+* Measurement unit validation
+
+* Timestamp validation
+
+* Volume and reading validations
 
 Any validation errors are returned with the ticket response and must be resolved before the ticket can be finalized.
