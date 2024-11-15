@@ -4,6 +4,8 @@ A truck ticket represents a complete record of a product transfer via truck, inc
 
 ## Attributes
 
+* **ID**: The primary key idenitifier used inside the Flux system, unique across all organizations.
+
 * **External ID**: The internal idenitifier used inside the organization
 
 * **Bill of Laden**: BOL number
@@ -23,8 +25,10 @@ A truck ticket represents a complete record of a product transfer via truck, inc
 ### Pickup Location
 
 * **Commercial Facility**: Commercial facility where product is picked up (references `id` in CommercialFacility model)
-  - Commercial facilities are unique to each organization and used for internal tracking and reporting
-  - Multiple facilities can be associated with a single commercial facility (e.g. multiple batteries with unique `regulator_id`'s are commonly referred to as location internally).
+
+  * Commercial facilities are unique to each organization and used for internal tracking and reporting
+
+  * Multiple facilities can be associated with a single commercial facility (e.g. multiple batteries with unique `regulator_id`'s are commonly referred to as location internally).
 
 * **Commercial Entity**: Entity that is transferring custody of the product (references `id` in Entity model)
 
@@ -46,11 +50,11 @@ Each ID references the `id` field in their respective models:
 
 * System
 
-* Pipeline 
+* Pipeline
 
 * Resource
 
-Each facility is unique by their `regulator_id` (e.g. ABBT0030001), `jurisdiction` (e.g. Alberta), and 'regulator_system' (e.g. Petrinex) primarily used for production accounting purposes.
+Each facility is unique by their `regulator_id` (e.g. ABBT0030001), `jurisdiction` (e.g. Alberta), and 'regulator\_system' (e.g. Petrinex) primarily used for production accounting purposes.
 
 ### Delivery Location
 
@@ -72,9 +76,9 @@ Each ID references the `id` field in their respective models:
 
 * Station
 
-* System 
+* System
 
-* Pipeline 
+* Pipeline
 
 * Resource
 
@@ -171,4 +175,3 @@ The system performs extensive validation including:
 * Volume and reading validations
 
 Any validation errors are returned with the ticket response and must be resolved before the ticket can be finalized.
-
