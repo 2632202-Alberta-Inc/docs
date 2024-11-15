@@ -2,8 +2,6 @@
 
 Tickets follow a dynamic status workflow that helps ensure accurate data quality and timely completeness:
 
-### Status Types
-
 1. **`INCOMPLETE`**
 
    * Initial status when ticket is missing required data
@@ -12,13 +10,13 @@ Tickets follow a dynamic status workflow that helps ensure accurate data quality
 
    * Ticket can be updated via API to provide missing information
 
-2. **PENDING_REVIEW**
+2. **`PENDING_REVIEW`**
 
    * All required fields are present
 
    * Assigned automatically by the system when data completeness checks pass
 
-3. **DISPUTED**
+3. **`DISPUTED`**
 
    * Issues identified during data analyst review (e.g. anomolous volumes)
 
@@ -26,13 +24,13 @@ Tickets follow a dynamic status workflow that helps ensure accurate data quality
 
    * Requires investigation and manual correction
 
-4. **APPROVED**
+4. **`APPROVED`**
 
    * Data verified by authorized data personnel
 
    * Ready for production accounting verification
 
-5. **CLOSED**
+5. **`CLOSED`**
 
    * Ticket has been verified by production accounting
 
@@ -40,7 +38,7 @@ Tickets follow a dynamic status workflow that helps ensure accurate data quality
 
    * Ticket is immutable, no further modifications are allowed
 
-6. **CANCELED**
+6. **`CANCELED`**
 
    * Ticket has been voided
 
