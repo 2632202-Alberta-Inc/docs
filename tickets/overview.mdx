@@ -18,11 +18,9 @@ Tickets follow a dynamic status workflow that helps ensure accurate data quality
 
    * Assigned automatically by the system when data completeness checks pass
 
-   * May require human review if anomalies detected
-
 3. **DISPUTED**
 
-   * Issues identified during data analyst review
+   * Issues identified during data analyst review (e.g. anomolous volumes)
 
    * May indicate measurement discrepancies or data inconsistencies
 
@@ -36,19 +34,19 @@ Tickets follow a dynamic status workflow that helps ensure accurate data quality
 
 5. **CLOSED**
 
-   * Ticket has been processed
+   * Ticket has been verified by production accounting
 
-   * Data has been used in downstream systems
+   * Data ready for use in downstream systems
 
-   * No further modifications allowed
+   * Ticket is immutable, no further modifications are allowed
 
 6. **CANCELED**
 
    * Ticket has been voided
 
-   * Will not be used for reporting
+   * Will not be used for reporting or in downstream systems
 
-   * Maintains audit trail
+   * Remains for auditing purposes
 
 ### Workflow Process
 
@@ -56,7 +54,7 @@ Tickets follow a dynamic status workflow that helps ensure accurate data quality
 
    * Ticket created via API
 
-   * System automatically assigns initial status
+   * System automatically assigns initial `PENDING` status
 
    * Validation errors logged if present
 
@@ -76,11 +74,9 @@ Tickets follow a dynamic status workflow that helps ensure accurate data quality
 
 3. **Review**
 
-   * Production accounting team can review tickets
+   * Production accounting teams and data analysts can review tickets
 
-   * UI interface available for corrections
-
-   * Similar to transaction reconciliation
+   * UI interface available for manual corrections and updates
 
 4. **Resolution**
 
