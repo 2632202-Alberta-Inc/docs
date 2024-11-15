@@ -28,9 +28,9 @@ A truck ticket represents a complete record of a product transfer via truck, inc
 
 * **Commercial Facility**: Commercial facility where product is picked up (references `id` in CommercialFacility model)
 
-  * Commercial facilities are unique to each organization and used for internal tracking and reporting
-
-  * Multiple facilities can be associated with a single commercial facility (e.g. multiple batteries with unique `regulator_id`'s are commonly referred to as location internally).
+<Info>
+  Commercial facilities provide a way for organizations to group and track multiple physical facilities under a single logical entity. While regulatory facilities (batteries, terminals, etc.) each have unique IDs and locations, commercial facilities allow organizations to combine these into meaningful business units for marketing, stakeholder reporting, and internal tracking purposes. For example, multiple batteries with different regulator IDs might be grouped into one commercial facility that represents how the organization refers to that location internally.
+</Info>
 
 * **Commercial Entity**: Entity that is transferring custody of the product (references `id` in Entity model)
 
@@ -60,6 +60,10 @@ Each facility is unique by their `regulator_id` (e.g. ABBT0030001), `jurisdictio
 #### Delivery Location
 
 * **Commercial Facility**: Facility where product is delivered to (references `id` in CommercialFacility model)
+
+<Info>
+  Commercial facilities provide a way for organizations to group and track multiple physical facilities under a single logical entity. While regulatory facilities (batteries, terminals, etc.) each have unique IDs and locations, commercial facilities allow organizations to combine these into meaningful business units for marketing, stakeholder reporting, and internal tracking purposes. For example, multiple batteries with different regulator IDs might be grouped into one commercial facility that represents how the organization refers to that location internally.
+</Info>
 
 * **Commercial Entity**: Entity that is taking custody of the product (references `id` in Entity model)
 
