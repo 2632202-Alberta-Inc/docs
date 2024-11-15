@@ -4,19 +4,31 @@ Flux supports three main types of tickets:
 
 Truck tickets record the movement of products via tanker trucks between facilities. These capture:
 
-- Pickup and delivery locations/facilities
-- Carrier and driver information
-- Bill of lading and rack ticket numbers
-- Production date and timestamps
-- Load volumes and measurements
-- Product quality specifications:
-  - Density
-  - Basic sediment and water (BSW)
-  - Temperature
-  - Vapor pressure
-  - Sulfur content
-- Tank gauging data (opening/closing levels)
-- Meter readings and factors
+* Pickup and delivery locations/facilities
+
+* Carrier and driver information
+
+* Bill of lading and rack ticket numbers
+
+* Production date and timestamps
+
+* Load volumes and measurements
+
+* Product quality specifications:
+
+  * Density
+
+  * Basic sediment and water (BSW)
+
+  * Temperature
+
+  * Vapor pressure
+
+  * Sulfur content
+
+* Tank gauging data (opening/closing levels)
+
+* Meter readings and factors
 
 Truck tickets are essential for tracking custody transfer of products like crude oil, condensate, and produced water being transported by road.
 
@@ -24,18 +36,29 @@ Truck tickets are essential for tracking custody transfer of products like crude
 
 Tank tickets document product measurements and transfers involving storage tanks at facilities. They record:
 
-- Location and facility information
-- Production date and timestamps
-- Meter readings and factors
-- Volume measurements
-- Product quality specifications:
-  - Density
-  - Basic sediment and water (BSW)
-  - Solids content
-  - Saltwater content
-  - Sulfur content
-  - Vapor pressure
-  - Temperature
+* Location and facility information
+
+* Production date and timestamps
+
+* Meter readings and factors
+
+* Volume measurements
+
+* Product quality specifications:
+
+  * Density
+
+  * Basic sediment and water (BSW)
+
+  * Solids content
+
+  * Saltwater content
+
+  * Sulfur content
+
+  * Vapor pressure
+
+  * Temperature
 
 These tickets are critical for inventory management and reconciliation at batteries, terminals and other storage facilities.
 
@@ -43,18 +66,29 @@ These tickets are critical for inventory management and reconciliation at batter
 
 Meter tickets capture continuous flow measurement data from meters installed on pipelines and facility equipment. They include:
 
-- Location and facility information
-- Production date and timestamps
-- Meter readings and factors
-- Volume measurements
-- Product quality specifications:
-  - Density
-  - Basic sediment and water (BSW)
-  - Solids content
-  - Saltwater content
-  - Sulfur content
-  - Vapor pressure
-  - Temperature
+* Location and facility information
+
+* Production date and timestamps
+
+* Meter readings and factors
+
+* Volume measurements
+
+* Product quality specifications:
+
+  * Density
+
+  * Basic sediment and water (BSW)
+
+  * Solids content
+
+  * Saltwater content
+
+  * Sulfur content
+
+  * Vapor pressure
+
+  * Temperature
 
 Meter tickets provide accurate measurement for pipeline transfers, facility throughput, and regulatory reporting requirements.
 
@@ -64,100 +98,97 @@ Tickets follow a dynamic status workflow that helps ensure accurate data quality
 
 1. **`INCOMPLETE`**
 
-   - Initial status when ticket is missing required data
+   * Initial status when ticket is missing required data
 
-   - System automatically identifies missing or invalid fields
+   * System automatically identifies missing or invalid fields
 
-   - Ticket can be updated via API to provide missing information
+   * Ticket can be updated via API to provide missing information
 
 2. **`PENDING_REVIEW`**
 
-   - All required fields are present
+   * All required fields are present
 
-   - Assigned automatically by the system when data completeness checks pass
+   * Assigned automatically by the system when data completeness checks pass
 
 3. **`DISPUTED`**
 
-   - Issues identified during data analyst review (e.g. anomolous volumes)
+   * Issues identified during data analyst review (e.g. anomolous volumes)
 
-   - May indicate measurement discrepancies or data inconsistencies
+   * May indicate measurement discrepancies or data inconsistencies
 
-   - Requires investigation and manual correction
+   * Requires investigation and manual correction
 
 4. **`APPROVED`**
 
-   - Data verified by authorized data personnel
+   * Data verified by authorized data personnel
 
-   - Ready for production accounting verification
+   * Ready for production accounting verification
 
 5. **`CLOSED`**
 
-   - Ticket has been verified by production accounting
+   * Ticket has been verified by production accounting
 
-   - Data ready for use in downstream systems
+   * Data ready for use in downstream systems
 
-   - Ticket is immutable, no further modifications are allowed
+   * Ticket is immutable, no further modifications are allowed
 
 6. **`CANCELED`**
 
-   - Ticket has been voided
+   * Ticket has been voided
 
-   - Will not be used for reporting or in downstream systems
+   * Will not be used for reporting or in downstream systems
 
-   - Remains for auditing purposes
+   * Remains for auditing purposes
 
-### Workflow Process
+### Workflow
 
 1. **Creation**
 
-   - Ticket created via API
+   * Ticket created via API
 
-   - System automatically assigns initial `PENDING` status
+   * System automatically assigns initial `PENDING` status
 
-   - Validation errors logged if present
+   * Validation errors logged if present
 
 2. **Validation**
 
-   - System checks for:
+   * System checks for:
 
-     - Required fields
+     * Required fields
 
-     - Data consistency
+     * Data consistency
 
-     - Reference validity
+     * Reference validity
 
-     - Measurement anomalies
+     * Measurement anomalies
 
-   - Status updated based on validation results
+   * Status updated based on validation results
 
 3. **Review**
 
-   - Production accounting teams and data analysts can review tickets
+   * Production accounting teams and data analysts can review tickets
 
-   - UI interface available for manual corrections and updates
+   * UI interface available for manual corrections and review
 
 4. **Resolution**
 
-   - Tickets can be updated via API
+   * Tickets can be updated via API
 
-   - Each update triggers revalidation
+   * Each update triggers revalidation
 
-   - Status changes tracked for audit purposes
 
-- Each field can have multiple validation errors
+* Each field can have multiple validation errors
 
-- Errors must be resolved before status can advance
+* Errors must be resolved before status can advance
 
-- Error history maintained for audit purposes
-
-- Updates via API trigger error rechecks
+* Error history maintained for audit purposes
 
 ### Audit Trail `Coming Soon`
 
-- All status changes are timestamped
+* All status changes are timestamped
 
-- Previous values are preserved
+* Previous values are preserved
 
-- User/system making changes is recorded
+* User/system making changes is recorded
 
-- Complete history available for compliance
+* Complete history available for compliance
