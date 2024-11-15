@@ -4,6 +4,8 @@ A truck ticket represents a complete record of a product transfer via truck, inc
 
 ## Attributes
 
+### Identification 
+
 * **ID**: The primary key idenitifier used inside the Flux system, unique across all organizations.
 
 * **External ID**: The internal idenitifier used inside the organization
@@ -14,15 +16,15 @@ A truck ticket represents a complete record of a product transfer via truck, inc
 
 * **Status**: Status of the ticket in the Flux system
 
-## Transport Details
+### Transport Details
 
 * **Carrier**: Carrier that is transporting the product (references `id` in Carrier model)
 
 * **Driver**: Driver of the carrier transporting the product (references `id` in User model)
 
-## Locations
+### Locations
 
-### Pickup Location
+##### Pickup Location
 
 * **Commercial Facility**: Commercial facility where product is picked up (references `id` in CommercialFacility model)
 
@@ -36,7 +38,7 @@ A truck ticket represents a complete record of a product transfer via truck, inc
 
 * **Well**: Well ID where product originates (references `id` in Well model)
 
-#### Pickup Facility Types (only one should be specified)
+##### Pickup Facility Types (only one should be specified)
 
 Each ID references the `id` field in their respective models:
 
@@ -56,7 +58,7 @@ Each ID references the `id` field in their respective models:
 
 Each facility is unique by their `regulator_id` (e.g. ABBT0030001), `jurisdiction` (e.g. Alberta), and 'regulator\_system' (e.g. Petrinex) primarily used for production accounting purposes.
 
-### Delivery Location
+#### Delivery Location
 
 * **Commercial Facility**: Facility where product is delivered to (references `id` in CommercialFacility model)
 
@@ -64,7 +66,7 @@ Each facility is unique by their `regulator_id` (e.g. ABBT0030001), `jurisdictio
 
 * **Facility Operator**: Entity that operates the delivery facility (references `id` in Entity model)
 
-#### Delivery Facility Types (only one should be specified)
+##### Delivery Facility Types (only one should be specified)
 
 Each ID references the `id` field in their respective models:
 
@@ -82,7 +84,7 @@ Each ID references the `id` field in their respective models:
 
 * Resource
 
-## Timing
+### Timing
 
 * **Production Date**: Date the ticket corresponds to
 
@@ -94,9 +96,9 @@ Each ID references the `id` field in their respective models:
 
 * **Updated At**: Timestamp of when the ticket was last updated in Flux
 
-## Measurements
+### Measurements
 
-### Meter Readings
+#### Meter Readings
 
 * **Meter**: Meter ID used (references `id` in Meter model)
 
@@ -110,7 +112,7 @@ Each ID references the `id` field in their respective models:
 
 * **Meter Factor**: Correction factor applied to meter readings to account for meter calibration, temperature effects, pressure effects, product characteristics, etc.
 
-### Tank Readings
+#### Tank Readings
 
 * **Opening Oil**: Initial oil level in the truck
 
@@ -124,7 +126,7 @@ Each ID references the `id` field in their respective models:
 
   * Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
 
-### Volume Measurements
+#### Volume Measurements
 
 All measurement units reference `id` in MeasurementUnit model
 
@@ -136,7 +138,7 @@ All measurement units reference `id` in MeasurementUnit model
 
 * Each with corresponding measurement units (e.g., m³, bbl, GJ)
 
-### Quality Measurements
+#### Quality Measurements
 
 All measurement units reference `id` in MeasurementUnit model. Common units include:
 
@@ -157,3 +159,11 @@ All measurement units reference `id` in MeasurementUnit model. Common units incl
 ## Additional Data
 
 * **Codes**: The type of transfer (e.g. REC, INV, DISP)
+
+## Endpoints
+The following endpoints are available for managing truck tickets:
+
+- [List Truck Tickets](/api-reference/volumes/list-truck-ticket) - Retrieve a paginated list of truck tickets
+- [Get Truck Ticket](/api-reference/volumes/get-truck-ticket) - Get details for a specific truck ticket
+- [Create Truck Ticket](/api-reference/volumes/create-truck-ticket) - Create a new truck ticket
+- [Update Truck Ticket](/api-reference/volumes/update-truck-ticket) - Update an existing truck ticket
