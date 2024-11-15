@@ -38,7 +38,7 @@ A truck ticket represents a complete record of a product transfer via truck, inc
 
 * **Well**: Well ID where product originates (references `id` in Well model)
 
-##### Pickup Facility Types (only one should be specified)
+* **Pickup Facility**: (only one should be specified)
 
 Each ID references the `id` field in their respective models:
 
@@ -66,7 +66,7 @@ Each facility is unique by their `regulator_id` (e.g. ABBT0030001), `jurisdictio
 
 * **Facility Operator**: Entity that operates the delivery facility (references `id` in Entity model)
 
-##### Delivery Facility Types (only one should be specified)
+* **Delivery Facility**: (only one should be specified)
 
 Each ID references the `id` field in their respective models:
 
