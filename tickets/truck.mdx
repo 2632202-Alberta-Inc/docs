@@ -1,0 +1,121 @@
+# Truck Ticket Documentation
+
+## Overview
+
+A truck ticket represents a complete record of a product transfer via truck, including pickup and delivery details, measurements, and quality data.
+
+## Identification Fields
+
+- **External ID**: Unique identifier provided by external system
+- **Bill of Laden**: Official transport document
+- **Rack Ticket**: Optional loading rack ticket number
+
+## Transport Details
+
+- **Carrier**: Transport company ID (references `id` in Carrier model)
+- **Driver**: Driver ID (references `id` in Driver model)
+
+## Locations
+
+### Pickup Location
+
+- **Commercial Facility**: Facility ID where product is picked up (references `id` in CommercialFacility model)
+- **Commercial Entity**: Entity ID that owns the pickup facility (references `id` in Entity model)
+- **Facility Operator**: Entity ID that operates the pickup facility (references `id` in Entity model)
+- **Well**: Well ID where product originates (references `id` in Well model)
+
+#### Pickup Facility Types (only one should be specified)
+
+Each ID references the `id` field in their respective models:
+
+- Battery (Battery model)
+- Terminal (Terminal model)
+- Plant (Plant model)
+- Station (Station model)
+- System (System model)
+- Pipeline (Pipeline model)
+- Resource (Resource model)
+
+### Delivery Location
+
+- **Commercial Facility**: Facility ID where product is delivered (references `id` in CommercialFacility model)
+- **Commercial Entity**: Entity ID that owns the delivery facility (references `id` in Entity model)
+- **Facility Operator**: Entity ID that operates the delivery facility (references `id` in Entity model)
+
+#### Delivery Facility Types (only one should be specified)
+
+Each ID references the `id` field in their respective models:
+
+- Battery (Battery model)
+- Terminal (Terminal model)
+- Plant (Plant model)
+- Station (Station model)
+- System (System model)
+- Pipeline (Pipeline model)
+- Resource (Resource model)
+
+## Timing
+
+- **Production Date**: Date product was produced
+- **Start**: Start time of transfer
+- **End**: End time of transfer
+- **Created At**: Record creation timestamp
+- **Updated At**: Last update timestamp
+
+## Measurements
+
+### Meter Readings
+
+- **Meter**: Meter ID used (references `id` in Meter model)
+- **Start Reading**: Initial meter reading
+- **End Reading**: Final meter reading
+- **Measurement Unit**: Unit for meter readings (references `id` in MeasurementUnit model)
+  - Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
+- **Meter Factor**: Calibration factor
+
+### Tank Readings
+
+- **Opening Oil**: Initial oil level
+- **Opening Water**: Initial water level
+- **Ending Oil**: Final oil level
+- **Ending Water**: Final water level
+- **Measurement Unit**: Unit for tank readings (references `id` in MeasurementUnit model)
+  - Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
+
+### Volume Measurements
+
+All measurement units reference `id` in MeasurementUnit model
+
+- **Volume**: Total volume
+- **Load Volume**: Loaded volume
+- **Product Volume**: Product volume
+- Each with corresponding measurement units (e.g., m³, bbl, GJ)
+
+### Quality Measurements
+
+All measurement units reference `id` in MeasurementUnit model. Common units include:
+
+- **Density**: kg/m³, lb/ft³
+- **BSW** (Basic Sediment and Water): Percentage (%)
+- **Solids**: Percentage (%), ppm
+- **Saltwater**: Percentage (%), ppm
+- **Sulfur**: Percentage (%), ppm
+- **Vapor Pressure**: kPa, psi
+- **Temperature**: °C, °F
+
+## Additional Data
+
+- **Codes**: Array of reference codes associated with the ticket
+
+## Validation
+
+The system performs extensive validation including:
+
+- Existence checks for all referenced entities (facilities, wells, meters, etc.)
+- Required field validation
+- Facility type validation (only one pickup/delivery facility type allowed)
+- Measurement unit validation
+- Timestamp validation
+- Volume and reading validations
+
+Any validation errors are returned with the ticket response and must be resolved before the ticket can be finalized.

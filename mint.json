@@ -49,6 +49,15 @@
       ]
     },
     {
+      "group": "Tickets",
+      "pages": [
+        "tickets/overview",
+        "tickets/truck",
+        "tickets/tank",
+        "tickets/meters"
+      ]
+    },
+    {
       "group": "SDKs",
       "pages": ["sdks/overview", "sdks/python", "sdks/net"]
     },
