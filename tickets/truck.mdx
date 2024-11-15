@@ -10,6 +10,8 @@ A truck ticket represents a complete record of a product transfer via truck, inc
 
 * **Rack Ticket**: Loading rack ticket number
 
+* **Status**: Status of the ticket in the Flux system
+
 ## Transport Details
 
 * **Carrier**: Carrier that is transporting the product (references `id` in Carrier model)
@@ -169,3 +171,4 @@ The system performs extensive validation including:
 * Volume and reading validations
 
 Any validation errors are returned with the ticket response and must be resolved before the ticket can be finalized.
+
