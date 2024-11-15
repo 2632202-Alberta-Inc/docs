@@ -31,6 +31,10 @@
   },
   "tabs": [
     {
+      "name": "Concepts",
+      "url": "concept",
+    },
+    {
       "name": "API Reference",
       "url": "api-reference",
       "openapi": "/openapi.json"
