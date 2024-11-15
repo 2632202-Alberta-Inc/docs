@@ -153,16 +153,20 @@ Tickets follow a dynamic status workflow that helps ensure accurate data quality
 2. **Validation**
 
    * System checks for:
-
-     * Required fields
-
-     * Data consistency
-
-     * Reference validity
-
-     * Measurement anomalies
-
-   * Status updated based on validation results
+   
+      * Existence checks for all referenced entities (facilities, wells, meters, etc.)
+      
+      * Required field validation
+      
+      * Facility type validation (only one pickup/delivery facility type allowed)
+      
+      * Measurement unit validation
+      
+      * Timestamp validation
+      
+      * Volume and reading validations
+  
+     * Status updated based on validation results
 
 3. **Review**
 
