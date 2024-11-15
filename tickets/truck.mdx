@@ -157,21 +157,3 @@ All measurement units reference `id` in MeasurementUnit model. Common units incl
 ## Additional Data
 
 * **Codes**: The type of transfer (e.g. REC, INV, DISP)
-
-## Validation
-
-The system performs extensive validation including:
-
-* Existence checks for all referenced entities (facilities, wells, meters, etc.)
-
-* Required field validation
-
-* Facility type validation (only one pickup/delivery facility type allowed)
-
-* Measurement unit validation
-
-* Timestamp validation
-
-* Volume and reading validations
-
-Any validation errors are returned with the ticket response and must be resolved before the ticket can be finalized.
