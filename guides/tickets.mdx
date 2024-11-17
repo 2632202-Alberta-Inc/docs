@@ -20,10 +20,11 @@ To add a new ticket:
 
 1. Determine the appropriate ticket type based on your measurement scenario.
 2. Gather required data like facility IDs, entity IDs, timestamps, volumes, measurements, etc.
-3. Create the ticket via API with all required fields.
-4. Get the ticket using the ticket ID and check the response for any validation errors.
-5. Update ticket via API.
-6. Confirm ticket has no errors and is in status `PENDING_REVIEW`.
+3. Search existing tickets to see if the ticket has already been created
+4. Create the ticket via API with all required fields.
+5. Get the ticket using the ticket ID and check the response for any validation errors.
+6. Update ticket via API.
+7. Confirm ticket has no errors and is in status `PENDING_REVIEW`.
 
 ## Workflow
 
@@ -41,7 +42,7 @@ To add a new ticket:
 
    Automatically triggered on every `POST` and `PATCH` request.
 
-   - Existence checks for all referenced entities (facilities, entiwells, meters, etc.)
+   - Existence checks for all referenced entities (facilities, entities, wells, meters, etc.)
    - Required field validation.
    - Facility type validation (only one pickup/delivery facility type allowed).
    - Measurement unit validation.
@@ -76,5 +77,5 @@ To add a new ticket:
 
    - Each update triggers revalidation.
    - Each field can have multiple validation errors.
-   - Errors must be resolved before status can advance.
+   - Errors must be resolved before status can advance to `PENDING_REVIEW`.
    - Error history maintained for audit purposes.
