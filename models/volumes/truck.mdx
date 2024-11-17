@@ -205,7 +205,8 @@ All measurement units reference `id` in MeasurementUnit model
   Volume of the product only (without water, etc)
 </ResponseField>
 
-Each with corresponding measurement units (e.g., m³, bbl, GJ)
+Each with their own corresponding measurement unit fields. If a value is not
+null, the measurement unit is required for the field.
 
 ### Quality Measurements
 
@@ -238,6 +239,9 @@ All measurement units reference `id` in MeasurementUnit model.
 <ResponseField name="Temperature">
   Temperature of the fluid (e.g. °C, °F)
 </ResponseField>
+
+Each with their own corresponding measurement unit fields. If a value is not
+null, the measurement unit is required for the field.
 
 ### Transfer & Custody
 
