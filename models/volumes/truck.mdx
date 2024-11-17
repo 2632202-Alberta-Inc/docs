@@ -10,19 +10,19 @@ A truck ticket represents a product transfer between facilities via truck, inclu
 
 ### Identification
 
-- **ID**: The primary key idenitifier used inside the Flux system, unique across all organizations.
+- **ID** (Required): The primary key idenitifier used inside the Flux system, unique across all organizations.
 
-- **External ID**: The internal idenitifier used inside the organization
+- **External ID** (Required): The internal idenitifier used inside the organization
 
-- **Bill of Laden**: BOL number
+- **Bill of Lading** (Required): BOL number
 
 - **Rack Ticket**: Loading rack ticket number
 
-- **Status**: Status of the ticket in the Flux system
+- **Status** (Required): Status of the ticket in the Flux system
 
 ### Transportation
 
-- **Carrier**: Carrier that is transporting the product (references `id` in Carrier model)
+- **Carrier** (Required): Carrier that is transporting the product (references `id` in Carrier model)
 
 - **Driver**: Driver of the carrier transporting the product (references `id` in User model)
 
@@ -30,7 +30,7 @@ A truck ticket represents a product transfer between facilities via truck, inclu
 
 #### Pickup Location
 
-- **Commercial Facility**: Commercial facility where product is picked up (references `id` in CommercialFacility model)
+- **Commercial Facility** (Required): Commercial facility where product is picked up (references `id` in CommercialFacility model)
 
 <Info>
   Commercial facilities provide a way for organizations to group and track
@@ -43,13 +43,13 @@ A truck ticket represents a product transfer between facilities via truck, inclu
   refers to that location internally.
 </Info>
 
-- **Commercial Entity**: Entity that is transferring custody of the product (references `id` in Entity model)
+- **Commercial Entity** (Required): Entity that is transferring custody of the product (references `id` in Entity model)
 
-- **Facility Operator**: Entity that operates the pickup facility (references `id` in Entity model)
+- **Facility Operator** (Required): Entity that operates the pickup facility (references `id` in Entity model)
 
-- **Well**: Well ID where product originates (references `id` in Well model)
+- **Well** (Required): Well ID where product originates (references `id` in Well model)
 
-- **Pickup Facility**: Each ID references the `id` field in their respective models and only one should be specified:
+- **Pickup Facility** (Required): Each ID references the `id` field in their respective models and only one should be specified:
 
   - Battery
 
@@ -73,7 +73,7 @@ A truck ticket represents a product transfer between facilities via truck, inclu
 
 #### Delivery Location
 
-- **Commercial Facility**: Facility where product is delivered to (references `id` in CommercialFacility model)
+- **Commercial Facility** (Required): Facility where product is delivered to (references `id` in CommercialFacility model)
 
 <Info>
   Commercial facilities provide a way for organizations to group and track
@@ -86,11 +86,11 @@ A truck ticket represents a product transfer between facilities via truck, inclu
   refers to that location internally.
 </Info>
 
-- **Commercial Entity**: Entity that is taking custody of the product (references `id` in Entity model)
+- **Commercial Entity** (Required): Entity that is taking custody of the product (references `id` in Entity model)
 
-- **Facility Operator**: Entity that operates the delivery facility (references `id` in Entity model)
+- **Facility Operator** (Required): Entity that operates the delivery facility (references `id` in Entity model)
 
-- **Delivery Facility**: Each ID references the `id` field in their respective models and only one should be specified:
+- **Delivery Facility** (Required): Each ID references the `id` field in their respective models and only one should be specified:
 
   - Battery
 
@@ -114,11 +114,11 @@ A truck ticket represents a product transfer between facilities via truck, inclu
 
 ### Timing
 
-- **Production Date**: Calendar day of the reported volume
+- **Production Date** (Required): Calendar day of the reported volume
 
-- **Start**: Start time of ticket
+- **Start** (Required): Start time of ticket
 
-- **End**: End time of ticket
+- **End** (Required): End time of ticket
 
 - **Created At**: Timestamp of when the ticket was created in Flux
 
@@ -128,17 +128,17 @@ A truck ticket represents a product transfer between facilities via truck, inclu
 
 #### Meter Readings
 
-- **Meter**: Meter ID used (references `id` in Meter model)
+- **Meter** (Required): Meter ID used (references `id` in Meter model)
 
-- **Start Reading**: Initial meter reading
+- **Start Reading** (Required): Initial meter reading
 
-- **End Reading**: Final meter reading
+- **End Reading** (Required): Final meter reading
 
-- **Measurement Unit**: Unit for meter readings (references `id` in MeasurementUnit model)
+- **Measurement Unit** (Required): Unit for meter readings (references `id` in MeasurementUnit model)
 
   - Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
 
-- **Meter Factor**: Correction factor applied to meter readings to account for meter calibration, temperature effects, pressure effects, product characteristics, etc.
+- **Meter Factor** (Required): Correction factor applied to meter readings to account for meter calibration, temperature effects, pressure effects, product characteristics, etc.
 
 #### Tank Readings
 
@@ -158,7 +158,7 @@ A truck ticket represents a product transfer between facilities via truck, inclu
 
 All measurement units reference `id` in MeasurementUnit model
 
-- **Volume**: Total volume
+- **Volume** (Required): Total volume
 
 - **Load Volume**: Loaded volume
 
@@ -170,9 +170,9 @@ Each with corresponding measurement units (e.g., m³, bbl, GJ)
 
 All measurement units reference `id` in MeasurementUnit model.
 
-- **Density**: Density of the fluid (e.g. kg/m³, lb/ft³)
+- **Density** (Required): Density of the fluid (e.g. kg/m³, lb/ft³)
 
-- **BSW** (Basic Sediment and Water): Combined percentage of sediment and water content (e.g. %, ppm)
+- **BSW** (Required) (Basic Sediment and Water): Combined percentage of sediment and water content (e.g. %, ppm)
 
 - **Solids**: Suspended solid particle content (e.g. %, ppm)
 
@@ -186,7 +186,7 @@ All measurement units reference `id` in MeasurementUnit model.
 
 ### Transfer & Custody
 
-- **Codes**: The type of transfer (e.g. REC, INV, DISP)
+- **Codes** (Required): The type of transfer (e.g. REC, INV, DISP)
 
 ## Endpoints
 
