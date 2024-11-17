@@ -67,7 +67,9 @@
             "models/volumes/overview",
             "models/volumes/truck",
             "models/volumes/meter",
-            "models/volumes/tank"
+            "models/volumes/tank",
+            "models/volumes/ticket_status",
+            "models/volumes/code"
           ]
         }
       ]
