@@ -50,6 +50,15 @@
       ]
     },
     {
+      "group": "Guides",
+      "pages": [
+        {
+          "group": "Volumes",
+          "pages": ["guides/volumes/overview"]
+        }
+      ]
+    },
+    {
       "group": "Models",
       "pages": [
         {

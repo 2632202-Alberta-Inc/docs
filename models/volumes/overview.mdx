@@ -3,11 +3,9 @@ title: "Overview"
 description: "Flux uses tickets system to track and measure volumes of oil, gas, and other products across production facilities. Each ticket provides a snapshot of volume and product characteristics at specific points in time."
 ---
 
-## Overview
+## Types
 
-In the Flux system, tickets play a crucial role in tracking and measuring the volumes of oil, gas, and other products across production facilities. Each ticket serves as a record that captures essential data at specific points in time, ensuring accurate custody transfer and inventory management. This document outlines the different types of tickets and their statuses.
-
-## Ticket Types
+In the Flux system, tickets play a crucial role in tracking and measuring the volumes of oil, gas, and other products across facilities and transportation. Each ticket serves as a record that captures essential data at specific points in time, ensuring accurate inventory management, custody transfer, and regulatory compliance.
 
 ### Truck Ticket
 
@@ -23,18 +21,40 @@ Meter tickets capture continuous flow measurement data from meters installed on 
 
 ## Ticket Status
 
-Tickets follow a structured workflow with statuses that ensure data quality, completeness and orderly review. The workflow helps track a ticket's progression from initial creation through final verification:
+Ticket status tracks the state of a ticket through its lifecycle, from creation to final verification, ensuring proper data quality and workflow management:
 
 - **`INCOMPLETE`**: Default initial status when ticket is created. Indicates required data is missing. _(Automatically triggered)_
 - **`PENDING_REVIEW`**: All required fields are present and validated; system automatically transitions ticket to this status. _(Automatically triggered)_
 - **`DISPUTED`**: Can only be set after `PENDING_REVIEW`. Indicates issues were found during review that require investigation. _(Human-triggered)_
-- **`APPROVED`**: Can only be set after `PENDING_REVIEW`. Indicates data has been verified by authorized personnel and is ready for production accounting verification. _(Human-triggered)_
+- **`APPROVED`**: Can only be set after `PENDING_REVIEW`. Indicates data has been verified by authorized personnel for completeness and is ready for production accounting verification. _(Human-triggered)_
 - **`CLOSED`**: Can only be set after `PENDING_REVIEW`. Indicates final verification by production accounting is complete. Ticket becomes immutable. _(Human-triggered)_
 - **`CANCELED`**: Ticket has been voided but retained for audit purposes. Can be triggered at any point in the workflow. _(Human-triggered)_
 
-## Status Codes
+## Transfer and Custody Codes
 
-- **Code Definitions**: (If applicable, you can include any specific codes related to ticket statuses here.)
+- **INV**: Inventory
+
+- **BLEND**: Product blend
+
+- **INJ**: Injected product
+
+- **DISP**: Disposition
+
+- **LOCAL**: Local transfer between facilities within same organization
+
+- **REC**: Received product
+
+- **SHIP**: Shipped product
+
+- **SHIP_INV**: Shipped inventory
+
+- **SALE**: Sold inventory
+
+- **PRE_INV**: Measurement before inventory point
+
+- **POST_INV**: Measurement after inventory point
+
+- **IN_OUT**: General inbound/outbound movement between facilities
 
 ## Next Steps
 
