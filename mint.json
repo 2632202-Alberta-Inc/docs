@@ -50,22 +50,22 @@
       ]
     },
     {
-      "group": "SDKs",
-      "pages": ["sdks/overview", "sdks/python", "sdks/net"]
-    },
-    {
       "group": "Models",
       "pages": [
         {
-          "group": "Tickets",
+          "group": "Volumes",
           "pages": [
-            "models/tickets/overview",
-            "models/tickets/truck",
-            "models/tickets/meter",
-            "models/tickets/tank"
+            "models/volumes/overview",
+            "models/volumes/truck",
+            "models/volumes/meter",
+            "models/volumes/tank"
           ]
         }
       ]
+    },
+    {
+      "group": "SDKs",
+      "pages": ["sdks/overview", "sdks/python", "sdks/net"]
     },
     {
       "group": "API Documentation",
