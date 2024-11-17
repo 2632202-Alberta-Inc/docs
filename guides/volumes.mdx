@@ -1,0 +1,80 @@
+---
+title: "Volumes"
+---
+
+Flux provides a robust system for tracking volumes through tickets that capture measurements and transfers across facilities. This guide will help you understand how to add tickets to track your volumes effectively.
+
+## Types of Tickets
+
+There are three main types of tickets you can create:
+
+- **Truck Tickets**: Track product movements via tanker trucks between facilities
+- **Tank Tickets**: Record point-in-time measurements of product in storage tanks
+- **Meter Tickets**: Capture continuous flow measurement data from meters
+
+Each ticket type has specific required fields and validation rules. See the [Models documentation](/models/volumes/overview) for detailed specifications.
+
+## Adding Tickets
+
+To add a new ticket:
+
+1. Determine the appropriate ticket type based on your measurement scenario.
+2. Gather required data like facility IDs, timestamps, volumes, and product characteristics.
+3. Submit the ticket via API with all required fields:
+4. Check the response for any validation errors.
+5. Correct any issues and resubmit if needed using the same appropriate endpoint.
+
+## Workflow
+
+1. **Creation**
+
+   - Ticket created via API using the appropriate endpoint.
+
+     - For **Truck Tickets**: [`POST /tickets/truck`](/api-reference/volumes/create-truck-ticket) - Create Truck Ticket
+     - For **Tank Tickets**: [`POST /tickets/tank`](/api-reference/volumes/create-tank-ticket) - Create Tank Ticket
+     - For **Meter Tickets**: [`POST /tickets/meter`](/api-reference/volumes/create-meter-ticket) - Create Meter Ticket
+
+   - System assigns initial `PENDING` status.
+   - Validation errors logged if present.
+
+2. **Validation**
+
+   Automatically triggered on every `POST` and `PATCH` request.
+
+   - Existence checks for all referenced entities (facilities, wells, meters, etc.)
+   - Required field validation.
+   - Facility type validation (only one pickup/delivery facility type allowed).
+   - Measurement unit validation.
+   - Timestamp validation.
+   - Volume and reading validations.
+   - Status updated based on validation results.
+   - Anomoly detection and validation. `Coming Soon`
+
+3. **Review**
+
+   - Search tickets by status to find tickets with errors
+
+     - [`GET  /tickets/truck`](/api-reference/volumes/list-truck-tickets) - List Truck Tickets
+     - [`GET  /tickets/tank`](/api-reference/volumes/list-tank-tickets) - List Tank Tickets
+     - [`GET  /tickets/meter`](/api-reference/volumes/list-meter-tickets) - List Meter Tickets
+
+   - Get ticket details to review and fix errors
+
+     - [`GET  /tickets/truck/{id}`](/api-reference/volumes/get-truck-ticket) - Get Truck Ticket
+     - [`GET  /tickets/tank/{id}`](/api-reference/volumes/get-tank-ticket) - Get Tank Ticket
+     - [`GET  /tickets/meter/{id}`](/api-reference/volumes/get-meter-ticket) - Get Meter Ticket
+
+   - UI interface available for manual corrections and review. `Coming Soon`
+
+4. **Resolution**
+
+   - Tickets can be updated via API using the appropriate endpoint:
+
+     - For **Truck Tickets**: [`PATCH /tickets/truck/{id}`](/api-reference/volumes/update-truck-ticket)
+     - For **Tank Tickets**: [`PATCH /tickets/tank/{id}`](/api-reference/volumes/update-tank-ticket)
+     - For **Meter Tickets**: [`PATCH /tickets/meter/{id}`](/api-reference/volumes/update-meter-ticket)
+
+   - Each update triggers revalidation.
+   - Each field can have multiple validation errors.
+   - Errors must be resolved before status can advance.
+   - Error history maintained for audit purposes.
