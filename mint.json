@@ -54,7 +54,7 @@
       "pages": [
         {
           "group": "Volumes",
-          "pages": ["guides/volumes/overview"]
+          "pages": ["guides/volumes"]
         }
       ]
     },
