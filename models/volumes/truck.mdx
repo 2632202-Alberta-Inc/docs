@@ -10,27 +10,45 @@ A truck ticket represents a product transfer between facilities via truck, inclu
 
 ### Identification
 
-- **ID** (Required): The primary key idenitifier used inside the Flux system, unique across all organizations.
+<ResponseField name="ID" type="string" required>
+  The primary key idenitifier used inside the Flux system, unique across all
+  organizations.
+</ResponseField>
 
-- **External ID** (Required): The internal idenitifier used inside the organization
+<ResponseField name="External ID" type="string" required>
+  The internal idenitifier used inside the organization
+</ResponseField>
 
-- **Bill of Lading** (Required): BOL number
+<ResponseField name="Bill of Lading" type="string" required>
+  BOL number
+</ResponseField>
 
-- **Rack Ticket**: Loading rack ticket number
+<ResponseField name="Rack Ticket" type="string">
+  Loading rack ticket number
+</ResponseField>
 
-- **Status** (Required): Status of the ticket in the Flux system
+<ResponseField name="Status" type="string" required>
+  Status of the ticket in the Flux system
+</ResponseField>
 
 ### Transportation
 
-- **Carrier** (Required): Carrier that is transporting the product (references `id` in Carrier model)
+<ResponseField name="Carrier" type="string" required>
+  Carrier that is transporting the product (references `id` in Carrier model)
+</ResponseField>
 
-- **Driver**: Driver of the carrier transporting the product (references `id` in User model)
+<ResponseField name="Driver" type="string">
+  Driver of the carrier transporting the product (references `id` in User model)
+</ResponseField>
 
 ### Locations & Entities
 
 #### Pickup Location
 
-- **Commercial Facility** (Required): Commercial facility where product is picked up (references `id` in CommercialFacility model)
+<ResponseField name="Commercial Facility" type="string" required>
+  Commercial facility where product is picked up (references `id` in
+  CommercialFacility model)
+</ResponseField>
 
 <Info>
   Commercial facilities provide a way for organizations to group and track
@@ -43,27 +61,24 @@ A truck ticket represents a product transfer between facilities via truck, inclu
   refers to that location internally.
 </Info>
 
-- **Commercial Entity** (Required): Entity that is transferring custody of the product (references `id` in Entity model)
+<ResponseField name="Commercial Entity" type="string" required>
+  Entity that is transferring custody of the product (references `id` in Entity
+  model)
+</ResponseField>
 
-- **Facility Operator** (Required): Entity that operates the pickup facility (references `id` in Entity model)
+<ResponseField name="Facility Operator" type="string" required>
+  Entity that operates the pickup facility (references `id` in Entity model)
+</ResponseField>
 
-- **Well** (Required): Well ID where product originates (references `id` in Well model)
+<ResponseField name="Well" type="string" required>
+  Well ID where product originates (references `id` in Well model)
+</ResponseField>
 
-- **Pickup Facility** (Required): Each ID references the `id` field in their respective models and only one should be specified:
-
-  - Battery
-
-  - Terminal
-
-  - Plant
-
-  - Station
-
-  - System
-
-  - Pipeline
-
-  - Resource
+<ResponseField name="Pickup Facility" type="string" required>
+  Each ID references the `id` field in their respective models and only one
+  should be specified: - Battery - Terminal - Plant - Station - System -
+  Pipeline - Resource
+</ResponseField>
 
 <Info>
   Each facility is unique by their `regulator_id` (e.g. ABBT0030001),
@@ -73,7 +88,10 @@ A truck ticket represents a product transfer between facilities via truck, inclu
 
 #### Delivery Location
 
-- **Commercial Facility** (Required): Facility where product is delivered to (references `id` in CommercialFacility model)
+<ResponseField name="Commercial Facility" type="string" required>
+  Facility where product is delivered to (references `id` in CommercialFacility
+  model)
+</ResponseField>
 
 <Info>
   Commercial facilities provide a way for organizations to group and track
@@ -86,25 +104,19 @@ A truck ticket represents a product transfer between facilities via truck, inclu
   refers to that location internally.
 </Info>
 
-- **Commercial Entity** (Required): Entity that is taking custody of the product (references `id` in Entity model)
+<ResponseField name="Commercial Entity" type="string" required>
+  Entity that is taking custody of the product (references `id` in Entity model)
+</ResponseField>
 
-- **Facility Operator** (Required): Entity that operates the delivery facility (references `id` in Entity model)
+<ResponseField name="Facility Operator" type="string" required>
+  Entity that operates the delivery facility (references `id` in Entity model)
+</ResponseField>
 
-- **Delivery Facility** (Required): Each ID references the `id` field in their respective models and only one should be specified:
-
-  - Battery
-
-  - Terminal
-
-  - Plant
-
-  - Station
-
-  - System
-
-  - Pipeline
-
-  - Resource
+<ResponseField name="Delivery Facility" type="string" required>
+  Each ID references the `id` field in their respective models and only one
+  should be specified: - Battery - Terminal - Plant - Station - System -
+  Pipeline - Resource
+</ResponseField>
 
 <Info>
   Each facility is unique by their `regulator_id` (e.g. ABBT0030001),
@@ -114,55 +126,90 @@ A truck ticket represents a product transfer between facilities via truck, inclu
 
 ### Timing
 
-- **Production Date** (Required): Calendar day of the reported volume
+<ResponseField name="Production Date" type="string" required>
+  Calendar day of the reported volume
+</ResponseField>
 
-- **Start** (Required): Start time of ticket
+<ResponseField name="Start" type="string" required>
+  Start time of ticket
+</ResponseField>
 
-- **End** (Required): End time of ticket
+<ResponseField name="End" type="string" required>
+  End time of ticket
+</ResponseField>
 
-- **Created At**: Timestamp of when the ticket was created in Flux
+<ResponseField name="Created At" type="string">
+  Timestamp of when the ticket was created in Flux
+</ResponseField>
 
-- **Updated At**: Timestamp of when the ticket was last updated in Flux
+<ResponseField name="Updated At" type="string">
+  Timestamp of when the ticket was last updated in Flux
+</ResponseField>
 
 ### Measurements
 
 #### Meter Readings
 
-- **Meter** (Required): Meter ID used (references `id` in Meter model)
+<ResponseField name="Meter" type="string" required>
+  Meter ID used (references `id` in Meter model)
+</ResponseField>
 
-- **Start Reading** (Required): Initial meter reading
+<ResponseField name="Start Reading" type="number" required>
+  Initial meter reading
+</ResponseField>
 
-- **End Reading** (Required): Final meter reading
+<ResponseField name="End Reading" type="number" required>
+  Final meter reading
+</ResponseField>
 
-- **Measurement Unit** (Required): Unit for meter readings (references `id` in MeasurementUnit model)
+<ResponseField name="Measurement Unit" type="string" required>
+  Unit for meter readings (references `id` in MeasurementUnit model) Example
+  units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
+</ResponseField>
 
-  - Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
-
-- **Meter Factor** (Required): Correction factor applied to meter readings to account for meter calibration, temperature effects, pressure effects, product characteristics, etc.
+<ResponseField name="Meter Factor" type="number" required>
+  Correction factor applied to meter readings to account for meter calibration,
+  temperature effects, pressure effects, product characteristics, etc.
+</ResponseField>
 
 #### Tank Readings
 
-- **Opening Oil**: Initial oil level in the truck
+<ResponseField name="Opening Oil" type="number">
+  Initial oil level in the truck
+</ResponseField>
 
-- **Opening Water**: Initial water level in the truck
+<ResponseField name="Opening Water" type="number">
+  Initial water level in the truck
+</ResponseField>
 
-- **Ending Oil**: Final oil level in the truck
+<ResponseField name="Ending Oil" type="number">
+  Final oil level in the truck
+</ResponseField>
 
-- **Ending Water**: Final water level in the truck
+<ResponseField name="Ending Water" type="number">
+  Final water level in the truck
+</ResponseField>
 
-- **Measurement Unit**: Unit for tank readings (references `id` in MeasurementUnit model)
-
-  - Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
+<ResponseField name="Measurement Unit" type="string">
+  Unit for tank readings (references `id` in MeasurementUnit model) Example
+  units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
+</ResponseField>
 
 #### Volume Measurements
 
 All measurement units reference `id` in MeasurementUnit model
 
-- **Volume** (Required): Total volume
+<ResponseField name="Volume" type="number" required>
+  Total volume
+</ResponseField>
 
-- **Load Volume**: Loaded volume
+<ResponseField name="Load Volume" type="number">
+  Loaded volume
+</ResponseField>
 
-- **Product Volume**: Volume of the product only (without water, etc)
+<ResponseField name="Product Volume" type="number">
+  Volume of the product only (without water, etc)
+</ResponseField>
 
 Each with corresponding measurement units (e.g., m³, bbl, GJ)
 
@@ -170,23 +217,39 @@ Each with corresponding measurement units (e.g., m³, bbl, GJ)
 
 All measurement units reference `id` in MeasurementUnit model.
 
-- **Density** (Required): Density of the fluid (e.g. kg/m³, lb/ft³)
+<ResponseField name="Density" type="number" required>
+  Density of the fluid (e.g. kg/m³, lb/ft³)
+</ResponseField>
 
-- **BSW** (Required) (Basic Sediment and Water): Combined percentage of sediment and water content (e.g. %, ppm)
+<ResponseField name="BSW" type="number" required>
+  Combined percentage of sediment and water content (e.g. %, ppm)
+</ResponseField>
 
-- **Solids**: Suspended solid particle content (e.g. %, ppm)
+<ResponseField name="Solids" type="number">
+  Suspended solid particle content (e.g. %, ppm)
+</ResponseField>
 
-- **Saltwater**: Salt water content in the fluid (e.g. %, ppm)
+<ResponseField name="Saltwater" type="number">
+  Salt water content in the fluid (e.g. %, ppm)
+</ResponseField>
 
-- **Sulfur**: Sulfur content in the fluid (e.g. %, ppm)
+<ResponseField name="Sulfur" type="number">
+  Sulfur content in the fluid (e.g. %, ppm)
+</ResponseField>
 
-- **Vapor Pressure**: Pressure exerted by fluid vapor (e.g. kPa, psi)
+<ResponseField name="Vapor Pressure" type="number">
+  Pressure exerted by fluid vapor (e.g. kPa, psi)
+</ResponseField>
 
-- **Temperature**: Temperature of the fluid (e.g. °C, °F)
+<ResponseField name="Temperature" type="number">
+  Temperature of the fluid (e.g. °C, °F)
+</ResponseField>
 
 ### Transfer & Custody
 
-- **Codes** (Required): The type of transfer (e.g. REC, INV, DISP)
+<ResponseField name="Codes" type="array" required>
+  The type of transfer (e.g. REC, INV, DISP)
+</ResponseField>
 
 ## Endpoints
 
