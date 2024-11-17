@@ -18,14 +18,7 @@ Meter tickets capture continuous flow measurement data from meters installed on 
 
 ## Ticket Status
 
-Ticket status tracks the state of a ticket through its lifecycle, from creation to final verification, ensuring proper data quality and workflow management:
-
-- **`INCOMPLETE`**: Default initial status when ticket is created. Indicates required data is missing. _(Automatically triggered)_
-- **`PENDING_REVIEW`**: All required fields are present and validated; system automatically transitions ticket to this status. _(Automatically triggered)_
-- **`DISPUTED`**: Can only be set after `PENDING_REVIEW`. Indicates issues were found during review that require investigation. _(Human-triggered)_
-- **`APPROVED`**: Can only be set after `PENDING_REVIEW`. Indicates data has been verified by authorized personnel for completeness and is ready for production accounting verification. _(Human-triggered)_
-- **`CLOSED`**: Can only be set after `PENDING_REVIEW`. Indicates final verification by production accounting is complete. Ticket becomes immutable. _(Human-triggered)_
-- **`CANCELED`**: Ticket has been voided but retained for audit purposes. Can be triggered at any point in the workflow. _(Human-triggered)_
+Ticket status tracks the state of a ticket through its lifecycle, from creation to final verification, ensuring proper data quality and workflow management. [Learn more about ticket status](/models/volumes/ticket_status)
 
 ## Transfer and Custody Codes
 

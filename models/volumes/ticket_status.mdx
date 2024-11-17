@@ -1,3 +1,41 @@
 ---
 title: "Ticket Status"
 ---
+
+## Overview
+
+Ticket status tracks the state of a ticket through its lifecycle, from creation to final verification, ensuring proper data quality and workflow management. The status transitions follow a defined workflow with both automated and human-triggered state changes to maintain data integrity and audit compliance.
+
+## Attributes
+
+<ResponseField name="INCOMPLETE" type="System Triggered" required>
+  Default initial status when ticket is created. Indicates required data is
+  missing. Set automatically by the system.
+</ResponseField>
+
+<ResponseField name="PENDING_REVIEW" type="System Triggered" required>
+  All required fields are present and validated; system automatically
+  transitions ticket to this status. Set automatically by the system.
+</ResponseField>
+
+<ResponseField name="DISPUTED" required>
+  Can only be set after PENDING_REVIEW. Indicates issues were found during
+  review that require investigation. Set manually by a human.
+</ResponseField>
+
+<ResponseField name="APPROVED" type="Human Triggered" required>
+  Can only be set after PENDING_REVIEW. Indicates data has been verified by
+  authorized personnel for completeness and is ready for production accounting
+  verification. Set manually by a human.
+</ResponseField>
+
+<ResponseField name="CLOSED" type="Human Triggered" required>
+  Can only be set after PENDING_REVIEW. Indicates final verification by
+  production accounting is complete. Ticket becomes immutable. Set manually by a
+  human.
+</ResponseField>
+
+<ResponseField name="CANCELED" type="Human Triggered" required>
+  Ticket has been voided but retained for audit purposes. Can be triggered at
+  any point in the workflow. Set manually by a human.
+</ResponseField>

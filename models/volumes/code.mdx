@@ -1,3 +1,64 @@
 ---
 title: "Ticket Code"
 ---
+
+## Overview
+
+Ticket status tracks the state of a ticket through its lifecycle, from creation to final verification, ensuring proper data quality and workflow management. The status transitions follow a defined workflow with both automated and human-triggered state changes to maintain data integrity and audit compliance.
+
+## Attributes
+
+<ResponseField name="INV">
+  Inventory - Used for tracking product inventory levels and movements within a
+  facility.
+</ResponseField>
+
+<ResponseField name="BLEND">
+  Product blend - Indicates mixing or blending of different product streams or
+  qualities.
+</ResponseField>
+
+<ResponseField name="INJ">
+  Injected product - Used when product is being injected, such as into a well or
+  pipeline system.
+</ResponseField>
+
+<ResponseField name="DISP">
+  Disposition - Indicates final disposition or allocation of product volumes.
+</ResponseField>
+
+<ResponseField name="LOCAL">
+  Local transfer between facilities within same organization - Used for internal
+  movements.
+</ResponseField>
+
+<ResponseField name="REC">
+  Received product - Indicates product volumes received at a facility.
+</ResponseField>
+
+<ResponseField name="SHIP">
+  Shipped product - Indicates product volumes shipped from a facility.
+</ResponseField>
+
+<ResponseField name="SHIP_INV">
+  Shipped inventory - Used for tracking shipped volumes against inventory.
+</ResponseField>
+
+<ResponseField name="SALE">
+  Sold inventory - Indicates product volumes that have been sold.
+</ResponseField>
+
+<ResponseField name="PRE_INV">
+  Measurement before inventory point - Used for measurements taken before
+  product enters inventory.
+</ResponseField>
+
+<ResponseField name="POST_INV">
+  Measurement after inventory point - Used for measurements taken after product
+  leaves inventory.
+</ResponseField>
+
+<ResponseField name="IN_OUT">
+  General inbound/outbound movement between facilities - Used for tracking
+  inter-facility transfers.
+</ResponseField>
