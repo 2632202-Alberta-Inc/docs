@@ -47,19 +47,6 @@ A truck ticket represents a product transfer between facilities via truck, inclu
   Commercial facility where product is picked up (references `id` in
   CommercialFacility model)
 
-{" "}
-
-<Info>
-  Commercial facilities provide a way for organizations to group and track
-  multiple physical facilities under a single logical entity. While regulatory
-  facilities (batteries, terminals, etc.) each have unique IDs and locations,
-  commercial facilities allow organizations to combine these into meaningful
-  business units for marketing, stakeholder reporting, and internal tracking
-  purposes. For example, multiple batteries with different regulator IDs might
-  be grouped into one commercial facility that represents how the organization
-  refers to that location internally.
-</Info>
-
 </ResponseField>
 
 <ResponseField name="Commercial Entity" required>
@@ -79,28 +66,30 @@ A truck ticket represents a product transfer between facilities via truck, inclu
   Each ID references the `id` field in their respective models and only one
   should be specified: Battery, Terminal, Plant, Station, System, Pipeline, and
   Resource
-  <Info>
-    Each facility is unique by their `regulator_id` (e.g. ABBT0030001),
-    `jurisdiction` (e.g. Alberta), and `regulator_system` (e.g. Petrinex) and is
-    primarily used for production accounting purposes.
-  </Info>
 </ResponseField>
+
+<Info>
+  Commercial facilities provide a way for organizations to group and track
+  multiple facilities under a single entry. While regulatory facilities
+  (batteries, terminals, etc.) each have unique `regulator_id`'s, commercial
+  facilities allow organizations to combine these into meaningful business units
+  for marketing, stakeholder reporting, and internal tracking purposes. For
+  example, multiple batteries with different `regulator_id`s might be grouped
+  into one commercial facility that represents how the organization refers to
+  that location internally.
+</Info>
+
+<Info>
+  Each facility is unique by their `regulator_id` (e.g. ABBT0030001),
+  `jurisdiction` (e.g. Alberta), and `regulator_system` (e.g. Petrinex) and is
+  primarily used for production accounting purposes.
+</Info>
 
 #### Delivery Location
 
 <ResponseField name="Commercial Facility" required>
   Facility where product is delivered to (references `id` in CommercialFacility
   model)
-  <Info>
-    Commercial facilities provide a way for organizations to group and track
-    multiple physical facilities under a single logical entity. While regulatory
-    facilities (batteries, terminals, etc.) each have unique IDs and locations,
-    commercial facilities allow organizations to combine these into meaningful
-    business units for marketing, stakeholder reporting, and internal tracking
-    purposes. For example, multiple batteries with different regulator IDs might
-    be grouped into one commercial facility that represents how the organization
-    refers to that location internally.
-  </Info>
 </ResponseField>
 
 <ResponseField name="Commercial Entity" required>
@@ -116,13 +105,24 @@ A truck ticket represents a product transfer between facilities via truck, inclu
   should be specified: Battery, Terminal, Plant, Station, System, Pipeline, and
   Resource
 
+</ResponseField>
+
+<Info>
+  Commercial facilities provide a way for organizations to group and track
+  multiple facilities under a single entry. While regulatory facilities
+  (batteries, terminals, etc.) each have unique `regulator_id`'s, commercial
+  facilities allow organizations to combine these into meaningful business units
+  for marketing, stakeholder reporting, and internal tracking purposes. For
+  example, multiple batteries with different `regulator_id`s might be grouped
+  into one commercial facility that represents how the organization refers to
+  that location internally.
+</Info>
+
 <Info>
   Each facility is unique by their `regulator_id` (e.g. ABBT0030001),
   `jurisdiction` (e.g. Alberta), and `regulator_system` (e.g. Petrinex) and is
   primarily used for production accounting purposes.
 </Info>
-
-</ResponseField>
 
 ### Timing
 
