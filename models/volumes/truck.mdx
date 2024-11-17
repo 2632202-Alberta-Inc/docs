@@ -46,8 +46,8 @@ A truck ticket represents a product transfer between facilities via truck, inclu
 <ResponseField name="Commercial Facility" required>
   Commercial facility where product is picked up (references `id` in
   CommercialFacility model)
-</ResponseField>
 
+{" "}
 <Info>
   Commercial facilities provide a way for organizations to group and track
   multiple physical facilities under a single logical entity. While regulatory
@@ -58,6 +58,8 @@ A truck ticket represents a product transfer between facilities via truck, inclu
   be grouped into one commercial facility that represents how the organization
   refers to that location internally.
 </Info>
+
+</ResponseField>
 
 <ResponseField name="Commercial Entity" required>
   Entity that is transferring custody of the product (references `id` in Entity
