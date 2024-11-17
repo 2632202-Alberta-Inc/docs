@@ -12,7 +12,7 @@ A meter ticket represents a complete record of a product transfer via meter, inc
 
 - **Status**: Status of the ticket in the Flux system
 
-### Location Information
+### Locations & Entities
 
 - **Commercial Facility**: Commercial facility where product is transferred (references `id` in CommercialFacility model)
 
@@ -55,7 +55,7 @@ A meter ticket represents a complete record of a product transfer via meter, inc
 
 ### Timing
 
-- **Production Date**: Date the ticket corresponds to
+- **Production Date**: Calendar day of the reported volume
 
 - **Start**: Start time of ticket
 
@@ -89,7 +89,7 @@ All measurement units reference `id` in MeasurementUnit model
 
 - **Product Volume**: Volume of the product only (without water, etc)
 
-- Each with corresponding measurement units (e.g., m³, bbl, GJ)
+Each with corresponding measurement units (e.g., m³, bbl, GJ)
 
 ### Quality Measurements
 

@@ -4,167 +4,188 @@ A truck ticket represents a complete record of a product transfer via truck, inc
 
 ## Attributes
 
-### Identification 
+### Identification
 
-* **ID**: The primary key idenitifier used inside the Flux system, unique across all organizations.
+- **ID**: The primary key idenitifier used inside the Flux system, unique across all organizations.
 
-* **External ID**: The internal idenitifier used inside the organization
+- **External ID**: The internal idenitifier used inside the organization
 
-* **Bill of Laden**: BOL number
+- **Bill of Laden**: BOL number
 
-* **Rack Ticket**: Loading rack ticket number
+- **Rack Ticket**: Loading rack ticket number
 
-* **Status**: Status of the ticket in the Flux system
+- **Status**: Status of the ticket in the Flux system
 
-### Transport Details
+### Transportation
 
-* **Carrier**: Carrier that is transporting the product (references `id` in Carrier model)
+- **Carrier**: Carrier that is transporting the product (references `id` in Carrier model)
 
-* **Driver**: Driver of the carrier transporting the product (references `id` in User model)
+- **Driver**: Driver of the carrier transporting the product (references `id` in User model)
 
-### Locations
+### Locations & Entities
 
 #### Pickup Location
 
-* **Commercial Facility**: Commercial facility where product is picked up (references `id` in CommercialFacility model)
+- **Commercial Facility**: Commercial facility where product is picked up (references `id` in CommercialFacility model)
 
 <Info>
-  Commercial facilities provide a way for organizations to group and track multiple physical facilities under a single logical entity. While regulatory facilities (batteries, terminals, etc.) each have unique IDs and locations, commercial facilities allow organizations to combine these into meaningful business units for marketing, stakeholder reporting, and internal tracking purposes. For example, multiple batteries with different regulator IDs might be grouped into one commercial facility that represents how the organization refers to that location internally.
+  Commercial facilities provide a way for organizations to group and track
+  multiple physical facilities under a single logical entity. While regulatory
+  facilities (batteries, terminals, etc.) each have unique IDs and locations,
+  commercial facilities allow organizations to combine these into meaningful
+  business units for marketing, stakeholder reporting, and internal tracking
+  purposes. For example, multiple batteries with different regulator IDs might
+  be grouped into one commercial facility that represents how the organization
+  refers to that location internally.
 </Info>
 
-* **Commercial Entity**: Entity that is transferring custody of the product (references `id` in Entity model)
+- **Commercial Entity**: Entity that is transferring custody of the product (references `id` in Entity model)
 
-* **Facility Operator**: Entity that operates the pickup facility (references `id` in Entity model)
+- **Facility Operator**: Entity that operates the pickup facility (references `id` in Entity model)
 
-* **Well**: Well ID where product originates (references `id` in Well model)
+- **Well**: Well ID where product originates (references `id` in Well model)
 
-* **Pickup Facility**: Each ID references the `id` field in their respective models and only one should be specified:
-  * Battery
-  
-  * Terminal
-  
-  * Plant
-  
-  * Station
-  
-  * System
-  
-  * Pipeline
-  
-  * Resource
+- **Pickup Facility**: Each ID references the `id` field in their respective models and only one should be specified:
+
+  - Battery
+
+  - Terminal
+
+  - Plant
+
+  - Station
+
+  - System
+
+  - Pipeline
+
+  - Resource
 
 <Info>
-Each facility is unique by their `regulator_id` (e.g. ABBT0030001), `jurisdiction` (e.g. Alberta), and `regulator_system` (e.g. Petrinex) and is primarily used for production accounting purposes.
+  Each facility is unique by their `regulator_id` (e.g. ABBT0030001),
+  `jurisdiction` (e.g. Alberta), and `regulator_system` (e.g. Petrinex) and is
+  primarily used for production accounting purposes.
 </Info>
 
 #### Delivery Location
 
-* **Commercial Facility**: Facility where product is delivered to (references `id` in CommercialFacility model)
+- **Commercial Facility**: Facility where product is delivered to (references `id` in CommercialFacility model)
 
 <Info>
-  Commercial facilities provide a way for organizations to group and track multiple physical facilities under a single logical entity. While regulatory facilities (batteries, terminals, etc.) each have unique IDs and locations, commercial facilities allow organizations to combine these into meaningful business units for marketing, stakeholder reporting, and internal tracking purposes. For example, multiple batteries with different regulator IDs might be grouped into one commercial facility that represents how the organization refers to that location internally.
+  Commercial facilities provide a way for organizations to group and track
+  multiple physical facilities under a single logical entity. While regulatory
+  facilities (batteries, terminals, etc.) each have unique IDs and locations,
+  commercial facilities allow organizations to combine these into meaningful
+  business units for marketing, stakeholder reporting, and internal tracking
+  purposes. For example, multiple batteries with different regulator IDs might
+  be grouped into one commercial facility that represents how the organization
+  refers to that location internally.
 </Info>
 
-* **Commercial Entity**: Entity that is taking custody of the product (references `id` in Entity model)
+- **Commercial Entity**: Entity that is taking custody of the product (references `id` in Entity model)
 
-* **Facility Operator**: Entity that operates the delivery facility (references `id` in Entity model)
+- **Facility Operator**: Entity that operates the delivery facility (references `id` in Entity model)
 
-* **Delivery Facility**: Each ID references the `id` field in their respective models and only one should be specified:
-  * Battery
-  
-  * Terminal
-  
-  * Plant
-  
-  * Station
-  
-  * System
-  
-  * Pipeline
-  
-  * Resource
-  
+- **Delivery Facility**: Each ID references the `id` field in their respective models and only one should be specified:
+
+  - Battery
+
+  - Terminal
+
+  - Plant
+
+  - Station
+
+  - System
+
+  - Pipeline
+
+  - Resource
+
 <Info>
-Each facility is unique by their `regulator_id` (e.g. ABBT0030001), `jurisdiction` (e.g. Alberta), and `regulator_system` (e.g. Petrinex) and is primarily used for production accounting purposes.
+  Each facility is unique by their `regulator_id` (e.g. ABBT0030001),
+  `jurisdiction` (e.g. Alberta), and `regulator_system` (e.g. Petrinex) and is
+  primarily used for production accounting purposes.
 </Info>
 
 ### Timing
 
-* **Production Date**: Date the ticket corresponds to
+- **Production Date**: Calendar day of the reported volume
 
-* **Start**: Start time of ticket
+- **Start**: Start time of ticket
 
-* **End**: End time of ticket
+- **End**: End time of ticket
 
-* **Created At**: Timestamp of when the ticket was created in Flux
+- **Created At**: Timestamp of when the ticket was created in Flux
 
-* **Updated At**: Timestamp of when the ticket was last updated in Flux
+- **Updated At**: Timestamp of when the ticket was last updated in Flux
 
 ### Measurements
 
 #### Meter Readings
 
-* **Meter**: Meter ID used (references `id` in Meter model)
+- **Meter**: Meter ID used (references `id` in Meter model)
 
-* **Start Reading**: Initial meter reading
+- **Start Reading**: Initial meter reading
 
-* **End Reading**: Final meter reading
+- **End Reading**: Final meter reading
 
-* **Measurement Unit**: Unit for meter readings (references `id` in MeasurementUnit model)
+- **Measurement Unit**: Unit for meter readings (references `id` in MeasurementUnit model)
 
-  * Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
+  - Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
 
-* **Meter Factor**: Correction factor applied to meter readings to account for meter calibration, temperature effects, pressure effects, product characteristics, etc.
+- **Meter Factor**: Correction factor applied to meter readings to account for meter calibration, temperature effects, pressure effects, product characteristics, etc.
 
 #### Tank Readings
 
-* **Opening Oil**: Initial oil level in the truck
+- **Opening Oil**: Initial oil level in the truck
 
-* **Opening Water**: Initial water level in the truck
+- **Opening Water**: Initial water level in the truck
 
-* **Ending Oil**: Final oil level in the truck
+- **Ending Oil**: Final oil level in the truck
 
-* **Ending Water**: Final water level in the truck
+- **Ending Water**: Final water level in the truck
 
-* **Measurement Unit**: Unit for tank readings (references `id` in MeasurementUnit model)
+- **Measurement Unit**: Unit for tank readings (references `id` in MeasurementUnit model)
 
-  * Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
+  - Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
 
 #### Volume Measurements
 
 All measurement units reference `id` in MeasurementUnit model
 
-* **Volume**: Total volume
+- **Volume**: Total volume
 
-* **Load Volume**: Loaded volume
+- **Load Volume**: Loaded volume
 
-* **Product Volume**: Volume of the product only (without water, etc)
+- **Product Volume**: Volume of the product only (without water, etc)
 
-* Each with corresponding measurement units (e.g., m³, bbl, GJ)
+Each with corresponding measurement units (e.g., m³, bbl, GJ)
 
 ### Quality Measurements
 
 All measurement units reference `id` in MeasurementUnit model.
 
-* **Density**: Density of the fluid (e.g. kg/m³, lb/ft³)
+- **Density**: Density of the fluid (e.g. kg/m³, lb/ft³)
 
-* **BSW** (Basic Sediment and Water): Combined percentage of sediment and water content (e.g. %, ppm)
+- **BSW** (Basic Sediment and Water): Combined percentage of sediment and water content (e.g. %, ppm)
 
-* **Solids**: Suspended solid particle content (e.g. %, ppm)
+- **Solids**: Suspended solid particle content (e.g. %, ppm)
 
-* **Saltwater**: Salt water content in the fluid (e.g. %, ppm)
+- **Saltwater**: Salt water content in the fluid (e.g. %, ppm)
 
-* **Sulfur**: Sulfur content in the fluid (e.g. %, ppm)
+- **Sulfur**: Sulfur content in the fluid (e.g. %, ppm)
 
-* **Vapor Pressure**: Pressure exerted by fluid vapor (e.g. kPa, psi)
+- **Vapor Pressure**: Pressure exerted by fluid vapor (e.g. kPa, psi)
 
-* **Temperature**: Temperature of the fluid (e.g. °C, °F)
+- **Temperature**: Temperature of the fluid (e.g. °C, °F)
 
-## Transfer & Custody
+### Transfer & Custody
 
-* **Codes**: The type of transfer (e.g. REC, INV, DISP)
+- **Codes**: The type of transfer (e.g. REC, INV, DISP)
 
 ## Endpoints
+
 The following endpoints are available for managing truck tickets:
 
 - [List Truck Tickets](/api-reference/volumes/list-truck-ticket) - Retrieve a paginated list of truck tickets
