@@ -19,6 +19,9 @@
       "dark": "#000000"
     }
   },
+  "primaryTab": {
+    "name": "Home"
+  },
   "topbarLinks": [
     {
       "name": "Support",
@@ -29,9 +32,10 @@
     "name": "Get Started",
     "url": "https://www.flux-os.com/login"
   },
+
   "tabs": [
     {
-      "name": "Models",
+      "name": "Data Models",
       "url": "models"
     },
     {
@@ -55,6 +59,19 @@
     {
       "group": "SDKs",
       "pages": ["sdks/overview", "sdks/python", "sdks/net"]
+    },
+    {
+      "group": "Data Models",
+      "pages": [
+        {
+          "group": "Tickets",
+          "pages": [
+            "models/tickets/truck",
+            "models/tickets/meter",
+            "models/tickets/tank"
+          ]
+        }
+      ]
     },
     {
       "group": "API Documentation",
