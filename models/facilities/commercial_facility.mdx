@@ -59,19 +59,17 @@ battery, terminal, plant, etc.
   ranges
 </ResponseField>
 
-### Organization
+### Associations
 
 <ResponseField name="Organization" required>
-  Organization that owns this commercial facility (references `id` in
+  The organization that created this commercial facility (references `id` in
   Organization model)
 </ResponseField>
 
-### Facilities
-
 <ResponseField name="Facilities">
   List of facilities associated with this commercial facility. Each facility can
-  be one of: - Battery (references `id` in Battery model) - Terminal (references
-  `id` in Terminal model) - Plant (references `id` in Plant model) - Station
-  (references `id` in Station model) - System (references `id` in System model)
-  - Pipeline (references `id` in Pipeline model)
+  be one of: Battery (references `id` in Battery model), Terminal (references
+  `id` in Terminal model), Plant (references `id` in Plant model), Station
+  (references `id` in Station model), System (references `id` in System model),
+  or Pipeline (references `id` in Pipeline model)
 </ResponseField>
