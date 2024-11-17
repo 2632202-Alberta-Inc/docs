@@ -51,12 +51,7 @@
     },
     {
       "group": "Guides",
-      "pages": [
-        {
-          "group": "Volumes",
-          "pages": ["guides/tickets"]
-        }
-      ]
+      "pages": ["guides/tickets"]
     },
     {
       "group": "Models",
