@@ -57,6 +57,32 @@
       "group": "Models",
       "pages": [
         {
+          "group": "Organization",
+          "pages": [
+            "models/facilities/overview",
+            "models/volumes/organization",
+            "models/volumes/entity",
+            "models/volumes/user"
+          ]
+        },
+        {
+          "group": "Facilities",
+          "pages": [
+            "models/facilities/overview",
+            "models/volumes/commercial_facility",
+            "models/volumes/facility"
+          ]
+        },
+        {
+          "group": "Product",
+          "pages": [
+            "models/products/overview",
+            "models/products/product_category",
+            "models/products/product",
+            "models/products/measurement_unit"
+          ]
+        },
+        {
           "group": "Volumes",
           "pages": [
             "models/volumes/overview",
