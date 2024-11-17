@@ -12,17 +12,18 @@ There are three main types of tickets you can create:
 - **Tank Tickets**: Record point-in-time measurements of product in storage tanks
 - **Meter Tickets**: Capture continuous flow measurement data from meters
 
-Each ticket type has specific required fields and validation rules. See the [Models documentation](/models/volumes/overview) for detailed specifications.
+Each ticket type has specific required fields and validation rules. See the [ticket models](/models/volumes/overview) for detailed specifications.
 
 ## Adding Tickets
 
 To add a new ticket:
 
 1. Determine the appropriate ticket type based on your measurement scenario.
-2. Gather required data like facility IDs, timestamps, volumes, and product characteristics.
-3. Submit the ticket via API with all required fields:
-4. Check the response for any validation errors.
-5. Correct any issues and resubmit if needed using the same appropriate endpoint.
+2. Gather required data like facility IDs, entity IDs, timestamps, volumes, measurements, etc.
+3. Create the ticket via API with all required fields.
+4. Get the ticket using the ticket ID and check the response for any validation errors.
+5. Update ticket via API.
+6. Confirm ticket has no errors and is in status `PENDING_REVIEW`.
 
 ## Workflow
 
@@ -35,13 +36,12 @@ To add a new ticket:
      - For **Meter Tickets**: [`POST /tickets/meter`](/api-reference/volumes/create-meter-ticket) - Create Meter Ticket
 
    - System assigns initial `PENDING` status.
-   - Validation errors logged if present.
 
 2. **Validation**
 
    Automatically triggered on every `POST` and `PATCH` request.
 
-   - Existence checks for all referenced entities (facilities, wells, meters, etc.)
+   - Existence checks for all referenced entities (facilities, entiwells, meters, etc.)
    - Required field validation.
    - Facility type validation (only one pickup/delivery facility type allowed).
    - Measurement unit validation.
@@ -52,7 +52,7 @@ To add a new ticket:
 
 3. **Review**
 
-   - Search tickets by status to find tickets with errors
+   - Search tickets by `PENDING` status to find tickets with errors
 
      - [`GET  /tickets/truck`](/api-reference/volumes/list-truck-tickets) - List Truck Tickets
      - [`GET  /tickets/tank`](/api-reference/volumes/list-tank-tickets) - List Tank Tickets
