@@ -10,108 +10,150 @@ A meter ticket represents continuous flow measurement data at a facility, includ
 
 ### Identification
 
-- **ID**: The primary key idenitifier used inside the Flux system, unique across all organizations.
+<ResponseField name="ID" required>
+  The primary key idenitifier used inside the Flux system, unique across all
+  organizations.
+</ResponseField>
 
-- **External ID**: The internal idenitifier used inside the organization
+<ResponseField name="External ID" required>
+  The internal idenitifier used inside the organization
+</ResponseField>
 
-- **Status**: Status of the ticket in the Flux system
+<ResponseField name="Status" required>
+  Status of the ticket in the Flux system
+</ResponseField>
 
 ### Locations & Entities
 
-- **Commercial Facility**: Commercial facility where product is transferred (references `id` in CommercialFacility model)
+<ResponseField name="Commercial Facility" required>
+  Commercial facility where product is transferred (references `id` in
+  CommercialFacility model)
+</ResponseField>
+
+<ResponseField name="Commercial Entity" required>
+  Entity that is transferring custody of the product (references `id` in Entity
+  model)
+</ResponseField>
+
+<ResponseField name="Facility Operator" required>
+  Entity that operates the facility (references `id` in Entity model)
+</ResponseField>
+
+<ResponseField name="Facility" required>
+  Each ID references the `id` field in their respective models and only one
+  should be specified: Battery, Terminal, Plant, Station, System, Pipeline, and
+  Resource
+</ResponseField>
 
 <Info>
-  Commercial facilities provide a way for organizations to group and track
-  multiple physical facilities under a single logical entity. While regulatory
-  facilities (batteries, terminals, etc.) each have unique IDs and locations,
-  commercial facilities allow organizations to combine these into meaningful
-  business units for marketing, stakeholder reporting, and internal tracking
-  purposes. For example, multiple batteries with different regulator IDs might
-  be grouped into one commercial facility that represents how the organization
-  refers to that location internally.
+  Commercial facilities allow organizations to combine multiple facilities into
+  meaningful business units for marketing, stakeholder reporting, internal
+  tracking purposes, etc.
 </Info>
-
-- **Commercial Entity**: Entity that is transferring custody of the product (references `id` in Entity model)
-
-- **Facility Operator**: Entity that operates the facility (references `id` in Entity model)
-
-- **Facility**: Each ID references the `id` field in their respective models and only one should be specified:
-
-  - Battery
-
-  - Terminal
-
-  - Plant
-
-  - Station
-
-  - System
-
-  - Pipeline
-
-  - Resource
 
 <Info>
   Each facility is unique by their `regulator_id` (e.g. ABBT0030001),
   `jurisdiction` (e.g. Alberta), and `regulator_system` (e.g. Petrinex) and is
-  primarily used for production accounting purposes.
+  customarily used for production accounting purposes.
 </Info>
 
 ### Timing
 
-- **Production Date**: Calendar day of the reported volume
+<ResponseField name="Production Date" required>
+  Calendar day of the reported volume
+</ResponseField>
 
-- **Start**: Start time of ticket
+<ResponseField name="Start" required>
+  Start time of ticket
+</ResponseField>
 
-- **End**: End time of ticket
+<ResponseField name="End" required>
+  End time of ticket
+</ResponseField>
 
-- **Created At**: Timestamp of when the ticket was created in Flux
+<ResponseField name="Created At">
+  Timestamp of when the ticket was created in Flux
+</ResponseField>
 
-- **Updated At**: Timestamp of when the ticket was last updated in Flux
+<ResponseField name="Updated At">
+  Timestamp of when the ticket was last updated in Flux
+</ResponseField>
 
 ### Measurements
 
 #### Meter Readings
 
-- **Meter**: Meter ID used (references `id` in Meter model)
+<ResponseField name="Meter" required>
+  Meter ID used (references `id` in Meter model)
+</ResponseField>
 
-- **Start Reading**: Initial meter reading
+<ResponseField name="Start Reading" required>
+  Initial meter reading
+</ResponseField>
 
-- **End Reading**: Final meter reading
+<ResponseField name="End Reading" required>
+  Final meter reading
+</ResponseField>
 
-- **Measurement Unit**: Unit for meter readings (references `id` in MeasurementUnit model)
+<ResponseField name="Measurement Unit" required>
+  Unit for meter readings (references `id` in MeasurementUnit model) Example
+  units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
+</ResponseField>
 
-  - Example units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
-
-- **Meter Factor**: Correction factor applied to meter readings to account for meter calibration, temperature effects, pressure effects, product characteristics, etc.
+<ResponseField name="Factor" required>
+  Correction factor applied to meter readings to account for meter calibration,
+  temperature effects, pressure effects, product characteristics, etc.
+</ResponseField>
 
 #### Volume Measurements
 
 All measurement units reference `id` in MeasurementUnit model
 
-- **Volume**: Total volume
+<ResponseField name="Volume" required>
+  Total volume
+</ResponseField>
 
-- **Product Volume**: Volume of the product only (without water, etc)
+<ResponseField name="Net Volume">
+  Volume of the product only (without water, etc)
+</ResponseField>
 
-Each with corresponding measurement units (e.g., m³, bbl, GJ)
+Each with their own corresponding measurement unit fields. If a value is not
+null, the measurement unit is required for the field.
 
 ### Quality Measurements
 
 All measurement units reference `id` in MeasurementUnit model.
 
-- **Density**: Density of the fluid (e.g. kg/m³, lb/ft³)
+<ResponseField name="Density" required>
+  Density of the fluid (e.g. kg/m³, lb/ft³)
+</ResponseField>
 
-- **BSW** (Basic Sediment and Water): Combined percentage of sediment and water content (e.g. %, ppm)
+<ResponseField name="BSW" required>
+  Combined percentage of sediment and water content (e.g. %, ppm)
+</ResponseField>
 
-- **Solids**: Suspended solid particle content (e.g. %, ppm)
+<ResponseField name="Solids">
+  Suspended solid particle content (e.g. %, ppm)
+</ResponseField>
 
-- **Saltwater**: Salt water content in the fluid (e.g. %, ppm)
+<ResponseField name="Saltwater">
+  Salt water content in the fluid (e.g. %, ppm)
+</ResponseField>
 
-- **Sulfur**: Sulfur content in the fluid (e.g. %, ppm)
+<ResponseField name="Sulfur">
+  Sulfur content in the fluid (e.g. %, ppm)
+</ResponseField>
 
-- **Vapor Pressure**: Pressure exerted by fluid vapor (e.g. kPa, psi)
+<ResponseField name="Vapor Pressure">
+  Pressure exerted by fluid vapor (e.g. kPa, psi)
+</ResponseField>
 
-- **Temperature**: Temperature of the fluid (e.g. °C, °F)
+<ResponseField name="Temperature">
+  Temperature of the fluid (e.g. °C, °F)
+</ResponseField>
+
+Each with their own corresponding measurement unit fields. If a value is not
+null, the measurement unit is required for the field.
 
 ### Transfer & Custody
 
@@ -119,12 +161,3 @@ All measurement units reference `id` in MeasurementUnit model.
   The type of transfer or custody. Multiple codes may be specified (e.g. REC,
   INV, DISP)
 </ResponseField>
-
-## Endpoints
-
-The following endpoints are available for managing meter tickets:
-
-- [List Meter Tickets](/api-reference/volumes/list-meter-ticket) - Retrieve a paginated list of meter tickets
-- [Get Meter Ticket](/api-reference/volumes/get-meter-ticket) - Get details for a specific meter ticket
-- [Create Meter Ticket](/api-reference/volumes/create-meter-ticket) - Create a new meter ticket
-- [Update Meter Ticket](/api-reference/volumes/update-meter-ticket) - Update an existing meter ticket
