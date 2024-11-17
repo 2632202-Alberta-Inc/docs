@@ -31,6 +31,10 @@
   },
   "tabs": [
     {
+      "name": "Models",
+      "url": "models"
+    },
+    {
       "name": "API Reference",
       "url": "api-reference",
       "openapi": "/openapi.json"
@@ -46,15 +50,6 @@
         "authentication",
         "errors",
         "professional_services"
-      ]
-    },
-    {
-      "group": "Tickets",
-      "pages": [
-        "tickets/overview",
-        "tickets/truck",
-        "tickets/meter",
-        "tickets/tank"
       ]
     },
     {
