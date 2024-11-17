@@ -19,9 +19,6 @@
       "dark": "#000000"
     }
   },
-  "primaryTab": {
-    "name": "Home"
-  },
   "topbarLinks": [
     {
       "name": "Support",
@@ -34,10 +31,6 @@
   },
 
   "tabs": [
-    {
-      "name": "Data Models",
-      "url": "models"
-    },
     {
       "name": "API Reference",
       "url": "api-reference",
@@ -61,11 +54,12 @@
       "pages": ["sdks/overview", "sdks/python", "sdks/net"]
     },
     {
-      "group": "Data Models",
+      "group": "Models",
       "pages": [
         {
           "group": "Tickets",
           "pages": [
+            "models/tickets/overview",
             "models/tickets/truck",
             "models/tickets/meter",
             "models/tickets/tank"
