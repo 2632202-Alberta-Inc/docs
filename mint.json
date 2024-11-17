@@ -53,8 +53,8 @@
       "pages": [
         "tickets/overview",
         "tickets/truck",
-        "tickets/tank",
-        "tickets/meters"
+        "tickets/meter",
+        "tickets/tank"
       ]
     },
     {

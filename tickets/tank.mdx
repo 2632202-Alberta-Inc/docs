@@ -1,6 +1,6 @@
 ## Overview
 
-A tank ticket represents a complete record of a product transfer via tank, including location details, measurements, and quality data.
+A tank ticket represents a complete record of a tank volume reading at an oil and gas facility. It captures tank measurements, quality data, and facility details to track product volumes and characteristics at a specific point in time.
 
 ## Attributes
 
@@ -14,7 +14,7 @@ A tank ticket represents a complete record of a product transfer via tank, inclu
 
 ### Location Information
 
-- **Commercial Facility**: Commercial facility where product is transferred (references `id` in CommercialFacility model)
+- **Commercial Facility**: Commercial facility where product is measured at (references `id` in CommercialFacility model)
 
 <Info>
   Commercial facilities provide a way for organizations to group and track
@@ -27,7 +27,7 @@ A tank ticket represents a complete record of a product transfer via tank, inclu
   refers to that location internally.
 </Info>
 
-- **Commercial Entity**: Entity that is transferring custody of the product (references `id` in Entity model)
+- **Commercial Entity**: Entity that has custody of the product (references `id` in Entity model)
 
 - **Facility Operator**: Entity that operates the facility (references `id` in Entity model)
 
