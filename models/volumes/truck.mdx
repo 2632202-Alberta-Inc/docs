@@ -157,7 +157,7 @@ A truck ticket represents a product transfer between facilities via truck, inclu
   units: 'Cubic Meters' (m³), 'Barrels' (bbl), 'Gigajoules' (GJ)
 </ResponseField>
 
-<ResponseField name="Meter Factor" required>
+<ResponseField name="Factor" required>
   Correction factor applied to meter readings to account for meter calibration,
   temperature effects, pressure effects, product characteristics, etc.
 </ResponseField>
@@ -189,9 +189,13 @@ All measurement units reference `id` in MeasurementUnit model
   Total volume
 </ResponseField>
 
-<ResponseField name="Load Volume">Loaded volume</ResponseField>
+<ResponseField name="Load Volume">
+  Volume measured at the source loading location, as opposed to the delivery
+  location. This measurement is particularly relevant when the custody transfer
+  point is at the loading facility (e.g. Fort Saskatchewan load racks).
+</ResponseField>
 
-<ResponseField name="Product Volume">
+<ResponseField name="Net Volume">
   Volume of the product only (without water, etc)
 </ResponseField>
 
