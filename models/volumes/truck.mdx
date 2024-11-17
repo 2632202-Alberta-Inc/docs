@@ -75,9 +75,41 @@ A truck ticket represents a product transfer between facilities via truck, inclu
 </ResponseField>
 
 <ResponseField name="Pickup Facility" type="string" required>
-  Each ID references the `id` field in their respective models and only one
-  should be specified: - Battery - Terminal - Plant - Station - System -
-  Pipeline - Resource
+  Each ID references the `id` field in their respective models and only one should be specified:
+
+{" "}
+<ResponseField name="Battery" type="string">
+  Battery facility ID
+</ResponseField>
+
+{" "}
+<ResponseField name="Terminal" type="string">
+  Terminal facility ID
+</ResponseField>
+
+{" "}
+<ResponseField name="Plant" type="string">
+  Plant facility ID
+</ResponseField>
+
+{" "}
+<ResponseField name="Station" type="string">
+  Station facility ID
+</ResponseField>
+
+{" "}
+<ResponseField name="System" type="string">
+  System facility ID
+</ResponseField>
+
+{" "}
+<ResponseField name="Pipeline" type="string">
+  Pipeline facility ID
+</ResponseField>
+
+  <ResponseField name="Resource" type="string">
+    Resource facility ID
+  </ResponseField>
 </ResponseField>
 
 <Info>
