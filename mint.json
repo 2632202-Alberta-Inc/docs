@@ -59,18 +59,26 @@
         {
           "group": "Organization",
           "pages": [
-            "models/facilities/overview",
-            "models/volumes/organization",
-            "models/volumes/entity",
-            "models/volumes/user"
+            "models/organizations/overview",
+            "models/organizations/organization",
+            "models/organizations/entity",
+            "models/organizations/user"
           ]
         },
         {
           "group": "Facilities",
           "pages": [
             "models/facilities/overview",
-            "models/volumes/commercial_facility",
-            "models/volumes/facility"
+            "models/facilities/commercial_facility",
+            "models/facilities/facility"
+          ]
+        },
+        {
+          "group": "Regulatory",
+          "pages": [
+            "models/regulatory/overview",
+            "models/regulatory/system",
+            "models/regulatory/jurisdiction"
           ]
         },
         {
