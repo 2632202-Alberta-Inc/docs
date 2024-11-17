@@ -70,7 +70,9 @@
           "pages": [
             "models/facilities/overview",
             "models/facilities/commercial_facility",
-            "models/facilities/facility"
+            "models/facilities/facility",
+            "models/facilities/type",
+            "models/facilities/sub_types"
           ]
         },
         {
