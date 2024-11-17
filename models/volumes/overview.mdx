@@ -3,49 +3,25 @@ title: "Overview"
 description: "Flux uses a ticketing system to track and measure volumes of oil, gas, and other products across production facilities. Each ticket provides a snapshot of volume and product characteristics at specific points in time, facilitating accurate tracking of product ownership and transfer status."
 ---
 
-### Truck Tickets
+## Truck Tickets
 
-Truck tickets are essential for tracking the movement of products via tanker trucks between facilities. They capture critical information such as:
+Truck tickets are essential for tracking the movement of products via tanker trucks between facilities.
 
-- Pickup and delivery locations/facilities
-- Carrier and driver information
-- Bill of lading and rack ticket numbers
-- Production date and timestamps
-- Volumes measurements
-- Product quality specifications, including density, basic sediment and water (BSW), temperature, vapor pressure, and sulfur content.
-- Tank gauging data (opening/closing levels)
-- Meter readings and factors
-- Custody and transfer codes
+These tickets are vital for ensuring accurate custody transfer of products like crude oil, condensate, and produced water transported by road. [Learn more about truck tickets](/models/volumes/truck)
 
-These tickets are vital for ensuring accurate custody transfer of products like crude oil, condensate, and produced water transported by road. [Learn more about truck tickets](/tickets/truck)
+## Tank Tickets
 
-### Tank Tickets
+Tank tickets document product measurements and transfers involving storage tanks at facilities.
 
-Tank tickets document product measurements and transfers involving storage tanks at facilities. They record:
+These tickets are critical for inventory management and reconciliation at batteries, terminals, and other storage facilities. [Learn more about tank tickets](/models/volumes/tank)
 
-- Location and facility information
-- Production date and timestamps
-- Meter readings and factors
-- Volume measurements
-- Product quality specifications, including density, basic sediment and water (BSW), solids content, saltwater content, sulfur content, vapor pressure, and temperature.
-- Custody and transfer codes
+## Meter Tickets
 
-These tickets are critical for inventory management and reconciliation at batteries, terminals, and other storage facilities. [Learn more about tank tickets](/tickets/tank)
+Meter tickets capture continuous flow measurement data from meters installed on pipelines and facility equipment.
 
-### Meter Tickets
+These tickets provide accurate measurement for pipeline transfers, facility throughput, and regulatory reporting requirements. [Learn more about meter tickets](/models/volumes/meter)
 
-Meter tickets capture continuous flow measurement data from meters installed on pipelines and facility equipment. They include:
-
-- Location and facility information
-- Production date and timestamps
-- Meter readings and factors
-- Volume measurements
-- Product quality specifications, including density, basic sediment and water (BSW), solids content, saltwater content, sulfur content, vapor pressure, and temperature.
-- Custody and transfer codes
-
-These tickets provide accurate measurement for pipeline transfers, facility throughput, and regulatory reporting requirements. [Learn more about meter tickets](/tickets/meter)
-
-## Ticket Statuses
+## Ticket Status
 
 Tickets follow a dynamic status workflow that helps ensure accurate data quality and timely completeness:
 
@@ -93,7 +69,7 @@ Tickets follow a dynamic status workflow that helps ensure accurate data quality
 
    - Remains for auditing purposes
 
-### Workflow
+## Workflow
 
 1. **Creation**
 
@@ -139,7 +115,7 @@ Tickets follow a dynamic status workflow that helps ensure accurate data quality
 
 - Error history maintained for audit purposes
 
-### Audit Trail `Coming Soon`
+## Audit Trail `Coming Soon`
 
 - All status changes are timestamped
 
