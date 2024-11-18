@@ -79,7 +79,8 @@
           "pages": [
             "models/regulatory/overview",
             "models/regulatory/system",
-            "models/regulatory/jurisdiction"
+            "models/regulatory/jurisdiction",
+            "models/regulatory/petrinex"
           ]
         },
         {
