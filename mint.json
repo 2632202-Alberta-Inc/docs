@@ -43,7 +43,6 @@
       "group": "Get Started",
       "pages": [
         "introduction",
-        "quickstart",
         "authentication",
         "errors",
         "professional_services"
@@ -51,7 +50,7 @@
     },
     {
       "group": "Guides",
-      "pages": ["guides/tickets"]
+      "pages": ["quickstart", "guides/tickets"]
     },
     {
       "group": "Concepts",
