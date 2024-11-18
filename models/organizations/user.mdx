@@ -1,0 +1,48 @@
+---
+title: "User"
+---
+
+## Overview
+
+Users are individuals who access and interact with the Flux platform. Users are associated with organizations rather than specific entities, allowing them to work across all entities within their organization based on their roles and permissions. [Learn more about users](/models/organizations/user)
+
+## Attributes
+
+<ResponseField name="ID" required>
+  The primary key identifier used inside the Flux system
+</ResponseField>
+
+<ResponseField name="Organization" required>
+  The organization this user belongs to (references `id` in Organization model)
+</ResponseField>
+
+<ResponseField name="First Name" required>
+  The user's first name
+</ResponseField>
+
+<ResponseField name="Last Name" required>
+  The user's last name
+</ResponseField>
+
+<ResponseField name="Email" required>
+  The user's email address
+</ResponseField>
+
+<ResponseField name="Phone" required>
+  The user's phone number
+</ResponseField>
+
+<ResponseField name="Title" required>
+  The user's job title
+</ResponseField>
+
+<ResponseField name="Roles">
+  The roles assigned to this user (references `id` in UserRoles model). Common
+  roles include: Trader, Marketing, Finance, Engineering, etc.
+</ResponseField>
+
+<ResponseField name="Permissions">
+  The specific permissions granted to this user (references `id` in
+  UserPermissions model). Common permissions include: Admin, Read Only, Front
+  Office, Mid Office, Back Office, etc.
+</ResponseField>

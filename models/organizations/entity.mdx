@@ -1,0 +1,82 @@
+---
+title: "Entity"
+---
+
+## Overview
+
+Entities represent the legal entities of an organization within specific jurisdictions. For example, while "Flux" is the organization, "Flux Operating Systems Ltd." would be an entity in a particular jurisdiction. Each entity has attributes like legal name, jurisdiction, and regulatory identifiers (if applicable). [Learn more about entities](/models/organizations/entity)
+
+## Attributes
+
+### Identification
+
+<ResponseField name="ID" required>
+  The primary key identifier used inside the Flux system
+</ResponseField>
+
+<ResponseField name="Legal Name" required>
+  The legal name of the entity
+</ResponseField>
+
+<ResponseField name="Organization">
+  The organization this entity belongs to (references `id` in Organization
+  model)
+</ResponseField>
+
+### Contact Information
+
+<ResponseField name="URL">Website URL of the entity</ResponseField>
+
+<ResponseField name="Phone">Contact phone number for the entity</ResponseField>
+
+<ResponseField name="Email">Contact email address for the entity</ResponseField>
+
+### Address
+
+<ResponseField name="Unit">Unit number of the entity's address</ResponseField>
+
+<ResponseField name="Street">Street address of the entity</ResponseField>
+
+<ResponseField name="City">City where the entity is located</ResponseField>
+
+<ResponseField name="ZIP Code">ZIP code of the entity's address</ResponseField>
+
+<ResponseField name="Province">Province of the entity's address</ResponseField>
+
+<ResponseField name="State">State of the entity's address</ResponseField>
+
+<ResponseField name="Postal Code">
+  Postal code of the entity's address
+</ResponseField>
+
+<ResponseField name="Country">
+  Country where the entity is located
+</ResponseField>
+
+### Regulatory Information
+
+<ResponseField name="Regulator ID" required>
+  The identifier used by the regulatory system (e.g. Petrinex ID)
+</ResponseField>
+
+<ResponseField name="Regulator System" required>
+  The regulatory system this entity operates under (e.g. PETRINEX)
+</ResponseField>
+
+<ResponseField name="Jurisdiction" required>
+  The jurisdiction this entity operates in (e.g. ALBERTA, SASKATCHEWAN)
+</ResponseField>
+
+### Status
+
+<ResponseField name="Status" required>
+  The current corporate status of the entity (e.g. ACTIVE, DISSOLVED)
+</ResponseField>
+
+<ResponseField name="Effective Date" required>
+  The date when the current status became effective
+</ResponseField>
+
+<ResponseField name="Successor">
+  Reference to the successor entity if this entity was merged/acquired
+</ResponseField>
