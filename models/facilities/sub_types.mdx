@@ -4,6 +4,31 @@ title: "Facility Sub Type"
 
 ## Overview
 
-Facility sub types link regulatory sub-categories to their parent regulatory types (e.g. "902" Custom Treating Battery links to "BT" Battery type in Petrinex). These sub type mappings ensure accurate representation and hierarchical classification of regulatory facilities in Flux models. [Learn more about facility sub types](/models/facilities/facility#classification)
+Facility sub types link regulatory sub-categories to their parent regulatory types (e.g. "902" Custom Treating Battery links to "BT" Battery type in Petrinex). These sub type mappings ensure accurate representation and hierarchical classification of regulatory facilities in Flux models.
 
 ## Attributes
+
+<ResponseField name="ID" required>
+  The primary key identifier used inside the Flux system, unique across all
+  organizations.
+</ResponseField>
+
+<ResponseField name="Name" required>
+  The human readable name of the regulatory sub-category (e.g. "Custom Treating
+  Battery", "Sweet Gas Plant", "Meter Station")
+</ResponseField>
+
+<ResponseField name="Code" required>
+  The unique code used by the regulatory system to identify this facility
+  sub-type (e.g. "902" for Custom Treating Battery in Petrinex)
+</ResponseField>
+
+<ResponseField name="Facility Type" required>
+  The parent facility type this sub-type belongs to (references `id` in
+  FacilityType model)
+</ResponseField>
+
+<ResponseField name="Jurisdiction" required>
+  The jurisdiction where this facility sub-type is used (e.g. "Alberta",
+  "British Columbia", "Saskatchewan")
+</ResponseField>
