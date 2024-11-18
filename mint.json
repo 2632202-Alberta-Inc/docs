@@ -54,7 +54,7 @@
       "pages": ["guides/tickets"]
     },
     {
-      "group": "Models",
+      "group": "Concepts",
       "pages": [
         {
           "group": "Organization",
