@@ -17,21 +17,62 @@ The regulator system ID is a unique identifier assigned to each regulator system
 
 Source: `PETRINEX`
 
-### Entity Status
+### Data Synchronization Schedule
 
-The following statuses are used to indicate the current state of an entity in Petrinex:
+### Entities
 
-- START - Initial status when entity is created
-- INACTIVE_REACTIVATE_ELIGIBLE - Inactive but eligible for reactivation
-- LIQUIDATION - Entity is in liquidation process
-- NON_REGISTERED - Entity is not registered
-- DISCONTINUED_NO_REACTIVATION - Discontinued with no option for reactivation
-- DISSOLVED - Entity has been dissolved
-- CONTINUED_OUT - Entity has continued operations elsewhere
-- ACTIVE - Entity is currently active
-- STRUCK - Entity has been struck from registry
-- CONTINUED_OUT_AMALGAMATED - Entity has continued out and amalgamated
-- AMALGAMATED - Entity has merged with another entity
-- DISSOLUTION/DISSOLVED - Entity has been dissolved
+#### Corporate Status
 
-### Facility Status
+The following corporate statuses in Petrinex are used to indicate the current state of an entity:
+
+- `START` - Initial status when entity is created
+- `INACTIVE_REACTIVATE_ELIGIBLE` - Inactive but eligible for reactivation
+- `LIQUIDATION` - Entity is in liquidation process
+- `NON_REGISTERED` - Entity is not registered
+- `DISCONTINUED_NO_REACTIVATION` - Discontinued with no option for reactivation
+- `DISSOLVED` - Entity has been dissolved
+- `CONTINUED_OUT` - Entity has continued operations elsewhere
+- `ACTIVE` - Entity is currently active
+- `STRUCK` - Entity has been struck from registry
+- `CONTINUED_OUT_AMALGAMATED` - Entity has continued out and amalgamated
+- `AMALGAMATED` - Entity has merged with another entity
+- `DISSOLUTION/DISSOLVED` - Entity has been dissolved
+
+### Facilities & Wells
+
+#### Licensing Status
+
+The following licensing statuses in Petrinex are used to indicate the current state of a facility's license:
+
+- `ABANDONED` - Facility has been abandoned
+- `AMMENDED` - License has been amended
+- `CANCELLED` - License has been cancelled
+- `DECOMMISSION` - Facility has been decommissioned
+- `ISSUED` - License has been issued
+- `RE-ENTERED` - Facility has been re-entered
+- `RECCERTIFIED` - Facility has been recertified
+- `RECEXEMPT` - Facility is exempt from recertification
+- `SUSPENDED` - License is suspended
+- `SUSPENSION` - License is under suspension
+
+#### Licensing Type
+
+The following license types in Petrinex are used to indicate the type of license:
+
+- `WELL` - License for a well
+- `FACILITY` - License for a facility/pipeline
+
+#### Operational Status
+
+The following operational statuses in Petrinex are used to indicate the current operational state of a facility:
+
+- `ABANDONED` - Facility has been abandoned
+- `ACTIVE` - Facility is currently active
+- `CANCELLED` - Facility operations have been cancelled
+- `MINSUSPEND` - Facility is under minimum suspension
+- `NEW` - Newly registered facility
+- `NONREPORTING` - Facility is not reporting
+- `RECCERTIFIED` - Facility has been recertified
+- `RECEXEMPT` - Facility is exempt from recertification
+- `RETIRED` - Facility has been retired
+- `SUSPENDED` - Facility operations are suspended
