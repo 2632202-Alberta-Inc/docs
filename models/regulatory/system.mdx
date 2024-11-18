@@ -4,18 +4,14 @@ title: "Regulatory System"
 
 ## Overview
 
-A regulatory system refers to the reporting platform or framework used for regulatory compliance within a jurisdiction. For example, Petrinex is the system used in Western Canada for oil and gas production reporting, while other regions may use different systems to facilitate similar reporting requirements. [Learn more about regulatory systems](/models/regulatory/system)
+A regulatory system refers to the reporting platform or framework used for regulatory compliance within a jurisdiction. Regulatory systems provide standardized methods for reporting production, managing licenses, and maintaining regulatory compliance. Each jurisdiction typically has a designated system that companies must use to meet their reporting obligations.
 
 ## Attributes
 
 <ResponseField name="name" required>
-  The name of the regulatory system.
+  The name of the regulatory system (e.g., "Petrinex")
 </ResponseField>
 
-## Regulatory Systems
-
-Here are the currently supported regulatory systems in the Flux system:
-
-| Name     | Jurisdictions         |
-| -------- | --------------------- |
-| Petrinex | ALBERTA, SASKATCHEWAN |
+<ResponseField name="jurisdiction" required>
+  The jurisdiction(s) where this regulatory system is used
+</ResponseField>
