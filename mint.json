@@ -50,7 +50,7 @@
     },
     {
       "group": "Guides",
-      "pages": ["quickstart", "guides/tickets"]
+      "pages": ["quickstart", "guides/creating-tickets"]
     },
     {
       "group": "Concepts",
