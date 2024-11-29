@@ -1825,7 +1825,7 @@
           "name"
         ]
       },
-      "CodeReference": {
+      "TicketCodeReference": {
         "type": "object",
         "properties": {
           "id": {
@@ -2142,7 +2142,7 @@
           "codes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CodeReference"
+              "$ref": "#/components/schemas/TicketCodeReference"
             }
           },
           "errors": {
@@ -2316,7 +2316,7 @@
           "codes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CodeReference"
+              "$ref": "#/components/schemas/TicketCodeReference"
             }
           }
         },
@@ -2494,7 +2494,7 @@
           "codes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CodeReference"
+              "$ref": "#/components/schemas/TicketCodeReference"
             }
           }
         },
