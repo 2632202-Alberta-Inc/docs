@@ -1128,37 +1128,32 @@
           "jurisdiction": {
             "type": "string",
             "enum": [
-              "A",
-              "S"
-            ],
-            "maxLength": 255
+              "ALBERTA",
+              "SASKATCHEWAN"
+            ]
           },
           "licensee": {},
           "license_status": {
             "type": "string",
-            "default": null,
             "enum": [
-              "A",
-              "C",
-              "D",
-              "I",
-              "R",
-              "S",
-              null
-            ],
-            "maxLength": 255,
-            "nullable": true
+              "ABANDONED",
+              "AMMENDED",
+              "CANCELLED",
+              "DECOMMISSION",
+              "ISSUED",
+              "RE-ENTERED",
+              "RECCERTIFIED",
+              "RECEXEMPT",
+              "SUSPENDED",
+              "SUSPENSION"
+            ]
           },
           "license_type": {
             "type": "string",
-            "default": null,
             "enum": [
-              "W",
-              "F",
-              null
-            ],
-            "maxLength": 255,
-            "nullable": true
+              "WELL",
+              "FACILITY"
+            ]
           },
           "license_number": {
             "type": "string",
@@ -1179,9 +1174,8 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P"
-            ],
-            "maxLength": 255
+              "PETRINEX"
+            ]
           },
           "entity": {
             "$ref": "#/components/schemas/EntityReference1"
@@ -1189,14 +1183,12 @@
         },
         "required": [
           "event_sequence",
-          "jurisdiction",
           "licensee",
           "location_exception",
           "lsd",
           "meridian",
           "range",
           "regulator_id",
-          "regulator_system",
           "section",
           "township",
           "uwi"
@@ -3250,39 +3242,34 @@
           "jurisdiction": {
             "type": "string",
             "enum": [
-              "A",
-              "S"
-            ],
-            "maxLength": 255
+              "ALBERTA",
+              "SASKATCHEWAN"
+            ]
           },
           "licensee": {
             "$ref": "#/components/schemas/EntityReference1"
           },
           "license_status": {
             "type": "string",
-            "default": null,
             "enum": [
-              "A",
-              "C",
-              "D",
-              "I",
-              "R",
-              "S",
-              null
-            ],
-            "maxLength": 255,
-            "nullable": true
+              "ABANDONED",
+              "AMMENDED",
+              "CANCELLED",
+              "DECOMMISSION",
+              "ISSUED",
+              "RE-ENTERED",
+              "RECCERTIFIED",
+              "RECEXEMPT",
+              "SUSPENDED",
+              "SUSPENSION"
+            ]
           },
           "license_type": {
             "type": "string",
-            "default": null,
             "enum": [
-              "W",
-              "F",
-              null
-            ],
-            "maxLength": 255,
-            "nullable": true
+              "WELL",
+              "FACILITY"
+            ]
           },
           "license_number": {
             "type": "string",
@@ -3303,20 +3290,17 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P"
-            ],
-            "maxLength": 255
+              "PETRINEX"
+            ]
           }
         },
         "required": [
           "event_sequence",
-          "jurisdiction",
           "location_exception",
           "lsd",
           "meridian",
           "range",
           "regulator_id",
-          "regulator_system",
           "section",
           "township",
           "uwi"
