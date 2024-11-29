@@ -784,12 +784,36 @@
           "density"
         ]
       },
+      "Currency": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "symbol": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "symbol"
+        ]
+      },
       "CurrencyConversion": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "readOnly": true
+          },
+          "to_currency": {
+            "$ref": "#/components/schemas/Currency"
           },
           "exchange_rate": {
             "type": "number"
@@ -828,6 +852,31 @@
         "required": [
           "name",
           "symbol"
+        ]
+      },
+      "Currency_CurrencyConversion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "from_currency": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "to_currency": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "exchange_rate": {
+            "type": "number"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "exchange_rate"
         ]
       },
       "OrganizationReference2": {
@@ -2878,6 +2927,52 @@
         "required": [
           "bsw",
           "density"
+        ]
+      },
+      "Currency_ReferenceCurrency": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "symbol": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "symbol"
+        ]
+      },
+      "Currency_ReferenceCurrencyConversion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "from_currency": {
+            "type": "integer"
+          },
+          "to_currency": {
+            "type": "integer"
+          },
+          "exchange_rate": {
+            "type": "number"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "exchange_rate"
         ]
       },
       "Entity_ReferenceEntity": {
@@ -5432,20 +5527,55 @@
     "/currencies": {
       "get": {
         "summary": "List Currencies",
-        "description": "Retrieve a list of currencies.",
+        "description": "Retrieve a list of currencies with pagination.",
         "operationId": "get_currencies",
         "tags": [
           "Currency"
         ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "A list of currencies.",
+            "description": "A paginated list of currencies.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Currency_Currency"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Currency_ReferenceCurrency"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -5466,7 +5596,7 @@
     "/currencies/convert": {
       "get": {
         "summary": "Get Exchange Rate",
-        "description": "Retrieve the live exchange rate.",
+        "description": "Retrieve the exchange rate between two currencies.",
         "operationId": "convert_currency",
         "tags": [
           "Currency"
@@ -5499,14 +5629,8 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "from_currency": {
-                      "type": "string"
-                    },
-                    "to_currency": {
-                      "type": "string"
-                    },
-                    "exchange_rate": {
-                      "type": "number"
+                    "data": {
+                      "$ref": "#/components/schemas/Currency_CurrencyConversion"
                     }
                   }
                 }
@@ -5514,20 +5638,7 @@
             }
           },
           "400": {
-            "description": "Request format incorrect.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "You must include from_currency and to_currency as query params."
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "404": {
             "description": "Conversion not found.",
