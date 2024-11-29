@@ -4662,7 +4662,7 @@
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Facility_Terminal"
+                      "$ref": "#/components/schemas/Facility_Facility"
                     }
                   }
                 }
