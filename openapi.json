@@ -2042,13 +2042,14 @@
           "load_volume_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
-          "product_volume": {
+          "net_volume": {
             "type": "number",
             "default": null,
             "nullable": true
           },
-          "product_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          "net_volume_measurement_unit": {
+            "default": null,
+            "nullable": true
           },
           "density": {
             "type": "number",
@@ -2130,6 +2131,9 @@
                 "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
+          },
+          "product_volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "codes": {
             "type": "array",
@@ -2218,12 +2222,10 @@
           "volume_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
-          "product_volume": {
+          "net_volume": {
             "type": "number"
           },
-          "product_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
-          },
+          "net_volume_measurement_unit": {},
           "density": {
             "type": "number"
           },
@@ -2297,6 +2299,9 @@
             "default": null,
             "nullable": true
           },
+          "product_volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          },
           "temperature_measurement_unit": {
             "nullable": true,
             "allOf": [
@@ -2320,8 +2325,9 @@
           "meter_end",
           "meter_factor",
           "meter_start",
+          "net_volume",
+          "net_volume_measurement_unit",
           "organization",
-          "product_volume",
           "production_date",
           "start",
           "volume"
@@ -2400,12 +2406,10 @@
           "volume_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
-          "product_volume": {
+          "net_volume": {
             "type": "number"
           },
-          "product_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
-          },
+          "net_volume_measurement_unit": {},
           "density": {
             "type": "number"
           },
@@ -2483,6 +2487,9 @@
               }
             ]
           },
+          "product_volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          },
           "codes": {
             "type": "array",
             "items": {
@@ -2498,8 +2505,9 @@
           "meter_end",
           "meter_factor",
           "meter_start",
+          "net_volume",
+          "net_volume_measurement_unit",
           "organization",
-          "product_volume",
           "production_date",
           "start",
           "volume"
@@ -3546,12 +3554,12 @@
             "default": null,
             "nullable": true
           },
-          "product_volume": {
+          "net_volume": {
             "type": "number",
             "default": null,
             "nullable": true
           },
-          "product_volume_measurement_unit": {
+          "net_volume_measurement_unit": {
             "default": null,
             "nullable": true
           },
@@ -3807,11 +3815,14 @@
           "load_volume_measurement_unit": {
             "type": "integer"
           },
-          "product_volume": {
-            "type": "number"
+          "net_volume": {
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
-          "product_volume_measurement_unit": {
-            "type": "integer"
+          "net_volume_measurement_unit": {
+            "default": null,
+            "nullable": true
           },
           "density": {
             "type": "number"
@@ -3872,6 +3883,12 @@
           },
           "delivery_well": {
             "type": "integer"
+          },
+          "product_volume_measurement_unit": {
+            "type": "integer"
+          },
+          "product_volume": {
+            "type": "number"
           },
           "codes": {
             "type": "array",
@@ -3974,10 +3991,10 @@
             "type": "number"
           },
           "volume_measurement_unit": {},
-          "product_volume": {
+          "net_volume": {
             "type": "number"
           },
-          "product_volume_measurement_unit": {},
+          "net_volume_measurement_unit": {},
           "density": {
             "type": "number"
           },
@@ -4054,9 +4071,9 @@
           "meter_factor",
           "meter_measurement_unit",
           "meter_start",
+          "net_volume",
+          "net_volume_measurement_unit",
           "organization",
-          "product_volume",
-          "product_volume_measurement_unit",
           "production_date",
           "start",
           "volume",
@@ -4168,10 +4185,10 @@
             "type": "number"
           },
           "volume_measurement_unit": {},
-          "product_volume": {
+          "net_volume": {
             "type": "number"
           },
-          "product_volume_measurement_unit": {},
+          "net_volume_measurement_unit": {},
           "density": {
             "type": "number"
           },
@@ -4248,9 +4265,9 @@
           "meter_factor",
           "meter_measurement_unit",
           "meter_start",
+          "net_volume",
+          "net_volume_measurement_unit",
           "organization",
-          "product_volume",
-          "product_volume_measurement_unit",
           "production_date",
           "start",
           "volume",
