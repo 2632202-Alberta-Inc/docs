@@ -1389,10 +1389,9 @@
           "jurisdiction": {
             "type": "string",
             "enum": [
-              "A",
-              "S"
-            ],
-            "maxLength": 255
+              "ALBERTA",
+              "SASKATCHEWAN"
+            ]
           },
           "type": {
             "$ref": "#/components/schemas/FacilityTypeReference"
@@ -1487,7 +1486,6 @@
           }
         },
         "required": [
-          "jurisdiction",
           "lsd",
           "meridian",
           "name",
@@ -1571,10 +1569,9 @@
           "jurisdiction": {
             "type": "string",
             "enum": [
-              "A",
-              "S"
-            ],
-            "maxLength": 255
+              "ALBERTA",
+              "SASKATCHEWAN"
+            ]
           },
           "type": {
             "readOnly": true,
@@ -1689,7 +1686,6 @@
           }
         },
         "required": [
-          "jurisdiction",
           "lsd",
           "meridian",
           "name",
@@ -3211,10 +3207,9 @@
           "jurisdiction": {
             "type": "string",
             "enum": [
-              "A",
-              "S"
-            ],
-            "maxLength": 255
+              "ALBERTA",
+              "SASKATCHEWAN"
+            ]
           },
           "type": {
             "readOnly": true,
@@ -3329,7 +3324,6 @@
           }
         },
         "required": [
-          "jurisdiction",
           "lsd",
           "meridian",
           "name",
