@@ -1251,6 +1251,18 @@
             "type": "string",
             "maxLength": 255
           },
+          "model": {
+            "type": "string",
+            "enum": [
+              "Terminal",
+              "Station",
+              "Plant",
+              "Battery",
+              "System",
+              "Pipeline",
+              "Rail Line"
+            ]
+          },
           "sub_types": {
             "type": "array",
             "items": {
@@ -1311,7 +1323,16 @@
             "maxLength": 255
           },
           "model": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "Terminal",
+              "Station",
+              "Plant",
+              "Battery",
+              "System",
+              "Pipeline",
+              "Rail Line"
+            ]
           }
         },
         "required": [
@@ -1470,18 +1491,6 @@
             "type": "string",
             "enum": [
               "PETRINEX"
-            ]
-          },
-          "model": {
-            "type": "string",
-            "enum": [
-              "Terminal",
-              "Station",
-              "Plant",
-              "Battery",
-              "System",
-              "Pipeline",
-              "Rail Line"
             ]
           }
         },
@@ -1670,18 +1679,6 @@
             "type": "string",
             "enum": [
               "PETRINEX"
-            ]
-          },
-          "model": {
-            "type": "string",
-            "enum": [
-              "Terminal",
-              "Station",
-              "Plant",
-              "Battery",
-              "System",
-              "Pipeline",
-              "Rail Line"
             ]
           }
         },
@@ -3129,7 +3126,16 @@
             "maxLength": 255
           },
           "model": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "Terminal",
+              "Station",
+              "Plant",
+              "Battery",
+              "System",
+              "Pipeline",
+              "Rail Line"
+            ]
           }
         },
         "required": [
@@ -3308,18 +3314,6 @@
             "type": "string",
             "enum": [
               "PETRINEX"
-            ]
-          },
-          "model": {
-            "type": "string",
-            "enum": [
-              "Terminal",
-              "Station",
-              "Plant",
-              "Battery",
-              "System",
-              "Pipeline",
-              "Rail Line"
             ]
           }
         },
