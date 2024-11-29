@@ -3325,6 +3325,27 @@
           "uwi"
         ]
       },
+      "FacilityReference2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "regulator_id": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "regulator_id"
+        ]
+      },
       "Volumes_ReferenceMeter": {
         "type": "object",
         "properties": {
@@ -3337,11 +3358,15 @@
             "maxLength": 255
           },
           "facility": {
-            "type": "integer",
-            "nullable": true
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityReference2"
+              }
+            ]
           },
           "operator": {
-            "type": "integer"
+            "$ref": "#/components/schemas/EntityReference1"
           }
         },
         "required": [
@@ -3368,27 +3393,6 @@
         },
         "required": [
           "name"
-        ]
-      },
-      "FacilityReference2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "regulator_id": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "name",
-          "regulator_id"
         ]
       },
       "Volumes_ReferenceTruckTicket": {
