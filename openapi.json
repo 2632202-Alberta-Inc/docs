@@ -1609,14 +1609,17 @@
           "operational_status": {
             "type": "string",
             "enum": [
-              "A",
-              "C",
-              "M",
-              "N",
-              "R",
-              "S"
-            ],
-            "maxLength": 255
+              "ABANDONED",
+              "ACTIVE",
+              "CANCELLED",
+              "MINSUSPEND",
+              "NEW",
+              "NONREPORTING",
+              "RECCERTIFIED",
+              "RECEXEMPT",
+              "RETIRED",
+              "SUSPENDED"
+            ]
           },
           "operator_start_date": {
             "type": "string",
@@ -1632,29 +1635,25 @@
           },
           "license_status": {
             "type": "string",
-            "default": null,
             "enum": [
-              "A",
-              "C",
-              "D",
-              "I",
-              "R",
-              "S",
-              null
-            ],
-            "maxLength": 255,
-            "nullable": true
+              "ABANDONED",
+              "AMMENDED",
+              "CANCELLED",
+              "DECOMMISSION",
+              "ISSUED",
+              "RE-ENTERED",
+              "RECCERTIFIED",
+              "RECEXEMPT",
+              "SUSPENDED",
+              "SUSPENSION"
+            ]
           },
           "license_type": {
             "type": "string",
-            "default": null,
             "enum": [
-              "W",
-              "F",
-              null
-            ],
-            "maxLength": 255,
-            "nullable": true
+              "WELL",
+              "FACILITY"
+            ]
           },
           "license_number": {
             "type": "string",
@@ -1697,7 +1696,6 @@
           "lsd",
           "meridian",
           "name",
-          "operational_status",
           "operator_start_date",
           "range",
           "regulator_id",
@@ -3253,14 +3251,17 @@
           "operational_status": {
             "type": "string",
             "enum": [
-              "A",
-              "C",
-              "M",
-              "N",
-              "R",
-              "S"
-            ],
-            "maxLength": 255
+              "ABANDONED",
+              "ACTIVE",
+              "CANCELLED",
+              "MINSUSPEND",
+              "NEW",
+              "NONREPORTING",
+              "RECCERTIFIED",
+              "RECEXEMPT",
+              "RETIRED",
+              "SUSPENDED"
+            ]
           },
           "operator_start_date": {
             "type": "string",
@@ -3276,29 +3277,25 @@
           },
           "license_status": {
             "type": "string",
-            "default": null,
             "enum": [
-              "A",
-              "C",
-              "D",
-              "I",
-              "R",
-              "S",
-              null
-            ],
-            "maxLength": 255,
-            "nullable": true
+              "ABANDONED",
+              "AMMENDED",
+              "CANCELLED",
+              "DECOMMISSION",
+              "ISSUED",
+              "RE-ENTERED",
+              "RECCERTIFIED",
+              "RECEXEMPT",
+              "SUSPENDED",
+              "SUSPENSION"
+            ]
           },
           "license_type": {
             "type": "string",
-            "default": null,
             "enum": [
-              "W",
-              "F",
-              null
-            ],
-            "maxLength": 255,
-            "nullable": true
+              "WELL",
+              "FACILITY"
+            ]
           },
           "license_number": {
             "type": "string",
@@ -3341,7 +3338,6 @@
           "lsd",
           "meridian",
           "name",
-          "operational_status",
           "operator_start_date",
           "range",
           "regulator_id",
