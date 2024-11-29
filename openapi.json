@@ -1470,9 +1470,8 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P"
-            ],
-            "maxLength": 255
+              "PETRINEX"
+            ]
           },
           "model": {
             "type": "string",
@@ -1495,7 +1494,6 @@
           "operator_start_date",
           "range",
           "regulator_id",
-          "regulator_system",
           "section",
           "start_date",
           "township"
@@ -1674,9 +1672,8 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P"
-            ],
-            "maxLength": 255
+              "PETRINEX"
+            ]
           },
           "model": {
             "type": "string",
@@ -1699,7 +1696,6 @@
           "operator_start_date",
           "range",
           "regulator_id",
-          "regulator_system",
           "section",
           "start_date",
           "township"
@@ -3316,9 +3312,8 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P"
-            ],
-            "maxLength": 255
+              "PETRINEX"
+            ]
           },
           "model": {
             "type": "string",
@@ -3341,7 +3336,6 @@
           "operator_start_date",
           "range",
           "regulator_id",
-          "regulator_system",
           "section",
           "start_date",
           "township"
