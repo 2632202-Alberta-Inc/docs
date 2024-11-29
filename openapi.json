@@ -444,12 +444,6 @@
             "default": null,
             "maxLength": 255,
             "nullable": true
-          },
-          "entities": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EntityReference"
-            }
           }
         },
         "required": [
@@ -488,18 +482,6 @@
         "required": [
           "name"
         ]
-      },
-      "CommercialFacilityFacilityReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "facility": {
-            "$ref": "#/components/schemas/FacilityReference"
-          }
-        }
       },
       "Organization_CommercialFacility": {
         "type": "object",
@@ -544,7 +526,7 @@
           "facilities": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CommercialFacilityFacilityReference"
+              "$ref": "#/components/schemas/FacilityReference"
             },
             "nullable": true
           }
@@ -646,7 +628,7 @@
           "short_code"
         ]
       },
-      "ProductReference": {
+      "ProductCategoryReference": {
         "type": "object",
         "properties": {
           "id": {
@@ -660,15 +642,6 @@
           "short_code": {
             "type": "string",
             "maxLength": 255
-          },
-          "product_category": {
-            "type": "integer"
-          },
-          "measurement_units": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
           }
         },
         "required": [
@@ -683,50 +656,33 @@
             "type": "string",
             "readOnly": true
           },
-          "product": {},
-          "to_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit1"
+          "from_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit"
           },
           "conversion_factor": {
             "type": "number"
           }
         },
         "required": [
-          "conversion_factor",
-          "product"
+          "conversion_factor"
         ]
       },
-      "MeasurementUnit1": {
+      "ProductUnitConversion1": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "readOnly": true
           },
-          "name": {
-            "type": "string",
-            "maxLength": 255
+          "to_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit"
           },
-          "abbreviation": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "from_conversions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProductUnitConversion"
-            }
-          },
-          "to_conversions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProductUnitConversion"
-            }
+          "conversion_factor": {
+            "type": "number"
           }
         },
         "required": [
-          "abbreviation",
-          "name"
+          "conversion_factor"
         ]
       },
       "Product_MeasurementUnit": {
@@ -744,8 +700,8 @@
             "type": "string",
             "maxLength": 255
           },
-          "product": {
-            "$ref": "#/components/schemas/ProductReference"
+          "product_category": {
+            "$ref": "#/components/schemas/ProductCategoryReference"
           },
           "from_conversions": {
             "type": "array",
@@ -756,13 +712,76 @@
           "to_conversions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ProductUnitConversion"
+              "$ref": "#/components/schemas/ProductUnitConversion1"
             }
           }
         },
         "required": [
           "abbreviation",
           "name"
+        ]
+      },
+      "EntityReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "legal_name"
+        ]
+      },
+      "MeasurementUnitReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "abbreviation": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "abbreviation"
+        ]
+      },
+      "Product_ProductCategorySpecification": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product_category": {
+            "$ref": "#/components/schemas/ProductCategoryReference"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/EntityReference1"
+          },
+          "density": {
+            "type": "number"
+          },
+          "density_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          },
+          "bsw": {
+            "type": "number"
+          },
+          "bsw_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          }
+        },
+        "required": [
+          "bsw",
+          "density"
         ]
       },
       "CurrencyConversion": {
@@ -988,22 +1007,6 @@
           "regulator_id",
           "regulator_system",
           "status"
-        ]
-      },
-      "EntityReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "legal_name": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "legal_name"
         ]
       },
       "Wells_Well": {
@@ -1408,20 +1411,20 @@
           "model": {
             "type": "string",
             "enum": [
-              "T",
-              "S",
-              "P",
-              "B",
-              "R"
-            ],
-            "maxLength": 255
+              "Terminal",
+              "Station",
+              "Plant",
+              "Battery",
+              "System",
+              "Pipeline",
+              "Rail Line"
+            ]
           }
         },
         "required": [
           "jurisdiction",
           "lsd",
           "meridian",
-          "model",
           "name",
           "operational_status",
           "operator_start_date",
@@ -1614,20 +1617,20 @@
           "model": {
             "type": "string",
             "enum": [
-              "T",
-              "S",
-              "P",
-              "B",
-              "R"
-            ],
-            "maxLength": 255
+              "Terminal",
+              "Station",
+              "Plant",
+              "Battery",
+              "System",
+              "Pipeline",
+              "Rail Line"
+            ]
           }
         },
         "required": [
           "jurisdiction",
           "lsd",
           "meridian",
-          "model",
           "name",
           "operational_status",
           "operator_start_date",
@@ -1881,7 +1884,7 @@
           "external_id"
         ]
       },
-      "MeasurementUnitReference": {
+      "MeasurementUnitReference1": {
         "type": "object",
         "properties": {
           "id": {
@@ -2076,7 +2079,7 @@
             "nullable": true
           },
           "meter_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "meter_factor": {
             "type": "number",
@@ -2107,7 +2110,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2117,7 +2120,7 @@
             "nullable": true
           },
           "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "load_volume": {
             "type": "number",
@@ -2125,7 +2128,7 @@
             "nullable": true
           },
           "load_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "product_volume": {
             "type": "number",
@@ -2133,7 +2136,7 @@
             "nullable": true
           },
           "product_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "density": {
             "type": "number",
@@ -2141,7 +2144,7 @@
             "nullable": true
           },
           "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "bsw": {
             "type": "number",
@@ -2149,7 +2152,7 @@
             "nullable": true
           },
           "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "solids": {
             "type": "number",
@@ -2160,7 +2163,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2173,7 +2176,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2186,7 +2189,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2199,7 +2202,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2212,7 +2215,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2292,7 +2295,7 @@
             "type": "number"
           },
           "meter_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "meter_factor": {
             "type": "number"
@@ -2301,25 +2304,25 @@
             "type": "number"
           },
           "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "product_volume": {
             "type": "number"
           },
           "product_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "density": {
             "type": "number"
           },
           "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "bsw": {
             "type": "number"
           },
           "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "solids": {
             "type": "number",
@@ -2330,7 +2333,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2343,7 +2346,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2356,7 +2359,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2369,7 +2372,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2386,7 +2389,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2474,7 +2477,7 @@
             "type": "number"
           },
           "meter_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "meter_factor": {
             "type": "number"
@@ -2483,25 +2486,25 @@
             "type": "number"
           },
           "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "product_volume": {
             "type": "number"
           },
           "product_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "density": {
             "type": "number"
           },
           "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "bsw": {
             "type": "number"
           },
           "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "solids": {
             "type": "number",
@@ -2512,7 +2515,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2525,7 +2528,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2538,7 +2541,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2551,7 +2554,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2564,7 +2567,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference"
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
               }
             ]
           },
@@ -2780,6 +2783,27 @@
           "commercial_facility"
         ]
       },
+      "ProductCategoryReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
       "Product_ReferenceProduct": {
         "type": "object",
         "properties": {
@@ -2796,13 +2820,7 @@
             "maxLength": 255
           },
           "product_category": {
-            "type": "integer"
-          },
-          "measurement_units": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
+            "$ref": "#/components/schemas/ProductCategoryReference1"
           }
         },
         "required": [
@@ -3195,20 +3213,20 @@
           "model": {
             "type": "string",
             "enum": [
-              "T",
-              "S",
-              "P",
-              "B",
-              "R"
-            ],
-            "maxLength": 255
+              "Terminal",
+              "Station",
+              "Plant",
+              "Battery",
+              "System",
+              "Pipeline",
+              "Rail Line"
+            ]
           }
         },
         "required": [
           "jurisdiction",
           "lsd",
           "meridian",
-          "model",
           "name",
           "operational_status",
           "operator_start_date",
@@ -4456,7 +4474,7 @@
                 "Rail Line"
               ]
             },
-            "description": "Filter by facility model type"
+            "description": "Filter by facility model name"
           }
         ],
         "responses": {
@@ -5213,7 +5231,7 @@
     "/organization/commercial-facilities/{id}": {
       "get": {
         "summary": "Get Commercial Facility",
-        "description": "Retrieve details about a specific commercial facility in the current organization including their related their associated terminals, batteries, plants, pipelines, stations, etc.",
+        "description": "Retrieve details about a specific commercial facility in the current organization including their related their associated facilities.",
         "operationId": "get_commercial_facility",
         "tags": [
           "Organization"
@@ -5255,6 +5273,144 @@
                     "error": {
                       "type": "string",
                       "example": "Commercial facility not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/organization/entities": {
+      "get": {
+        "summary": "List Entities",
+        "description": "Retrieve a list of entities in the current organization with pagination and filtering options.",
+        "operationId": "get_organization_entities",
+        "tags": [
+          "Organization"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of entities.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Entity_ReferenceEntity"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/organization/facilities": {
+      "get": {
+        "summary": "List Facilities",
+        "description": "Retrieve a list of facilities in the current organization with pagination and filtering options.",
+        "operationId": "get_organization_facilities",
+        "tags": [
+          "Organization"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of entities.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Facility_ReferenceFacility"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
                     }
                   }
                 }
@@ -5634,7 +5790,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Product_ReferenceProductCategorySpecification"
+                        "$ref": "#/components/schemas/Product_ProductCategorySpecification"
                       }
                     },
                     "meta": {
@@ -5706,6 +5862,14 @@
               "type": "string"
             },
             "description": "Filter by measurement unit abbreviation"
+          },
+          {
+            "in": "query",
+            "name": "product_category_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by product category ID"
           }
         ],
         "responses": {
