@@ -143,78 +143,65 @@
             "readOnly": true
           },
           "legal_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "url": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "phone": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "email": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "unit": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "street": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "city": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "zip_code": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "province": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "state": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "postal_code": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "country": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "regulator_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "regulator_system": {
             "type": "string",
@@ -269,35 +256,29 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "slug": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "stytch_id": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "url": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "phone": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "email": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "entities": {
@@ -320,8 +301,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -336,12 +316,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -357,31 +335,25 @@
             "readOnly": true
           },
           "stytch_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "organization": {
             "$ref": "#/components/schemas/OrganizationReference"
           },
           "first_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "last_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "phone": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "title": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "roles": {
             "type": "array",
@@ -413,35 +385,29 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "slug": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "stytch_id": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "url": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "phone": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "email": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           }
         },
@@ -458,8 +424,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -474,8 +439,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -490,8 +454,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "latitude": {
             "type": "number",
@@ -516,8 +479,7 @@
             "type": "integer"
           },
           "meridian": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "organization": {
             "$ref": "#/components/schemas/OrganizationReference1"
@@ -563,12 +525,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "short_code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -584,12 +544,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "short_code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "product_category": {
             "$ref": "#/components/schemas/ProductCategory"
@@ -608,12 +566,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "short_code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -629,12 +585,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "abbreviation": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -686,12 +640,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "abbreviation": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "product_category": {
             "$ref": "#/components/schemas/ProductCategoryReference"
@@ -722,12 +674,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "short_code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "measurement_units": {
             "type": "array",
@@ -749,8 +699,7 @@
             "readOnly": true
           },
           "abbreviation": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -793,12 +742,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "symbol": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -836,12 +783,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "symbol": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "conversions": {
             "type": "array",
@@ -888,8 +833,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -906,7 +850,6 @@
           "name": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           }
         }
@@ -919,8 +862,7 @@
             "readOnly": true
           },
           "legal_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "organization": {
             "$ref": "#/components/schemas/OrganizationReference2"
@@ -928,72 +870,60 @@
           "url": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "phone": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "email": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "unit": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "street": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "city": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "zip_code": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "province": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "state": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "postal_code": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "country": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "regulator_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "regulator_system": {
             "type": "string",
@@ -1066,8 +996,7 @@
             "readOnly": true
           },
           "legal_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -1082,13 +1011,11 @@
             "readOnly": true
           },
           "uwi": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "name": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "latitude": {
@@ -1102,12 +1029,10 @@
             "nullable": true
           },
           "location_exception": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "event_sequence": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "lsd": {
             "type": "integer"
@@ -1122,8 +1047,7 @@
             "type": "integer"
           },
           "meridian": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "jurisdiction": {
             "type": "string",
@@ -1158,7 +1082,6 @@
           "license_number": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "license_issued": {
@@ -1168,8 +1091,7 @@
             "nullable": true
           },
           "regulator_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "regulator_system": {
             "type": "string",
@@ -1202,12 +1124,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "facility_type": {},
           "jurisdiction": {
@@ -1215,8 +1135,7 @@
             "enum": [
               "A",
               "S"
-            ],
-            "maxLength": 255
+            ]
           }
         },
         "required": [
@@ -1234,12 +1153,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "model": {
             "type": "string",
@@ -1273,12 +1190,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "facility_type": {},
           "jurisdiction": {
@@ -1286,8 +1201,7 @@
             "enum": [
               "A",
               "S"
-            ],
-            "maxLength": 255
+            ]
           }
         },
         "required": [
@@ -1305,12 +1219,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "model": {
             "type": "string",
@@ -1338,20 +1250,17 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "jurisdiction": {
             "type": "string",
             "enum": [
               "A",
               "S"
-            ],
-            "maxLength": 255
+            ]
           }
         },
         "required": [
@@ -1368,8 +1277,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "latitude": {
             "type": "number",
@@ -1394,8 +1302,7 @@
             "type": "integer"
           },
           "meridian": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "jurisdiction": {
             "type": "string",
@@ -1464,7 +1371,6 @@
           "license_number": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "license_issued": {
@@ -1474,8 +1380,7 @@
             "nullable": true
           },
           "regulator_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "regulator_system": {
             "type": "string",
@@ -1504,8 +1409,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -1520,8 +1424,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -1536,8 +1439,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "latitude": {
             "type": "number",
@@ -1562,8 +1464,7 @@
             "type": "integer"
           },
           "meridian": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "jurisdiction": {
             "type": "string",
@@ -1652,7 +1553,6 @@
           "license_number": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "license_issued": {
@@ -1662,8 +1562,7 @@
             "nullable": true
           },
           "regulator_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "regulator_system": {
             "type": "string",
@@ -1692,8 +1591,7 @@
             "readOnly": true
           },
           "external_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "facility": {
             "nullable": true,
@@ -1719,8 +1617,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -1735,8 +1632,7 @@
             "readOnly": true
           },
           "legal_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -1751,12 +1647,10 @@
             "readOnly": true
           },
           "first_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "last_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -1772,8 +1666,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -1788,8 +1681,7 @@
             "readOnly": true
           },
           "external_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -1804,12 +1696,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "abbreviation": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -1825,8 +1715,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -1841,15 +1730,13 @@
             "readOnly": true
           },
           "field_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "error_message": {
             "type": "string"
           },
           "error_type": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "created_at": {
             "type": "string",
@@ -1886,7 +1773,6 @@
           "external_id": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "status": {
@@ -1899,13 +1785,11 @@
           "bill_of_laiden": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "rack_ticket": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "carrier": {
@@ -2153,8 +2037,7 @@
             "readOnly": true
           },
           "external_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "status": {
             "$ref": "#/components/schemas/TicketStatusReference"
@@ -2335,8 +2218,7 @@
             "readOnly": true
           },
           "external_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "status": {
             "$ref": "#/components/schemas/TicketStatusReference"
@@ -2513,8 +2395,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -2529,8 +2410,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -2545,31 +2425,25 @@
             "readOnly": true
           },
           "stytch_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "organization": {
             "$ref": "#/components/schemas/OrganizationReference1"
           },
           "first_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "last_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "phone": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "title": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "roles": {
             "type": "array",
@@ -2601,8 +2475,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -2617,12 +2490,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -2638,8 +2509,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "latitude": {
             "type": "number",
@@ -2664,8 +2534,7 @@
             "type": "integer"
           },
           "meridian": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "organization": {}
         },
@@ -2703,12 +2572,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "short_code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -2724,12 +2591,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "short_code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "product_category": {
             "$ref": "#/components/schemas/ProductCategoryReference1"
@@ -2748,12 +2613,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "short_code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -2802,12 +2665,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "symbol": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -2848,8 +2709,7 @@
             "readOnly": true
           },
           "legal_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "organization": {
             "$ref": "#/components/schemas/OrganizationReference2"
@@ -2857,72 +2717,60 @@
           "url": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "phone": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "email": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "unit": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "street": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "city": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "zip_code": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "province": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "state": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "postal_code": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "country": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "regulator_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "regulator_system": {
             "type": "string",
@@ -2977,12 +2825,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "model": {
             "type": "string",
@@ -3010,20 +2856,17 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "jurisdiction": {
             "type": "string",
             "enum": [
               "A",
               "S"
-            ],
-            "maxLength": 255
+            ]
           }
         },
         "required": [
@@ -3040,8 +2883,7 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "latitude": {
             "type": "number",
@@ -3066,8 +2908,7 @@
             "type": "integer"
           },
           "meridian": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "jurisdiction": {
             "type": "string",
@@ -3156,7 +2997,6 @@
           "license_number": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "license_issued": {
@@ -3166,8 +3006,7 @@
             "nullable": true
           },
           "regulator_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "regulator_system": {
             "type": "string",
@@ -3196,13 +3035,11 @@
             "readOnly": true
           },
           "uwi": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "name": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "latitude": {
@@ -3216,12 +3053,10 @@
             "nullable": true
           },
           "location_exception": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "event_sequence": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "lsd": {
             "type": "integer"
@@ -3236,8 +3071,7 @@
             "type": "integer"
           },
           "meridian": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "jurisdiction": {
             "type": "string",
@@ -3274,7 +3108,6 @@
           "license_number": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "license_issued": {
@@ -3284,8 +3117,7 @@
             "nullable": true
           },
           "regulator_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "regulator_system": {
             "type": "string",
@@ -3314,12 +3146,10 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "regulator_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           }
         },
         "required": [
@@ -3335,8 +3165,7 @@
             "readOnly": true
           },
           "external_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "facility": {
             "nullable": true,
@@ -3362,13 +3191,11 @@
             "readOnly": true
           },
           "name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "description": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           }
         },
@@ -3386,13 +3213,11 @@
           "external_id": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "status": {
             "readOnly": true,
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "organization": {
             "default": null,
@@ -3402,13 +3227,11 @@
           "bill_of_laiden": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "rack_ticket": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "carrier": {
@@ -3636,15 +3459,13 @@
           },
           "ticket": {},
           "field_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "error_message": {
             "type": "string"
           },
           "error_type": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "created_at": {
             "type": "string",
@@ -3696,7 +3517,6 @@
           "rack_ticket": {
             "type": "string",
             "default": null,
-            "maxLength": 255,
             "nullable": true
           },
           "carrier": {
@@ -3931,13 +3751,11 @@
             "readOnly": true
           },
           "external_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "status": {
             "readOnly": true,
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "organization": {},
           "commercial_facility": {},
@@ -4081,15 +3899,13 @@
           },
           "ticket": {},
           "field_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "error_message": {
             "type": "string"
           },
           "error_type": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "created_at": {
             "type": "string",
@@ -4125,13 +3941,11 @@
             "readOnly": true
           },
           "external_id": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "status": {
             "readOnly": true,
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "organization": {},
           "commercial_facility": {},
@@ -4275,15 +4089,13 @@
           },
           "ticket": {},
           "field_name": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "error_message": {
             "type": "string"
           },
           "error_type": {
-            "type": "string",
-            "maxLength": 255
+            "type": "string"
           },
           "created_at": {
             "type": "string",
