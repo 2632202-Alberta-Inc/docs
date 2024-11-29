@@ -28,11 +28,11 @@
     },
     {
       "name": "Organization",
-      "description": "Endpoints for user management, roles, commercial units, and permissions within organizations."
+      "description": "Endpoints for organizations to configure, view, and manage their users, roles, permissions, product category specifications, commercial units, etc."
     },
     {
       "name": "Products",
-      "description": "Endpoints for managing products, categories, and specifications."
+      "description": "Endpoints for managing products, product categories, and specifications."
     },
     {
       "name": "Currency",
@@ -577,27 +577,6 @@
           "short_code"
         ]
       },
-      "MeasurementUnit": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "abbreviation": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "abbreviation",
-          "name"
-        ]
-      },
       "Product_Product": {
         "type": "object",
         "properties": {
@@ -615,12 +594,6 @@
           },
           "product_category": {
             "$ref": "#/components/schemas/ProductCategory"
-          },
-          "measurement_units": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MeasurementUnit"
-            }
           }
         },
         "required": [
@@ -647,6 +620,27 @@
         "required": [
           "name",
           "short_code"
+        ]
+      },
+      "MeasurementUnit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "abbreviation": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "abbreviation",
+          "name"
         ]
       },
       "ProductUnitConversion": {
@@ -721,20 +715,31 @@
           "name"
         ]
       },
-      "EntityReference1": {
+      "Product_ProductCategory": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "readOnly": true
           },
-          "legal_name": {
+          "name": {
             "type": "string",
             "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "measurement_units": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MeasurementUnit"
+            }
           }
         },
         "required": [
-          "legal_name"
+          "name",
+          "short_code"
         ]
       },
       "MeasurementUnitReference": {
@@ -762,9 +767,6 @@
           },
           "product_category": {
             "$ref": "#/components/schemas/ProductCategoryReference"
-          },
-          "entity": {
-            "$ref": "#/components/schemas/EntityReference1"
           },
           "density": {
             "type": "number"
@@ -1056,6 +1058,22 @@
           "regulator_id",
           "regulator_system",
           "status"
+        ]
+      },
+      "EntityReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "legal_name"
         ]
       },
       "Wells_Well": {
@@ -2908,9 +2926,7 @@
           "product_category": {
             "type": "integer"
           },
-          "entity": {
-            "type": "integer"
-          },
+          "organization": {},
           "density": {
             "type": "number"
           },
@@ -2922,11 +2938,15 @@
           },
           "bsw_measurement_unit": {
             "type": "integer"
+          },
+          "entity": {
+            "type": "integer"
           }
         },
         "required": [
           "bsw",
-          "density"
+          "density",
+          "organization"
         ]
       },
       "Currency_ReferenceCurrency": {
@@ -5524,6 +5544,84 @@
         }
       }
     },
+    "/organization/products/categories/specifications": {
+      "get": {
+        "summary": "List Product Category Specifications",
+        "description": "Retrieve a list of product category specifications in the current organization with pagination and filtering options.",
+        "operationId": "get_product_categories_specifications",
+        "tags": [
+          "Organization"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "product_category_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by product category ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of product category specifications.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Product_ProductCategorySpecification"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/currencies": {
       "get": {
         "summary": "List Currencies",
@@ -5869,57 +5967,51 @@
         }
       }
     },
-    "/products/categories/specifications": {
+    "/products/categories/{id}": {
       "get": {
-        "summary": "List Category Specifications",
-        "description": "Retrieve a list of product category specifications with pagination and filtering options.",
-        "operationId": "get_product_categories_specifications",
+        "summary": "Get Product Category",
+        "description": "Retrieve details of a specific product category, including its name, specifications, and measurement units.",
+        "operationId": "get_product_category",
         "tags": [
           "Products"
         ],
         "parameters": [
           {
-            "in": "query",
-            "name": "page",
+            "in": "path",
+            "name": "id",
             "schema": {
-              "type": "integer",
-              "default": 1,
-              "minimum": 1
+              "type": "integer"
             },
-            "required": false,
-            "description": "Page number for pagination"
+            "required": true,
+            "description": "The product category ID."
           }
         ],
         "responses": {
           "200": {
-            "description": "A paginated list of product category specifications.",
+            "description": "A single product category.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Product_ProductCategorySpecification"
-                      }
-                    },
-                    "meta": {
-                      "type": "object",
-                      "properties": {
-                        "current_page": {
-                          "type": "integer"
-                        },
-                        "total_pages": {
-                          "type": "integer"
-                        },
-                        "total_items": {
-                          "type": "integer"
-                        },
-                        "per_page": {
-                          "type": "integer"
-                        }
-                      }
+                      "$ref": "#/components/schemas/Product_ProductCategory"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product category not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Product category not found."
                     }
                   }
                 }
@@ -5938,7 +6030,7 @@
         }
       }
     },
-    "/products/measurement-units": {
+    "/products/categories/measurement-units": {
       "get": {
         "summary": "List Measurement Units",
         "description": "Retrieve a list of measurement units with pagination and filtering options.",
