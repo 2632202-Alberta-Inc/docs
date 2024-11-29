@@ -219,30 +219,32 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P"
-            ],
-            "maxLength": 255
+              "PETRINEX"
+            ]
           },
           "jurisdiction": {
             "type": "string",
             "enum": [
-              "A",
-              "S"
-            ],
-            "maxLength": 255
+              "ALBERTA",
+              "SASKATCHEWAN"
+            ]
           },
           "status": {
             "type": "string",
             "enum": [
-              "S",
-              "I",
-              "L",
-              "N",
-              "D",
-              "C",
-              "A"
-            ],
-            "maxLength": 255
+              "START",
+              "INACTIVE_REACTIVATE_ELIGIBLE",
+              "LIQUIDATION",
+              "NON_REGISTERED",
+              "DISCONTINUED_NO_REACTIVATION",
+              "DISSOLVED",
+              "CONTINUED_OUT",
+              "ACTIVE",
+              "STRUCK",
+              "CONTINUED_OUT_AMALGAMATED",
+              "AMALGAMATED",
+              "DISSOLUTION/DISSOLVED"
+            ]
           },
           "effective_date": {
             "type": "string",
@@ -255,11 +257,8 @@
         },
         "required": [
           "effective_date",
-          "jurisdiction",
           "legal_name",
-          "regulator_id",
-          "regulator_system",
-          "status"
+          "regulator_id"
         ]
       },
       "OrganizationReference": {
@@ -999,30 +998,32 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P"
-            ],
-            "maxLength": 255
+              "PETRINEX"
+            ]
           },
           "jurisdiction": {
             "type": "string",
             "enum": [
-              "A",
-              "S"
-            ],
-            "maxLength": 255
+              "ALBERTA",
+              "SASKATCHEWAN"
+            ]
           },
           "status": {
             "type": "string",
             "enum": [
-              "S",
-              "I",
-              "L",
-              "N",
-              "D",
-              "C",
-              "A"
-            ],
-            "maxLength": 255
+              "START",
+              "INACTIVE_REACTIVATE_ELIGIBLE",
+              "LIQUIDATION",
+              "NON_REGISTERED",
+              "DISCONTINUED_NO_REACTIVATION",
+              "DISSOLVED",
+              "CONTINUED_OUT",
+              "ACTIVE",
+              "STRUCK",
+              "CONTINUED_OUT_AMALGAMATED",
+              "AMALGAMATED",
+              "DISSOLUTION/DISSOLVED"
+            ]
           },
           "effective_date": {
             "type": "string",
@@ -1053,11 +1054,8 @@
         },
         "required": [
           "effective_date",
-          "jurisdiction",
           "legal_name",
-          "regulator_id",
-          "regulator_system",
-          "status"
+          "regulator_id"
         ]
       },
       "EntityReference1": {
@@ -2937,30 +2935,32 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P"
-            ],
-            "maxLength": 255
+              "PETRINEX"
+            ]
           },
           "jurisdiction": {
             "type": "string",
             "enum": [
-              "A",
-              "S"
-            ],
-            "maxLength": 255
+              "ALBERTA",
+              "SASKATCHEWAN"
+            ]
           },
           "status": {
             "type": "string",
             "enum": [
-              "S",
-              "I",
-              "L",
-              "N",
-              "D",
-              "C",
-              "A"
-            ],
-            "maxLength": 255
+              "START",
+              "INACTIVE_REACTIVATE_ELIGIBLE",
+              "LIQUIDATION",
+              "NON_REGISTERED",
+              "DISCONTINUED_NO_REACTIVATION",
+              "DISSOLVED",
+              "CONTINUED_OUT",
+              "ACTIVE",
+              "STRUCK",
+              "CONTINUED_OUT_AMALGAMATED",
+              "AMALGAMATED",
+              "DISSOLUTION/DISSOLVED"
+            ]
           },
           "effective_date": {
             "type": "string",
@@ -2973,11 +2973,8 @@
         },
         "required": [
           "effective_date",
-          "jurisdiction",
           "legal_name",
-          "regulator_id",
-          "regulator_system",
-          "status"
+          "regulator_id"
         ]
       },
       "Facility_ReferenceFacilityType": {
