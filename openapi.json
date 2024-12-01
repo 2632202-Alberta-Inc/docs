@@ -201,7 +201,9 @@
             "nullable": true
           },
           "regulator_id": {
-            "type": "string"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "regulator_system": {
             "type": "string",
@@ -245,8 +247,7 @@
         },
         "required": [
           "effective_date",
-          "legal_name",
-          "regulator_id"
+          "legal_name"
         ]
       },
       "OrganizationReference": {
@@ -922,7 +923,9 @@
             "nullable": true
           },
           "regulator_id": {
-            "type": "string"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "regulator_system": {
             "type": "string",
@@ -963,6 +966,14 @@
             "default": null,
             "nullable": true
           },
+          "data_source": {
+            "type": "string",
+            "default": "FLUX",
+            "enum": [
+              "P",
+              "F"
+            ]
+          },
           "operated_facilities": {
             "type": "array",
             "items": {
@@ -984,8 +995,7 @@
         },
         "required": [
           "effective_date",
-          "legal_name",
-          "regulator_id"
+          "legal_name"
         ]
       },
       "EntityReference1": {
@@ -1329,13 +1339,6 @@
           "meridian": {
             "type": "string"
           },
-          "jurisdiction": {
-            "type": "string",
-            "enum": [
-              "ALBERTA",
-              "SASKATCHEWAN"
-            ]
-          },
           "type": {
             "$ref": "#/components/schemas/FacilityTypeReference"
           },
@@ -1404,8 +1407,17 @@
             "default": null,
             "nullable": true
           },
+          "jurisdiction": {
+            "type": "string",
+            "enum": [
+              "ALBERTA",
+              "SASKATCHEWAN"
+            ]
+          },
           "regulator_id": {
-            "type": "string"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "regulator_system": {
             "type": "string",
@@ -1421,7 +1433,6 @@
           "name",
           "operator_start_date",
           "range",
-          "regulator_id",
           "section",
           "start_date",
           "township"
@@ -1491,13 +1502,6 @@
           },
           "meridian": {
             "type": "string"
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": [
-              "ALBERTA",
-              "SASKATCHEWAN"
-            ]
           },
           "type": {
             "readOnly": true,
@@ -1587,8 +1591,17 @@
             "default": null,
             "nullable": true
           },
+          "jurisdiction": {
+            "type": "string",
+            "enum": [
+              "ALBERTA",
+              "SASKATCHEWAN"
+            ]
+          },
           "regulator_id": {
-            "type": "string"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "regulator_system": {
             "type": "string",
@@ -1604,7 +1617,6 @@
           "name",
           "operator_start_date",
           "range",
-          "regulator_id",
           "section",
           "start_date",
           "township"
@@ -2788,7 +2800,9 @@
             "nullable": true
           },
           "regulator_id": {
-            "type": "string"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "regulator_system": {
             "type": "string",
@@ -2832,8 +2846,7 @@
         },
         "required": [
           "effective_date",
-          "legal_name",
-          "regulator_id"
+          "legal_name"
         ]
       },
       "Facility_ReferenceFacilityType": {
@@ -2937,13 +2950,6 @@
           "meridian": {
             "type": "string"
           },
-          "jurisdiction": {
-            "type": "string",
-            "enum": [
-              "ALBERTA",
-              "SASKATCHEWAN"
-            ]
-          },
           "type": {
             "readOnly": true,
             "allOf": [
@@ -3032,8 +3038,17 @@
             "default": null,
             "nullable": true
           },
+          "jurisdiction": {
+            "type": "string",
+            "enum": [
+              "ALBERTA",
+              "SASKATCHEWAN"
+            ]
+          },
           "regulator_id": {
-            "type": "string"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "regulator_system": {
             "type": "string",
@@ -3049,7 +3064,6 @@
           "name",
           "operator_start_date",
           "range",
-          "regulator_id",
           "section",
           "start_date",
           "township"
@@ -3178,12 +3192,13 @@
             "type": "string"
           },
           "regulator_id": {
-            "type": "string"
+            "type": "string",
+            "default": null,
+            "nullable": true
           }
         },
         "required": [
-          "name",
-          "regulator_id"
+          "name"
         ]
       },
       "Volumes_ReferenceMeter": {
