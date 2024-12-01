@@ -6597,7 +6597,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Volumes_ReferenceTankTicket"
+                "$ref": "#/components/schemas/Volumes_RequestTankTicket"
               }
             }
           }
@@ -6721,7 +6721,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Volumes_ReferenceTankTicket"
+                "$ref": "#/components/schemas/Volumes_RequestTankTicket"
               }
             }
           }
@@ -6910,7 +6910,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Volumes_ReferenceMeterTicket"
+                "$ref": "#/components/schemas/Volumes_RequestMeterTicket"
               }
             }
           }
@@ -7034,7 +7034,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Volumes_ReferenceMeterTicket"
+                "$ref": "#/components/schemas/Volumes_RequestMeterTicket"
               }
             }
           }
