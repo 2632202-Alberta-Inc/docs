@@ -3971,6 +3971,179 @@
           "ticket"
         ]
       },
+      "Volumes_RequestTankTicket": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "external_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "organization": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "commercial_facility": {
+            "type": "integer"
+          },
+          "commercial_entity": {
+            "type": "integer"
+          },
+          "facility_operator": {
+            "type": "integer"
+          },
+          "facility": {
+            "type": "integer"
+          },
+          "production_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "meter": {
+            "type": "integer"
+          },
+          "meter_start": {
+            "type": "number"
+          },
+          "meter_end": {
+            "type": "number"
+          },
+          "meter_measurement_unit": {
+            "type": "integer"
+          },
+          "meter_factor": {
+            "type": "number"
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {
+            "type": "integer"
+          },
+          "net_volume": {
+            "type": "number"
+          },
+          "net_volume_measurement_unit": {
+            "type": "integer"
+          },
+          "density": {
+            "type": "number"
+          },
+          "density_measurement_unit": {
+            "type": "integer"
+          },
+          "bsw": {
+            "type": "number"
+          },
+          "bsw_measurement_unit": {
+            "type": "integer"
+          },
+          "solids": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "solids_measurement_unit": {
+            "type": "integer",
+            "nullable": true
+          },
+          "saltwater": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "saltwater_measurement_unit": {
+            "type": "integer",
+            "nullable": true
+          },
+          "sulfur": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "sulfur_measurement_unit": {
+            "type": "integer",
+            "nullable": true
+          },
+          "vapor_pressure": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "vapor_pressure_measurement_unit": {
+            "type": "integer",
+            "nullable": true
+          },
+          "temperature": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "temperature_measurement_unit": {
+            "type": "integer",
+            "nullable": true
+          },
+          "codes": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "errors": {
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "bsw",
+          "bsw_measurement_unit",
+          "codes",
+          "commercial_entity",
+          "commercial_facility",
+          "density",
+          "density_measurement_unit",
+          "end",
+          "external_id",
+          "facility",
+          "facility_operator",
+          "meter",
+          "meter_end",
+          "meter_factor",
+          "meter_start",
+          "net_volume",
+          "net_volume_measurement_unit",
+          "production_date",
+          "start",
+          "volume"
+        ]
+      },
       "Volumes_ReferenceMeterTicket": {
         "type": "object",
         "properties": {
@@ -4159,6 +4332,179 @@
           "error_type",
           "field_name",
           "ticket"
+        ]
+      },
+      "Volumes_RequestMeterTicket": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "external_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "organization": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "commercial_facility": {
+            "type": "integer"
+          },
+          "commercial_entity": {
+            "type": "integer"
+          },
+          "facility_operator": {
+            "type": "integer"
+          },
+          "facility": {
+            "type": "integer"
+          },
+          "production_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "meter": {
+            "type": "integer"
+          },
+          "meter_start": {
+            "type": "number"
+          },
+          "meter_end": {
+            "type": "number"
+          },
+          "meter_measurement_unit": {
+            "type": "integer"
+          },
+          "meter_factor": {
+            "type": "number"
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {
+            "type": "integer"
+          },
+          "net_volume": {
+            "type": "number"
+          },
+          "net_volume_measurement_unit": {
+            "type": "integer"
+          },
+          "density": {
+            "type": "number"
+          },
+          "density_measurement_unit": {
+            "type": "integer"
+          },
+          "bsw": {
+            "type": "number"
+          },
+          "bsw_measurement_unit": {
+            "type": "integer"
+          },
+          "solids": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "solids_measurement_unit": {
+            "type": "integer",
+            "nullable": true
+          },
+          "saltwater": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "saltwater_measurement_unit": {
+            "type": "integer",
+            "nullable": true
+          },
+          "sulfur": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "sulfur_measurement_unit": {
+            "type": "integer",
+            "nullable": true
+          },
+          "vapor_pressure": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "vapor_pressure_measurement_unit": {
+            "type": "integer",
+            "nullable": true
+          },
+          "temperature": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "temperature_measurement_unit": {
+            "type": "integer",
+            "nullable": true
+          },
+          "codes": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "errors": {
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "bsw",
+          "bsw_measurement_unit",
+          "codes",
+          "commercial_entity",
+          "commercial_facility",
+          "density",
+          "density_measurement_unit",
+          "end",
+          "external_id",
+          "facility",
+          "facility_operator",
+          "meter",
+          "meter_end",
+          "meter_factor",
+          "meter_start",
+          "net_volume",
+          "net_volume_measurement_unit",
+          "production_date",
+          "start",
+          "volume"
         ]
       }
     }
