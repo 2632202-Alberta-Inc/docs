@@ -240,8 +240,7 @@
             "format": "date"
           },
           "successor": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           }
         },
         "required": [
@@ -839,6 +838,41 @@
           "name"
         ]
       },
+      "EntityReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "legal_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "legal_name"
+        ]
+      },
+      "FacilityReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "regulator_id": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
       "WellReference": {
         "type": "object",
         "properties": {
@@ -850,8 +884,14 @@
             "type": "string",
             "default": null,
             "nullable": true
+          },
+          "regulator_id": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "regulator_id"
+        ]
       },
       "Entity_Entity": {
         "type": "object",
@@ -961,19 +1001,18 @@
             "format": "date"
           },
           "successor": {
-            "default": null,
-            "nullable": true
+            "$ref": "#/components/schemas/EntityReference1"
           },
           "operated_facilities": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/FacilityReference"
+              "$ref": "#/components/schemas/FacilityReference1"
             }
           },
           "licensed_facilities": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/FacilityReference"
+              "$ref": "#/components/schemas/FacilityReference1"
             }
           },
           "licensed_wells": {
@@ -985,21 +1024,6 @@
         },
         "required": [
           "effective_date",
-          "legal_name"
-        ]
-      },
-      "EntityReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "legal_name": {
-            "type": "string"
-          }
-        },
-        "required": [
           "legal_name"
         ]
       },
@@ -1453,7 +1477,7 @@
           "name"
         ]
       },
-      "FacilityReference1": {
+      "FacilityReference2": {
         "type": "object",
         "properties": {
           "id": {
@@ -1620,7 +1644,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/FacilityReference1"
+                "$ref": "#/components/schemas/FacilityReference2"
               }
             ]
           },
@@ -1688,46 +1712,6 @@
         },
         "required": [
           "name"
-        ]
-      },
-      "FacilityReference2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "regulator_id": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
-      "WellReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          },
-          "regulator_id": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "regulator_id"
         ]
       },
       "MeterReference": {
@@ -1866,12 +1850,12 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/FacilityReference2"
+                "$ref": "#/components/schemas/FacilityReference1"
               }
             ]
           },
           "pickup_well": {
-            "$ref": "#/components/schemas/WellReference1"
+            "$ref": "#/components/schemas/WellReference"
           },
           "delivery_commercial_facility": {
             "$ref": "#/components/schemas/CommercialFacilityReference"
@@ -1886,7 +1870,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/FacilityReference2"
+                "$ref": "#/components/schemas/FacilityReference1"
               }
             ]
           },
@@ -2114,7 +2098,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/FacilityReference2"
+                "$ref": "#/components/schemas/FacilityReference1"
               }
             ]
           },
@@ -2291,7 +2275,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/FacilityReference2"
+                "$ref": "#/components/schemas/FacilityReference1"
               }
             ]
           },
@@ -2766,7 +2750,7 @@
             "type": "string"
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference2"
+            "type": "integer"
           },
           "url": {
             "type": "string",
@@ -2863,8 +2847,7 @@
             "format": "date"
           },
           "successor": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           }
         },
         "required": [
@@ -3215,7 +3198,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/FacilityReference2"
+                "$ref": "#/components/schemas/FacilityReference1"
               }
             ]
           },
@@ -3297,7 +3280,11 @@
             "nullable": true
           },
           "pickup_facility": {
-            "$ref": "#/components/schemas/FacilityReference2"
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "nullable": true
           },
           "pickup_well": {
             "default": null,
@@ -3316,7 +3303,11 @@
             "nullable": true
           },
           "delivery_facility": {
-            "$ref": "#/components/schemas/FacilityReference2"
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "nullable": true
           },
           "production_date": {
             "type": "string",
@@ -3800,7 +3791,11 @@
           "commercial_entity": {},
           "facility_operator": {},
           "facility": {
-            "$ref": "#/components/schemas/FacilityReference2"
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "nullable": true
           },
           "production_date": {
             "type": "string",
@@ -4163,7 +4158,11 @@
           "commercial_entity": {},
           "facility_operator": {},
           "facility": {
-            "$ref": "#/components/schemas/FacilityReference2"
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "nullable": true
           },
           "production_date": {
             "type": "string",
