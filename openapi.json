@@ -240,7 +240,7 @@
             "format": "date"
           },
           "successor": {
-            "type": "integer"
+            "$ref": "#/components/schemas/EntityReference"
           }
         },
         "required": [
@@ -838,21 +838,6 @@
           "name"
         ]
       },
-      "EntityReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "legal_name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "legal_name"
-        ]
-      },
       "FacilityReference1": {
         "type": "object",
         "properties": {
@@ -1001,7 +986,7 @@
             "format": "date"
           },
           "successor": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "$ref": "#/components/schemas/EntityReference"
           },
           "operated_facilities": {
             "type": "array",
@@ -1124,7 +1109,7 @@
             ]
           },
           "entity": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "$ref": "#/components/schemas/EntityReference"
           }
         },
         "required": [
@@ -1360,7 +1345,7 @@
             "format": "date"
           },
           "operator": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "$ref": "#/components/schemas/EntityReference"
           },
           "operational_status": {
             "type": "string",
@@ -1382,7 +1367,7 @@
             "format": "date"
           },
           "licensee": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "$ref": "#/components/schemas/EntityReference"
           },
           "license_status": {
             "type": "string",
@@ -1536,7 +1521,7 @@
             "readOnly": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/EntityReference1"
+                "$ref": "#/components/schemas/EntityReference"
               }
             ]
           },
@@ -1563,7 +1548,7 @@
             "readOnly": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/EntityReference1"
+                "$ref": "#/components/schemas/EntityReference"
               }
             ]
           },
@@ -1841,10 +1826,10 @@
             "$ref": "#/components/schemas/CommercialFacilityReference"
           },
           "pickup_commercial_entity": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "$ref": "#/components/schemas/EntityReference"
           },
           "pickup_facility_operator": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "$ref": "#/components/schemas/EntityReference"
           },
           "pickup_facility": {
             "nullable": true,
@@ -1861,10 +1846,10 @@
             "$ref": "#/components/schemas/CommercialFacilityReference"
           },
           "delivery_commercial_entity": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "$ref": "#/components/schemas/EntityReference"
           },
           "delivery_facility_operator": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "$ref": "#/components/schemas/EntityReference"
           },
           "delivery_facility": {
             "nullable": true,
@@ -2089,10 +2074,10 @@
             "$ref": "#/components/schemas/CommercialFacilityReference"
           },
           "commercial_entity": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "$ref": "#/components/schemas/EntityReference"
           },
           "facility_operator": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "$ref": "#/components/schemas/EntityReference"
           },
           "facility": {
             "nullable": true,
@@ -2266,10 +2251,10 @@
             "$ref": "#/components/schemas/CommercialFacilityReference"
           },
           "commercial_entity": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "$ref": "#/components/schemas/EntityReference"
           },
           "facility_operator": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "$ref": "#/components/schemas/EntityReference"
           },
           "facility": {
             "nullable": true,
@@ -2750,7 +2735,7 @@
             "type": "string"
           },
           "organization": {
-            "type": "integer"
+            "$ref": "#/components/schemas/OrganizationReference2"
           },
           "url": {
             "type": "string",
@@ -2847,7 +2832,7 @@
             "format": "date"
           },
           "successor": {
-            "type": "integer"
+            "$ref": "#/components/schemas/EntityReference"
           }
         },
         "required": [
@@ -2979,7 +2964,7 @@
             "readOnly": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/EntityReference1"
+                "$ref": "#/components/schemas/EntityReference"
               }
             ]
           },
@@ -3006,7 +2991,7 @@
             "readOnly": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/EntityReference1"
+                "$ref": "#/components/schemas/EntityReference"
               }
             ]
           },
@@ -3127,7 +3112,7 @@
             ]
           },
           "licensee": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "$ref": "#/components/schemas/EntityReference"
           },
           "license_status": {
             "type": "string",
@@ -3203,7 +3188,7 @@
             ]
           },
           "operator": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "$ref": "#/components/schemas/EntityReference"
           }
         },
         "required": [
@@ -4158,10 +4143,7 @@
           "commercial_entity": {},
           "facility_operator": {},
           "facility": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
+            "type": "integer",
             "nullable": true
           },
           "production_date": {
