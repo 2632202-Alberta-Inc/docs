@@ -1690,6 +1690,46 @@
           "name"
         ]
       },
+      "FacilityReference2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "regulator_id": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "WellReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "regulator_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "regulator_id"
+        ]
+      },
       "MeterReference": {
         "type": "object",
         "properties": {
@@ -1826,12 +1866,12 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/FacilityReference"
+                "$ref": "#/components/schemas/FacilityReference2"
               }
             ]
           },
           "pickup_well": {
-            "$ref": "#/components/schemas/WellReference"
+            "$ref": "#/components/schemas/WellReference1"
           },
           "delivery_commercial_facility": {
             "$ref": "#/components/schemas/CommercialFacilityReference"
@@ -1846,7 +1886,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/FacilityReference"
+                "$ref": "#/components/schemas/FacilityReference2"
               }
             ]
           },
@@ -2074,7 +2114,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/FacilityReference"
+                "$ref": "#/components/schemas/FacilityReference2"
               }
             ]
           },
@@ -2251,7 +2291,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/FacilityReference"
+                "$ref": "#/components/schemas/FacilityReference2"
               }
             ]
           },
@@ -3159,26 +3199,6 @@
           "section",
           "township",
           "uwi"
-        ]
-      },
-      "FacilityReference2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "regulator_id": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          }
-        },
-        "required": [
-          "name"
         ]
       },
       "Volumes_ReferenceMeter": {
