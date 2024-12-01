@@ -208,8 +208,7 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX",
-              "FLUX"
+              "PETRINEX"
             ]
           },
           "jurisdiction": {
@@ -930,8 +929,7 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX",
-              "FLUX"
+              "PETRINEX"
             ]
           },
           "jurisdiction": {
@@ -965,14 +963,6 @@
           "successor": {
             "default": null,
             "nullable": true
-          },
-          "data_source": {
-            "type": "string",
-            "default": "FLUX",
-            "enum": [
-              "P",
-              "F"
-            ]
           },
           "operated_facilities": {
             "type": "array",
@@ -1106,8 +1096,7 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX",
-              "FLUX"
+              "PETRINEX"
             ]
           },
           "entity": {
@@ -1151,8 +1140,7 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P",
-              "F"
+              "P"
             ]
           }
         },
@@ -1225,8 +1213,7 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P",
-              "F"
+              "P"
             ]
           }
         },
@@ -1292,8 +1279,7 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P",
-              "F"
+              "P"
             ]
           }
         },
@@ -1422,8 +1408,7 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX",
-              "FLUX"
+              "PETRINEX"
             ]
           }
         },
@@ -1606,8 +1591,7 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX",
-              "FLUX"
+              "PETRINEX"
             ]
           }
         },
@@ -2807,8 +2791,7 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX",
-              "FLUX"
+              "PETRINEX"
             ]
           },
           "jurisdiction": {
@@ -2903,8 +2886,7 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P",
-              "F"
+              "P"
             ]
           }
         },
@@ -3053,8 +3035,7 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX",
-              "FLUX"
+              "PETRINEX"
             ]
           }
         },
@@ -3164,8 +3145,7 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX",
-              "FLUX"
+              "PETRINEX"
             ]
           }
         },
@@ -5566,7 +5546,7 @@
     },
     "/products/categories": {
       "get": {
-        "summary": "List Categories",
+        "summary": "List Product Categories",
         "description": "Retrieve a list of product categories with pagination and filtering options.",
         "operationId": "get_product_categories",
         "tags": [
