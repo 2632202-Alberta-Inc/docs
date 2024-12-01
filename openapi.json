@@ -206,7 +206,8 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX"
+              "PETRINEX",
+              "FLUX"
             ]
           },
           "jurisdiction": {
@@ -262,9 +263,7 @@
             "type": "string"
           },
           "stytch_id": {
-            "type": "string",
-            "default": null,
-            "nullable": true
+            "type": "string"
           },
           "url": {
             "type": "string",
@@ -290,7 +289,8 @@
         },
         "required": [
           "name",
-          "slug"
+          "slug",
+          "stytch_id"
         ]
       },
       "UserRoles": {
@@ -391,9 +391,7 @@
             "type": "string"
           },
           "stytch_id": {
-            "type": "string",
-            "default": null,
-            "nullable": true
+            "type": "string"
           },
           "url": {
             "type": "string",
@@ -413,7 +411,8 @@
         },
         "required": [
           "name",
-          "slug"
+          "slug",
+          "stytch_id"
         ]
       },
       "OrganizationReference1": {
@@ -928,7 +927,8 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX"
+              "PETRINEX",
+              "FLUX"
             ]
           },
           "jurisdiction": {
@@ -1096,7 +1096,8 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX"
+              "PETRINEX",
+              "FLUX"
             ]
           },
           "entity": {
@@ -1136,13 +1137,21 @@
               "A",
               "S"
             ]
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": [
+              "P",
+              "F"
+            ]
           }
         },
         "required": [
           "code",
           "facility_type",
           "jurisdiction",
-          "name"
+          "name",
+          "regulator_system"
         ]
       },
       "Facility_FacilityType": {
@@ -1202,13 +1211,21 @@
               "A",
               "S"
             ]
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": [
+              "P",
+              "F"
+            ]
           }
         },
         "required": [
           "code",
           "facility_type",
           "jurisdiction",
-          "name"
+          "name",
+          "regulator_system"
         ]
       },
       "FacilityTypeReference": {
@@ -1261,12 +1278,20 @@
               "A",
               "S"
             ]
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": [
+              "P",
+              "F"
+            ]
           }
         },
         "required": [
           "code",
           "jurisdiction",
-          "name"
+          "name",
+          "regulator_system"
         ]
       },
       "Facility_Facility": {
@@ -1385,7 +1410,8 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX"
+              "PETRINEX",
+              "FLUX"
             ]
           }
         },
@@ -1567,7 +1593,8 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX"
+              "PETRINEX",
+              "FLUX"
             ]
           }
         },
@@ -1630,14 +1657,8 @@
           "id": {
             "type": "string",
             "readOnly": true
-          },
-          "legal_name": {
-            "type": "string"
           }
-        },
-        "required": [
-          "legal_name"
-        ]
+        }
       },
       "UserReference": {
         "type": "object",
@@ -1771,9 +1792,7 @@
             "readOnly": true
           },
           "external_id": {
-            "type": "string",
-            "default": null,
-            "nullable": true
+            "type": "string"
           },
           "status": {
             "$ref": "#/components/schemas/TicketStatusReference"
@@ -2027,7 +2046,10 @@
               "$ref": "#/components/schemas/TruckTicketErrorReference"
             }
           }
-        }
+        },
+        "required": [
+          "external_id"
+        ]
       },
       "Volumes_TankTicket": {
         "type": "object",
@@ -2173,10 +2195,6 @@
           },
           "temperature": {
             "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "temperature__measurement_unit": {
             "default": null,
             "nullable": true
           },
@@ -2775,7 +2793,8 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX"
+              "PETRINEX",
+              "FLUX"
             ]
           },
           "jurisdiction": {
@@ -2867,12 +2886,20 @@
               "A",
               "S"
             ]
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": [
+              "P",
+              "F"
+            ]
           }
         },
         "required": [
           "code",
           "jurisdiction",
-          "name"
+          "name",
+          "regulator_system"
         ]
       },
       "Facility_ReferenceFacility": {
@@ -3011,7 +3038,8 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX"
+              "PETRINEX",
+              "FLUX"
             ]
           }
         },
@@ -3122,7 +3150,8 @@
           "regulator_system": {
             "type": "string",
             "enum": [
-              "PETRINEX"
+              "PETRINEX",
+              "FLUX"
             ]
           }
         },
@@ -3211,9 +3240,7 @@
             "readOnly": true
           },
           "external_id": {
-            "type": "string",
-            "default": null,
-            "nullable": true
+            "type": "string"
           },
           "status": {
             "readOnly": true,
@@ -3448,7 +3475,10 @@
             },
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "external_id"
+        ]
       },
       "Volumes_ReferenceTruckTicketError": {
         "type": "object",
@@ -3523,7 +3553,8 @@
             "type": "integer"
           },
           "driver": {
-            "type": "integer"
+            "type": "integer",
+            "nullable": true
           },
           "pickup_commercial_facility": {
             "type": "integer"
@@ -3554,9 +3585,7 @@
           },
           "production_date": {
             "type": "string",
-            "format": "date",
-            "default": null,
-            "nullable": true
+            "format": "date-time"
           },
           "start": {
             "type": "string",
@@ -3568,11 +3597,13 @@
           },
           "updated_at": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "readOnly": true
           },
           "created_at": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "readOnly": true
           },
           "meter": {
             "type": "integer"
@@ -3625,16 +3656,14 @@
             "nullable": true
           },
           "load_volume_measurement_unit": {
-            "type": "integer"
+            "type": "integer",
+            "nullable": true
           },
           "net_volume": {
-            "type": "number",
-            "default": null,
-            "nullable": true
+            "type": "number"
           },
           "net_volume_measurement_unit": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "density": {
             "type": "number"
@@ -3693,15 +3722,6 @@
             "type": "integer",
             "nullable": true
           },
-          "delivery_well": {
-            "type": "integer"
-          },
-          "product_volume_measurement_unit": {
-            "type": "integer"
-          },
-          "product_volume": {
-            "type": "number"
-          },
           "codes": {
             "type": "array",
             "items": {
@@ -3719,26 +3739,29 @@
         "required": [
           "bill_of_laiden",
           "bsw",
+          "bsw_measurement_unit",
           "carrier",
           "codes",
           "delivery_commercial_entity",
           "delivery_commercial_facility",
           "delivery_facility",
           "delivery_facility_operator",
-          "delivery_well",
           "density",
+          "density_measurement_unit",
           "end",
           "external_id",
           "meter",
           "meter_end",
           "meter_factor",
           "meter_start",
+          "net_volume",
+          "net_volume_measurement_unit",
           "pickup_commercial_entity",
           "pickup_commercial_facility",
           "pickup_facility",
           "pickup_facility_operator",
           "pickup_well",
-          "product_volume",
+          "production_date",
           "start",
           "volume"
         ]
@@ -3854,7 +3877,7 @@
             "default": null,
             "nullable": true
           },
-          "temperature__measurement_unit": {
+          "temperature_measurement_unit": {
             "default": null,
             "nullable": true
           },
