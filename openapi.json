@@ -1416,139 +1416,6 @@
           "township"
         ]
       },
-      "FacilityReference2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "latitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "longitude": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "lsd": {
-            "type": "integer"
-          },
-          "section": {
-            "type": "integer"
-          },
-          "township": {
-            "type": "integer"
-          },
-          "range": {
-            "type": "integer"
-          },
-          "meridian": {
-            "type": "string"
-          },
-          "type": {
-            "type": "integer"
-          },
-          "sub_type": {
-            "type": "integer"
-          },
-          "start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "operator": {
-            "type": "integer"
-          },
-          "operational_status": {
-            "type": "string",
-            "enum": [
-              "ABANDONED",
-              "ACTIVE",
-              "CANCELLED",
-              "MINSUSPEND",
-              "NEW",
-              "NONREPORTING",
-              "RECCERTIFIED",
-              "RECEXEMPT",
-              "RETIRED",
-              "SUSPENDED"
-            ]
-          },
-          "operator_start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "licensee": {
-            "type": "integer"
-          },
-          "license_status": {
-            "type": "string",
-            "enum": [
-              "ABANDONED",
-              "AMMENDED",
-              "CANCELLED",
-              "DECOMMISSION",
-              "ISSUED",
-              "RE-ENTERED",
-              "RECCERTIFIED",
-              "RECEXEMPT",
-              "SUSPENDED",
-              "SUSPENSION"
-            ]
-          },
-          "license_type": {
-            "type": "string",
-            "enum": [
-              "WELL",
-              "FACILITY"
-            ]
-          },
-          "license_number": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          },
-          "license_issued": {
-            "type": "string",
-            "format": "date",
-            "default": null,
-            "nullable": true
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": [
-              "ALBERTA",
-              "SASKATCHEWAN"
-            ]
-          },
-          "regulator_id": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          },
-          "regulator_system": {
-            "type": "string",
-            "enum": [
-              "PETRINEX"
-            ]
-          }
-        },
-        "required": [
-          "lsd",
-          "meridian",
-          "name",
-          "operator_start_date",
-          "range",
-          "section",
-          "start_date",
-          "township"
-        ]
-      },
       "Volumes_Meter": {
         "type": "object",
         "properties": {
@@ -1563,12 +1430,12 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/FacilityReference2"
+                "$ref": "#/components/schemas/FacilityReference1"
               }
             ]
           },
           "operator": {
-            "$ref": "#/components/schemas/EntityReference"
+            "$ref": "#/components/schemas/EntityReference1"
           }
         },
         "required": [
@@ -3092,15 +2959,10 @@
             "type": "string"
           },
           "facility": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FacilityReference1"
-              }
-            ]
+            "type": "integer"
           },
           "operator": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "type": "integer"
           }
         },
         "required": [
