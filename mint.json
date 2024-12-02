@@ -54,13 +54,12 @@
     },
     {
       "group": "API Reference",
-      "pages": [
-        {
-          "name": "API Documentation",
-          "url": "api-reference",
-          "openapi": "/openapi.json"
-        }
-      ]
+        "pages": [
+          {
+            "name": "API Documentation",
+            "url": "api-reference"
+          }
+        ]
     },
     {
       "group": "Concepts",
