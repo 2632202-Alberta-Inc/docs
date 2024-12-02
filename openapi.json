@@ -2431,6 +2431,28 @@
           "short_code"
         ]
       },
+      "Product_ReferenceMeasurementUnit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "abbreviation": {
+            "type": "string"
+          },
+          "product_category": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "abbreviation",
+          "name"
+        ]
+      },
       "Product_ReferenceProductCategory": {
         "type": "object",
         "properties": {
@@ -5855,7 +5877,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Product_MeasurementUnit"
+                        "$ref": "#/components/schemas/Product_ReferenceMeasurementUnit"
                       }
                     },
                     "meta": {
@@ -5874,6 +5896,69 @@
                           "type": "integer"
                         }
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/products/categories/measurement-units/{id}": {
+      "get": {
+        "summary": "Get Measurement Unit",
+        "description": "Retrieve details of a specific measurement unit.",
+        "operationId": "get_measurement_unit",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The measurement unit ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single measurement unit.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Product_MeasurementUnit"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Measurement unit not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Measurement unit not found."
                     }
                   }
                 }
