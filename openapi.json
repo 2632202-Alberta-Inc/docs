@@ -1153,7 +1153,9 @@
           "code": {
             "type": "string"
           },
-          "facility_type": {},
+          "facility_type": {
+            "type": "integer"
+          },
           "jurisdiction": {
             "type": "string",
             "enum": [
@@ -1170,7 +1172,6 @@
         },
         "required": [
           "code",
-          "facility_type",
           "name"
         ]
       },
@@ -1224,7 +1225,9 @@
           "code": {
             "type": "string"
           },
-          "facility_type": {},
+          "facility_type": {
+            "type": "integer"
+          },
           "jurisdiction": {
             "type": "string",
             "enum": [
@@ -1241,7 +1244,6 @@
         },
         "required": [
           "code",
-          "facility_type",
           "name"
         ]
       },
