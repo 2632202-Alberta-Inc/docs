@@ -1498,32 +1498,17 @@
             "type": "string"
           },
           "type": {
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FacilityTypeReference1"
-              }
-            ]
+            "$ref": "#/components/schemas/FacilityTypeReference1"
           },
           "sub_type": {
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FacilitySubTypeReference1"
-              }
-            ]
+            "$ref": "#/components/schemas/FacilitySubTypeReference1"
           },
           "start_date": {
             "type": "string",
             "format": "date"
           },
           "operator": {
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EntityReference"
-              }
-            ]
+            "$ref": "#/components/schemas/EntityReference"
           },
           "operational_status": {
             "type": "string",
@@ -1545,12 +1530,7 @@
             "format": "date"
           },
           "licensee": {
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EntityReference"
-              }
-            ]
+            "$ref": "#/components/schemas/EntityReference"
           },
           "license_status": {
             "type": "string",
@@ -2941,32 +2921,17 @@
             "type": "string"
           },
           "type": {
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FacilityTypeReference1"
-              }
-            ]
+            "$ref": "#/components/schemas/FacilityTypeReference1"
           },
           "sub_type": {
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FacilitySubTypeReference1"
-              }
-            ]
+            "$ref": "#/components/schemas/FacilitySubTypeReference1"
           },
           "start_date": {
             "type": "string",
             "format": "date"
           },
           "operator": {
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EntityReference"
-              }
-            ]
+            "$ref": "#/components/schemas/EntityReference"
           },
           "operational_status": {
             "type": "string",
@@ -2988,12 +2953,7 @@
             "format": "date"
           },
           "licensee": {
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EntityReference"
-              }
-            ]
+            "$ref": "#/components/schemas/EntityReference"
           },
           "license_status": {
             "type": "string",
