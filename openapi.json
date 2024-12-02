@@ -1281,22 +1281,20 @@
           "jurisdiction": {
             "type": "string",
             "enum": [
-              "A",
-              "S"
+              "ALBERTA",
+              "SASKATCHEWAN"
             ]
           },
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P"
+              "PETRINEX"
             ]
           }
         },
         "required": [
           "code",
-          "jurisdiction",
-          "name",
-          "regulator_system"
+          "name"
         ]
       },
       "Facility_Facility": {
@@ -2867,22 +2865,20 @@
           "jurisdiction": {
             "type": "string",
             "enum": [
-              "A",
-              "S"
+              "ALBERTA",
+              "SASKATCHEWAN"
             ]
           },
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P"
+              "PETRINEX"
             ]
           }
         },
         "required": [
           "code",
-          "jurisdiction",
-          "name",
-          "regulator_system"
+          "name"
         ]
       },
       "Facility_ReferenceFacility": {
