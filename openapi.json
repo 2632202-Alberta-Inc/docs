@@ -1246,18 +1246,6 @@
           },
           "code": {
             "type": "string"
-          },
-          "model": {
-            "type": "string",
-            "enum": [
-              "Terminal",
-              "Station",
-              "Plant",
-              "Battery",
-              "System",
-              "Pipeline",
-              "Rail Line"
-            ]
           }
         },
         "required": [
@@ -1277,19 +1265,6 @@
           },
           "code": {
             "type": "string"
-          },
-          "jurisdiction": {
-            "type": "string",
-            "enum": [
-              "ALBERTA",
-              "SASKATCHEWAN"
-            ]
-          },
-          "regulator_system": {
-            "type": "string",
-            "enum": [
-              "PETRINEX"
-            ]
           }
         },
         "required": [
@@ -1430,36 +1405,6 @@
           "township"
         ]
       },
-      "FacilityTypeReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
-      "FacilitySubTypeReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
       "FacilityReference2": {
         "type": "object",
         "properties": {
@@ -1496,17 +1441,17 @@
             "type": "string"
           },
           "type": {
-            "$ref": "#/components/schemas/FacilityTypeReference1"
+            "type": "integer"
           },
           "sub_type": {
-            "$ref": "#/components/schemas/FacilitySubTypeReference1"
+            "type": "integer"
           },
           "start_date": {
             "type": "string",
             "format": "date"
           },
           "operator": {
-            "$ref": "#/components/schemas/EntityReference"
+            "type": "integer"
           },
           "operational_status": {
             "type": "string",
@@ -1528,7 +1473,7 @@
             "format": "date"
           },
           "licensee": {
-            "$ref": "#/components/schemas/EntityReference"
+            "type": "integer"
           },
           "license_status": {
             "type": "string",
@@ -2917,17 +2862,17 @@
             "type": "string"
           },
           "type": {
-            "$ref": "#/components/schemas/FacilityTypeReference1"
+            "type": "integer"
           },
           "sub_type": {
-            "$ref": "#/components/schemas/FacilitySubTypeReference1"
+            "type": "integer"
           },
           "start_date": {
             "type": "string",
             "format": "date"
           },
           "operator": {
-            "$ref": "#/components/schemas/EntityReference"
+            "type": "integer"
           },
           "operational_status": {
             "type": "string",
@@ -2949,7 +2894,7 @@
             "format": "date"
           },
           "licensee": {
-            "$ref": "#/components/schemas/EntityReference"
+            "type": "integer"
           },
           "license_status": {
             "type": "string",
