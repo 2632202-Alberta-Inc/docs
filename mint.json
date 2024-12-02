@@ -53,13 +53,8 @@
       "pages": ["quickstart", "guides/creating-tickets"]
     },
     {
-      "group": "API Reference",
-        "pages": [
-          {
-            "name": "API Documentation",
-            "url": "api-reference"
-          }
-        ]
+        "group": "API Reference",
+        "pages": ["api-reference"]
     },
     {
       "group": "Concepts",
