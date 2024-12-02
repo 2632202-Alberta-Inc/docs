@@ -1157,23 +1157,21 @@
           "jurisdiction": {
             "type": "string",
             "enum": [
-              "A",
-              "S"
+              "ALBERTA",
+              "SASKATCHEWAN"
             ]
           },
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P"
+              "PETRINEX"
             ]
           }
         },
         "required": [
           "code",
           "facility_type",
-          "jurisdiction",
-          "name",
-          "regulator_system"
+          "name"
         ]
       },
       "Facility_FacilityType": {
@@ -1230,23 +1228,21 @@
           "jurisdiction": {
             "type": "string",
             "enum": [
-              "A",
-              "S"
+              "ALBERTA",
+              "SASKATCHEWAN"
             ]
           },
           "regulator_system": {
             "type": "string",
             "enum": [
-              "P"
+              "PETRINEX"
             ]
           }
         },
         "required": [
           "code",
           "facility_type",
-          "jurisdiction",
-          "name",
-          "regulator_system"
+          "name"
         ]
       },
       "FacilityTypeReference": {
@@ -3028,7 +3024,7 @@
             ]
           },
           "licensee": {
-            "$ref": "#/components/schemas/EntityReference1"
+            "type": "integer"
           },
           "license_status": {
             "type": "string",
