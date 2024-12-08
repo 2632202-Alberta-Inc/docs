@@ -1609,12 +1609,12 @@
             "default": null,
             "nullable": true
           },
-          "bill_of_laiden": {
+          "bill_of_lading": {
             "type": "string",
             "default": null,
             "nullable": true
           },
-          "rack_ticket": {
+          "load_ticket": {
             "type": "string",
             "default": null,
             "nullable": true
@@ -1709,34 +1709,6 @@
             "default": null,
             "nullable": true
           },
-          "tank_opening_oil": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "tank_opening_water": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "tank_ending_oil": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "tank_ending_water": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "tank_measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
-          },
           "volume": {
             "type": "number",
             "default": null,
@@ -1790,38 +1762,12 @@
               }
             ]
           },
-          "saltwater": {
+          "water": {
             "type": "number",
             "default": null,
             "nullable": true
           },
-          "saltwater_measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
-          },
-          "sulfur": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "sulfur_measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
-          },
-          "vapor_pressure": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "vapor_pressure_measurement_unit": {
+          "water_measurement_unit": {
             "nullable": true,
             "allOf": [
               {
@@ -1962,38 +1908,12 @@
               }
             ]
           },
-          "saltwater": {
+          "water": {
             "type": "number",
             "default": null,
             "nullable": true
           },
-          "saltwater_measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
-          },
-          "sulfur": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "sulfur_measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
-          },
-          "vapor_pressure": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "vapor_pressure_measurement_unit": {
+          "water_measurement_unit": {
             "nullable": true,
             "allOf": [
               {
@@ -2139,38 +2059,12 @@
               }
             ]
           },
-          "saltwater": {
+          "water": {
             "type": "number",
             "default": null,
             "nullable": true
           },
-          "saltwater_measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
-          },
-          "sulfur": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "sulfur_measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
-          },
-          "vapor_pressure": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "vapor_pressure_measurement_unit": {
+          "water_measurement_unit": {
             "nullable": true,
             "allOf": [
               {
@@ -3032,12 +2926,12 @@
             "readOnly": true,
             "nullable": true
           },
-          "bill_of_laiden": {
+          "bill_of_lading": {
             "type": "string",
             "default": null,
             "nullable": true
           },
-          "rack_ticket": {
+          "load_ticket": {
             "type": "string",
             "default": null,
             "nullable": true
@@ -3143,30 +3037,6 @@
             "default": null,
             "nullable": true
           },
-          "tank_opening_oil": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "tank_opening_water": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "tank_ending_oil": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "tank_ending_water": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "tank_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
           "volume": {
             "type": "number",
             "default": null,
@@ -3221,30 +3091,12 @@
             "default": null,
             "nullable": true
           },
-          "saltwater": {
+          "water": {
             "type": "number",
             "default": null,
             "nullable": true
           },
-          "saltwater_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "sulfur": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "sulfur_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "vapor_pressure": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "vapor_pressure_measurement_unit": {
+          "water_measurement_unit": {
             "default": null,
             "nullable": true
           },
@@ -3261,8 +3113,7 @@
             "type": "array",
             "items": {
               "type": "integer"
-            },
-            "nullable": true
+            }
           }
         },
         "required": [
@@ -3330,10 +3181,10 @@
             "type": "integer",
             "readOnly": true
           },
-          "bill_of_laiden": {
+          "bill_of_lading": {
             "type": "string"
           },
-          "rack_ticket": {
+          "load_ticket": {
             "type": "string",
             "default": null,
             "nullable": true
@@ -3409,30 +3260,6 @@
           "meter_factor": {
             "type": "number"
           },
-          "tank_opening_oil": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "tank_opening_water": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "tank_ending_oil": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "tank_ending_water": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "tank_measurement_unit": {
-            "type": "integer",
-            "nullable": true
-          },
           "volume": {
             "type": "number"
           },
@@ -3475,31 +3302,13 @@
             "type": "integer",
             "nullable": true
           },
-          "saltwater": {
+          "water": {
             "type": "number",
             "default": null,
             "nullable": true
           },
-          "saltwater_measurement_unit": {
-            "type": "integer",
-            "nullable": true
-          },
-          "sulfur": {
-            "type": "number",
+          "water_measurement_unit": {
             "default": null,
-            "nullable": true
-          },
-          "sulfur_measurement_unit": {
-            "type": "integer",
-            "nullable": true
-          },
-          "vapor_pressure": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "vapor_pressure_measurement_unit": {
-            "type": "integer",
             "nullable": true
           },
           "temperature": {
@@ -3517,6 +3326,14 @@
               "type": "integer"
             }
           },
+          "tank_measurement_unit": {
+            "type": "integer",
+            "nullable": true
+          },
+          "saltwater_measurement_unit": {
+            "type": "integer",
+            "nullable": true
+          },
           "errors": {
             "type": "array",
             "readOnly": true,
@@ -3526,7 +3343,7 @@
           }
         },
         "required": [
-          "bill_of_laiden",
+          "bill_of_lading",
           "bsw",
           "bsw_measurement_unit",
           "carrier",
@@ -3638,30 +3455,12 @@
             "default": null,
             "nullable": true
           },
-          "saltwater": {
+          "water": {
             "type": "number",
             "default": null,
             "nullable": true
           },
-          "saltwater_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "sulfur": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "sulfur_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "vapor_pressure": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "vapor_pressure_measurement_unit": {
+          "water_measurement_unit": {
             "default": null,
             "nullable": true
           },
@@ -3849,30 +3648,12 @@
             "type": "integer",
             "nullable": true
           },
-          "saltwater": {
+          "water": {
             "type": "number",
             "default": null,
             "nullable": true
           },
-          "saltwater_measurement_unit": {
-            "type": "integer",
-            "nullable": true
-          },
-          "sulfur": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "sulfur_measurement_unit": {
-            "type": "integer",
-            "nullable": true
-          },
-          "vapor_pressure": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "vapor_pressure_measurement_unit": {
+          "water_measurement_unit": {
             "type": "integer",
             "nullable": true
           },
@@ -4002,30 +3783,12 @@
             "default": null,
             "nullable": true
           },
-          "saltwater": {
+          "water": {
             "type": "number",
             "default": null,
             "nullable": true
           },
-          "saltwater_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "sulfur": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "sulfur_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "vapor_pressure": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "vapor_pressure_measurement_unit": {
+          "water_measurement_unit": {
             "default": null,
             "nullable": true
           },
@@ -4213,31 +3976,13 @@
             "type": "integer",
             "nullable": true
           },
-          "saltwater": {
+          "water": {
             "type": "number",
             "default": null,
             "nullable": true
           },
-          "saltwater_measurement_unit": {
-            "type": "integer",
-            "nullable": true
-          },
-          "sulfur": {
-            "type": "number",
+          "water_measurement_unit": {
             "default": null,
-            "nullable": true
-          },
-          "sulfur_measurement_unit": {
-            "type": "integer",
-            "nullable": true
-          },
-          "vapor_pressure": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "vapor_pressure_measurement_unit": {
-            "type": "integer",
             "nullable": true
           },
           "temperature": {
@@ -4254,6 +3999,10 @@
             "items": {
               "type": "integer"
             }
+          },
+          "saltwater_measurement_unit": {
+            "type": "integer",
+            "nullable": true
           },
           "errors": {
             "type": "array",
@@ -6498,6 +6247,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
