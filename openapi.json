@@ -3102,10 +3102,7 @@
             "nullable": true
           },
           "codes": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
+            "readOnly": true
           }
         },
         "required": [
@@ -3454,11 +3451,7 @@
             "nullable": true
           },
           "codes": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
-            "nullable": true
+            "readOnly": true
           }
         },
         "required": [
@@ -3782,11 +3775,7 @@
             "nullable": true
           },
           "codes": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
-            "nullable": true
+            "readOnly": true
           }
         },
         "required": [
