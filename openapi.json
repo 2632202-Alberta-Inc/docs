@@ -2901,6 +2901,25 @@
           "name"
         ]
       },
+      "Volumes_ReferenceTicketCode": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "name"
+        ]
+      },
       "Volumes_ReferenceTruckTicket": {
         "type": "object",
         "properties": {
@@ -5916,6 +5935,75 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/Volumes_ReferenceTicketStatus"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/tickets/codes": {
+      "get": {
+        "summary": "List Ticket Codes",
+        "description": "Retrieve a list of ticket codes with pagination options.",
+        "operationId": "get_ticket_codes",
+        "tags": [
+          "Volumes"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of ticket codes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Volumes_ReferenceTicketCode"
                       }
                     },
                     "meta": {
