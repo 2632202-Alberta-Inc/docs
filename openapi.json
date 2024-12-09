@@ -1606,8 +1606,7 @@
             "$ref": "#/components/schemas/TicketStatusReference"
           },
           "organization": {
-            "default": null,
-            "nullable": true
+            "$ref": "#/components/schemas/OrganizationReference1"
           },
           "bill_of_lading": {
             "type": "string",
@@ -2922,9 +2921,7 @@
             "type": "string"
           },
           "organization": {
-            "default": null,
-            "readOnly": true,
-            "nullable": true
+            "readOnly": true
           },
           "bill_of_lading": {
             "type": "string",
@@ -3117,7 +3114,8 @@
           }
         },
         "required": [
-          "external_id"
+          "external_id",
+          "organization"
         ]
       },
       "Volumes_ReferenceTruckTicketError": {
@@ -3308,7 +3306,7 @@
             "nullable": true
           },
           "water_measurement_unit": {
-            "default": null,
+            "type": "integer",
             "nullable": true
           },
           "temperature": {
@@ -3325,14 +3323,6 @@
             "items": {
               "type": "integer"
             }
-          },
-          "tank_measurement_unit": {
-            "type": "integer",
-            "nullable": true
-          },
-          "saltwater_measurement_unit": {
-            "type": "integer",
-            "nullable": true
           },
           "errors": {
             "type": "array",
@@ -3982,7 +3972,7 @@
             "nullable": true
           },
           "water_measurement_unit": {
-            "default": null,
+            "type": "integer",
             "nullable": true
           },
           "temperature": {
@@ -3999,10 +3989,6 @@
             "items": {
               "type": "integer"
             }
-          },
-          "saltwater_measurement_unit": {
-            "type": "integer",
-            "nullable": true
           },
           "errors": {
             "type": "array",
