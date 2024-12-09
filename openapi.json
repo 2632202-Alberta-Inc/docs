@@ -6771,6 +6771,72 @@
         }
       }
     },
+    "/tickets/tank/{id}/cancel": {
+      "patch": {
+        "summary": "Cancel Tank Ticket",
+        "description": "Cancel an existing tank ticket by ID.",
+        "operationId": "cancel_tank_ticket",
+        "tags": [
+          "Volumes"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The tank ticket ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Canceled tank ticket.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Volumes_ReferenceTankTicket"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "description": "Tank ticket not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Tank ticket not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/tickets/meter": {
       "get": {
         "summary": "List Meter Tickets",
