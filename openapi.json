@@ -7163,6 +7163,72 @@
         }
       }
     },
+    "/tickets/meter/{id}/cancel": {
+      "patch": {
+        "summary": "Cancel Meter Ticket",
+        "description": "Cancel an existing meter ticket by ID.",
+        "operationId": "cancel_meter_ticket",
+        "tags": [
+          "Volumes"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The meter ticket ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Canceled meter ticket.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Volumes_ReferenceMeterTicket"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "description": "Meter ticket not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Meter ticket not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/wells": {
       "get": {
         "summary": "List Wells",
