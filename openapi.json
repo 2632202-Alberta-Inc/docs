@@ -3117,7 +3117,6 @@
             "type": "string",
             "readOnly": true
           },
-          "ticket": {},
           "field_name": {
             "type": "string"
           },
@@ -3144,8 +3143,7 @@
         "required": [
           "error_message",
           "error_type",
-          "field_name",
-          "ticket"
+          "field_name"
         ]
       },
       "Volumes_RequestTruckTicket": {
@@ -3485,7 +3483,6 @@
             "type": "string",
             "readOnly": true
           },
-          "ticket": {},
           "field_name": {
             "type": "string"
           },
@@ -3517,8 +3514,7 @@
         "required": [
           "error_message",
           "error_type",
-          "field_name",
-          "ticket"
+          "field_name"
         ]
       },
       "Volumes_RequestTankTicket": {
@@ -3809,7 +3805,6 @@
             "type": "string",
             "readOnly": true
           },
-          "ticket": {},
           "field_name": {
             "type": "string"
           },
@@ -3841,8 +3836,7 @@
         "required": [
           "error_message",
           "error_type",
-          "field_name",
-          "ticket"
+          "field_name"
         ]
       },
       "Volumes_RequestMeterTicket": {
