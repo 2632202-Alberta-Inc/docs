@@ -1578,12 +1578,7 @@
             "nullable": true
           },
           "resolved_by": {
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/UserReference"
-              }
-            ]
+            "type": "integer"
           }
         },
         "required": [
@@ -3146,12 +3141,7 @@
             "nullable": true
           },
           "resolved_by": {
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/UserReference"
-              }
-            ]
+            "type": "integer"
           }
         },
         "required": [
@@ -6362,13 +6352,92 @@
             }
           },
           "404": {
-            "description": "Truck ticket not found."
+            "description": "Truck ticket not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Truck ticket not found."
+                    }
+                  }
+                }
+              }
+            }
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/tickets/truck/{id}/cancel": {
+      "patch": {
+        "summary": "Cancel Truck Ticket",
+        "description": "Cancel an existing truck ticket by ID.",
+        "operationId": "cancel_truck_ticket",
+        "tags": [
+          "Volumes"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The truck ticket ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Canceled truck ticket.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Volumes_ReferenceTruckTicket"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "description": "Truck ticket not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Truck ticket not found."
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
@@ -6675,7 +6744,20 @@
             }
           },
           "404": {
-            "description": "Tank ticket not found."
+            "description": "Tank ticket not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Tank ticket not found."
+                    }
+                  }
+                }
+              }
+            }
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
@@ -6988,7 +7070,20 @@
             }
           },
           "404": {
-            "description": "Meter ticket not found."
+            "description": "Meter ticket not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Meter ticket not found."
+                    }
+                  }
+                }
+              }
+            }
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
