@@ -53,6 +53,10 @@
     {
       "name": "Volumes",
       "description": "Endpoints for managing volumes, including tickets, meters, and volume transactions."
+    },
+    {
+      "name": "Integrations",
+      "description": "Endpoints for aiding data ingestion, integrations, and data transformation pipelines between an organization's systems and Flux."
     }
   ],
   "components": {
@@ -774,22 +778,32 @@
           "product_category": {
             "$ref": "#/components/schemas/ProductCategoryReference"
           },
-          "density": {
+          "density_min": {
+            "type": "number"
+          },
+          "density_max": {
             "type": "number"
           },
           "density_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference"
           },
-          "bsw": {
-            "type": "number"
+          "bsw_min": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "bsw_max": {
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "bsw_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference"
           }
         },
         "required": [
-          "bsw",
-          "density"
+          "density_max",
+          "density_min"
         ]
       },
       "Currency": {
@@ -2224,6 +2238,154 @@
           "volume"
         ]
       },
+      "Integrations_CommercialFacilityLookup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "commercial_facility": {
+            "$ref": "#/components/schemas/CommercialFacilityReference"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationReference1"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "start_date"
+        ]
+      },
+      "Integrations_FacilityLookup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "facility": {
+            "$ref": "#/components/schemas/FacilityReference"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationReference1"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "start_date"
+        ]
+      },
+      "Integrations_EntityLookup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/EntityReference1"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationReference1"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "start_date"
+        ]
+      },
+      "WellReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "uwi": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "uwi"
+        ]
+      },
+      "Integrations_WellLookup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "well": {
+            "$ref": "#/components/schemas/WellReference1"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationReference1"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "start_date"
+        ]
+      },
       "UserRolesReference": {
         "type": "object",
         "properties": {
@@ -2508,14 +2670,24 @@
             "type": "integer"
           },
           "organization": {},
-          "density": {
+          "density_min": {
+            "type": "number"
+          },
+          "density_max": {
             "type": "number"
           },
           "density_measurement_unit": {
             "type": "integer"
           },
-          "bsw": {
-            "type": "number"
+          "bsw_min": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "bsw_max": {
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "bsw_measurement_unit": {
             "type": "integer"
@@ -2525,8 +2697,8 @@
           }
         },
         "required": [
-          "bsw",
-          "density",
+          "density_max",
+          "density_min",
           "organization"
         ]
       },
@@ -4155,6 +4327,134 @@
           "start",
           "volume"
         ]
+      },
+      "Integrations_ReferenceCommercialFacilityLookup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "commercial_facility": {
+            "type": "integer"
+          },
+          "organization": {
+            "type": "integer"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "start_date"
+        ]
+      },
+      "Integrations_ReferenceFacilityLookup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "facility": {
+            "type": "integer"
+          },
+          "organization": {
+            "type": "integer"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "start_date"
+        ]
+      },
+      "Integrations_ReferenceEntityLookup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "entity": {
+            "type": "integer"
+          },
+          "organization": {
+            "type": "integer"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "start_date"
+        ]
+      },
+      "Integrations_ReferenceWellLookup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "well": {
+            "type": "integer"
+          },
+          "organization": {
+            "type": "integer"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "start_date"
+        ]
       }
     }
   },
@@ -5353,43 +5653,79 @@
       }
     },
     "/currencies/convert": {
-      "get": {
-        "summary": "Get Exchange Rate",
-        "description": "Retrieve the exchange rate between two currencies.",
+      "post": {
+        "summary": "Convert Between Currencies",
+        "description": "Retrieve the exchange rate between two currencies and convert a value.",
         "operationId": "convert_currency",
         "tags": [
           "Currency"
         ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "from_currency",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "The symbol of the currency to convert from."
-          },
-          {
-            "in": "query",
-            "name": "to_currency",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "The symbol of the currency to convert to."
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "from_currency",
+                  "to_currency"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "number",
+                    "description": "The value to convert"
+                  },
+                  "from_currency": {
+                    "type": "string",
+                    "description": "The symbol of the currency to convert from"
+                  },
+                  "to_currency": {
+                    "type": "string",
+                    "description": "The symbol of the currency to convert to"
+                  }
+                }
+              }
+            }
           }
-        ],
+        },
         "responses": {
           "200": {
-            "description": "The exchange rate between the two currencies.",
+            "description": "The converted value and exchange rate between the two currencies.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Currency_CurrencyConversion"
+                      "type": "object",
+                      "properties": {
+                        "from": {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "$ref": "#/components/schemas/Currency_ReferenceCurrency"
+                            }
+                          }
+                        },
+                        "to": {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "$ref": "#/components/schemas/Currency_ReferenceCurrency"
+                            }
+                          }
+                        },
+                        "conversion": {
+                          "$ref": "#/components/schemas/Currency_ReferenceCurrencyConversion"
+                        }
+                      }
                     }
                   }
                 }
@@ -8118,6 +8454,1025 @@
                           "type": "integer"
                         }
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/integrations/lookups/facilities": {
+      "get": {
+        "summary": "List Facility Lookups",
+        "description": "Retrieve a list of facility lookups in the current organization with pagination and filtering options.",
+        "operationId": "get_facility_lookups",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false,
+            "description": "Filter by date (YYYY-MM-DD) - returns lookups active on this date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of facility lookups.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Integrations_ReferenceFacilityLookup"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Facility Lookup",
+        "description": "Create a new facility lookup",
+        "operationId": "create_facility_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Integrations_ReferenceFacilityLookup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Facility lookup created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_ReferenceFacilityLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/integrations/lookups/facilities/{id}": {
+      "get": {
+        "summary": "Get Facility Lookup",
+        "description": "Retrieve a single facility lookup by ID",
+        "operationId": "get_facility_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The facility lookup ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single facility lookup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_FacilityLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Facility lookup not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Facility lookup not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Facility Lookup",
+        "description": "Update an existing facility lookup by ID",
+        "operationId": "update_facility_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The facility lookup ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Integrations_FacilityLookup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated facility lookup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_FacilityLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Facility lookup not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Facility lookup not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/integrations/lookups/wells": {
+      "get": {
+        "summary": "List Well Lookups",
+        "description": "Retrieve a list of well lookups in the current orgainzation with pagination.",
+        "operationId": "get_well_lookups",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of well lookups.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Integrations_ReferenceWellLookup"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Well Lookup",
+        "description": "Create a new well lookup",
+        "operationId": "create_well_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Integrations_ReferenceWellLookup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Well lookup created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_ReferenceWellLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/integrations/lookups/wells/{id}": {
+      "get": {
+        "summary": "Get Well Lookup",
+        "description": "Retrieve a single well lookup by ID",
+        "operationId": "get_well_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The well lookup ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single well lookup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_WellLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Well lookup not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Well lookup not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Well Lookup",
+        "description": "Update an existing well lookup by ID",
+        "operationId": "update_well_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The well lookup ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Integrations_WellLookup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated well lookup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_WellLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Well lookup not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Well lookup not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/integrations/lookups/commercial-facilities": {
+      "get": {
+        "summary": "List Commercial Facility Lookups",
+        "description": "Retrieve a list of commercial facility lookups in the current organization with pagination.",
+        "operationId": "get_commercial_facility_lookups",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of commercial facility lookups.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Integrations_ReferenceCommercialFacilityLookup"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Commercial Facility Lookup",
+        "description": "Create a new commercial facility lookup",
+        "operationId": "create_commercial_facility_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Integrations_ReferenceCommercialFacilityLookup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Commercial facility lookup created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_ReferenceCommercialFacilityLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/integrations/lookups/commercial-facilities/{id}": {
+      "get": {
+        "summary": "Get Commercial Facility Lookup",
+        "description": "Retrieve a single commercial facility lookup by ID",
+        "operationId": "get_commercial_facility_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The commercial facility lookup ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single commercial facility lookup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_CommercialFacilityLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Commercial facility lookup not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Commercial facility lookup not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Commercial Facility Lookup",
+        "description": "Update an existing commercial facility lookup by ID",
+        "operationId": "update_commercial_facility_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The commercial facility lookup ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Integrations_CommercialFacilityLookup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated commercial facility lookup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_CommercialFacilityLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Commercial facility lookup not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Commercial facility lookup not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/integrations/lookups/entities": {
+      "get": {
+        "summary": "List Entity Lookups",
+        "description": "Retrieve a list of entity lookups in the current organization with pagination.",
+        "operationId": "get_entity_lookups",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of entity lookups.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Integrations_EntityLookup"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Entity Lookup",
+        "description": "Create a new entity lookup",
+        "operationId": "create_entity_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Integrations_EntityLookup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Entity lookup created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_EntityLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/integrations/lookups/entities/{id}": {
+      "get": {
+        "summary": "Get Entity Lookup",
+        "description": "Retrieve a single entity lookup by ID",
+        "operationId": "get_entity_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The entity lookup ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single entity lookup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_EntityLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Entity lookup not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Entity lookup not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Entity Lookup",
+        "description": "Update an existing entity lookup by ID",
+        "operationId": "update_entity_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The entity lookup ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Integrations_EntityLookup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated entity lookup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_EntityLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Entity lookup not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Entity lookup not found"
                     }
                   }
                 }
