@@ -32,7 +32,7 @@
     },
     {
       "name": "Products",
-      "description": "Endpoints for managing products, product categories, and specifications."
+      "description": "Endpoints for managing products, product categories, specifications, and conversions."
     },
     {
       "name": "Currency",
@@ -240,7 +240,11 @@
             "format": "date"
           },
           "successor": {
-            "type": "integer"
+            "default": null,
+            "nullable": true
+          },
+          "business_lines": {
+            "readOnly": true
           }
         },
         "required": [
@@ -556,25 +560,6 @@
           "short_code"
         ]
       },
-      "ProductCategoryReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "short_code": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
-      },
       "MeasurementUnit": {
         "type": "object",
         "properties": {
@@ -587,47 +572,68 @@
           },
           "abbreviation": {
             "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "V",
+              "T",
+              "D",
+              "P",
+              "M",
+              "E",
+              "F"
+            ]
           }
         },
         "required": [
           "abbreviation",
-          "name"
+          "name",
+          "type"
         ]
       },
-      "ProductUnitConversion": {
+      "UnitConversion": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "readOnly": true
           },
-          "from_unit": {
-            "$ref": "#/components/schemas/MeasurementUnit"
-          },
-          "conversion_factor": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "conversion_factor"
-        ]
-      },
-      "ProductUnitConversion1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
+          "product_category": {
+            "default": null,
+            "nullable": true
           },
           "to_unit": {
             "$ref": "#/components/schemas/MeasurementUnit"
           },
-          "conversion_factor": {
-            "type": "number"
+          "formula": {
+            "type": "string"
           }
         },
         "required": [
-          "conversion_factor"
+          "formula"
+        ]
+      },
+      "UnitConversion1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product_category": {
+            "default": null,
+            "nullable": true
+          },
+          "from_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit"
+          },
+          "formula": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "formula"
         ]
       },
       "Product_MeasurementUnit": {
@@ -643,25 +649,60 @@
           "abbreviation": {
             "type": "string"
           },
-          "product_category": {
-            "$ref": "#/components/schemas/ProductCategoryReference"
+          "type": {
+            "type": "string",
+            "enum": [
+              "V",
+              "T",
+              "D",
+              "P",
+              "M",
+              "E",
+              "F"
+            ]
           },
           "from_conversions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ProductUnitConversion"
+              "$ref": "#/components/schemas/UnitConversion"
             }
           },
           "to_conversions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ProductUnitConversion1"
+              "$ref": "#/components/schemas/UnitConversion1"
             }
           }
         },
         "required": [
           "abbreviation",
-          "name"
+          "name",
+          "type"
+        ]
+      },
+      "UnitConversion2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "product_category": {
+            "default": null,
+            "nullable": true
+          },
+          "from_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit"
+          },
+          "to_unit": {
+            "$ref": "#/components/schemas/MeasurementUnit"
+          },
+          "formula": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "formula"
         ]
       },
       "Product_ProductCategory": {
@@ -677,11 +718,30 @@
           "short_code": {
             "type": "string"
           },
-          "measurement_units": {
+          "unit_conversions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MeasurementUnit"
+              "$ref": "#/components/schemas/UnitConversion2"
             }
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "ProductCategoryReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "short_code": {
+            "type": "string"
           }
         },
         "required": [
@@ -893,6 +953,51 @@
           "regulator_id"
         ]
       },
+      "ProductReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ProductCategoryReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "BusinessLineReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
       "Entity_Entity": {
         "type": "object",
         "properties": {
@@ -1019,6 +1124,24 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/WellReference"
+            }
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductReference"
+            }
+          },
+          "product_categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductCategoryReference1"
+            }
+          },
+          "business_lines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BusinessLineReference"
             }
           }
         },
@@ -1459,7 +1582,7 @@
           "name"
         ]
       },
-      "CarrierReference": {
+      "EntityReference2": {
         "type": "object",
         "properties": {
           "id": {
@@ -1614,7 +1737,7 @@
             "nullable": true
           },
           "carrier": {
-            "$ref": "#/components/schemas/CarrierReference"
+            "$ref": "#/components/schemas/EntityReference2"
           },
           "driver": {
             "$ref": "#/components/schemas/UserReference"
@@ -2278,7 +2401,7 @@
           "commercial_facility"
         ]
       },
-      "ProductCategoryReference1": {
+      "ProductCategoryReference2": {
         "type": "object",
         "properties": {
           "id": {
@@ -2311,7 +2434,7 @@
             "type": "string"
           },
           "product_category": {
-            "$ref": "#/components/schemas/ProductCategoryReference1"
+            "$ref": "#/components/schemas/ProductCategoryReference2"
           }
         },
         "required": [
@@ -2332,8 +2455,22 @@
           "abbreviation": {
             "type": "string"
           },
-          "product_category": {
-            "type": "integer"
+          "type": {
+            "type": "string",
+            "enum": [
+              "VOLUME",
+              "TEMPERATURE",
+              "DIMENSIONLESS",
+              "DENSITY",
+              "DISTANCE",
+              "PRESSURE",
+              "VISCOSITY",
+              "MASS RATIO",
+              "ENERGY",
+              "FLOW RATE",
+              "POWER",
+              "PARTICLE SIZE"
+            ]
           }
         },
         "required": [
@@ -2448,7 +2585,8 @@
             "type": "string"
           },
           "organization": {
-            "type": "integer"
+            "default": null,
+            "nullable": true
           },
           "url": {
             "type": "string",
@@ -2545,12 +2683,31 @@
             "format": "date"
           },
           "successor": {
-            "type": "integer"
+            "default": null,
+            "nullable": true
+          },
+          "business_lines": {
+            "readOnly": true
           }
         },
         "required": [
           "effective_date",
           "legal_name"
+        ]
+      },
+      "Entity_ReferenceBusinessLine": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
         ]
       },
       "Facility_ReferenceFacilityType": {
@@ -3277,12 +3434,6 @@
             "type": "integer",
             "nullable": true
           },
-          "net_volume": {
-            "type": "number"
-          },
-          "net_volume_measurement_unit": {
-            "type": "integer"
-          },
           "density": {
             "type": "number"
           },
@@ -3354,8 +3505,6 @@
           "meter_end",
           "meter_factor",
           "meter_start",
-          "net_volume",
-          "net_volume_measurement_unit",
           "pickup_commercial_entity",
           "pickup_commercial_facility",
           "pickup_facility",
@@ -3381,8 +3530,20 @@
             "type": "string"
           },
           "organization": {},
-          "commercial_facility": {},
-          "commercial_entity": {},
+          "commercial_facility": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "nullable": true
+          },
+          "commercial_entity": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "nullable": true
+          },
           "facility_operator": {},
           "facility": {
             "type": "array",
@@ -3474,8 +3635,6 @@
         "required": [
           "bsw",
           "bsw_measurement_unit",
-          "commercial_entity",
-          "commercial_facility",
           "density",
           "density_measurement_unit",
           "end",
@@ -3609,12 +3768,6 @@
           "volume_measurement_unit": {
             "type": "integer"
           },
-          "net_volume": {
-            "type": "number"
-          },
-          "net_volume_measurement_unit": {
-            "type": "integer"
-          },
           "density": {
             "type": "number"
           },
@@ -3684,8 +3837,6 @@
           "meter_end",
           "meter_factor",
           "meter_start",
-          "net_volume",
-          "net_volume_measurement_unit",
           "production_date",
           "start",
           "volume"
@@ -3931,12 +4082,6 @@
           "volume_measurement_unit": {
             "type": "integer"
           },
-          "net_volume": {
-            "type": "number"
-          },
-          "net_volume_measurement_unit": {
-            "type": "integer"
-          },
           "density": {
             "type": "number"
           },
@@ -4006,8 +4151,6 @@
           "meter_end",
           "meter_factor",
           "meter_start",
-          "net_volume",
-          "net_volume_measurement_unit",
           "production_date",
           "start",
           "volume"
@@ -5303,6 +5446,14 @@
             },
             "required": false,
             "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "product_category_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by product category ID"
           }
         ],
         "responses": {
@@ -5586,11 +5737,25 @@
           },
           {
             "in": "query",
-            "name": "product_category_id",
+            "name": "type",
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "enum": [
+                "VOLUME",
+                "TEMPERATURE",
+                "DIMENSIONLESS",
+                "DENSITY",
+                "DISTANCE",
+                "PRESSURE",
+                "VISCOSITY",
+                "MASS RATIO",
+                "ENERGY",
+                "FLOW RATE",
+                "POWER",
+                "PARTICLE SIZE"
+              ]
             },
-            "description": "Filter by product category ID"
+            "description": "Filter by measurement unit type"
           }
         ],
         "responses": {
@@ -5691,6 +5856,156 @@
                 }
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/products/categories/measurement-units/convert": {
+      "post": {
+        "summary": "Convert Between Measurement Units",
+        "description": "Convert a value from one measurement unit to another using stored conversion factors.",
+        "operationId": "convert_units",
+        "tags": [
+          "Products"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "from_unit_id",
+                  "to_unit_id",
+                  "product_category_id"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "number",
+                    "description": "The value to convert"
+                  },
+                  "from_unit_id": {
+                    "type": "integer",
+                    "description": "Measurement Unit ID"
+                  },
+                  "to_unit_id": {
+                    "type": "integer",
+                    "description": "Measurement Unit ID"
+                  },
+                  "product_category_id": {
+                    "type": "integer",
+                    "description": "Product Category ID"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful conversion",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "product_category": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "from": {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "number"
+                            },
+                            "measurement_unit": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "integer"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "abbreviation": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "to": {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "number"
+                            },
+                            "measurement_unit": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "integer"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "abbreviation": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "formula": {
+                          "type": "string",
+                          "description": "The formula used for the conversion"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Conversion not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Conversion not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
@@ -7623,6 +7938,14 @@
               "type": "string"
             },
             "description": "Filter by legal name"
+          },
+          {
+            "in": "query",
+            "name": "business_line_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by business line ID"
           }
         ],
         "responses": {
@@ -7718,6 +8041,83 @@
                     "error": {
                       "type": "string",
                       "example": "Entity not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/entities/business-lines": {
+      "get": {
+        "summary": "List Business Lines",
+        "description": "Retrieve a list of business lines with pagination and filtering options.",
+        "operationId": "get_business_lines",
+        "tags": [
+          "Entity"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by business line name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of business lines.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Entity_ReferenceBusinessLine"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
                     }
                   }
                 }
