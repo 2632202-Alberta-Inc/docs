@@ -8472,6 +8472,97 @@
         }
       }
     },
+    "/integrations/lookups/search": {
+      "get": {
+        "summary": "Search Lookups",
+        "description": "Search across different lookup types by name",
+        "operationId": "search_lookups",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "model",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Facility",
+                "Well",
+                "Entity",
+                "CommercialFacility"
+              ]
+            },
+            "required": true,
+            "description": "The type of lookup to search"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Name to search for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Single matching lookup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/Integrations_ReferenceFacilityLookup"
+                        },
+                        {
+                          "$ref": "#/components/schemas/Integrations_ReferenceWellLookup"
+                        },
+                        {
+                          "$ref": "#/components/schemas/Integrations_ReferenceEntityLookup"
+                        },
+                        {
+                          "$ref": "#/components/schemas/Integrations_ReferenceCommercialFacilityLookup"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "description": "No matching lookups found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "No matching lookups found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/integrations/lookups/facilities": {
       "get": {
         "summary": "List Facility Lookups",
