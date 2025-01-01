@@ -29,11 +29,89 @@
     "name": "Get Started",
     "url": "https://www.flux-os.com/login"
   },
+
+  "tabs": [
+    {
+      "name": "API Reference",
+      "url": "api-reference",
+      "openapi": "/openapi.json"
+    }
+  ],
   "anchors": [],
   "navigation": [
     {
+      "group": "Get Started",
+      "pages": [
+        "introduction",
+        "authentication",
+        "errors",
+        "professional_services"
+      ]
+    },
+    {
+      "group": "Guides",
+      "pages": ["quickstart", "guides/creating-tickets"]
+    },
+    {
+      "group": "Concepts",
+      "pages": [
+        {
+          "group": "Organization",
+          "pages": [
+            "models/organizations/overview",
+            "models/organizations/organization",
+            "models/organizations/entity",
+            "models/organizations/user"
+          ]
+        },
+        {
+          "group": "Facilities",
+          "pages": [
+            "models/facilities/overview",
+            "models/facilities/commercial_facility",
+            "models/facilities/facility",
+            "models/facilities/type",
+            "models/facilities/sub_types"
+          ]
+        },
+        {
+          "group": "Regulatory",
+          "pages": [
+            "models/regulatory/overview",
+            "models/regulatory/system",
+            "models/regulatory/jurisdiction",
+            "models/regulatory/petrinex"
+          ]
+        },
+        {
+          "group": "Product",
+          "pages": [
+            "models/products/overview",
+            "models/products/product_category",
+            "models/products/product",
+            "models/products/measurement_unit"
+          ]
+        },
+        {
+          "group": "Volumes",
+          "pages": [
+            "models/volumes/overview",
+            "models/volumes/truck",
+            "models/volumes/meter",
+            "models/volumes/tank",
+            "models/volumes/status",
+            "models/volumes/code"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "SDKs",
+      "pages": ["sdks/overview", "sdks/python", "sdks/net"]
+    },
+    {
       "group": "API Documentation",
-      "pages": ["api-reference/"]
+      "pages": ["api-reference/introduction"]
     }
   ],
   "footerSocials": {
