@@ -33,7 +33,7 @@
   "navigation": [
     {
       "group": "API Documentation",
-      "pages": ["api-reference/introduction"]
+      "pages": ["api-reference/"]
     }
   ],
   "footerSocials": {
