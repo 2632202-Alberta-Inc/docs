@@ -139,6 +139,124 @@
       }
     },
     "schemas": {
+      "OrganizationReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "slug"
+        ]
+      },
+      "UserRoles": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "UserPermissions": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "name"
+        ]
+      },
+      "Organization_User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "stytch_id": {
+            "type": "string"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationReference"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRoles"
+            }
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserPermissions"
+            }
+          }
+        },
+        "required": [
+          "email",
+          "first_name",
+          "last_name",
+          "phone",
+          "stytch_id",
+          "title"
+        ]
+      },
       "EntityReference": {
         "type": "object",
         "properties": {
@@ -256,7 +374,7 @@
           "legal_name"
         ]
       },
-      "OrganizationReference": {
+      "Organization_Organization": {
         "type": "object",
         "properties": {
           "id": {
@@ -267,9 +385,6 @@
             "type": "string"
           },
           "slug": {
-            "type": "string"
-          },
-          "stytch_id": {
             "type": "string"
           },
           "url": {
@@ -296,130 +411,7 @@
         },
         "required": [
           "name",
-          "slug",
-          "stytch_id"
-        ]
-      },
-      "UserRoles": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
-      "UserPermissions": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "code": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "code",
-          "name"
-        ]
-      },
-      "Organization_User": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "stytch_id": {
-            "type": "string"
-          },
-          "organization": {
-            "$ref": "#/components/schemas/OrganizationReference"
-          },
-          "first_name": {
-            "type": "string"
-          },
-          "last_name": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "roles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserRoles"
-            }
-          },
-          "permissions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserPermissions"
-            }
-          }
-        },
-        "required": [
-          "email",
-          "first_name",
-          "last_name",
-          "phone",
-          "stytch_id",
-          "title"
-        ]
-      },
-      "Organization_Organization": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "slug": {
-            "type": "string"
-          },
-          "stytch_id": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          },
-          "phone": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          }
-        },
-        "required": [
-          "name",
-          "slug",
-          "stytch_id"
+          "slug"
         ]
       },
       "OrganizationReference1": {
@@ -897,21 +889,6 @@
           "exchange_rate"
         ]
       },
-      "OrganizationReference2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
       "EntityReference1": {
         "type": "object",
         "properties": {
@@ -1023,7 +1000,7 @@
             "type": "string"
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference2"
+            "$ref": "#/components/schemas/OrganizationReference1"
           },
           "url": {
             "type": "string",
@@ -1290,9 +1267,7 @@
           "code": {
             "type": "string"
           },
-          "facility_type": {
-            "type": "integer"
-          },
+          "facility_type": {},
           "jurisdiction": {
             "type": "string",
             "enum": [
@@ -1309,6 +1284,7 @@
         },
         "required": [
           "code",
+          "facility_type",
           "name"
         ]
       },
@@ -1362,9 +1338,7 @@
           "code": {
             "type": "string"
           },
-          "facility_type": {
-            "type": "integer"
-          },
+          "facility_type": {},
           "jurisdiction": {
             "type": "string",
             "enum": [
@@ -1381,6 +1355,7 @@
         },
         "required": [
           "code",
+          "facility_type",
           "name"
         ]
       },
@@ -1949,7 +1924,9 @@
           "status": {
             "$ref": "#/components/schemas/TicketStatusReference"
           },
-          "organization": {},
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationReference1"
+          },
           "commercial_facility": {
             "$ref": "#/components/schemas/CommercialFacilityReference"
           },
@@ -1969,15 +1946,21 @@
           },
           "production_date": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "default": null,
+            "nullable": true
           },
           "start": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "default": null,
+            "nullable": true
           },
           "end": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "default": null,
+            "nullable": true
           },
           "updated_at": {
             "type": "string",
@@ -1991,37 +1974,51 @@
             "$ref": "#/components/schemas/MeterReference"
           },
           "meter_start": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "meter_end": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "meter_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "meter_factor": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "volume": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "volume_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "net_volume": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "net_volume_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "density": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "density_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "bsw": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "bsw_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
@@ -2070,21 +2067,16 @@
             "items": {
               "$ref": "#/components/schemas/TicketCodeReference"
             }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TruckTicketErrorReference"
+            }
           }
         },
         "required": [
-          "bsw",
-          "density",
-          "end",
-          "external_id",
-          "meter_end",
-          "meter_factor",
-          "meter_start",
-          "net_volume",
-          "organization",
-          "production_date",
-          "start",
-          "volume"
+          "external_id"
         ]
       },
       "Volumes_MeterTicket": {
@@ -2100,7 +2092,9 @@
           "status": {
             "$ref": "#/components/schemas/TicketStatusReference"
           },
-          "organization": {},
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationReference1"
+          },
           "commercial_facility": {
             "$ref": "#/components/schemas/CommercialFacilityReference"
           },
@@ -2120,15 +2114,21 @@
           },
           "production_date": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "default": null,
+            "nullable": true
           },
           "start": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "default": null,
+            "nullable": true
           },
           "end": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "default": null,
+            "nullable": true
           },
           "updated_at": {
             "type": "string",
@@ -2142,37 +2142,51 @@
             "$ref": "#/components/schemas/MeterReference"
           },
           "meter_start": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "meter_end": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "meter_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "meter_factor": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "volume": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "volume_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "net_volume": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "net_volume_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "density": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "density_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "bsw": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "bsw_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
@@ -2221,21 +2235,16 @@
             "items": {
               "$ref": "#/components/schemas/TicketCodeReference"
             }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TruckTicketErrorReference"
+            }
           }
         },
         "required": [
-          "bsw",
-          "density",
-          "end",
-          "external_id",
-          "meter_end",
-          "meter_factor",
-          "meter_start",
-          "net_volume",
-          "organization",
-          "production_date",
-          "start",
-          "volume"
+          "external_id"
         ]
       },
       "Integrations_CommercialFacilityLookup": {
@@ -2384,6 +2393,40 @@
         "required": [
           "name",
           "start_date"
+        ]
+      },
+      "Organization_ReferenceOrganization": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "slug"
         ]
       },
       "UserRolesReference": {
@@ -2980,19 +3023,13 @@
           "meridian": {
             "type": "string"
           },
-          "type": {
-            "type": "integer"
-          },
-          "sub_type": {
-            "type": "integer"
-          },
+          "type": {},
+          "sub_type": {},
           "start_date": {
             "type": "string",
             "format": "date"
           },
-          "operator": {
-            "type": "integer"
-          },
+          "operator": {},
           "operational_status": {
             "type": "string",
             "enum": [
@@ -3013,7 +3050,8 @@
             "format": "date"
           },
           "licensee": {
-            "type": "integer"
+            "default": null,
+            "nullable": true
           },
           "license_status": {
             "type": "string",
@@ -3071,11 +3109,14 @@
           "lsd",
           "meridian",
           "name",
+          "operator",
           "operator_start_date",
           "range",
           "section",
           "start_date",
-          "township"
+          "sub_type",
+          "township",
+          "type"
         ]
       },
       "Wells_ReferenceWell": {
@@ -3131,9 +3172,7 @@
               "SASKATCHEWAN"
             ]
           },
-          "licensee": {
-            "type": "integer"
-          },
+          "licensee": {},
           "license_status": {
             "type": "string",
             "enum": [
@@ -3179,6 +3218,7 @@
         },
         "required": [
           "event_sequence",
+          "licensee",
           "location_exception",
           "lsd",
           "meridian",
@@ -3200,14 +3240,14 @@
             "type": "string"
           },
           "facility": {
-            "type": "integer"
+            "default": null,
+            "nullable": true
           },
-          "operator": {
-            "type": "integer"
-          }
+          "operator": {}
         },
         "required": [
-          "external_id"
+          "external_id",
+          "operator"
         ]
       },
       "Volumes_ReferenceTicketStatus": {
@@ -3260,8 +3300,7 @@
             "type": "string"
           },
           "status": {
-            "readOnly": true,
-            "type": "string"
+            "readOnly": true
           },
           "organization": {
             "readOnly": true
@@ -3455,7 +3494,8 @@
         },
         "required": [
           "external_id",
-          "organization"
+          "organization",
+          "status"
         ]
       },
       "Volumes_ReferenceTruckTicketError": {
@@ -3716,7 +3756,10 @@
             },
             "nullable": true
           },
-          "facility_operator": {},
+          "facility_operator": {
+            "default": null,
+            "nullable": true
+          },
           "facility": {
             "type": "array",
             "items": {
@@ -3726,15 +3769,21 @@
           },
           "production_date": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "default": null,
+            "nullable": true
           },
           "start": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "default": null,
+            "nullable": true
           },
           "end": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "default": null,
+            "nullable": true
           },
           "updated_at": {
             "type": "string",
@@ -3746,33 +3795,65 @@
             "format": "date-time",
             "readOnly": true
           },
-          "meter": {},
+          "meter": {
+            "default": null,
+            "nullable": true
+          },
           "meter_start": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "meter_end": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
-          "meter_measurement_unit": {},
+          "meter_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
           "meter_factor": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "volume": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
-          "volume_measurement_unit": {},
+          "volume_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
           "net_volume": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
-          "net_volume_measurement_unit": {},
+          "net_volume_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
           "density": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
-          "density_measurement_unit": {},
+          "density_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
           "bsw": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
-          "bsw_measurement_unit": {},
+          "bsw_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
           "solids": {
             "type": "number",
             "default": null,
@@ -3805,25 +3886,8 @@
           }
         },
         "required": [
-          "bsw",
-          "bsw_measurement_unit",
-          "density",
-          "density_measurement_unit",
-          "end",
           "external_id",
-          "facility_operator",
-          "meter",
-          "meter_end",
-          "meter_factor",
-          "meter_measurement_unit",
-          "meter_start",
-          "net_volume",
-          "net_volume_measurement_unit",
-          "organization",
-          "production_date",
-          "start",
-          "volume",
-          "volume_measurement_unit"
+          "organization"
         ]
       },
       "Volumes_ReferenceTankTicketError": {
@@ -4029,24 +4093,39 @@
             "type": "string"
           },
           "organization": {},
-          "commercial_facility": {},
-          "commercial_entity": {},
-          "facility_operator": {},
+          "commercial_facility": {
+            "default": null,
+            "nullable": true
+          },
+          "commercial_entity": {
+            "default": null,
+            "nullable": true
+          },
+          "facility_operator": {
+            "default": null,
+            "nullable": true
+          },
           "facility": {
             "type": "integer",
             "nullable": true
           },
           "production_date": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "default": null,
+            "nullable": true
           },
           "start": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "default": null,
+            "nullable": true
           },
           "end": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "default": null,
+            "nullable": true
           },
           "updated_at": {
             "type": "string",
@@ -4058,33 +4137,65 @@
             "format": "date-time",
             "readOnly": true
           },
-          "meter": {},
+          "meter": {
+            "default": null,
+            "nullable": true
+          },
           "meter_start": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "meter_end": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
-          "meter_measurement_unit": {},
+          "meter_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
           "meter_factor": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
           "volume": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
-          "volume_measurement_unit": {},
+          "volume_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
           "net_volume": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
-          "net_volume_measurement_unit": {},
+          "net_volume_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
           "density": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
-          "density_measurement_unit": {},
+          "density_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
           "bsw": {
-            "type": "number"
+            "type": "number",
+            "default": null,
+            "nullable": true
           },
-          "bsw_measurement_unit": {},
+          "bsw_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
           "solids": {
             "type": "number",
             "default": null,
@@ -4117,27 +4228,8 @@
           }
         },
         "required": [
-          "bsw",
-          "bsw_measurement_unit",
-          "commercial_entity",
-          "commercial_facility",
-          "density",
-          "density_measurement_unit",
-          "end",
           "external_id",
-          "facility_operator",
-          "meter",
-          "meter_end",
-          "meter_factor",
-          "meter_measurement_unit",
-          "meter_start",
-          "net_volume",
-          "net_volume_measurement_unit",
-          "organization",
-          "production_date",
-          "start",
-          "volume",
-          "volume_measurement_unit"
+          "organization"
         ]
       },
       "Volumes_ReferenceMeterTicketError": {
@@ -4872,6 +4964,83 @@
                   "properties": {
                     "data": {
                       "$ref": "#/components/schemas/Organization_Organization"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/organizations": {
+      "get": {
+        "summary": "List Organizations",
+        "description": "Retrieve a list of all organizations with pagination and filtering options.",
+        "operationId": "get_organizations",
+        "tags": [
+          "Organization"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by organization name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of organizations.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Organization_ReferenceOrganization"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
                     }
                   }
                 }
