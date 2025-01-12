@@ -4806,6 +4806,46 @@
               ]
             },
             "description": "Filter by facility model name"
+          },
+          {
+            "in": "query",
+            "name": "lsd",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by legal subdivision (LSD)"
+          },
+          {
+            "in": "query",
+            "name": "section",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by section number"
+          },
+          {
+            "in": "query",
+            "name": "township",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by township number"
+          },
+          {
+            "in": "query",
+            "name": "range",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by range number"
+          },
+          {
+            "in": "query",
+            "name": "meridian",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by meridian"
           }
         ],
         "responses": {
