@@ -1541,15 +1541,6 @@
           "name"
         ]
       },
-      "EntityReference2": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          }
-        }
-      },
       "UserReference": {
         "type": "object",
         "properties": {
@@ -1695,8 +1686,11 @@
             "default": null,
             "nullable": true
           },
-          "carrier": {
-            "$ref": "#/components/schemas/EntityReference2"
+          "carrier_organization": {
+            "$ref": "#/components/schemas/OrganizationReference1"
+          },
+          "carrier_entity": {
+            "$ref": "#/components/schemas/EntityReference1"
           },
           "driver": {
             "$ref": "#/components/schemas/UserReference"
@@ -3319,7 +3313,11 @@
             "default": null,
             "nullable": true
           },
-          "carrier": {
+          "carrier_organization": {
+            "default": null,
+            "nullable": true
+          },
+          "carrier_entity": {
             "default": null,
             "nullable": true
           },
@@ -3572,8 +3570,12 @@
             "default": null,
             "nullable": true
           },
-          "carrier": {
+          "carrier_organization": {
             "type": "integer"
+          },
+          "carrier_entity": {
+            "default": null,
+            "nullable": true
           },
           "driver": {
             "type": "integer",
@@ -3759,7 +3761,7 @@
           "bill_of_lading",
           "bsw",
           "bsw_measurement_unit",
-          "carrier",
+          "carrier_organization",
           "codes",
           "delivery_commercial_entity",
           "delivery_commercial_facility",
