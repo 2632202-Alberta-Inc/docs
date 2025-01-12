@@ -1731,16 +1731,20 @@
           "driver": {
             "$ref": "#/components/schemas/UserReference"
           },
-          "pickup_commercial_facility": {
+          "source_commercial_facility": {
             "$ref": "#/components/schemas/CommercialFacilityReference"
           },
-          "pickup_commercial_entity": {
+          "source_commercial_entity": {
             "$ref": "#/components/schemas/EntityReference1"
           },
-          "pickup_facility_operator": {
+          "source_facility_operator": {
             "$ref": "#/components/schemas/EntityReference1"
           },
-          "pickup_facility": {
+          "source_commercial_organization": {
+            "default": null,
+            "nullable": true
+          },
+          "source_facility": {
             "nullable": true,
             "allOf": [
               {
@@ -1748,19 +1752,23 @@
               }
             ]
           },
-          "pickup_well": {
+          "source_well": {
             "$ref": "#/components/schemas/WellReference"
           },
-          "delivery_commercial_facility": {
+          "destination_commercial_facility": {
             "$ref": "#/components/schemas/CommercialFacilityReference"
           },
-          "delivery_commercial_entity": {
+          "destination_commercial_entity": {
             "$ref": "#/components/schemas/EntityReference1"
           },
-          "delivery_facility_operator": {
+          "destination_commercial_organization": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_facility_operator": {
             "$ref": "#/components/schemas/EntityReference1"
           },
-          "delivery_facility": {
+          "destination_facility": {
             "nullable": true,
             "allOf": [
               {
@@ -2095,16 +2103,44 @@
           "organization": {
             "$ref": "#/components/schemas/OrganizationReference1"
           },
-          "commercial_facility": {
+          "source_commercial_facility": {
             "$ref": "#/components/schemas/CommercialFacilityReference"
           },
-          "commercial_entity": {
+          "source_commercial_entity": {
             "$ref": "#/components/schemas/EntityReference1"
           },
-          "facility_operator": {
+          "source_commercial_organization": {
+            "default": null,
+            "nullable": true
+          },
+          "source_facility_operator": {
             "$ref": "#/components/schemas/EntityReference1"
           },
-          "facility": {
+          "source_facility": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityReference1"
+              }
+            ]
+          },
+          "source_well": {
+            "$ref": "#/components/schemas/WellReference"
+          },
+          "destination_commercial_facility": {
+            "$ref": "#/components/schemas/CommercialFacilityReference"
+          },
+          "destination_commercial_organization": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_commercial_entity": {
+            "$ref": "#/components/schemas/EntityReference1"
+          },
+          "destination_facility_operator": {
+            "$ref": "#/components/schemas/EntityReference1"
+          },
+          "destination_facility": {
             "nullable": true,
             "allOf": [
               {
@@ -3323,42 +3359,50 @@
             "default": null,
             "nullable": true
           },
-          "pickup_commercial_facility": {
+          "source_commercial_facility": {
             "default": null,
             "nullable": true
           },
-          "pickup_commercial_entity": {
+          "source_commercial_entity": {
             "default": null,
             "nullable": true
           },
-          "pickup_facility_operator": {
+          "source_facility_operator": {
             "default": null,
             "nullable": true
           },
-          "pickup_facility": {
+          "source_commercial_organization": {
+            "default": null,
+            "nullable": true
+          },
+          "source_facility": {
             "type": "array",
             "items": {
               "type": "integer"
             },
             "nullable": true
           },
-          "pickup_well": {
+          "source_well": {
             "default": null,
             "nullable": true
           },
-          "delivery_commercial_facility": {
+          "destination_commercial_facility": {
             "default": null,
             "nullable": true
           },
-          "delivery_commercial_entity": {
+          "destination_commercial_entity": {
             "default": null,
             "nullable": true
           },
-          "delivery_facility_operator": {
+          "destination_commercial_organization": {
             "default": null,
             "nullable": true
           },
-          "delivery_facility": {
+          "destination_facility_operator": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_facility": {
             "type": "array",
             "items": {
               "type": "integer"
@@ -3567,32 +3611,49 @@
             "type": "integer",
             "nullable": true
           },
-          "pickup_commercial_facility": {
-            "type": "integer"
+          "source_commercial_facility": {
+            "default": null,
+            "nullable": true
           },
-          "pickup_commercial_entity": {
-            "type": "integer"
+          "source_commercial_entity": {
+            "default": null,
+            "nullable": true
           },
-          "pickup_facility_operator": {
-            "type": "integer"
+          "source_facility_operator": {
+            "default": null,
+            "nullable": true
           },
-          "pickup_facility": {
-            "type": "integer"
+          "source_commercial_organization": {
+            "default": null,
+            "nullable": true
           },
-          "pickup_well": {
-            "type": "integer"
+          "source_facility": {
+            "default": null,
+            "nullable": true
           },
-          "delivery_commercial_facility": {
-            "type": "integer"
+          "source_well": {
+            "default": null,
+            "nullable": true
           },
-          "delivery_commercial_entity": {
-            "type": "integer"
+          "destination_commercial_facility": {
+            "default": null,
+            "nullable": true
           },
-          "delivery_facility_operator": {
-            "type": "integer"
+          "destination_commercial_entity": {
+            "default": null,
+            "nullable": true
           },
-          "delivery_facility": {
-            "type": "integer"
+          "destination_commercial_organization": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_facility_operator": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_facility": {
+            "default": null,
+            "nullable": true
           },
           "production_date": {
             "type": "string",
@@ -3684,6 +3745,33 @@
           "temperature_measurement_unit": {
             "type": "integer",
             "nullable": true
+          },
+          "pickup_commercial_facility": {
+            "type": "integer"
+          },
+          "pickup_commercial_entity": {
+            "type": "integer"
+          },
+          "pickup_facility_operator": {
+            "type": "integer"
+          },
+          "pickup_facility": {
+            "type": "integer"
+          },
+          "pickup_well": {
+            "type": "integer"
+          },
+          "delivery_commercial_facility": {
+            "type": "integer"
+          },
+          "delivery_commercial_entity": {
+            "type": "integer"
+          },
+          "delivery_facility_operator": {
+            "type": "integer"
+          },
+          "delivery_facility": {
+            "type": "integer"
           },
           "codes": {
             "type": "array",
@@ -4093,20 +4181,54 @@
             "type": "string"
           },
           "organization": {},
-          "commercial_facility": {
+          "source_commercial_facility": {
             "default": null,
             "nullable": true
           },
-          "commercial_entity": {
+          "source_commercial_entity": {
             "default": null,
             "nullable": true
           },
-          "facility_operator": {
+          "source_commercial_organization": {
             "default": null,
             "nullable": true
           },
-          "facility": {
-            "type": "integer",
+          "source_facility_operator": {
+            "default": null,
+            "nullable": true
+          },
+          "source_facility": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "nullable": true
+          },
+          "source_well": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_commercial_facility": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_commercial_organization": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_commercial_entity": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_facility_operator": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_facility": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
             "nullable": true
           },
           "production_date": {
@@ -4291,17 +4413,49 @@
             "type": "integer",
             "readOnly": true
           },
-          "commercial_facility": {
-            "type": "integer"
+          "source_commercial_facility": {
+            "default": null,
+            "nullable": true
           },
-          "commercial_entity": {
-            "type": "integer"
+          "source_commercial_entity": {
+            "default": null,
+            "nullable": true
           },
-          "facility_operator": {
-            "type": "integer"
+          "source_commercial_organization": {
+            "default": null,
+            "nullable": true
           },
-          "facility": {
-            "type": "integer"
+          "source_facility_operator": {
+            "default": null,
+            "nullable": true
+          },
+          "source_facility": {
+            "default": null,
+            "nullable": true
+          },
+          "source_well": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_commercial_facility": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_commercial_organization": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_commercial_entity": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_facility_operator": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_facility": {
+            "default": null,
+            "nullable": true
           },
           "production_date": {
             "type": "string",
@@ -4384,6 +4538,18 @@
           "temperature_measurement_unit": {
             "type": "integer",
             "nullable": true
+          },
+          "commercial_facility": {
+            "type": "integer"
+          },
+          "commercial_entity": {
+            "type": "integer"
+          },
+          "facility_operator": {
+            "type": "integer"
+          },
+          "facility": {
+            "type": "integer"
           },
           "codes": {
             "type": "array",
@@ -6957,93 +7123,102 @@
           },
           {
             "in": "query",
-            "name": "pickup_commercial_facility_id",
+            "name": "source_commercial_facility_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by pickup commercial facility ID"
+            "description": "Filter by source commercial facility ID"
           },
           {
             "in": "query",
-            "name": "pickup_commercial_entity_id",
+            "name": "source_commercial_entity_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by pickup commercial entity ID"
+            "description": "Filter by source commercial entity ID"
           },
           {
             "in": "query",
-            "name": "pickup_facility_operator_id",
+            "name": "source_commercial_organization_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by pickup facility operator ID"
+            "description": "Filter by source commercial organization ID"
           },
           {
             "in": "query",
-            "name": "pickup_battery_id",
+            "name": "source_facility_operator_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by pickup facility ID"
+            "description": "Filter by source facility operator ID"
           },
           {
             "in": "query",
-            "name": "pickup_facility_id",
+            "name": "source_facility_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by pickup facility ID"
+            "description": "Filter by source facility ID"
           },
           {
             "in": "query",
-            "name": "pickup_well_id",
+            "name": "source_well_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by pickup well ID"
+            "description": "Filter by source well ID"
           },
           {
             "in": "query",
-            "name": "delivery_commercial_facility_id",
+            "name": "destination_commercial_facility_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by delivery commercial facility ID"
+            "description": "Filter by destination commercial facility ID"
           },
           {
             "in": "query",
-            "name": "delivery_commercial_entity_id",
+            "name": "destination_commercial_entity_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by delivery commercial entity ID"
+            "description": "Filter by destination commercial entity ID"
           },
           {
             "in": "query",
-            "name": "delivery_facility_operator_id",
+            "name": "destination_commercial_organization_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by delivery facility operator ID"
+            "description": "Filter by destination commercial organization ID"
           },
           {
             "in": "query",
-            "name": "delivery_facility_id",
+            "name": "destination_facility_operator_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by delivery facility ID"
+            "description": "Filter by destination facility operator ID"
+          },
+          {
+            "in": "query",
+            "name": "destination_facility_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by destination facility ID"
           },
           {
             "in": "query",
@@ -7798,39 +7973,102 @@
           },
           {
             "in": "query",
-            "name": "commercial_facility_id",
+            "name": "source_commercial_facility_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by commercial facility ID"
+            "description": "Filter by source commercial facility ID"
           },
           {
             "in": "query",
-            "name": "commercial_entity_id",
+            "name": "source_commercial_entity_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by commercial entity ID"
+            "description": "Filter by source commercial entity ID"
           },
           {
             "in": "query",
-            "name": "facility_operator_id",
+            "name": "source_commercial_organization_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by facility operator ID"
+            "description": "Filter by source commercial organization ID"
           },
           {
             "in": "query",
-            "name": "facility_id",
+            "name": "source_facility_operator_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by facility ID"
+            "description": "Filter by source facility operator ID"
+          },
+          {
+            "in": "query",
+            "name": "source_facility_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by source facility ID"
+          },
+          {
+            "in": "query",
+            "name": "source_well_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by source well ID"
+          },
+          {
+            "in": "query",
+            "name": "destination_commercial_facility_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by destination commercial facility ID"
+          },
+          {
+            "in": "query",
+            "name": "destination_commercial_entity_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by destination commercial entity ID"
+          },
+          {
+            "in": "query",
+            "name": "destination_facility_operator_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by destination facility operator ID"
+          },
+          {
+            "in": "query",
+            "name": "destination_commercial_organization_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by destination commercial organization ID"
+          },
+          {
+            "in": "query",
+            "name": "destination_facility_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by destination facility ID"
           },
           {
             "in": "query",
@@ -8480,6 +8718,26 @@
               "type": "integer"
             },
             "description": "Filter by business line ID"
+          },
+          {
+            "in": "query",
+            "name": "regulatory_id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter by regulator ID"
+          },
+          {
+            "in": "query",
+            "name": "jurisdiction",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ALBERTA",
+                "SASKATCHEWAN"
+              ]
+            },
+            "description": "Filter by jurisdiction"
           }
         ],
         "responses": {
