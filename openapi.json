@@ -7980,54 +7980,6 @@
           },
           {
             "in": "query",
-            "name": "license_number",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "License number"
-          },
-          {
-            "in": "query",
-            "name": "license_status",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "ABANDONED",
-                "AMMENDED",
-                "CANCELLED",
-                "DECOMMISSION",
-                "ISSUED",
-                "RE-ENTERED",
-                "RECCERTIFIED",
-                "RECEXEMPT",
-                "SUSPENDED",
-                "SUSPENSION"
-              ]
-            },
-            "required": false,
-            "description": "License status"
-          },
-          {
-            "in": "query",
-            "name": "license_type",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "License type"
-          },
-          {
-            "in": "query",
-            "name": "licensee_id",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Licensee entity ID"
-          },
-          {
-            "in": "query",
             "name": "regulator_id",
             "schema": {
               "type": "string"
@@ -8269,7 +8221,7 @@
           },
           {
             "in": "query",
-            "name": "regulatory_id",
+            "name": "regulator_id",
             "schema": {
               "type": "integer"
             },
