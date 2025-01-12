@@ -7,6 +7,10 @@
   ],
   "servers": [
     {
+      "url": "http://localhost:5001",
+      "description": "local"
+    },
+    {
       "url": "https://v1.api.flux-os.com",
       "description": "v1"
     }
@@ -4531,6 +4535,35 @@
           },
           "organization": {
             "type": "integer"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "start_date"
+        ]
+      },
+      "Integrations_ReferenceOrganizationLookup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationReference1"
           },
           "start_date": {
             "type": "string",
@@ -9733,6 +9766,259 @@
                     "error": {
                       "type": "string",
                       "example": "Entity lookup not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/integrations/lookups/organizations": {
+      "get": {
+        "summary": "List Organization Lookups",
+        "description": "Retrieve a list of organization lookups in the current organization with pagination.",
+        "operationId": "get_organization_lookups",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of organization lookups.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Integrations_OrganizationLookup"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Organization Lookup",
+        "description": "Create a new organization lookup",
+        "operationId": "create_organization_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Integrations_OrganizationLookup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Organization lookup created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_OrganizationLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/integrations/lookups/organizations/{id}": {
+      "get": {
+        "summary": "Get Organization Lookup",
+        "description": "Retrieve a single organization lookup by ID",
+        "operationId": "get_organization_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The organization lookup ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single organization lookup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_OrganizationLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Organization lookup not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Organization lookup not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Organization Lookup",
+        "description": "Update an existing organization lookup by ID",
+        "operationId": "update_organization_lookup",
+        "tags": [
+          "Integrations"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The organization lookup ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Integrations_OrganizationLookup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated organization lookup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Integrations_OrganizationLookup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Organization lookup not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Organization lookup not found"
                     }
                   }
                 }
