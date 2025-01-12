@@ -7,10 +7,6 @@
   ],
   "servers": [
     {
-      "url": "http://localhost:5001",
-      "description": "local"
-    },
-    {
       "url": "https://v1.api.flux-os.com",
       "description": "v1"
     }
