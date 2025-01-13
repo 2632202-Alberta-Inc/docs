@@ -43,8 +43,7 @@
     },
     {
       "group": "API Reference",
-      "pages": ["api-reference"],
-      "openapi": "/openapi.json"
+      "pages": ["api-reference"]
     }
   ],
   "footerSocials": {
