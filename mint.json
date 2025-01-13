@@ -41,17 +41,11 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": [
-        "quickstart",
-        "authentication",
-        "concepts",
-      ]
+      "pages": ["quickstart", "authentication", "concepts"]
     },
     {
       "group": "Guides",
-      "pages": [
-        "guides/creating-tickets",
-      ]
+      "pages": ["guides/creating-tickets"]
     },
     {
       "group": "API Documentation",
