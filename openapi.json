@@ -9833,7 +9833,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Stream_ReferenceStream"
+                        "$ref": "#/components/schemas/Streams_ReferenceStream"
                       }
                     },
                     "meta": {
@@ -9898,7 +9898,7 @@
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Stream_Stream"
+                      "$ref": "#/components/schemas/Streams_Stream"
                     }
                   }
                 }
