@@ -203,17 +203,6 @@ They are essential for:
 - Supporting multiple naming conventions per entity
 - Enabling seamless integration with external systems
 
-## Service
-
-Flux provides a simple ping endpoint that allows external systems to verify the API service is up and running. This endpoint can be used for:
-
-- Health checks from monitoring systems
-- Validating connectivity before starting data transfers
-- Confirming API availability during system integration
-- Basic service status monitoring
-
-The ping endpoint returns a simple response indicating the service is operational, making it ideal for automated monitoring and alerting systems.
-
 ### Entity Lookups
 
 Entity lookups map human-readable entity names to Flux Entity IDs. For example, a carrier name like "Flux Logistics Service" can be mapped to its corresponding Entity ID in Flux. Multiple lookups can be created per Entity to handle different naming conventions across systems.
@@ -233,3 +222,14 @@ Well lookups bridge external well identifiers to Flux Well IDs. This is particul
 ### Organization Lookups
 
 Organization lookups connect external organization names to Flux Organization IDs. This allows for consistent organization identification across integrated systems while preserving human-readable organization names in external processes.
+
+## Service
+
+Flux provides a simple ping endpoint that allows external systems to verify the API service is up and running. This endpoint can be used for:
+
+- Health checks from monitoring systems
+- Validating connectivity before starting data transfers
+- Confirming API availability during system integration
+- Basic service status monitoring
+
+The ping endpoint returns a simple response indicating the service is operational, making it ideal for automated monitoring and alerting systems.
