@@ -15,15 +15,15 @@ Flux utilizes a comprehensive model to represent organizations, their legal enti
 
 ### Organizations
 
-Organizations are the top-level grouping in Flux, representing a business as a whole (e.g. "Flux"). Organizations can contain multiple legal entities across different jurisdictions and manage users centrally. [Learn more about organizations](/models/organizations/organization)
+Organizations are the top-level grouping in Flux, representing a business as a whole (e.g. "Flux"). Organizations can contain multiple legal entities across different jurisdictions and manage users centrally.
 
 ### Entities
 
-Entities represent the legal entities of an organization within specific jurisdictions. For example, while "Flux" is the organization, "Flux Operating Systems Ltd." would be an entity in a particular jurisdiction. Each entity has attributes like legal name, jurisdiction, and regulatory identifiers (if applicable). [Learn more about entities](/models/organizations/entity)
+Entities represent the legal entities of an organization within specific jurisdictions. For example, while "Flux" is the organization, "Flux Operating Systems Ltd." would be an entity in a particular jurisdiction. Each entity has attributes like legal name, jurisdiction, and regulatory identifiers (if applicable).
 
 ### Users
 
-Users are individuals who access and interact with the Flux platform. Users are associated with organizations rather than specific entities, allowing them to work across all entities within their organization based on their roles and permissions. [Learn more about users](/models/organizations/user)
+Users are individuals who access and interact with the Flux platform. Users are associated with organizations rather than specific entities, allowing them to work across all entities within their organization based on their roles and permissions.
 
 ## Regulatory
 
@@ -31,11 +31,11 @@ Flux uses government regulatory data as its foundational source of truth. By ing
 
 ### Regulatory Systems
 
-A regulatory system refers to the reporting platform or framework used for regulatory compliance within a jurisdiction. For example, Petrinex is the system used in Western Canada for oil and gas production reporting, while other regions may use different systems to facilitate similar reporting requirements. [Learn more about regulatory systems](/models/regulatory/system)
+A regulatory system refers to the reporting platform or framework used for regulatory compliance within a jurisdiction. For example, Petrinex is the system used in Western Canada for oil and gas production reporting, while other regions may use different systems to facilitate similar reporting requirements.
 
 ### Legal Jurisdictions
 
-A jurisdiction represents the geographic region or territory that defines where an entity operates and is registered. Jurisdictions are crucial for distinguishing between entities, as organizations may have multiple entities with similar or identical names registered in different regions. [Learn more about jurisdictions](/models/regulatory/jurisdiction)
+A jurisdiction represents the geographic region or territory that defines where an entity operates and is registered. Jurisdictions are crucial for distinguishing between entities, as organizations may have multiple entities with similar or identical names registered in different regions.
 
 ## Facilities
 
@@ -45,40 +45,141 @@ Flux utilizes a comprehensive model to represent various types of facilities. Ea
 
 Commercial facilities allow organizations to combine multiple facilities into
 meaningful business units for marketing, stakeholder reporting, internal
-tracking purposes, etc. [Learn more about commercial facilities](/models/facilities/commercial_facilities)
+tracking purposes, etc.
 
 ### Facilities
 
-A facility is a representation of a physical location that is unique by their `regulator_id` (e.g. ABBT0030001), `jurisdiction` (e.g. Alberta), and `regulator_system` (e.g. Petrinex). [Learn more about facilities](/models/facilities/facility)
+A facility is a representation of a physical location that is unique by their `regulator_id` (e.g. ABBT0030001), `jurisdiction` (e.g. Alberta), and `regulator_system` (e.g. Petrinex).
 
 ### Facility Types
 
-Facility types are regulatory categories (e.g. "BT" for Battery in Petrinex) that map to Flux facility models like Battery, Terminal, and Plant. These mappings allow consistent classification across different regulatory systems. [Learn more about facility types](/models/facilities/facility#types)
+Facility types are regulatory categories (e.g. "BT" for Battery in Petrinex) that map to Flux facility models. These mappings allow consistent classification across different regulatory systems.
 
 ### Facility Sub Types
 
-Facility sub types link regulatory sub-categories to their parent regulatory types (e.g. "902" Custom Treating Battery links to "BT" Battery type in Petrinex). These sub type mappings ensure accurate representation and hierarchical classification of regulatory facilities in Flux models. [Learn more about facility sub types](/models/facilities/facility#classification)
+Facility sub types link regulatory sub-categories to their parent regulatory types (e.g. "902" Custom Treating Battery links to "BT" Battery type in Petrinex). These sub type mappings ensure accurate representation and hierarchical classification of regulatory facilities in Flux models.
+
+## Wells
+
+Wells are distinct from facilities - they represent the physical points where products are extracted from the ground. Each well is uniquely identified within a jurisdiction through its regulator ID and legal land description components.
+
+### Well Licensing
+
+Wells are licensed to specific entities and have associated licensing statuses (e.g., Issued, Suspended, Abandoned) and types that are tracked for regulatory compliance. License details include the license number and issue date.
+
+### Well Location
+
+Beyond the legal land description, wells may have specific geographic coordinates (latitude/longitude) and location exceptions that provide precise positioning information.
+
+### Well Identification
+
+Wells are assigned unique identifiers like the UWI (Unique Well Identifier) in Western Canada, which encode information about the well's location and purpose. They also maintain regulator-specific IDs within each jurisdiction's regulatory system.
+
+### Well-Entity Relationships
+
+Wells are licensed to specific legal entities who are responsible for their operation and regulatory compliance. These relationships are tracked along with the current licensing status and any changes in ownership or operational responsibility.
+
+## Products
+
+Flux manages products through two distinct "swim lanes" - physical and commercial - reflecting the separation between actual product characteristics and market requirements.
+
+### Product Categories (Physical Characteristics)
+
+Product categories represent are classifications of actual measurable characteristics of products as they enter facilities.
+
+#### Product Category Specifications (Physical Characteristics)
+
+Each commercial facility defines acceptable ranges for physical specifications of incoming products based on their equipment capabilities and downstream connectivity. For example, this may be:
+
+- Density (kg/m³)
+- Viscosity
+- H2S content (Sour Rating)
+- Basic Sediment & Water (BSW)
+- Total Acid Number (TAN)
+
+For example, a product with 780kg/m³ density, 0.02wt% Sulphur, and 0.6% BSW would be physically classified as a "Crudensate Emulsion" due to its characteristics falling between crude and condensate specifications, with BSW > 0.5%.
+
+### Streams (Commercial Representation)
+
+Streams represent standardized market classifications with strict quality requirements that must be met for sale and delivery:
+
+- Mixed Sweet Blend (MSW)
+- Premium Condensate
+- Light Sour Blend
+
+#### Stream Specifications (Commercial Requirements)
+
+Each stream has mandatory specifications that must be met for commercial delivery. For example, to sell a blended product as MSW, it must precisely meet MSW stream specifications - there is no flexibility in these requirements.
+
+#### Commercial Arrangements
+
+The commercial and physical aspects can operate independently:
+
+- Input Arrangements: Products can be purchased based on stream pricing (e.g., MSW index) regardless of their physical characteristics
+- Output Arrangements: All sold volumes must strictly meet stream specifications for delivery.
+
+This separation allows for flexible purchase arrangements while maintaining strict quality control on sales, enabling facilities to blend various input products to meet commercial stream requirements.
+
+## Measurement Units
+
+Every recorded value in Flux has an associated measurement unit to ensure accurate tracking and conversion of quantities. The system supports automatic unit conversions between compatible measurement categories (e.g. volume, temperature, density, etc.), allowing seamless integration of data recorded in different unit systems while maintaining accuracy and consistency.
 
 ## Volumes
 
 Flux uses tickets system to track and measure volumes of oil, gas, and other products across production facilities. Each ticket provides a snapshot of volume and product characteristics at specific points in time.
 
-## Truck Ticket
+### Meters
 
-Truck tickets are essential for tracking the movement of products via tanker trucks between facilities. These tickets are vital for ensuring accurate custody transfer of products like crude oil, condensate, and produced water transported by road. [Learn more about truck tickets](/models/volumes/truck)
+Meters are the physical devices that measure volumes of products. In Flux, each ticket is associated with a meter and captures point in time or flow measurment data.
 
-## Tank Ticket
+### Truck Tickets
 
-Tank tickets document point in time measurements of product in storage tanks at facilities. These tickets are critical for inventory management and reconciliation at batteries, terminals, and other storage facilities. [Learn more about tank tickets](/models/volumes/tank)
+Truck tickets are essential for tracking the movement of products via tanker trucks between facilities. These tickets are vital for ensuring accurate custody transfer of products like crude oil, condensate, and produced water transported by road.
 
-## Meter Ticket
+### Tank Tickets
 
-Meter tickets capture continuous flow measurement data from meters installed on pipelines and facility equipment. These tickets provide accurate measurement for pipeline transfers, facility throughput, and regulatory reporting requirements. [Learn more about meter tickets](/models/volumes/meter)
+Tank tickets document point in time measurements of product in storage tanks at facilities. These tickets are critical for inventory management and reconciliation at batteries, terminals, and other storage facilities.
 
-## Ticket Status
+### Meter Tickets
 
-Ticket status tracks the state of a ticket through its lifecycle, from creation to final verification, ensuring proper data quality and workflow management. [Learn more about ticket statuses](/models/volumes/status)
+Meter tickets capture continuous flow measurement data from meters installed on pipelines and facility equipment. These tickets provide accurate measurement for pipeline transfers, facility throughput, and regulatory reporting requirements.
 
-## Ticket Codes
+### Ticket Statuses
 
-Ticket codes identify the type of custody transfer or inventory movement represented by a ticket. These standardized codes help categorize and track different kinds of volume measurements and transfers throughout the production and transportation process, enabling accurate accounting, reconciliation, and reporting. [Learn more about ticket codes](/models/volumes/code)
+Ticket status tracks the state of a ticket through its lifecycle, from creation to final verification, ensuring proper data quality and workflow management.
+
+### Ticket Codes
+
+Ticket codes identify the type of custody transfer or inventory movement represented by a ticket. These standardized codes help categorize and track different kinds of volume measurements and transfers throughout the production and transportation process, enabling accurate accounting, reconciliation, and reporting.
+
+## Integrations
+
+Flux provides lookup systems to map between external identifiers/names and internal Flux IDs. These lookups enable consistent data integration while maintaining human-readable labels in external systems.
+
+### Entity Lookups
+
+Entity lookups map human-readable entity names to Flux Entity IDs. For example, a carrier name like "Flux Logistics Service" can be mapped to its corresponding Entity ID in Flux. Multiple lookups can be created per Entity to handle different naming conventions across systems.
+
+### Facility Lookups
+
+Facility lookups connect facility names or external IDs to Flux Facility IDs. This allows external systems to reference facilities using their own naming conventions while maintaining consistent facility identification within Flux.
+
+### Commercial Facility Lookups
+
+Commercial facility lookups map external commercial facility names to Flux Commercial Facility IDs. This enables tracking of commercial facilities across different systems while maintaining a single source of truth in Flux.
+
+### Well Lookups
+
+Well lookups bridge external well identifiers to Flux Well IDs. This is particularly useful when integrating with regulatory systems or operator databases that may use different well naming conventions.
+
+### Organization Lookups
+
+Organization lookups connect external organization names to Flux Organization IDs. This allows for consistent organization identification across integrated systems while preserving human-readable organization names in external processes.
+
+These lookup systems are essential for:
+
+- Building and maintaining ETL processes
+- Preserving human-readable labels in external systems
+- Ensuring data consistency and structure within Flux
+- Supporting multiple naming conventions per entity
+- Enabling seamless integration with external systems
