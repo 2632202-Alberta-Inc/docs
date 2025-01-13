@@ -43,7 +43,7 @@
     },
     {
       "group": "API Reference",
-      "pages": ["api-reference/*"]
+      "pages": ["api-reference", "api-reference/*"]
     }
   ],
   "footerSocials": {
