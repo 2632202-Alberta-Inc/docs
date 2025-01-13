@@ -21,6 +21,15 @@ Organizations are the top-level grouping in Flux, representing a business as a w
 
 Entities represent the legal entities of an organization within specific jurisdictions. For example, while "Flux" is the organization, "Flux Operating Systems Ltd." would be an entity in a particular jurisdiction. Each entity has attributes like legal name, jurisdiction, and regulatory identifiers (if applicable).
 
+### Business Lines
+
+Business lines classify the types of business activities that an entity conducts. An entity can operate across multiple business lines simultaneously. Currently, the supported business lines are:
+
+- **Marketer**: Entities that buy and sell products but don't own physical assets
+- **Carrier**: Entities that transport products between facilities (e.g. trucking companies)
+- **Midstreamer**: Entities that own and operate processing, transportation and storage infrastructure
+- **Producer**: Entities that own wells and extract products from the ground
+
 ### Users
 
 Users are individuals who access and interact with the Flux platform. Users are associated with organizations rather than specific entities, allowing them to work across all entities within their organization based on their roles and permissions.
@@ -78,6 +87,28 @@ Wells are assigned unique identifiers like the UWI (Unique Well Identifier) in W
 ### Well-Entity Relationships
 
 Wells are licensed to specific legal entities who are responsible for their operation and regulatory compliance. These relationships are tracked along with the current licensing status and any changes in ownership or operational responsibility.
+
+## Currencies
+
+Flux supports multiple currencies and exchange rates to handle financial transactions across different jurisdictions. The system maintains accurate currency conversions while preserving the original transaction values.
+
+### Currency Management
+
+Each currency is uniquely identified with:
+
+- Name (e.g., USD, CAD, EUR)
+- Symbol (e.g., $, C$, €)
+
+### Exchange Rates
+
+Exchange rates between currencies are tracked with:
+
+- Source currency
+- Target currency
+- Conversion rate
+- Last updated timestamp
+
+This allows for accurate currency conversions while maintaining an audit trail of historical exchange rates. The system can automatically convert amounts between any supported currencies using the latest available exchange rates.
 
 ## Products
 
@@ -163,6 +194,17 @@ They are essential for:
 - Ensuring data consistency and structure within Flux
 - Supporting multiple naming conventions per entity
 - Enabling seamless integration with external systems
+
+## Service
+
+Flux provides a simple ping endpoint that allows external systems to verify the API service is up and running. This endpoint can be used for:
+
+- Health checks from monitoring systems
+- Validating connectivity before starting data transfers
+- Confirming API availability during system integration
+- Basic service status monitoring
+
+The ping endpoint returns a simple response indicating the service is operational, making it ideal for automated monitoring and alerting systems.
 
 ### Entity Lookups
 
