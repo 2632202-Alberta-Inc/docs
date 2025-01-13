@@ -35,11 +35,11 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["quickstart", "authentication", "concepts"]
+      "pages": ["introduction"]
     },
     {
       "group": "Guides",
-      "pages": ["guides/creating-tickets"]
+      "pages": ["guides/quickstart", "guides/creating-tickets"]
     },
     {
       "group": "Concepts",
