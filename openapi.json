@@ -5879,84 +5879,6 @@
         }
       }
     },
-    "/organization/products/categories/specifications": {
-      "get": {
-        "summary": "List Product Category Specifications",
-        "description": "Retrieve a list of product category specifications in the current organization with pagination and filtering options.",
-        "operationId": "get_product_categories_specifications",
-        "tags": [
-          "Organization"
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "page",
-            "schema": {
-              "type": "integer",
-              "default": 1,
-              "minimum": 1
-            },
-            "required": false,
-            "description": "Page number for pagination"
-          },
-          {
-            "in": "query",
-            "name": "product_category_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": false,
-            "description": "Filter by product category ID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A paginated list of product category specifications.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Product_ProductCategorySpecification"
-                      }
-                    },
-                    "meta": {
-                      "type": "object",
-                      "properties": {
-                        "current_page": {
-                          "type": "integer"
-                        },
-                        "total_pages": {
-                          "type": "integer"
-                        },
-                        "total_items": {
-                          "type": "integer"
-                        },
-                        "per_page": {
-                          "type": "integer"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      }
-    },
     "/currencies": {
       "get": {
         "summary": "List Currencies",
@@ -6169,7 +6091,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Product_ReferenceProductCategory"
+                        "$ref": "#/components/schemas/Products_ReferenceProductCategory"
                       }
                     },
                     "meta": {
@@ -6234,7 +6156,7 @@
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Product_ProductCategory"
+                      "$ref": "#/components/schemas/Products_ProductCategory"
                     }
                   }
                 }
@@ -6251,6 +6173,93 @@
                     "error": {
                       "type": "string",
                       "example": "Product category not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/products/categories/specifications": {
+      "get": {
+        "summary": "List Product Category Specifications",
+        "description": "Retrieve a list of product category specifications in the current organization with pagination and filtering options.",
+        "operationId": "get_product_categories_specifications",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "product_category_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by product category ID"
+          },
+          {
+            "in": "query",
+            "name": "facility_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by facility ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of product category specifications.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Products_ReferenceProductCategorySpecification"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
                     }
                   }
                 }
