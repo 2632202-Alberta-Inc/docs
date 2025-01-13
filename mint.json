@@ -42,8 +42,8 @@
       "pages": ["guides/creating-tickets"]
     },
     {
-      "group": "API Reference",
-      "pages": ["api-reference", "api-reference/*"]
+      "group": "Endpoints",
+      "pages": ["api-reference"]
     }
   ],
   "footerSocials": {
