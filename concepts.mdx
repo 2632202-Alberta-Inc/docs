@@ -58,12 +58,6 @@ A jurisdiction represents the geographic region or territory that defines where 
 
 Flux utilizes a comprehensive model to represent various types of facilities. Each facility type is defined with specific attributes and relationships.
 
-### Commercial Facilities
-
-Commercial facilities allow organizations to combine multiple facilities into
-meaningful business units for marketing, stakeholder reporting, internal
-tracking purposes, etc.
-
 ### Facilities
 
 A facility is a representation of a physical location that is unique by their `regulator_id` (e.g. ABBT0030001), `jurisdiction` (e.g. Alberta), and `regulator_system` (e.g. Petrinex).
@@ -75,6 +69,12 @@ Facility types are regulatory categories (e.g. "BT" for Battery in Petrinex) tha
 ### Facility Sub Types
 
 Facility sub types link regulatory sub-categories to their parent regulatory types (e.g. "902" Custom Treating Battery links to "BT" Battery type in Petrinex). These sub type mappings ensure accurate representation and hierarchical classification of regulatory facilities in Flux models.
+
+### Commercial Facilities
+
+Commercial facilities allow organizations to combine multiple facilities into
+meaningful business units for marketing, stakeholder reporting, internal
+tracking purposes, etc.
 
 ## Wells
 
@@ -99,8 +99,6 @@ Wells are licensed to specific legal entities who are responsible for their oper
 ## Currencies
 
 Flux supports multiple currencies and exchange rates to handle financial transactions across different jurisdictions. The system maintains accurate currency conversions while preserving the original transaction values.
-
-### Currency Management
 
 Each currency is uniquely identified with:
 
