@@ -42,6 +42,22 @@
       "pages": ["guides/creating-tickets"]
     },
     {
+      "group": "Concepts",
+      "pages": [
+        "concepts/overview",
+        "concepts/organizations",
+        "concepts/regulatory",
+        "concepts/facilities",
+        "concepts/wells",
+        "concepts/currencies",
+        "concepts/products",
+        "concepts/measurement",
+        "concepts/volumes",
+        "concepts/integrations",
+        "concepts/service"
+      ]
+    },
+    {
       "group": "API Reference",
       "pages": [
         {
