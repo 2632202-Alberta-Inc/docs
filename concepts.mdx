@@ -156,6 +156,14 @@ Ticket codes identify the type of custody transfer or inventory movement represe
 
 Flux provides lookup systems to map between external identifiers/names and internal Flux IDs. These lookups enable consistent data integration while maintaining human-readable labels in external systems.
 
+They are essential for:
+
+- Building and maintaining ETL processes
+- Preserving human-readable labels in external systems
+- Ensuring data consistency and structure within Flux
+- Supporting multiple naming conventions per entity
+- Enabling seamless integration with external systems
+
 ### Entity Lookups
 
 Entity lookups map human-readable entity names to Flux Entity IDs. For example, a carrier name like "Flux Logistics Service" can be mapped to its corresponding Entity ID in Flux. Multiple lookups can be created per Entity to handle different naming conventions across systems.
@@ -175,11 +183,3 @@ Well lookups bridge external well identifiers to Flux Well IDs. This is particul
 ### Organization Lookups
 
 Organization lookups connect external organization names to Flux Organization IDs. This allows for consistent organization identification across integrated systems while preserving human-readable organization names in external processes.
-
-These lookup systems are essential for:
-
-- Building and maintaining ETL processes
-- Preserving human-readable labels in external systems
-- Ensuring data consistency and structure within Flux
-- Supporting multiple naming conventions per entity
-- Enabling seamless integration with external systems
