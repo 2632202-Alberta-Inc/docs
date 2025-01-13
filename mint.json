@@ -30,26 +30,29 @@
     "url": "https://www.flux-os.com/login"
   },
 
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference",
-      "openapi": "/openapi.json"
-    }
-  ],
+  "tabs": [],
   "anchors": [],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["quickstart", "authentication", "concepts"]
+      "pages": [
+        "quickstart",
+        "authentication",
+        "concepts",
+      ]
     },
     {
       "group": "Guides",
-      "pages": ["guides/creating-tickets"]
+      "pages": [
+        "guides/creating-tickets",
+      ]
     },
     {
-      "group": "API Documentation",
-      "pages": ["api-reference/introduction"]
+      "group": "API Reference",  // Changed from "API Documentation"
+      "pages": [
+        "api-reference/introduction"
+      ],
+      "openapi": "/openapi.json"  // Move the OpenAPI spec here
     }
   ],
   "footerSocials": {
