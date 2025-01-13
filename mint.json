@@ -45,6 +45,11 @@
         "quickstart",
         "authentication",
         "concepts",
+      ]
+    },
+    {
+      "group": "Guides",
+      "pages": [
         "guides/creating-tickets"
       ]
     },
