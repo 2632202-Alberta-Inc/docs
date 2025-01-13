@@ -43,7 +43,7 @@
     },
     {
       "group": "API Reference",
-      "pages": ["api-reference/introduction"],
+      "pages": ["api-reference"],
       "openapi": "/openapi.json"
     }
   ],
