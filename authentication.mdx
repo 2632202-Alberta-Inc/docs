@@ -9,41 +9,27 @@ To authenticate your API requests, the Flux OS API requires two headers: `x-api-
 
 ## Roles
 
-Roles in Flux OS define a user’s function within your organization in the public directory. A user can be assigned multiple roles to reflect their responsibilities. Below are some of the key roles available:
-
-- **Trader**: Responsible for managing crude oil, natural gas, and NGL trading activities, including pipeline nominations and terminal scheduling.
-- **Marketing**: Develops and executes marketing strategies for midstream services, storage capacity, and transportation solutions.
-- **Finance**: Handles financial aspects including volumetric accounting, netback calculations, and hedging strategies.
-- **Accounting**: Manages corporate accounting, financial statements, tax compliance, and general ledger maintenance.
-- **Production Accounting**: Manages field-level production accounting, regulatory reporting, and royalty calculations for hydrocarbon compliance.
-- **Executive**: Oversees high-level strategic decisions around infrastructure development, acquisitions, and corporate governance.
-- **Operations**: Manages day-to-day facility operations, including processing plants, terminals, and pipeline systems.
-- **Engineering**: Responsible for facility design, pipeline integrity, and optimization of processing and transportation systems.
-- **Logistics**: Oversees product movement via pipeline, rail, and truck, coordinating nominations and scheduling.
-- **Legal**: Manages transportation agreements, processing contracts, and regulatory compliance matters.
-- **Human Resources**: Handles employee relations, recruitment, and workforce management for field and office staff.
-- **Health, Safety, and Environment**: Ensures adherence to safety protocols and environmental regulations for facilities.
-- **Information Technology**: Manages SCADA systems, measurement data, and cybersecurity for operational technology.
-- **Project Management**: Oversees infrastructure projects like pipeline expansions, facility upgrades, and new terminals.
-- **Supply Chain**: Manages equipment procurement, chemical supplies, and maintenance materials for facilities.
-- **Compliance**: Ensures adherence to regulatory requirements around measurement, reporting, and environmental standards.
-
-A user can have more than one role, allowing for flexibility depending on their job function and the organization's structure.
+Roles in Flux OS define a user’s function within your organization in the public directory. A user can have more than one role, allowing for flexibility depending on their job function and the organization's structure.
 
 ## Permissions
 
 Permissions control what a user can do within Flux OS, regardless of their role. Currently, there are five permission levels:
 
-- **Admin**: Grants full access to manage settings, data, and system configurations. Admins can also modify roles and permissions.
-- **Front Office**: Grants ability to create and modify deals until execution, enter temporary pricing and rates, and access sandbox environments. Front Office users can initiate but not finalize transactions.
-- **Mid Office**: Grants ability to validate deals, mark deals as executed, and modify system configurations like pricing, tariffs, and rates. Mid Office users maintain core system operations.
-- **Back Office**: Grants read-only access to executed deals and their associated data, without modification capabilities. Back Office users can view but not edit completed transactions.
-- **Read Only**: Grants read-only access to view data across the entire system, without the ability to modify any settings or data.
+* **Admin**: Grants full access to manage settings, data, and system configurations. Admins can also modify roles and permissions.
+
+* **Front Office**: Grants ability to create and modify deals until execution, enter temporary pricing and rates, and access sandbox environments. Front Office users can initiate but not finalize transactions.
+
+* **Mid Office**: Grants ability to validate deals, mark deals as executed, and modify system configurations like pricing, tariffs, and rates. Mid Office users maintain core system operations.
+
+* **Back Office**: Grants read-only access to executed deals and their associated data, without modification capabilities. Back Office users can view but not edit completed transactions.
+
+* **Read Only**: Grants read-only access to view data across the entire system, without the ability to modify any settings or data.
 
 ### Example of Permissions:
 
-- A user with the **User** role can perform trading functions, but if they only have **Read Only** permissions, they will not be able to modify trading data or settings.
-- Users with **Admin** permissions have full access across the system.
+* A user with the **User** role can perform trading functions, but if they only have **Read Only** permissions, they will not be able to modify trading data or settings.
+
+* Users with **Admin** permissions have full access across the system.
 
 ## Managing Roles and Permissions
 
