@@ -1,0 +1,84 @@
+---
+title: "Concepts"
+description: "Learn how Flux OS models data and relationships."
+---
+
+## Overview
+
+This guide explains how Flux OS models data and relationships between different entities in the oil and gas industry. Understanding these core concepts will help you effectively use the API and integrate with the platform.
+
+The Flux OS data model is designed to accurately represent the complex relationships between physical assets (like wells and facilities), commercial arrangements, and operational data (such as volumes and measurements) in a flexible and intuitive way.
+
+## Organizations
+
+Flux utilizes a comprehensive model to represent organizations, their legal entities, and users.
+
+### Organizations
+
+Organizations are the top-level grouping in Flux, representing a business as a whole (e.g. "Flux"). Organizations can contain multiple legal entities across different jurisdictions and manage users centrally. [Learn more about organizations](/models/organizations/organization)
+
+### Entities
+
+Entities represent the legal entities of an organization within specific jurisdictions. For example, while "Flux" is the organization, "Flux Operating Systems Ltd." would be an entity in a particular jurisdiction. Each entity has attributes like legal name, jurisdiction, and regulatory identifiers (if applicable). [Learn more about entities](/models/organizations/entity)
+
+### Users
+
+Users are individuals who access and interact with the Flux platform. Users are associated with organizations rather than specific entities, allowing them to work across all entities within their organization based on their roles and permissions. [Learn more about users](/models/organizations/user)
+
+## Regulatory
+
+Flux uses government regulatory data as its foundational source of truth. By ingesting and standardizing data from various government agencies and jurisdictions, we create a single source of truth that all commercial relationships, transactions and reporting are built upon.
+
+### Regulatory Systems
+
+A regulatory system refers to the reporting platform or framework used for regulatory compliance within a jurisdiction. For example, Petrinex is the system used in Western Canada for oil and gas production reporting, while other regions may use different systems to facilitate similar reporting requirements. [Learn more about regulatory systems](/models/regulatory/system)
+
+### Legal Jurisdictions
+
+A jurisdiction represents the geographic region or territory that defines where an entity operates and is registered. Jurisdictions are crucial for distinguishing between entities, as organizations may have multiple entities with similar or identical names registered in different regions. [Learn more about jurisdictions](/models/regulatory/jurisdiction)
+
+## Facilities
+
+Flux utilizes a comprehensive model to represent various types of facilities. Each facility type is defined with specific attributes and relationships.
+
+### Commercial Facilities
+
+Commercial facilities allow organizations to combine multiple facilities into
+meaningful business units for marketing, stakeholder reporting, internal
+tracking purposes, etc. [Learn more about commercial facilities](/models/facilities/commercial_facilities)
+
+### Facilities
+
+A facility is a representation of a physical location that is unique by their `regulator_id` (e.g. ABBT0030001), `jurisdiction` (e.g. Alberta), and `regulator_system` (e.g. Petrinex). [Learn more about facilities](/models/facilities/facility)
+
+### Facility Types
+
+Facility types are regulatory categories (e.g. "BT" for Battery in Petrinex) that map to Flux facility models like Battery, Terminal, and Plant. These mappings allow consistent classification across different regulatory systems. [Learn more about facility types](/models/facilities/facility#types)
+
+### Facility Sub Types
+
+Facility sub types link regulatory sub-categories to their parent regulatory types (e.g. "902" Custom Treating Battery links to "BT" Battery type in Petrinex). These sub type mappings ensure accurate representation and hierarchical classification of regulatory facilities in Flux models. [Learn more about facility sub types](/models/facilities/facility#classification)
+
+## Volumes
+
+Flux uses tickets system to track and measure volumes of oil, gas, and other products across production facilities. Each ticket provides a snapshot of volume and product characteristics at specific points in time.
+
+## Truck Ticket
+
+Truck tickets are essential for tracking the movement of products via tanker trucks between facilities. These tickets are vital for ensuring accurate custody transfer of products like crude oil, condensate, and produced water transported by road. [Learn more about truck tickets](/models/volumes/truck)
+
+## Tank Ticket
+
+Tank tickets document point in time measurements of product in storage tanks at facilities. These tickets are critical for inventory management and reconciliation at batteries, terminals, and other storage facilities. [Learn more about tank tickets](/models/volumes/tank)
+
+## Meter Ticket
+
+Meter tickets capture continuous flow measurement data from meters installed on pipelines and facility equipment. These tickets provide accurate measurement for pipeline transfers, facility throughput, and regulatory reporting requirements. [Learn more about meter tickets](/models/volumes/meter)
+
+## Ticket Status
+
+Ticket status tracks the state of a ticket through its lifecycle, from creation to final verification, ensuring proper data quality and workflow management. [Learn more about ticket statuses](/models/volumes/status)
+
+## Ticket Codes
+
+Ticket codes identify the type of custody transfer or inventory movement represented by a ticket. These standardized codes help categorize and track different kinds of volume measurements and transfers throughout the production and transportation process, enabling accurate accounting, reconciliation, and reporting. [Learn more about ticket codes](/models/volumes/code)
