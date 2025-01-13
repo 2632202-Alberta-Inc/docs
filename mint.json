@@ -45,105 +45,127 @@
       "group": "API Reference",
       "pages": [
         {
-          "group": "Service",
-          "pages": ["api-reference/service/ping-server"]
+          "group": "Currency",
+          "pages": [
+            "api-reference/currency/convert-between-currencies",
+            "api-reference/currency/list-currencies"
+          ]
+        },
+        {
+          "group": "Entity",
+          "pages": [
+            "api-reference/entity/get-entity",
+            "api-reference/entity/list-business-lines",
+            "api-reference/entity/list-entities"
+          ]
+        },
+        {
+          "group": "Facilities",
+          "pages": [
+            "api-reference/facilities/get-facility",
+            "api-reference/facilities/list-facilities",
+            "api-reference/facilities/list-sub-types",
+            "api-reference/facilities/list-types"
+          ]
         },
         {
           "group": "Integrations",
           "pages": [
-            "api-reference/integrations/search-lookups",
-
-            "api-reference/integrations/list-well-lookups",
-            "api-reference/integrations/create-well-lookup",
-            "api-reference/integrations/get-well-lookup",
-            "api-reference/integrations/update-well-lookup",
-
-            "api-reference/integrations/list-entity-lookups",
-            "api-reference/integrations/create-entity-lookup",
-            "api-reference/integrations/get-entity-lookup",
-            "api-reference/integrations/update-entity-lookup",
-
-            "api-reference/integrations/list-commercial-facility-lookups",
             "api-reference/integrations/create-commercial-facility-lookup",
-            "api-reference/integrations/get-commercial-facility-lookup",
-            "api-reference/integrations/update-commercial-facility-lookup",
-
-            "api-reference/integrations/list-facility-lookups",
+            "api-reference/integrations/create-entity-lookup",
             "api-reference/integrations/create-facility-lookup",
-            "api-reference/integrations/get-facility-lookup",
-            "api-reference/integrations/update-facility-lookup",
-
-            "api-reference/integrations/list-organization-lookups",
             "api-reference/integrations/create-organization-lookup",
+            "api-reference/integrations/create-well-lookup",
+            "api-reference/integrations/get-commercial-facility-lookup",
+            "api-reference/integrations/get-entity-lookup",
+            "api-reference/integrations/get-facility-lookup",
             "api-reference/integrations/get-organization-lookup",
-            "api-reference/integrations/update-organization-lookup"
+            "api-reference/integrations/get-well-lookup",
+            "api-reference/integrations/list-commercial-facility-lookups",
+            "api-reference/integrations/list-entity-lookups",
+            "api-reference/integrations/list-facility-lookups",
+            "api-reference/integrations/list-organization-lookups",
+            "api-reference/integrations/list-well-lookups",
+            "api-reference/integrations/search-lookups",
+            "api-reference/integrations/update-commercial-facility-lookup",
+            "api-reference/integrations/update-entity-lookup",
+            "api-reference/integrations/update-facility-lookup",
+            "api-reference/integrations/update-organization-lookup",
+            "api-reference/integrations/update-well-lookup"
+          ]
+        },
+        {
+          "group": "Measurements",
+          "pages": [
+            "api-reference/measurements/convert-between-measurement-units",
+            "api-reference/measurements/get-measurement-unit",
+            "api-reference/measurements/list-measurement-units"
           ]
         },
         {
           "group": "Organization",
           "pages": [
             "api-reference/organization/get-commercial-facility",
-            "api-reference/organization/list-organizations",
             "api-reference/organization/get-organization",
-            "api-reference/organization/list-users",
             "api-reference/organization/get-user",
-            "api-reference/organization/create-user",
-            "api-reference/organization/update-user"
-          ]
-        },
-        {
-          "group": "Entity",
-          "pages": [
-            "api-reference/entity/list-entities",
-            "api-reference/entity/get-entity"
-          ]
-        },
-        {
-          "group": "Facilities",
-          "pages": [
-            "api-reference/facilities/list-facilities",
-            "api-reference/facilities/list-types"
-          ]
-        },
-        {
-          "group": "Wells",
-          "pages": [
-            "api-reference/wells/list-wells",
-            "api-reference/wells/get-well"
+            "api-reference/organization/list-commercial-facilities",
+            "api-reference/organization/list-entities",
+            "api-reference/organization/list-facilities",
+            "api-reference/organization/list-organizations",
+            "api-reference/organization/list-permissions",
+            "api-reference/organization/list-roles",
+            "api-reference/organization/list-users"
           ]
         },
         {
           "group": "Products",
           "pages": [
-            "api-reference/products/list-products",
-            "api-reference/products/get-product"
+            "api-reference/products/get-product-category",
+            "api-reference/products/list-product-categories",
+            "api-reference/products/list-product-category-specifications"
           ]
         },
         {
-          "group": "Measurements",
-          "pages": [
-            "api-reference/measurements/list-measurements",
-            "api-reference/measurements/get-measurement"
-          ]
+          "group": "Service",
+          "pages": ["api-reference/service/ping-server"]
         },
         {
           "group": "Streams",
           "pages": [
-            "api-reference/streams/list-streams",
-            "api-reference/streams/get-stream"
+            "api-reference/streams/get-stream",
+            "api-reference/streams/list-streams"
           ]
         },
         {
           "group": "Volumes",
           "pages": [
-            "api-reference/volumes/list-meters",
+            "api-reference/volumes/cancel-meter-ticket",
+            "api-reference/volumes/cancel-tank-ticket",
+            "api-reference/volumes/cancel-truck-ticket",
+            "api-reference/volumes/create-meter-ticket",
+            "api-reference/volumes/create-tank-ticket",
+            "api-reference/volumes/create-truck-ticket",
+            "api-reference/volumes/get-meter-ticket",
             "api-reference/volumes/get-meter",
-            "api-reference/volumes/list-tank-tickets"
+            "api-reference/volumes/get-tank-ticket",
+            "api-reference/volumes/get-truck-ticket",
+            "api-reference/volumes/list-meter-tickets",
+            "api-reference/volumes/list-meters",
+            "api-reference/volumes/list-tank-tickets",
+            "api-reference/volumes/list-ticket-codes",
+            "api-reference/volumes/list-ticket-statuses",
+            "api-reference/volumes/list-truck-tickets",
+            "api-reference/volumes/update-meter-ticket",
+            "api-reference/volumes/update-tank-ticket",
+            "api-reference/volumes/update-truck-ticket"
           ]
         },
         {
-          "group": "Currency",
-          "pages": ["api-reference/currency/list-currencies"]
+          "group": "Wells",
+          "pages": [
+            "api-reference/wells/get-well",
+            "api-reference/wells/list-wells"
+          ]
         }
       ]
     }
