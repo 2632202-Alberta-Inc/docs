@@ -1,8 +1,22 @@
 ---
 title: "Quickstart"
+description: "Get started making API requests with Flux OS"
 ---
 
-## Endpoint
+### Overview
+
+This guide shows you how to make your first API request to Flux OS.
+
+## Prerequisites
+
+You'll need:
+
+1. A Flux OS account for your organization
+2. API credentials (API key and user ID)
+
+Don't have an account? Contact [sales@flux-os.com](mailto:sales@flux-os.com) to get started.
+
+## Making Requests
 
 To start working with the API, you’ll first need to know the base server endpoint that all requests should be directed to:
 
@@ -10,11 +24,9 @@ To start working with the API, you’ll first need to know the base server endpo
 https://v1.api.flux-os.com
 ```
 
-## Authentication
+All API requests require two authentication headers: `x-api-key` and `x-user-id`. Contact [support@flux-os.com](mailto:support@flux-os.com) for API credentials.
 
-To authenticate your API requests, the Flux OS API requires two headers: `x-api-key` and `x-user-id`. You can generate your keys in the [app settings](https://www.flux-os.com/settings) view in your dashboard.
-
-## Example Request
+## Making Requests
 
 Here is a sample Python request using the `requests` library:
 
@@ -35,4 +47,4 @@ print(response.status_code)
 print(response.json())
 ```
 
-To see all available API endpoints, refer to our comprehensive [ documentation and API playground](https://docs.flux-os.com/api-reference).
+To see all available API endpoints, refer to our comprehensive [documentation and API playground](https://docs.flux-os.com/api-reference).
