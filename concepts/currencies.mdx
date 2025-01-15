@@ -1,0 +1,24 @@
+---
+title: "Currencies"
+description: "Learn how currencies are modeled and represented in Flux OS."
+---
+
+## Overview
+
+Flux supports multiple currencies and exchange rates to handle financial transactions across different jurisdictions. The system maintains accurate currency conversions while preserving the original transaction values.
+
+Each currency is uniquely identified with:
+
+- Name (e.g., USD, CAD, EUR)
+- Symbol (e.g., $, C$, €)
+
+### Exchange Rates
+
+Exchange rates between currencies are tracked with:
+
+- Source currency
+- Target currency
+- Conversion rate
+- Last updated timestamp
+
+This allows for accurate currency conversions while maintaining an audit trail of historical exchange rates. The system can automatically convert amounts between any supported currencies using the latest available exchange rates.

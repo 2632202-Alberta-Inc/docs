@@ -1,0 +1,26 @@
+---
+title: "Facilities"
+description: "Learn how facilities are modeled and represented in Flux OS."
+---
+
+## Overview
+
+Flux utilizes a comprehensive model to represent various types of facilities. Each facility type is defined with specific attributes and relationships.
+
+### Facilities
+
+A facility is a representation of a physical location that is unique by their `regulator_id` (e.g. ABBT0030001), `jurisdiction` (e.g. Alberta), and `regulator_system` (e.g. Petrinex).
+
+### Facility Types
+
+Facility types are regulatory categories (e.g. "BT" for Battery in Petrinex) that map to Flux facility models. These mappings allow consistent classification across different regulatory systems.
+
+### Facility Sub Types
+
+Facility sub types link regulatory sub-categories to their parent regulatory types (e.g. "902" Custom Treating Battery links to "BT" Battery type in Petrinex). These sub type mappings ensure accurate representation and hierarchical classification of regulatory facilities in Flux models.
+
+### Commercial Facilities
+
+Commercial facilities allow organizations to combine multiple facilities into
+meaningful business units for marketing, stakeholder reporting, internal
+tracking purposes, etc.

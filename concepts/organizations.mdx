@@ -1,0 +1,25 @@
+---
+title: "Organizations"
+description: "Learn how organizations are modeled and represented in Flux OS."
+---
+
+### Overview
+
+Organizations are the top-level grouping in Flux, representing a business as a whole (e.g. "Flux"). Organizations can contain multiple legal entities across different jurisdictions and manage users centrally.
+
+### Entities
+
+Entities represent the legal entities of an organization within specific jurisdictions. For example, while "Flux" is the organization, "Flux Operating Systems Ltd." would be an entity in a particular jurisdiction. Each entity has attributes like legal name, jurisdiction, and regulatory identifiers (if applicable).
+
+### Business Lines
+
+Business lines classify the types of business activities that an entity conducts. An entity can operate across multiple business lines simultaneously. Currently, the supported business lines are:
+
+- **Marketer**: Entities that buy and sell products but don't own physical assets
+- **Carrier**: Entities that transport products between facilities (e.g. trucking companies)
+- **Midstreamer**: Entities that own and operate processing, transportation and storage infrastructure
+- **Producer**: Entities that own wells and extract products from the ground
+
+### Users
+
+Users are individuals who access and interact with the Flux platform. Users are associated with organizations rather than specific entities, allowing them to work across all entities within their organization based on their roles and permissions.

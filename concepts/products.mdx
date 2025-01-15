@@ -1,0 +1,45 @@
+---
+title: "Products"
+description: "Learn how products are modeled and represented in Flux OS."
+---
+
+## Overview
+
+Flux manages products through two distinct "swim lanes" - physical and commercial - reflecting the separation between actual product characteristics and market requirements.
+
+### Product Categories (Physical Characteristics)
+
+Product categories represent are classifications of actual measurable characteristics of products as they enter facilities.
+
+### Product Category Specifications (Physical Characteristics)
+
+Each commercial facility defines acceptable ranges for physical specifications of incoming products based on their equipment capabilities and downstream connectivity. For example, this may be:
+
+- Density (kg/m³)
+- Viscosity
+- H2S content (Sour Rating)
+- Basic Sediment & Water (BSW)
+- Total Acid Number (TAN)
+
+For example, a product with 780kg/m³ density, 0.02wt% Sulphur, and 0.6% BSW would be physically classified as a "Crudensate Emulsion" due to its characteristics falling between crude and condensate specifications, with BSW > 0.5%.
+
+### Streams (Commercial Representations)
+
+Streams represent standardized market classifications with strict quality requirements that must be met for sale and delivery. For example:
+
+- Mixed Sweet Blend (MSW)
+- Premium Condensate
+- Light Sour Blend
+
+### Stream Specifications (Commercial Representations)
+
+Each stream has strict bounds on physical properties that are standardized across the industry. These specifications define the acceptable ranges for properties like density, sulphur content, and viscosity that must be met for commercial delivery.
+
+### Commercial Arrangements
+
+The commercial and physical aspects can operate independently:
+
+- Input Arrangements: Products can be purchased based on stream pricing (e.g., MSW index) regardless of their physical characteristics
+- Output Arrangements: All sold volumes must strictly meet stream specifications for delivery.
+
+This separation allows for flexible purchase arrangements while maintaining strict quality control on sales, enabling facilities to blend various input products to meet commercial stream requirements.

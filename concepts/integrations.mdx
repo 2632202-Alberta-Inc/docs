@@ -1,0 +1,36 @@
+---
+title: "Integrations"
+description: "Learn how integrations are modeled and represented in Flux OS."
+---
+
+### Overview
+
+Flux provides lookup systems to map between external identifiers/names and internal Flux IDs. These lookups enable consistent data integration while maintaining human-readable labels in external systems.
+
+They are essential for:
+
+- Building and maintaining ETL processes
+- Preserving human-readable labels in external systems
+- Ensuring data consistency and structure within Flux
+- Supporting multiple naming conventions per entity
+- Enabling seamless integration with external systems
+
+### Entity Lookups
+
+Entity lookups map human-readable entity names to Flux Entity IDs. For example, a carrier name like "Flux Logistics Service" can be mapped to its corresponding Entity ID in Flux. Multiple lookups can be created per Entity to handle different naming conventions across systems.
+
+### Facility Lookups
+
+Facility lookups connect facility names or external IDs to Flux Facility IDs. This allows external systems to reference facilities using their own naming conventions while maintaining consistent facility identification within Flux.
+
+### Commercial Facility Lookups
+
+Commercial facility lookups map external commercial facility names to Flux Commercial Facility IDs. This enables tracking of commercial facilities across different systems while maintaining a single source of truth in Flux.
+
+### Well Lookups
+
+Well lookups bridge external well identifiers to Flux Well IDs. This is particularly useful when integrating with regulatory systems or operator databases that may use different well naming conventions.
+
+### Organization Lookups
+
+Organization lookups connect external organization names to Flux Organization IDs. This allows for consistent organization identification across integrated systems while preserving human-readable organization names in external processes.
