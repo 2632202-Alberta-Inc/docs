@@ -65,10 +65,18 @@
           "pages": ["api-reference/service/ping-server"]
         },
         {
-          "group": "Currency",
+          "group": "Organization",
           "pages": [
-            "api-reference/currency/convert-between-currencies",
-            "api-reference/currency/list-currencies"
+            "api-reference/organization/get-commercial-facility",
+            "api-reference/organization/get-organization",
+            "api-reference/organization/get-user",
+            "api-reference/organization/list-commercial-facilities",
+            "api-reference/organization/list-entities",
+            "api-reference/organization/list-facilities",
+            "api-reference/organization/list-organizations",
+            "api-reference/organization/list-permissions",
+            "api-reference/organization/list-roles",
+            "api-reference/organization/list-users"
           ]
         },
         {
@@ -89,29 +97,10 @@
           ]
         },
         {
-          "group": "Integrations",
+          "group": "Wells",
           "pages": [
-            "api-reference/integrations/create-commercial-facility-lookup",
-            "api-reference/integrations/create-entity-lookup",
-            "api-reference/integrations/create-facility-lookup",
-            "api-reference/integrations/create-organization-lookup",
-            "api-reference/integrations/create-well-lookup",
-            "api-reference/integrations/get-commercial-facility-lookup",
-            "api-reference/integrations/get-entity-lookup",
-            "api-reference/integrations/get-facility-lookup",
-            "api-reference/integrations/get-organization-lookup",
-            "api-reference/integrations/get-well-lookup",
-            "api-reference/integrations/list-commercial-facility-lookups",
-            "api-reference/integrations/list-entity-lookups",
-            "api-reference/integrations/list-facility-lookups",
-            "api-reference/integrations/list-organization-lookups",
-            "api-reference/integrations/list-well-lookups",
-            "api-reference/integrations/search-lookups",
-            "api-reference/integrations/update-commercial-facility-lookup",
-            "api-reference/integrations/update-entity-lookup",
-            "api-reference/integrations/update-facility-lookup",
-            "api-reference/integrations/update-organization-lookup",
-            "api-reference/integrations/update-well-lookup"
+            "api-reference/wells/get-well",
+            "api-reference/wells/list-wells"
           ]
         },
         {
@@ -120,21 +109,6 @@
             "api-reference/measurements/convert-between-measurement-units",
             "api-reference/measurements/get-measurement-unit",
             "api-reference/measurements/list-measurement-units"
-          ]
-        },
-        {
-          "group": "Organization",
-          "pages": [
-            "api-reference/organization/get-commercial-facility",
-            "api-reference/organization/get-organization",
-            "api-reference/organization/get-user",
-            "api-reference/organization/list-commercial-facilities",
-            "api-reference/organization/list-entities",
-            "api-reference/organization/list-facilities",
-            "api-reference/organization/list-organizations",
-            "api-reference/organization/list-permissions",
-            "api-reference/organization/list-roles",
-            "api-reference/organization/list-users"
           ]
         },
         {
@@ -177,10 +151,36 @@
           ]
         },
         {
-          "group": "Wells",
+          "group": "Currency",
           "pages": [
-            "api-reference/wells/get-well",
-            "api-reference/wells/list-wells"
+            "api-reference/currency/convert-between-currencies",
+            "api-reference/currency/list-currencies"
+          ]
+        },
+        {
+          "group": "Integrations",
+          "pages": [
+            "api-reference/integrations/create-commercial-facility-lookup",
+            "api-reference/integrations/create-entity-lookup",
+            "api-reference/integrations/create-facility-lookup",
+            "api-reference/integrations/create-organization-lookup",
+            "api-reference/integrations/create-well-lookup",
+            "api-reference/integrations/get-commercial-facility-lookup",
+            "api-reference/integrations/get-entity-lookup",
+            "api-reference/integrations/get-facility-lookup",
+            "api-reference/integrations/get-organization-lookup",
+            "api-reference/integrations/get-well-lookup",
+            "api-reference/integrations/list-commercial-facility-lookups",
+            "api-reference/integrations/list-entity-lookups",
+            "api-reference/integrations/list-facility-lookups",
+            "api-reference/integrations/list-organization-lookups",
+            "api-reference/integrations/list-well-lookups",
+            "api-reference/integrations/search-lookups",
+            "api-reference/integrations/update-commercial-facility-lookup",
+            "api-reference/integrations/update-entity-lookup",
+            "api-reference/integrations/update-facility-lookup",
+            "api-reference/integrations/update-organization-lookup",
+            "api-reference/integrations/update-well-lookup"
           ]
         }
       ]
