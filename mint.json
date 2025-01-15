@@ -61,6 +61,10 @@
       "group": "API Reference",
       "pages": [
         {
+          "group": "Service",
+          "pages": ["api-reference/service/ping-server"]
+        },
+        {
           "group": "Currency",
           "pages": [
             "api-reference/currency/convert-between-currencies",
@@ -140,10 +144,6 @@
             "api-reference/products/list-product-categories",
             "api-reference/products/list-product-category-specifications"
           ]
-        },
-        {
-          "group": "Service",
-          "pages": ["api-reference/service/ping-server"]
         },
         {
           "group": "Streams",
