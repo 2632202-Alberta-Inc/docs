@@ -1670,6 +1670,9 @@
           "external_id": {
             "type": "string"
           },
+          "reference": {
+            "type": "string"
+          },
           "status": {
             "$ref": "#/components/schemas/TicketStatusReference"
           },
@@ -1880,7 +1883,8 @@
           }
         },
         "required": [
-          "external_id"
+          "external_id",
+          "reference"
         ]
       },
       "Volumes_TankTicket": {
@@ -1891,6 +1895,9 @@
             "readOnly": true
           },
           "external_id": {
+            "type": "string"
+          },
+          "reference": {
             "type": "string"
           },
           "status": {
@@ -2048,7 +2055,8 @@
           }
         },
         "required": [
-          "external_id"
+          "external_id",
+          "reference"
         ]
       },
       "Volumes_MeterTicket": {
@@ -2059,6 +2067,9 @@
             "readOnly": true
           },
           "external_id": {
+            "type": "string"
+          },
+          "reference": {
             "type": "string"
           },
           "status": {
@@ -2244,7 +2255,8 @@
           }
         },
         "required": [
-          "external_id"
+          "external_id",
+          "reference"
         ]
       },
       "Integrations_CommercialFacilityLookup": {
@@ -2429,36 +2441,6 @@
           "slug"
         ]
       },
-      "UserRolesReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
-      "UserPermissionsReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
       "Organization_ReferenceUser": {
         "type": "object",
         "properties": {
@@ -2470,7 +2452,7 @@
             "type": "string"
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference1"
+            "type": "integer"
           },
           "first_name": {
             "type": "string"
@@ -2490,13 +2472,13 @@
           "roles": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/UserRolesReference"
+              "type": "integer"
             }
           },
           "permissions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/UserPermissionsReference"
+              "type": "integer"
             }
           }
         },
@@ -2599,30 +2581,11 @@
           },
           "commercial_facility": {},
           "facility": {
-            "$ref": "#/components/schemas/FacilityReference"
+            "type": "integer"
           }
         },
         "required": [
           "commercial_facility"
-        ]
-      },
-      "ProductCategoryReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "short_code": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
         ]
       },
       "Streams_ReferenceStream": {
@@ -2639,7 +2602,7 @@
             "type": "string"
           },
           "product_category": {
-            "$ref": "#/components/schemas/ProductCategoryReference1"
+            "type": "integer"
           }
         },
         "required": [
@@ -3297,6 +3260,9 @@
           "external_id": {
             "type": "string"
           },
+          "reference": {
+            "type": "string"
+          },
           "status": {
             "readOnly": true
           },
@@ -3505,6 +3471,7 @@
         "required": [
           "external_id",
           "organization",
+          "reference",
           "status"
         ]
       },
@@ -3552,6 +3519,9 @@
             "readOnly": true
           },
           "external_id": {
+            "type": "string"
+          },
+          "reference": {
             "type": "string"
           },
           "status": {
@@ -3781,6 +3751,7 @@
           "pickup_facility_operator",
           "pickup_well",
           "production_date",
+          "reference",
           "start",
           "volume"
         ]
@@ -3793,6 +3764,9 @@
             "readOnly": true
           },
           "external_id": {
+            "type": "string"
+          },
+          "reference": {
             "type": "string"
           },
           "status": {
@@ -3945,7 +3919,8 @@
         },
         "required": [
           "external_id",
-          "organization"
+          "organization",
+          "reference"
         ]
       },
       "Volumes_ReferenceTankTicketError": {
@@ -3999,6 +3974,9 @@
           "external_id": {
             "type": "string"
           },
+          "reference": {
+            "type": "string"
+          },
           "status": {
             "type": "integer",
             "readOnly": true
@@ -4132,6 +4110,7 @@
           "meter_factor",
           "meter_start",
           "production_date",
+          "reference",
           "start",
           "volume"
         ]
@@ -4144,6 +4123,9 @@
             "readOnly": true
           },
           "external_id": {
+            "type": "string"
+          },
+          "reference": {
             "type": "string"
           },
           "status": {
@@ -4321,7 +4303,8 @@
         },
         "required": [
           "external_id",
-          "organization"
+          "organization",
+          "reference"
         ]
       },
       "Volumes_ReferenceMeterTicketError": {
@@ -4351,12 +4334,7 @@
             "nullable": true
           },
           "resolved_by": {
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/UserReference"
-              }
-            ]
+            "type": "integer"
           }
         },
         "required": [
@@ -4373,6 +4351,9 @@
             "readOnly": true
           },
           "external_id": {
+            "type": "string"
+          },
+          "reference": {
             "type": "string"
           },
           "status": {
@@ -4552,6 +4533,7 @@
           "meter_factor",
           "meter_start",
           "production_date",
+          "reference",
           "start",
           "volume"
         ]
