@@ -8072,6 +8072,15 @@
             },
             "required": false,
             "description": "Unique Well Identifier"
+          },
+          {
+            "in": "query",
+            "name": "license_status",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "License status"
           }
         ],
         "responses": {
