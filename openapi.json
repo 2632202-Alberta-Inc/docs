@@ -6357,6 +6357,14 @@
               "type": "integer"
             },
             "description": "Filter by operator ID"
+          },
+          {
+            "in": "query",
+            "name": "external_id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by external ID"
           }
         ],
         "responses": {
@@ -8237,7 +8245,7 @@
             "in": "query",
             "name": "regulator_id",
             "schema": {
-              "type": "integer"
+              "type": "string"
             },
             "description": "Filter by regulator ID"
           },
