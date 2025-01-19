@@ -5,6 +5,9 @@
     "light": "/logo/png/black_logo_no_background.png",
     "dark": "/logo/png/white_logo_no_background.png"
   },
+  "metadata": {
+    "robots": "noindex"
+  },
   "favicon": "/logo/favicons/browser.png",
   "colors": {
     "primary": "#000000",

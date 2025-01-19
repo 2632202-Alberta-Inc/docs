@@ -5,29 +5,37 @@ description: "Learn how to create tickets to track volumes and inventory in Flux
 
 ### Overview
 
-Flux provides a robust system for tracking volumes through tickets that capture measurements and transfers across facilities. This guide will help you understand how to add tickets to track your volumes effectively.
+Flux provides a robust system for tracking volumes through tickets that capture measurements in and transfers across facilities. This guide will help you understand how to add, update, and review tickets to track your volumes effectively.
 
 ### Types of Tickets
 
 There are three main types of tickets you can create:
 
-- **Truck Tickets**: Track product movements via tanker trucks between facilities
+- **Truck Tickets**: Track product movements between facilities via trucks
 - **Tank Tickets**: Record point-in-time measurements of product in storage tanks
 - **Meter Tickets**: Capture continuous flow measurement data from meters
 
-Each ticket type has specific required fields and validation rules. See the [ticket models](/models/volumes/overview) for detailed specifications.
+Each ticket type has specific required fields and validation rules. See the [ticket models](/concepts/volumes) for detailed specifications.
 
 ### Adding Tickets
 
 To add a new ticket:
 
-1. Determine the appropriate ticket type based on your measurement scenario.
-2. Gather required data like facility IDs, entity IDs, timestamps, volumes, measurements, etc.
-3. Search existing tickets to see if the ticket has already been created
-4. Create the ticket via API with all required fields.
-5. Get the ticket using the ticket ID and check the response for any validation errors.
-6. Update ticket via API.
-7. Confirm ticket has no errors and is in status `PENDING_REVIEW`.
+1. Choose the ticket type.
+2. Gather required data (Facility IDs, Entity IDs, timestamps, measurements, etc.).
+3. Search for existing ticket by `external_id`.
+4. Create the ticket via API.
+5. Retrieve and check for any errors.
+6. Update the ticket if needed.
+7. If no errors, status updates to `PENDING_REVIEW`.
+
+<Tip>
+  Note: Flux assigns a unique `id` across all organizations on the platform. The
+  `external_id` field is specific to your organization and must remain unique
+  for active tickets. This ensures that within each organization, only one
+  active ticket can have a given `external_id` and attempting to create a
+  duplicate active ticket will result in an error.
+</Tip>
 
 ### Workflow
 
@@ -45,14 +53,20 @@ To add a new ticket:
 
    Automatically triggered on every `POST` and `PATCH` request.
 
-   - Existence checks for all referenced entities (facilities, entities, wells, meters, etc.)
+   - Existence checks for all referenced entities (e.g. facilities, entities, meters, etc.)
    - Required field validation.
-   - Facility type validation (only one pickup/delivery facility type allowed).
-   - Measurement unit validation.
+   - Facility type validation (e.g. only one pickup/delivery facility type allowed).
+   - Measurement unit validation (e.g. temperature units must not be used for volume fields).
    - Timestamp validation.
    - Volume and reading validations.
    - Status updated based on validation results.
+   - Ticket Code validation (e.g. `SALE` or `REC` codes require both destination and source fields on Meter Tickets).
    - Anomoly detection and validation. `Coming Soon`
+
+<Tip>
+  Note: Meter tickets require both destination and source fields only for `SALE`
+  or `REC` codes. Otherwise, only destination fields are required.
+</Tip>
 
 3. **Review**
 
