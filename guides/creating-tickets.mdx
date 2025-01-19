@@ -15,7 +15,7 @@ There are three main types of tickets you can create:
 - **Tank Tickets**: Record point-in-time measurements of product in storage tanks
 - **Meter Tickets**: Capture continuous flow measurement data from meters
 
-Each ticket type has specific required fields and validation rules. See the [ticket models](/concepts/volumes) for detailed specifications.
+Each ticket type has specific required fields and validation rules. See the [volumes](/concepts/volumes) for detailed specifications.
 
 ### Adding Tickets
 
@@ -27,14 +27,12 @@ To add a new ticket:
 4. Create the ticket via API.
 5. Retrieve and check for any errors.
 6. Update the ticket if needed.
-7. If no errors, status updates to `PENDING_REVIEW`.
+7. If no errors, status automatically transitions to `PENDING_REVIEW`.
 
 <Tip>
-  Note: Flux assigns a unique `id` across all organizations on the platform. The
-  `external_id` field is specific to your organization and must remain unique
-  for active tickets. This ensures that within each organization, only one
-  active ticket can have a given `external_id` and attempting to create a
-  duplicate active ticket will result in an error.
+  Note: While Flux assigns a unique `id` to each ticket, you provide an
+  `external_id` that must be unique within your organization. This prevents
+  accidentally creating duplicate tickets.
 </Tip>
 
 ### Workflow
