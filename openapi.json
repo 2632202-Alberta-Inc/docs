@@ -473,19 +473,29 @@
             "nullable": true
           },
           "lsd": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "section": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "township": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "range": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "meridian": {
-            "type": "string"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "organization": {
             "$ref": "#/components/schemas/OrganizationReference1"
@@ -499,12 +509,7 @@
           }
         },
         "required": [
-          "lsd",
-          "meridian",
-          "name",
-          "range",
-          "section",
-          "township"
+          "name"
         ]
       },
       "Organization_CommercialFacilityFacility": {
@@ -1388,19 +1393,29 @@
             "nullable": true
           },
           "lsd": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "section": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "township": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "range": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "meridian": {
-            "type": "string"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "type": {
             "$ref": "#/components/schemas/FacilityTypeReference"
@@ -1490,14 +1505,9 @@
           }
         },
         "required": [
-          "lsd",
-          "meridian",
           "name",
           "operator_start_date",
-          "range",
-          "section",
-          "start_date",
-          "township"
+          "start_date"
         ]
       },
       "Volumes_Meter": {
@@ -2546,30 +2556,35 @@
             "nullable": true
           },
           "lsd": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "section": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "township": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "range": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "meridian": {
-            "type": "string"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "organization": {}
         },
         "required": [
-          "lsd",
-          "meridian",
           "name",
-          "organization",
-          "range",
-          "section",
-          "township"
+          "organization"
         ]
       },
       "Organization_ReferenceCommercialFacilityFacility": {
@@ -2970,19 +2985,29 @@
             "nullable": true
           },
           "lsd": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "section": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "township": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "range": {
-            "type": "integer"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "meridian": {
-            "type": "string"
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "type": {},
           "sub_type": {},
@@ -3067,16 +3092,11 @@
           }
         },
         "required": [
-          "lsd",
-          "meridian",
           "name",
           "operator",
           "operator_start_date",
-          "range",
-          "section",
           "start_date",
           "sub_type",
-          "township",
           "type"
         ]
       },
@@ -4548,12 +4568,8 @@
           "name": {
             "type": "string"
           },
-          "commercial_facility": {
-            "type": "integer"
-          },
-          "organization": {
-            "type": "integer"
-          },
+          "commercial_facility": {},
+          "organization": {},
           "start_date": {
             "type": "string",
             "format": "date"
@@ -4566,7 +4582,9 @@
           }
         },
         "required": [
+          "commercial_facility",
           "name",
+          "organization",
           "start_date"
         ]
       },
@@ -4580,12 +4598,8 @@
           "name": {
             "type": "string"
           },
-          "facility": {
-            "type": "integer"
-          },
-          "organization": {
-            "type": "integer"
-          },
+          "facility": {},
+          "organization": {},
           "start_date": {
             "type": "string",
             "format": "date"
@@ -4598,7 +4612,9 @@
           }
         },
         "required": [
+          "facility",
           "name",
+          "organization",
           "start_date"
         ]
       },
@@ -4612,12 +4628,8 @@
           "name": {
             "type": "string"
           },
-          "entity": {
-            "type": "integer"
-          },
-          "organization": {
-            "type": "integer"
-          },
+          "entity": {},
+          "organization": {},
           "start_date": {
             "type": "string",
             "format": "date"
@@ -4630,7 +4642,9 @@
           }
         },
         "required": [
+          "entity",
           "name",
+          "organization",
           "start_date"
         ]
       },
@@ -4644,12 +4658,8 @@
           "name": {
             "type": "string"
           },
-          "well": {
-            "type": "integer"
-          },
-          "organization": {
-            "type": "integer"
-          },
+          "well": {},
+          "organization": {},
           "start_date": {
             "type": "string",
             "format": "date"
@@ -4663,7 +4673,9 @@
         },
         "required": [
           "name",
-          "start_date"
+          "organization",
+          "start_date",
+          "well"
         ]
       },
       "Integrations_ReferenceOrganizationLookup": {
@@ -8439,7 +8451,8 @@
                 "Facility",
                 "Well",
                 "Entity",
-                "CommercialFacility"
+                "CommercialFacility",
+                "Organization"
               ]
             },
             "required": true,
@@ -8476,6 +8489,9 @@
                         },
                         {
                           "$ref": "#/components/schemas/Integrations_ReferenceCommercialFacilityLookup"
+                        },
+                        {
+                          "$ref": "#/components/schemas/Integrations_ReferenceOrganizationLookup"
                         }
                       ]
                     }
