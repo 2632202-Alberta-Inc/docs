@@ -3566,48 +3566,39 @@
             "nullable": true
           },
           "source_commercial_facility": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "source_commercial_entity": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "source_facility_operator": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "source_commercial_organization": {
             "default": null,
             "nullable": true
           },
           "source_facility": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "source_well": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "destination_commercial_facility": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "destination_commercial_entity": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "destination_commercial_organization": {
             "default": null,
             "nullable": true
           },
           "destination_facility_operator": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "destination_facility": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "production_date": {
             "type": "string",
@@ -3700,33 +3691,6 @@
             "type": "integer",
             "nullable": true
           },
-          "pickup_commercial_facility": {
-            "type": "integer"
-          },
-          "pickup_commercial_entity": {
-            "type": "integer"
-          },
-          "pickup_facility_operator": {
-            "type": "integer"
-          },
-          "pickup_facility": {
-            "type": "integer"
-          },
-          "pickup_well": {
-            "type": "integer"
-          },
-          "delivery_commercial_facility": {
-            "type": "integer"
-          },
-          "delivery_commercial_entity": {
-            "type": "integer"
-          },
-          "delivery_facility_operator": {
-            "type": "integer"
-          },
-          "delivery_facility": {
-            "type": "integer"
-          },
           "codes": {
             "type": "array",
             "items": {
@@ -3747,25 +3711,25 @@
           "bsw_measurement_unit",
           "carrier_organization",
           "codes",
-          "delivery_commercial_entity",
-          "delivery_commercial_facility",
-          "delivery_facility",
-          "delivery_facility_operator",
           "density",
           "density_measurement_unit",
+          "destination_commercial_entity",
+          "destination_commercial_facility",
+          "destination_facility",
+          "destination_facility_operator",
           "end",
           "external_id",
           "meter",
           "meter_end",
           "meter_factor",
           "meter_start",
-          "pickup_commercial_entity",
-          "pickup_commercial_facility",
-          "pickup_facility",
-          "pickup_facility_operator",
-          "pickup_well",
           "production_date",
           "reference",
+          "source_commercial_entity",
+          "source_commercial_facility",
+          "source_facility",
+          "source_facility_operator",
+          "source_well",
           "start",
           "volume"
         ]
@@ -4379,48 +4343,39 @@
             "readOnly": true
           },
           "source_commercial_facility": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "source_commercial_entity": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "source_commercial_organization": {
             "default": null,
             "nullable": true
           },
           "source_facility_operator": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "source_facility": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "source_well": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "destination_commercial_facility": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "destination_commercial_organization": {
             "default": null,
             "nullable": true
           },
           "destination_commercial_entity": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "destination_facility_operator": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "destination_facility": {
-            "default": null,
-            "nullable": true
+            "type": "integer"
           },
           "production_date": {
             "type": "string",
@@ -4504,18 +4459,6 @@
             "type": "integer",
             "nullable": true
           },
-          "commercial_facility": {
-            "type": "integer"
-          },
-          "commercial_entity": {
-            "type": "integer"
-          },
-          "facility_operator": {
-            "type": "integer"
-          },
-          "facility": {
-            "type": "integer"
-          },
           "codes": {
             "type": "array",
             "items": {
@@ -4534,20 +4477,25 @@
           "bsw",
           "bsw_measurement_unit",
           "codes",
-          "commercial_entity",
-          "commercial_facility",
           "density",
           "density_measurement_unit",
+          "destination_commercial_entity",
+          "destination_commercial_facility",
+          "destination_facility",
+          "destination_facility_operator",
           "end",
           "external_id",
-          "facility",
-          "facility_operator",
           "meter",
           "meter_end",
           "meter_factor",
           "meter_start",
           "production_date",
           "reference",
+          "source_commercial_entity",
+          "source_commercial_facility",
+          "source_facility",
+          "source_facility_operator",
+          "source_well",
           "start",
           "volume"
         ]
