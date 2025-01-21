@@ -4630,6 +4630,7 @@
           "name": {
             "type": "string"
           },
+          "organization_lookup": {},
           "organization": {
             "$ref": "#/components/schemas/OrganizationReference1"
           },
@@ -4646,6 +4647,7 @@
         },
         "required": [
           "name",
+          "organization_lookup",
           "start_date"
         ]
       }
