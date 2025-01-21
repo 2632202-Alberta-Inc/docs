@@ -3328,10 +3328,7 @@
             "nullable": true
           },
           "source_facility": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
+            "default": null,
             "nullable": true
           },
           "source_well": {
@@ -3355,10 +3352,7 @@
             "nullable": true
           },
           "destination_facility": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
+            "default": null,
             "nullable": true
           },
           "production_date": {
@@ -6566,6 +6560,15 @@
             },
             "required": false,
             "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "code",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Filter by code"
           }
         ],
         "responses": {
