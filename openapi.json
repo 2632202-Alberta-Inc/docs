@@ -2616,12 +2616,11 @@
           "short_code": {
             "type": "string"
           },
-          "product_category": {
-            "type": "integer"
-          }
+          "product_category": {}
         },
         "required": [
           "name",
+          "product_category",
           "short_code"
         ]
       },
