@@ -6941,19 +6941,21 @@
         },
         "responses": {
           "200": {
-            "description": "Updated truck ticket.",
+            "description": "Truck ticket queued for update.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Volumes_ReferenceTruckTicket"
-                    },
-                    "errors": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Volumes_ReferenceTruckTicketError"
+                      "type": "object",
+                      "properties": {
+                        "job_id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        }
                       }
                     }
                   }
@@ -7335,19 +7337,21 @@
         },
         "responses": {
           "200": {
-            "description": "Updated tank ticket.",
+            "description": "Tank ticket queued for update.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Volumes_ReferenceTankTicket"
-                    },
-                    "errors": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Volumes_ReferenceTankTicketError"
+                      "type": "object",
+                      "properties": {
+                        "job_id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        }
                       }
                     }
                   }
@@ -7792,19 +7796,21 @@
         },
         "responses": {
           "200": {
-            "description": "Updated meter ticket.",
+            "description": "Meter ticket queued for update.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Volumes_ReferenceMeterTicket"
-                    },
-                    "errors": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Volumes_ReferenceMeterTicketError"
+                      "type": "object",
+                      "properties": {
+                        "job_id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        }
                       }
                     }
                   }
