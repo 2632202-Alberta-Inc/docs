@@ -6812,19 +6812,21 @@
         },
         "responses": {
           "201": {
-            "description": "Truck ticket created (may include validation errors.)",
+            "description": "Tank ticket queued for creation.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Volumes_ReferenceTruckTicket"
-                    },
-                    "errors": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Volumes_ReferenceTruckTicketError"
+                      "type": "object",
+                      "properties": {
+                        "job_id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        }
                       }
                     }
                   }
@@ -7207,19 +7209,21 @@
         },
         "responses": {
           "201": {
-            "description": "Tank ticket created (may include validation errors.)",
+            "description": "Tank ticket queued for creation.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Volumes_ReferenceTankTicket"
-                    },
-                    "errors": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Volumes_ReferenceTankTicketError"
+                      "type": "object",
+                      "properties": {
+                        "job_id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        }
                       }
                     }
                   }
@@ -7662,19 +7666,21 @@
         },
         "responses": {
           "201": {
-            "description": "Meter ticket created (may include validation errors.)",
+            "description": "Meter ticket queued for creation.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Volumes_ReferenceMeterTicket"
-                    },
-                    "errors": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Volumes_ReferenceMeterTicketError"
+                      "type": "object",
+                      "properties": {
+                        "job_id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        }
                       }
                     }
                   }
