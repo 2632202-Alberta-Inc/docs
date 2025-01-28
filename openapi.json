@@ -7012,14 +7012,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Canceled truck ticket.",
+            "description": "Truck ticket queued for cancelation.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Volumes_ReferenceTruckTicket"
+                      "type": "object",
+                      "properties": {
+                        "job_id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        }
+                      }
                     }
                   }
                 }
@@ -7408,14 +7416,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Canceled tank ticket.",
+            "description": "Tank ticket queued for cancelation.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Volumes_ReferenceTankTicket"
+                      "type": "object",
+                      "properties": {
+                        "job_id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        }
+                      }
                     }
                   }
                 }
@@ -7867,14 +7883,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Canceled meter ticket.",
+            "description": "Meter ticket queued for cancelation.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Volumes_ReferenceMeterTicket"
+                      "type": "object",
+                      "properties": {
+                        "job_id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        }
+                      }
                     }
                   }
                 }
