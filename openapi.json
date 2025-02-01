@@ -6543,7 +6543,7 @@
     "/jobs": {
       "get": {
         "summary": "List Jobs",
-        "description": "Retrieve a paginated list of jobs.",
+        "description": "Retrieve a paginated list of jobs with filtering options.",
         "operationId": "get_jobs",
         "tags": [
           "Services"
@@ -6640,7 +6640,7 @@
     "/jobs/{id}": {
       "get": {
         "summary": "Get Job",
-        "description": "Retrieve a single job by ID.",
+        "description": "Retrieve details of a specific job.",
         "operationId": "get_job",
         "tags": [
           "Services"
@@ -6703,7 +6703,7 @@
     "/requests": {
       "get": {
         "summary": "List Requests",
-        "description": "Retrieve a paginated list of requests.",
+        "description": "Retrieve a paginated list of requests with filtering options.",
         "operationId": "get_requests",
         "tags": [
           "Services"
@@ -6833,7 +6833,7 @@
     "/requests/{id}": {
       "get": {
         "summary": "Get Request",
-        "description": "Retrieve a single request by ID.",
+        "description": "Retrieve details of a specific request.",
         "operationId": "get_request",
         "tags": [
           "Services"
