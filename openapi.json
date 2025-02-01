@@ -156,29 +156,10 @@
           },
           "name": {
             "type": "string"
-          },
-          "slug": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          },
-          "phone": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "default": null,
-            "nullable": true
           }
         },
         "required": [
-          "name",
-          "slug"
+          "name"
         ]
       },
       "UserRoles": {
@@ -422,21 +403,6 @@
           "slug"
         ]
       },
-      "OrganizationReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
       "FacilityReference": {
         "type": "object",
         "properties": {
@@ -498,7 +464,7 @@
             "nullable": true
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference1"
+            "$ref": "#/components/schemas/OrganizationReference"
           },
           "facilities": {
             "type": "array",
@@ -975,7 +941,7 @@
             "type": "string"
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference1"
+            "$ref": "#/components/schemas/OrganizationReference"
           },
           "url": {
             "type": "string",
@@ -1687,7 +1653,7 @@
             "$ref": "#/components/schemas/TicketStatusReference"
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference1"
+            "$ref": "#/components/schemas/OrganizationReference"
           },
           "bill_of_lading": {
             "type": "string",
@@ -1700,7 +1666,7 @@
             "nullable": true
           },
           "carrier_organization": {
-            "$ref": "#/components/schemas/OrganizationReference1"
+            "$ref": "#/components/schemas/OrganizationReference"
           },
           "carrier_entity": {
             "$ref": "#/components/schemas/EntityReference1"
@@ -1914,7 +1880,7 @@
             "$ref": "#/components/schemas/TicketStatusReference"
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference1"
+            "$ref": "#/components/schemas/OrganizationReference"
           },
           "commercial_facility": {
             "$ref": "#/components/schemas/CommercialFacilityReference"
@@ -2086,7 +2052,7 @@
             "$ref": "#/components/schemas/TicketStatusReference"
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference1"
+            "$ref": "#/components/schemas/OrganizationReference"
           },
           "source_commercial_facility": {
             "$ref": "#/components/schemas/CommercialFacilityReference"
@@ -2283,7 +2249,7 @@
             "$ref": "#/components/schemas/CommercialFacilityReference"
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference1"
+            "$ref": "#/components/schemas/OrganizationReference"
           },
           "start_date": {
             "type": "string",
@@ -2315,7 +2281,7 @@
             "$ref": "#/components/schemas/FacilityReference"
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference1"
+            "$ref": "#/components/schemas/OrganizationReference"
           },
           "start_date": {
             "type": "string",
@@ -2347,7 +2313,7 @@
             "$ref": "#/components/schemas/EntityReference1"
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference1"
+            "$ref": "#/components/schemas/OrganizationReference"
           },
           "start_date": {
             "type": "string",
@@ -2399,7 +2365,7 @@
             "$ref": "#/components/schemas/WellReference1"
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference1"
+            "$ref": "#/components/schemas/OrganizationReference"
           },
           "start_date": {
             "type": "string",
@@ -2415,6 +2381,199 @@
         "required": [
           "name",
           "start_date"
+        ]
+      },
+      "Service_Job": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "queue_name": {
+            "type": "string"
+          },
+          "queue_function": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "T",
+              "M"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "QUEUED",
+              "STARTED",
+              "FINISHED",
+              "FAILED",
+              "SCHEDULED"
+            ]
+          },
+          "enqueued_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "default": null,
+            "nullable": true
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time",
+            "default": null,
+            "nullable": true
+          },
+          "input_data": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "output_data": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "queue_function",
+          "queue_name",
+          "type"
+        ]
+      },
+      "KeyReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      "Service_Request": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationReference"
+          },
+          "key": {
+            "$ref": "#/components/schemas/KeyReference"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserReference"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endpoint": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "G",
+              "P",
+              "D"
+            ]
+          },
+          "status_code": {
+            "type": "integer",
+            "enum": [
+              "200",
+              "201",
+              "202",
+              "204",
+              "206",
+              "300",
+              "301",
+              "302",
+              "303",
+              "304",
+              "307",
+              "308",
+              "400",
+              "401",
+              "403",
+              "404",
+              "405",
+              "406",
+              "408",
+              "409",
+              "410",
+              "411",
+              "412",
+              "413",
+              "414",
+              "415",
+              "416",
+              "417",
+              "422",
+              "429",
+              "500",
+              "501",
+              "502",
+              "503",
+              "504",
+              "505"
+            ]
+          },
+          "request_data": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "response_data": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "headers": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "query_params": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "ip_address": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "user_agent": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "duration_ms": {
+            "type": "integer",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "endpoint",
+          "method"
         ]
       },
       "Organization_ReferenceOrganization": {
@@ -4611,7 +4770,7 @@
           },
           "organization_lookup": {},
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference1"
+            "$ref": "#/components/schemas/OrganizationReference"
           },
           "start_date": {
             "type": "string",
@@ -4628,6 +4787,150 @@
           "name",
           "organization_lookup",
           "start_date"
+        ]
+      },
+      "Service_ReferenceJob": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "queue_name": {
+            "type": "string"
+          },
+          "queue_function": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "T",
+              "M"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "QUEUED",
+              "STARTED",
+              "FINISHED",
+              "FAILED",
+              "SCHEDULED"
+            ]
+          },
+          "enqueued_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "default": null,
+            "nullable": true
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "queue_function",
+          "queue_name",
+          "type"
+        ]
+      },
+      "Service_ReferenceRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "organization": {},
+          "method": {
+            "type": "string",
+            "enum": [
+              "G",
+              "P",
+              "D"
+            ]
+          },
+          "endpoint": {
+            "type": "string"
+          },
+          "status_code": {
+            "type": "integer",
+            "enum": [
+              "200",
+              "201",
+              "202",
+              "204",
+              "206",
+              "300",
+              "301",
+              "302",
+              "303",
+              "304",
+              "307",
+              "308",
+              "400",
+              "401",
+              "403",
+              "404",
+              "405",
+              "406",
+              "408",
+              "409",
+              "410",
+              "411",
+              "412",
+              "413",
+              "414",
+              "415",
+              "416",
+              "417",
+              "422",
+              "429",
+              "500",
+              "501",
+              "502",
+              "503",
+              "504",
+              "505"
+            ]
+          },
+          "status": {},
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ip_address": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "user_agent": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "duration_ms": {
+            "type": "integer",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "endpoint",
+          "method",
+          "organization"
         ]
       }
     }
@@ -6219,6 +6522,359 @@
                           "example": "pong"
                         }
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/jobs": {
+      "get": {
+        "summary": "List Jobs",
+        "description": "Retrieve a paginated list of jobs.",
+        "operationId": "get_jobs",
+        "tags": [
+          "Service"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "TANK_TICKET",
+                "METER_TICKET",
+                "TRUCK_TICKET"
+              ]
+            },
+            "description": "Filter by job type"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "QUEUED",
+                "STARTED",
+                "FINISHED",
+                "FAILED",
+                "SCHEDULED"
+              ]
+            },
+            "description": "Filter by job status"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of jobs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Service_ReferenceJob"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/jobs/{id}": {
+      "get": {
+        "summary": "Get Job",
+        "description": "Retrieve a single job by ID.",
+        "operationId": "get_job",
+        "tags": [
+          "Service"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The job ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single job.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Service_Job"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Job not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/requests": {
+      "get": {
+        "summary": "List Requests",
+        "description": "Retrieve a paginated list of requests.",
+        "operationId": "get_requests",
+        "tags": [
+          "Service"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "method",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "PATCH"
+              ]
+            },
+            "description": "Filter by request method"
+          },
+          {
+            "in": "query",
+            "name": "status_code",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                200,
+                201,
+                202,
+                204,
+                206,
+                300,
+                301,
+                302,
+                303,
+                304,
+                307,
+                308,
+                400,
+                401,
+                403,
+                404,
+                405,
+                406,
+                408,
+                409,
+                410,
+                411,
+                412,
+                413,
+                414,
+                415,
+                416,
+                417,
+                422,
+                429,
+                500,
+                501,
+                502,
+                503,
+                504,
+                505
+              ]
+            },
+            "description": "Filter by status code"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Service_ReferenceRequest"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/requests/{id}": {
+      "get": {
+        "summary": "Get Request",
+        "description": "Retrieve a single request by ID.",
+        "operationId": "get_request",
+        "tags": [
+          "Service"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The request ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Service_Request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Request not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Request not found."
                     }
                   }
                 }
