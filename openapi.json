@@ -3747,15 +3747,13 @@
             "type": "string"
           },
           "status": {
-            "readOnly": true,
-            "type": "string"
+            "readOnly": true
           },
-          "organization": {},
+          "organization": {
+            "readOnly": true
+          },
           "commercial_facility": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
+            "default": null,
             "nullable": true
           },
           "facility_operator": {
@@ -3763,10 +3761,7 @@
             "nullable": true
           },
           "facility": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
+            "default": null,
             "nullable": true
           },
           "production_date": {
@@ -3885,19 +3880,13 @@
           },
           "codes": {
             "readOnly": true
-          },
-          "commercial_entity": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
-            "nullable": true
           }
         },
         "required": [
           "external_id",
           "organization",
-          "reference"
+          "reference",
+          "status"
         ]
       },
       "Volumes_ReferenceTankTicketError": {
@@ -3927,12 +3916,7 @@
             "nullable": true
           },
           "resolved_by": {
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/UserReference"
-              }
-            ]
+            "type": "integer"
           }
         },
         "required": [
@@ -4106,10 +4090,11 @@
             "type": "string"
           },
           "status": {
-            "readOnly": true,
-            "type": "string"
+            "readOnly": true
           },
-          "organization": {},
+          "organization": {
+            "readOnly": true
+          },
           "source_commercial_facility": {
             "default": null,
             "nullable": true
@@ -4127,10 +4112,7 @@
             "nullable": true
           },
           "source_facility": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
+            "default": null,
             "nullable": true
           },
           "source_well": {
@@ -4154,10 +4136,7 @@
             "nullable": true
           },
           "destination_facility": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
+            "default": null,
             "nullable": true
           },
           "production_date": {
@@ -4281,7 +4260,8 @@
         "required": [
           "external_id",
           "organization",
-          "reference"
+          "reference",
+          "status"
         ]
       },
       "Volumes_ReferenceMeterTicketError": {
