@@ -64,30 +64,36 @@
       "group": "API Reference",
       "pages": [
         {
-          "group": "Service",
-          "pages": ["api-reference/service/ping-server"]
-        },
-        {
-          "group": "Organization",
+          "group": "Services",
           "pages": [
-            "api-reference/organization/list-organizations",
-            "api-reference/organization/get-organization",
-            "api-reference/organization/list-users",
-            "api-reference/organization/get-user",
-            "api-reference/organization/list-roles",
-            "api-reference/organization/list-permissions",
-            "api-reference/organization/list-commercial-facilities",
-            "api-reference/organization/get-commercial-facility",
-            "api-reference/organization/list-facilities",
-            "api-reference/organization/list-entities"
+            "api-reference/services/ping-server",
+            "api-reference/services/list-jobs",
+            "api-reference/services/get-job",
+            "api-reference/services/list-requests",
+            "api-reference/services/get-request"
           ]
         },
         {
-          "group": "Entity",
+          "group": "Organizations",
           "pages": [
-            "api-reference/entity/list-entities",
-            "api-reference/entity/get-entity",
-            "api-reference/entity/list-business-lines"
+            "api-reference/organizations/list-organizations",
+            "api-reference/organizations/get-organization",
+            "api-reference/organizations/list-users",
+            "api-reference/organizations/get-user",
+            "api-reference/organizations/list-roles",
+            "api-reference/organizations/list-permissions",
+            "api-reference/organizations/list-commercial-facilities",
+            "api-reference/organizations/get-commercial-facility",
+            "api-reference/organizations/list-facilities",
+            "api-reference/organizations/list-entities"
+          ]
+        },
+        {
+          "group": "Entities",
+          "pages": [
+            "api-reference/entities/list-entities",
+            "api-reference/entities/get-entity",
+            "api-reference/entities/list-business-lines"
           ]
         },
         {
@@ -158,10 +164,10 @@
           ]
         },
         {
-          "group": "Currency",
+          "group": "Currencies",
           "pages": [
-            "api-reference/currency/list-currencies",
-            "api-reference/currency/convert-between-currencies"
+            "api-reference/currencies/list-currencies",
+            "api-reference/currencies/convert-between-currencies"
           ]
         },
         {

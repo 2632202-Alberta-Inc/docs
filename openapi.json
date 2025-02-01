@@ -23,11 +23,11 @@
   },
   "tags": [
     {
-      "name": "Service",
+      "name": "Services",
       "description": "Health check and basic service operations, such as the ping endpoint."
     },
     {
-      "name": "Organization",
+      "name": "Organizations",
       "description": "Endpoints for organizations to configure, view, and manage their users, roles, permissions, product category specifications, commercial units, etc."
     },
     {
@@ -43,11 +43,11 @@
       "description": "Endpoints for managing measurement units and their conversion relationships, including unit definitions, conversion factors, and validation rules."
     },
     {
-      "name": "Currency",
+      "name": "Currencies",
       "description": "Endpoints for handling currencies, conversions, and related financial data."
     },
     {
-      "name": "Entity",
+      "name": "Entities",
       "description": "Endpoints for managing entities such as producers, carriers, marketers, and other stakeholders."
     },
     {
@@ -5377,7 +5377,7 @@
         "description": "Retrieve details about the current organization including associated entities, wells, and facilities.",
         "operationId": "get_organization",
         "tags": [
-          "Organization"
+          "Organizations"
         ],
         "responses": {
           "200": {
@@ -5413,7 +5413,7 @@
         "description": "Retrieve a list of all organizations with pagination and filtering options.",
         "operationId": "get_organizations",
         "tags": [
-          "Organization"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -5490,7 +5490,7 @@
         "description": "Retrieve a list of users in the current organization with pagination and filtering options.",
         "operationId": "get_users",
         "tags": [
-          "Organization"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -5589,7 +5589,7 @@
         "description": "Retrieve details about a specific user in the current organization including their roles and permissions.",
         "operationId": "get_user",
         "tags": [
-          "Organization"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -5652,7 +5652,7 @@
         "description": "Retrieve a list of user roles in the current organization.",
         "operationId": "get_roles",
         "tags": [
-          "Organization"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -5721,7 +5721,7 @@
         "description": "Retrieve a list of user permissions in the current organization.",
         "operationId": "get_permissions",
         "tags": [
-          "Organization"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -5790,7 +5790,7 @@
         "description": "List commercial facilities in the current organization with pagination and filtering options.",
         "operationId": "get_commercial_facilities",
         "tags": [
-          "Organization"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -5904,7 +5904,7 @@
         "description": "Retrieve details about a specific commercial facility in the current organization including their related their associated facilities.",
         "operationId": "get_commercial_facility",
         "tags": [
-          "Organization"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -5967,7 +5967,7 @@
         "description": "Retrieve a list of entities in the current organization with pagination and filtering options.",
         "operationId": "get_organization_entities",
         "tags": [
-          "Organization"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -6036,7 +6036,7 @@
         "description": "Retrieve a list of facilities in the current organization with pagination and filtering options.",
         "operationId": "get_organization_facilities",
         "tags": [
-          "Organization"
+          "Organizations"
         ],
         "parameters": [
           {
@@ -6105,7 +6105,7 @@
         "description": "Retrieve a list of currencies with pagination.",
         "operationId": "get_currencies",
         "tags": [
-          "Currency"
+          "Currencies"
         ],
         "parameters": [
           {
@@ -6174,7 +6174,7 @@
         "description": "Retrieve the exchange rate between two currencies and convert a value.",
         "operationId": "convert_currency",
         "tags": [
-          "Currency"
+          "Currencies"
         ],
         "requestBody": {
           "required": true,
@@ -6504,7 +6504,7 @@
         "description": "Check the server health.",
         "operationId": "ping",
         "tags": [
-          "Service"
+          "Services"
         ],
         "responses": {
           "200": {
@@ -6546,7 +6546,7 @@
         "description": "Retrieve a paginated list of jobs.",
         "operationId": "get_jobs",
         "tags": [
-          "Service"
+          "Services"
         ],
         "parameters": [
           {
@@ -6643,7 +6643,7 @@
         "description": "Retrieve a single job by ID.",
         "operationId": "get_job",
         "tags": [
-          "Service"
+          "Services"
         ],
         "parameters": [
           {
@@ -6706,7 +6706,7 @@
         "description": "Retrieve a paginated list of requests.",
         "operationId": "get_requests",
         "tags": [
-          "Service"
+          "Services"
         ],
         "parameters": [
           {
@@ -6836,7 +6836,7 @@
         "description": "Retrieve a single request by ID.",
         "operationId": "get_request",
         "tags": [
-          "Service"
+          "Services"
         ],
         "parameters": [
           {
@@ -8835,7 +8835,7 @@
         "description": "Retrieve a list of entities with pagination and filtering options.",
         "operationId": "get_entities",
         "tags": [
-          "Entity"
+          "Entities"
         ],
         "parameters": [
           {
@@ -8940,7 +8940,7 @@
         "description": "Retrieve details about a specific entity including associated producer, carrier, marketer and other entity types.",
         "operationId": "get_entity",
         "tags": [
-          "Entity"
+          "Entities"
         ],
         "parameters": [
           {
@@ -9003,7 +9003,7 @@
         "description": "Retrieve a list of business lines with pagination and filtering options.",
         "operationId": "get_business_lines",
         "tags": [
-          "Entity"
+          "Entities"
         ],
         "parameters": [
           {
