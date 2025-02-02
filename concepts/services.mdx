@@ -1,0 +1,39 @@
+---
+title: "Services"
+description: "Learn how services are modeled and represented in Flux OS."
+---
+
+### Overview
+
+The Flux OS service provides service endpoints that enable developers to build applications easier and integrate more reliably with the platform.
+
+### Ping Endpoint
+
+Flux provides a simple ping endpoint that allows external systems to verify the API service is up and running. This endpoint can be used for:
+
+- Health checks from monitoring systems
+- Validating connectivity before starting data transfers
+- Confirming API availability during system integration
+- Basic service status monitoring
+
+The ping endpoint returns a simple response indicating the service is operational, making it ideal for automated monitoring and alerting systems.
+
+### Jobs
+
+Flux employs queuing technology to maintain:
+
+- FIFO (First In, First Out) order
+- Equitable resource distribution across organizations
+
+Every create, update, or cancel request initiates a Job. Jobs manage the asynchronous processing of truck, meter, and tank tickets. Job viewing endpoints facilitate the monitoring of these tasks, ensuring the Flux platform and your system remain reliable and synchronized.
+
+### Requests
+
+Flux OS logs every request made to its endpoints for full auditing purposes. This logging includes details such as:
+
+- Request method (GET, POST, PUT, DELETE, PATCH)
+- Status code of the response
+- Timestamp of the request
+- User, organization, and api key making the request
+
+This comprehensive logging allows for complete traceability and auditing of all interactions with the Flux OS service. It helps in monitoring, debugging, and ensuring compliance with regulatory requirements. The request logs can be filtered and paginated, making it easy to retrieve and analyze specific requests based on various criteria.
