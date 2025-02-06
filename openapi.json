@@ -7226,12 +7226,12 @@
           },
           {
             "in": "query",
-            "name": "status",
+            "name": "status_id",
             "schema": {
-              "type": "string"
+              "type": "integer"
             },
             "required": false,
-            "description": "Filter by ticket status name"
+            "description": "Filter by ticket status ID"
           },
           {
             "in": "query",
@@ -7242,6 +7242,15 @@
             },
             "required": false,
             "description": "Filter by production date (YYYY-MM-DD)"
+          },
+          {
+            "in": "query",
+            "name": "external_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Filter by external ID"
           },
           {
             "in": "query",
@@ -7723,12 +7732,12 @@
           },
           {
             "in": "query",
-            "name": "status",
+            "name": "status_id",
             "schema": {
-              "type": "string"
+              "type": "integer"
             },
             "required": false,
-            "description": "Filter by ticket status name"
+            "description": "Filter by ticket status ID"
           },
           {
             "in": "query",
@@ -7739,6 +7748,15 @@
             },
             "required": false,
             "description": "Filter by production date (YYYY-MM-DD)"
+          },
+          {
+            "in": "query",
+            "name": "external_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Filter by external ID"
           },
           {
             "in": "query",
@@ -8127,12 +8145,12 @@
           },
           {
             "in": "query",
-            "name": "status",
+            "name": "status_id",
             "schema": {
-              "type": "string"
+              "type": "integer"
             },
             "required": false,
-            "description": "Filter by ticket status name"
+            "description": "Filter by ticket status ID"
           },
           {
             "in": "query",
@@ -8143,6 +8161,15 @@
             },
             "required": false,
             "description": "Filter by production date (YYYY-MM-DD)"
+          },
+          {
+            "in": "query",
+            "name": "external_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Filter by external ID"
           },
           {
             "in": "query",
