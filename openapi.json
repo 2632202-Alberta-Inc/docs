@@ -2845,21 +2845,15 @@
             "type": "string",
             "readOnly": true
           },
-          "product_category": {
-            "type": "integer"
-          },
-          "facility": {
-            "type": "integer"
-          },
+          "product_category": {},
+          "facility": {},
           "density_min": {
             "type": "number"
           },
           "density_max": {
             "type": "number"
           },
-          "density_measurement_unit": {
-            "type": "integer"
-          },
+          "density_measurement_unit": {},
           "bsw_min": {
             "type": "number",
             "default": null,
@@ -2871,12 +2865,16 @@
             "nullable": true
           },
           "bsw_measurement_unit": {
-            "type": "integer"
+            "default": null,
+            "nullable": true
           }
         },
         "required": [
           "density_max",
-          "density_min"
+          "density_measurement_unit",
+          "density_min",
+          "facility",
+          "product_category"
         ]
       },
       "Currency_ReferenceCurrency": {
@@ -6414,7 +6412,7 @@
     "/products/categories/specifications": {
       "get": {
         "summary": "List Product Category Specifications",
-        "description": "Retrieve a list of product category specifications in the current organization with pagination and filtering options.",
+        "description": "Retrieve a list of product category specifications with pagination and filtering options.",
         "operationId": "get_product_categories_specifications",
         "tags": [
           "Products"
@@ -6480,6 +6478,69 @@
                           "type": "integer"
                         }
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/products/categories/specifications/{id}": {
+      "get": {
+        "summary": "Retrieve a Product Category Specification",
+        "description": "Retrieve details of a specific product category specification, including its measurement bounds and units.",
+        "operationId": "product_category_specification",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The ID of the product category specification."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details of the product category specification.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Products_ProductCategorySpecification"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product category specification not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Product category specification not found."
                     }
                   }
                 }
