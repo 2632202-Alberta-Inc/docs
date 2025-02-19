@@ -3636,6 +3636,10 @@
           },
           "codes": {
             "readOnly": true
+          },
+          "product_category_id": {
+            "type": "integer",
+            "readOnly": true
           }
         },
         "required": [
@@ -4411,6 +4415,10 @@
             "nullable": true
           },
           "codes": {
+            "readOnly": true
+          },
+          "product_category_id": {
+            "type": "integer",
             "readOnly": true
           }
         },
