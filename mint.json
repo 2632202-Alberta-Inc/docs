@@ -125,7 +125,8 @@
           "pages": [
             "api-reference/products/list-product-categories",
             "api-reference/products/get-product-category",
-            "api-reference/products/list-product-category-specifications"
+            "api-reference/products/list-product-category-specifications",
+            "api-reference/products/get-product-category-specification"
           ]
         },
         {
