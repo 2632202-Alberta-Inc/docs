@@ -6498,9 +6498,9 @@
     },
     "/products/categories/specifications/{id}": {
       "get": {
-        "summary": "Retrieve a Product Category Specification",
+        "summary": "Get Product Category Specification",
         "description": "Retrieve details of a specific product category specification, including its measurement bounds and units.",
-        "operationId": "product_category_specification",
+        "operationId": "get_product_category_specification",
         "tags": [
           "Products"
         ],
