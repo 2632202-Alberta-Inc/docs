@@ -3637,7 +3637,7 @@
           "codes": {
             "readOnly": true
           },
-          "product_category_id": {
+          "product_category": {
             "type": "integer",
             "readOnly": true
           }
@@ -4417,7 +4417,7 @@
           "codes": {
             "readOnly": true
           },
-          "product_category_id": {
+          "product_category": {
             "type": "integer",
             "readOnly": true
           }
