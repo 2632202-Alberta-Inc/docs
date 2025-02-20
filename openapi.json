@@ -698,7 +698,7 @@
           "short_code"
         ]
       },
-      "FacilityReference1": {
+      "CommercialFacilityReference": {
         "type": "object",
         "properties": {
           "id": {
@@ -707,11 +707,6 @@
           },
           "name": {
             "type": "string"
-          },
-          "regulator_id": {
-            "type": "string",
-            "default": null,
-            "nullable": true
           }
         },
         "required": [
@@ -740,11 +735,14 @@
             "type": "string",
             "readOnly": true
           },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationReference"
+          },
           "product_category": {
             "$ref": "#/components/schemas/ProductCategoryReference"
           },
-          "facility": {
-            "$ref": "#/components/schemas/FacilityReference1"
+          "commercial_facility": {
+            "$ref": "#/components/schemas/CommercialFacilityReference"
           },
           "density_min": {
             "type": "number"
@@ -878,6 +876,26 @@
         },
         "required": [
           "legal_name"
+        ]
+      },
+      "FacilityReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "regulator_id": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
         ]
       },
       "WellReference": {
@@ -1534,21 +1552,6 @@
         "required": [
           "first_name",
           "last_name"
-        ]
-      },
-      "CommercialFacilityReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name"
         ]
       },
       "MeterReference": {
@@ -2861,8 +2864,9 @@
             "type": "string",
             "readOnly": true
           },
+          "organization": {},
           "product_category": {},
-          "facility": {},
+          "commercial_facility": {},
           "density_min": {
             "type": "number"
           },
@@ -2886,10 +2890,11 @@
           }
         },
         "required": [
+          "commercial_facility",
           "density_max",
           "density_measurement_unit",
           "density_min",
-          "facility",
+          "organization",
           "product_category"
         ]
       },
@@ -6436,7 +6441,7 @@
     "/products/categories/specifications": {
       "get": {
         "summary": "List Product Category Specifications",
-        "description": "Retrieve a list of product category specifications with pagination and filtering options.",
+        "description": "Retrieve a list of product category specifications in the current organization with pagination and filtering options.",
         "operationId": "get_product_categories_specifications",
         "tags": [
           "Products"
@@ -6523,7 +6528,7 @@
     "/products/categories/specifications/{id}": {
       "get": {
         "summary": "Get Product Category Specification",
-        "description": "Retrieve details of a specific product category specification, including its measurement bounds and units.",
+        "description": "Retrieve details of a specific product category specification in the current organization, including its measurement bounds and units.",
         "operationId": "get_product_category_specification",
         "tags": [
           "Products"
