@@ -1856,6 +1856,14 @@
             "items": {
               "$ref": "#/components/schemas/TruckTicketErrorReference"
             }
+          },
+          "product_category": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProductCategoryReference"
+              }
+            ]
           }
         },
         "required": [
@@ -2228,6 +2236,14 @@
             "items": {
               "$ref": "#/components/schemas/TruckTicketErrorReference"
             }
+          },
+          "product_category": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProductCategoryReference"
+              }
+            ]
           }
         },
         "required": [
