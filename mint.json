@@ -125,8 +125,8 @@
           "pages": [
             "api-reference/products/list-product-categories",
             "api-reference/products/get-product-category",
-            "api-reference/products/list-product-category-specifications",
-            "api-reference/products/get-product-category-specification"
+            "api-reference/products/list-product-category-commercial-bands",
+            "api-reference/products/get-product-category-commercial-band"
           ]
         },
         {
