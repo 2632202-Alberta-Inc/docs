@@ -728,7 +728,7 @@
           "abbreviation"
         ]
       },
-      "Products_ProductCategorySpecification": {
+      "Products_CommercialBand": {
         "type": "object",
         "properties": {
           "id": {
@@ -754,20 +754,18 @@
             "$ref": "#/components/schemas/MeasurementUnitReference"
           },
           "bsw_min": {
-            "type": "number",
-            "default": null,
-            "nullable": true
+            "type": "number"
           },
           "bsw_max": {
-            "type": "number",
-            "default": null,
-            "nullable": true
+            "type": "number"
           },
           "bsw_measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference"
           }
         },
         "required": [
+          "bsw_max",
+          "bsw_min",
           "density_max",
           "density_min"
         ]
@@ -2857,7 +2855,7 @@
           "short_code"
         ]
       },
-      "Products_ReferenceProductCategorySpecification": {
+      "Products_ReferenceCommercialBand": {
         "type": "object",
         "properties": {
           "id": {
@@ -2875,14 +2873,10 @@
           },
           "density_measurement_unit": {},
           "bsw_min": {
-            "type": "number",
-            "default": null,
-            "nullable": true
+            "type": "number"
           },
           "bsw_max": {
-            "type": "number",
-            "default": null,
-            "nullable": true
+            "type": "number"
           },
           "bsw_measurement_unit": {
             "default": null,
@@ -2890,6 +2884,8 @@
           }
         },
         "required": [
+          "bsw_max",
+          "bsw_min",
           "commercial_facility",
           "density_max",
           "density_measurement_unit",
@@ -6438,11 +6434,11 @@
         }
       }
     },
-    "/products/categories/specifications": {
+    "/products/categories/commercial-bands": {
       "get": {
-        "summary": "List Product Category Specifications",
-        "description": "Retrieve a list of product category specifications in the current organization with pagination and filtering options.",
-        "operationId": "get_product_categories_specifications",
+        "summary": "List Product Category Commercial Bands",
+        "description": "Retrieve a list of product category commercial bands in the current organization with pagination and filtering options.",
+        "operationId": "get_product_categories_commercial_bands",
         "tags": [
           "Products"
         ],
@@ -6469,17 +6465,17 @@
           },
           {
             "in": "query",
-            "name": "facility_id",
+            "name": "commercial_facility_id",
             "schema": {
               "type": "integer"
             },
             "required": false,
-            "description": "Filter by facility ID"
+            "description": "Filter by commercial facility ID"
           }
         ],
         "responses": {
           "200": {
-            "description": "A paginated list of product category specifications.",
+            "description": "A paginated list of product category commercial bands.",
             "content": {
               "application/json": {
                 "schema": {
@@ -6488,7 +6484,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Products_ReferenceProductCategorySpecification"
+                        "$ref": "#/components/schemas/Products_ReferenceCommercialBand"
                       }
                     },
                     "meta": {
@@ -6525,11 +6521,11 @@
         }
       }
     },
-    "/products/categories/specifications/{id}": {
+    "/products/categories/commercial-bands/{id}": {
       "get": {
-        "summary": "Get Product Category Specification",
-        "description": "Retrieve details of a specific product category specification in the current organization, including its measurement bounds and units.",
-        "operationId": "get_product_category_specification",
+        "summary": "Get Product Category Commercial Band",
+        "description": "Retrieve details of a specific product category commercial band in the current organization, including its measurement bounds and units.",
+        "operationId": "get_product_category_commercial_band",
         "tags": [
           "Products"
         ],
@@ -6541,19 +6537,19 @@
               "type": "integer"
             },
             "required": true,
-            "description": "The ID of the product category specification."
+            "description": "The ID of the product category commercial band."
           }
         ],
         "responses": {
           "200": {
-            "description": "Details of the product category specification.",
+            "description": "Details of the product category commercial band.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Products_ProductCategorySpecification"
+                      "$ref": "#/components/schemas/Products_CommercialBand"
                     }
                   }
                 }
@@ -7476,6 +7472,15 @@
             },
             "required": false,
             "description": "Filter by meter ID"
+          },
+          {
+            "in": "query",
+            "name": "ticket_code",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by ticket code"
           }
         ],
         "responses": {
@@ -8368,6 +8373,15 @@
             },
             "required": false,
             "description": "Filter by meter ID"
+          },
+          {
+            "in": "query",
+            "name": "ticket_code",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Filter by ticket code"
           }
         ],
         "responses": {
