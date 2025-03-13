@@ -53,13 +53,13 @@
         "concepts/pricing",
         "concepts/deals",
         "concepts/contracts",
-        "concepts/messages",
         "concepts/regulatory",
         "concepts/facilities",
         "concepts/wells",
         "concepts/products",
         "concepts/measurements",
         "concepts/volumes",
+        "concepts/messages",
         "concepts/integrations",
         "concepts/services"
       ]
@@ -67,16 +67,6 @@
     {
       "group": "API Reference",
       "pages": [
-        {
-          "group": "Services",
-          "pages": [
-            "api-reference/services/ping-server",
-            "api-reference/services/list-jobs",
-            "api-reference/services/get-job",
-            "api-reference/services/list-requests",
-            "api-reference/services/get-request"
-          ]
-        },
         {
           "group": "Organizations",
           "pages": [
@@ -136,24 +126,6 @@
           ]
         },
         {
-          "group": "Messages",
-          "pages": [
-            "api-reference/messages/list-threads",
-            "api-reference/messages/get-thread",
-            "api-reference/messages/list-thread-types",
-            "api-reference/messages/list-messages",
-            "api-reference/messages/get-message"
-          ]
-        },
-        {
-          "group": "Entities",
-          "pages": [
-            "api-reference/entities/list-entities",
-            "api-reference/entities/get-entity",
-            "api-reference/entities/list-business-lines"
-          ]
-        },
-        {
           "group": "Facilities",
           "pages": [
             "api-reference/facilities/list-facilities",
@@ -170,13 +142,11 @@
           ]
         },
         {
-          "group": "Measurements",
+          "group": "Entities",
           "pages": [
-            "api-reference/measurements/list-measurement-types",
-            "api-reference/measurements/list-measurement-properties",
-            "api-reference/measurements/list-measurement-units",
-            "api-reference/measurements/get-measurement-unit",
-            "api-reference/measurements/convert-between-measurement-units"
+            "api-reference/entities/list-entities",
+            "api-reference/entities/get-entity",
+            "api-reference/entities/list-business-lines"
           ]
         },
         {
@@ -195,6 +165,16 @@
           "pages": [
             "api-reference/streams/list-streams",
             "api-reference/streams/get-stream"
+          ]
+        },
+        {
+          "group": "Measurements",
+          "pages": [
+            "api-reference/measurements/list-measurement-types",
+            "api-reference/measurements/list-measurement-properties",
+            "api-reference/measurements/list-measurement-units",
+            "api-reference/measurements/get-measurement-unit",
+            "api-reference/measurements/convert-between-measurement-units"
           ]
         },
         {
@@ -226,6 +206,16 @@
           ]
         },
         {
+          "group": "Messages",
+          "pages": [
+            "api-reference/messages/list-threads",
+            "api-reference/messages/get-thread",
+            "api-reference/messages/list-thread-types",
+            "api-reference/messages/list-messages",
+            "api-reference/messages/get-message"
+          ]
+        },
+        {
           "group": "Integrations",
           "pages": [
             "api-reference/integrations/search-lookups",
@@ -254,6 +244,16 @@
             "api-reference/integrations/get-well-lookup",
             "api-reference/integrations/create-well-lookup",
             "api-reference/integrations/update-well-lookup"
+          ]
+        },
+        {
+          "group": "Services",
+          "pages": [
+            "api-reference/services/ping-server",
+            "api-reference/services/list-jobs",
+            "api-reference/services/get-job",
+            "api-reference/services/list-requests",
+            "api-reference/services/get-request"
           ]
         }
       ]
