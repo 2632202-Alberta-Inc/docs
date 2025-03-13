@@ -89,6 +89,47 @@
           ]
         },
         {
+          "group": "Currencies",
+          "pages": [
+            "api-reference/currencies/list-currencies",
+            "api-reference/currencies/convert-between-currencies"
+          ]
+        },
+        {
+          "group": "Pricing",
+          "pages": [
+            "api-reference/pricing/list-wadfs",
+            "api-reference/pricing/get-wadf",
+            "api-reference/pricing/list-wadf-types",
+            "api-reference/pricing/list-equalizations",
+            "api-reference/pricing/get-equalization",
+            "api-reference/pricing/list-pricing-bases"
+          ]
+        },
+        {
+          "group": "Deals",
+          "pages": [
+            "api-reference/deals/list-deals",
+            "api-reference/deals/get-deal"
+          ]
+        },
+        {
+          "group": "Contracts",
+          "pages": [
+            "api-reference/contracts/list-contracts",
+            "api-reference/contracts/get-contract",
+            "api-reference/contracts/list-contract-statuses",
+            "api-reference/contracts/list-contract-roles",
+            "api-reference/contracts/list-contract-terms",
+            "api-reference/contracts/list-contract-transaction-types",
+            "api-reference/contracts/list-contract-transport-modes",
+            "api-reference/contracts/list-contract-legal-provision-types",
+            "api-reference/contracts/list-contract-pricing-provision-types",
+            "api-reference/contracts/list-contract-logical-operators",
+            "api-reference/contracts/list-contract-comparison-operators"
+          ]
+        },
+        {
           "group": "Entities",
           "pages": [
             "api-reference/entities/list-entities",
@@ -115,6 +156,8 @@
         {
           "group": "Measurements",
           "pages": [
+            "api-reference/measurements/list-measurement-types",
+            "api-reference/measurements/list-measurement-properties",
             "api-reference/measurements/list-measurement-units",
             "api-reference/measurements/get-measurement-unit",
             "api-reference/measurements/convert-between-measurement-units"
@@ -126,7 +169,9 @@
             "api-reference/products/list-product-categories",
             "api-reference/products/get-product-category",
             "api-reference/products/list-product-category-commercial-bands",
-            "api-reference/products/get-product-category-commercial-band"
+            "api-reference/products/get-product-category-commercial-band",
+            "api-reference/products/get-product-category-mechanical-band",
+            "api-reference/products/list-product-category-mechanical-bands"
           ]
         },
         {
@@ -162,13 +207,6 @@
             "api-reference/volumes/create-tank-ticket",
             "api-reference/volumes/update-tank-ticket",
             "api-reference/volumes/cancel-tank-ticket"
-          ]
-        },
-        {
-          "group": "Currencies",
-          "pages": [
-            "api-reference/currencies/list-currencies",
-            "api-reference/currencies/convert-between-currencies"
           ]
         },
         {
