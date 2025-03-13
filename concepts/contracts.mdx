@@ -7,26 +7,40 @@ description: "Learn how contracts are modeled and represented in Flux OS."
 
 Contracts are the core of the Flux OS commercial platform, representing a commercial agreement between parties for the purchase or sale of a product.
 
-#### Anatomy of a Contract
-
 - **Contract**: The central element of a commercial agreement, encompassing:
 
   - **Status**: Indicates the current state of the contract (e.g., Draft, Created, Pending Approval, Sent, Pending Confirmation, Active).
   - **Term**: Defines the duration and nature of the contract (e.g., Evergreen, Spot, Fixed Term).
   - **Transaction Type**: Specifies the nature of the commercial agreement (e.g., Sell, Buy).
-  - **Parties Involved**: Includes various roles such as Seller, Buyer, Producer, and Negotiator, each with specific responsibilities and permissions.
-  - **Profit Shares**: Agreements specifying the percentage of profit to be shared among parties.
-  - **Pricing Provisions**: Conditions and terms related to pricing.
-  - **Legal Provisions**: Legal conditions and terms included in the contract.
-  - **Linked Message Threads**: For communication between parties.
+  - **Parties**: Includes various roles such as Seller, Buyer, Producer, and Negotiator, each with specific responsibilities and permissions.
 
 - **Schedule**: Details the production months and associated line items for the contract.
 
-- **Line Item**: Specifies the product, volume, pricing basis, and other relevant information.
+- **Line Item**: Specifies the product, volume, pricing basis, and other relevant information, including:
 
-- **Contract Paper**: Legal documents and general terms and conditions that provide the legal framework for the contract.
+  - **Premiums**: Additional payments made between parties
+  - **Fees**: Various charges including Flat Fee, Percentage Based Fee, or Volume Based Fee
+  - **Pricing Basis**: The basis for pricing, connected to the PricingBasis model.
+  - **Differentials & Indexes**: Differential unit amount, differential currency, differential measurement unit, percentage of index, percentage of index measurement unit.
+  - **Currencies**: Settlement currency, differential currency.
+  - **Equalizations**: An equalization pricing model.
+  - **WADFs**: Stream WADF, Feeder WADF.
 
-Each contract is associated with a **Deal**, which groups multiple contracts together to represent a trader's strategy. Contracts are linked to a **Deal** and can have various **Parties** involved, each with specific roles such as Seller, Buyer, Producer, and Negotiator. Additionally, contracts can include **Profit Shares** that specify the percentage of profit to be shared among the parties involved.
+- **Transportation**: Details about the transportation arrangements involved in the contract, including:
+
+  - **Transport Chains**: A series of transport legs that together form a complete transportation route.
+  - **Transport Legs**: Individual segments of a transport chain, specifying the source, destination, mode of transport, planned volume, and custodian details.
+
+- **Profit Shares**: Agreements specifying the percentage of profit to be shared among parties.
+
+- **Paper**: Legal documents and general terms and conditions that provide the legal framework for the contract, including:
+
+  - **Pricing Provisions**: Conditions and terms related to pricing.
+  - **Legal Provisions**: Legal conditions and terms included in the contract.
+
+- **Deal**: A collection of contracts that represent a trader's strategy.
+
+- **Message**: Messages and notes associated with the contract.
 
 ### Contract Statuses
 
