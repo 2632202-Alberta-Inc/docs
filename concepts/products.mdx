@@ -5,23 +5,22 @@ description: "Learn how products are modeled and represented in Flux OS."
 
 ### Overview
 
-Flux manages products through two distinct "swim lanes" - physical and commercial - reflecting the separation between actual product characteristics and market requirements.
+Flux OS manages products through two distinct "swim lanes":
+
+1. **Physical**
+
+   - Represents actual, measurable characteristics of products
+   - Represented by **Product Categories** that classify incoming products
+   - Controlled by **Mechanical Bands** that define facility-level mechanical limits
+
+2. **Commercial**
+   - Defines how products are classified and traded in the market
+   - Organized into **Streams** that represent standardized market classifications
+   - Governed by **Commercial Bands** that specify quality requirements for trading
 
 ### Product Categories (Physical Characteristics)
 
-Product categories represent are classifications of actual measurable characteristics of products as they enter facilities.
-
-### Product Category Specifications (Physical Characteristics)
-
-Each commercial facility defines acceptable ranges for physical specifications of incoming products based on their equipment capabilities and downstream connectivity. For example, this may be:
-
-- Density (kg/m³)
-- Viscosity
-- H2S content (Sour Rating)
-- Basic Sediment & Water (BSW)
-- Total Acid Number (TAN)
-
-For example, a product with 780kg/m³ density, 0.02wt% Sulphur, and 0.6% BSW would be physically classified as a "Crudensate Emulsion" due to its characteristics falling between crude and condensate specifications, with BSW > 0.5%.
+Product categories are classifications of actual measurable characteristics of products.
 
 ### Streams (Commercial Representations)
 
@@ -31,15 +30,16 @@ Streams represent standardized market classifications with strict quality requir
 - Premium Condensate
 - Light Sour Blend
 
-### Stream Specifications (Commercial Representations)
+### Commercial Bands
 
-Each stream has strict bounds on physical properties that are standardized across the industry. These specifications define the acceptable ranges for properties like density, sulphur content, and viscosity that must be met for commercial delivery.
+Commercial bands are defined at the commercial facility level, setting property ranges that classify products from a commercial perspective for both inbound and outbound purposes. These include:
 
-### Commercial Arrangements
+- Density (kg/m³)
+- H2S
+- BSW
 
-The commercial and physical aspects can operate independently:
+For example, products with 780 kg/m³ density, 0.02 wt% Sulphur, and 0.6% BSW may be classified as "Crudensate Emulsion" based on the measurement of the physical properties of the product and the range of properties defined in the commercial band at that commercial facility.
 
-- Input Arrangements: Products can be purchased based on stream pricing (e.g., MSW index) regardless of their physical characteristics
-- Output Arrangements: All sold volumes must strictly meet stream specifications for delivery.
+### Mechanical Bands
 
-This separation allows for flexible purchase arrangements while maintaining strict quality control on sales, enabling facilities to blend various input products to meet commercial stream requirements.
+Mechanical bands are set at the facility level, representing actual mechanical limitations of the equipment. This is crucial for optimization and blending purposes, otherwise avoiding being shut in or encountering safety issues due to mechanical limitations.

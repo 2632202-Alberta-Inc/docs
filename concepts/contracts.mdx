@@ -23,8 +23,8 @@ Contracts are the core of the Flux OS commercial platform, representing a commer
   - **Pricing Basis**: The basis for pricing, connected to the PricingBasis model.
   - **Differentials & Indexes**: Differential unit amount, differential currency, differential measurement unit, percentage of index, percentage of index measurement unit.
   - **Currencies**: Settlement currency, differential currency.
-  - **Equalizations**: An equalization pricing model.
-  - **WADFs**: Stream WADF, Feeder WADF.
+  - **Equalizations**: Equalizations adjust pricing to balance differences in factors like quality, ensuring fair transactions. They are applied within contracts to align pricing with agreed-upon terms.
+  - **WADFs**: Weighted Average Differential Factors (WADFs) adjust pricing based on weighted variables such as stream quality. WADFs ensure consistency and accuracy in contract pricing calculations.
 
 - **Transportation**: Details about the transportation arrangements involved in the contract, including:
 
@@ -151,6 +151,6 @@ Contracts can include legal provisions that add specific legal conditions and te
 
 Contracts are associated with a legal document, consisting of general terms and conditions and legal provisions (pricing provisions, legal provisions, etc). These documents provide the legal framework for the contract and are exportable to PDF.
 
-### Messaging
+### Contract Messages
 
 Contracts can be linked to message threads for communication between parties. This allows for efficient and organized communication regarding the contract, as well as an easy way to track and manage the conversation history within the contract.
