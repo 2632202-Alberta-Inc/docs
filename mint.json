@@ -49,6 +49,9 @@
       "pages": [
         "concepts/overview",
         "concepts/organizations",
+        "concepts/deals",
+        "concepts/contracts",
+        "concepts/messages",
         "concepts/regulatory",
         "concepts/facilities",
         "concepts/wells",
