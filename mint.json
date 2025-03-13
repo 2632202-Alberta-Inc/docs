@@ -130,6 +130,16 @@
           ]
         },
         {
+          "group": "Messages",
+          "pages": [
+            "api-reference/messages/list-threads",
+            "api-reference/messages/get-thread",
+            "api-reference/messages/list-thread-types",
+            "api-reference/messages/list-messages",
+            "api-reference/messages/get-message"
+          ]
+        },
+        {
           "group": "Entities",
           "pages": [
             "api-reference/entities/list-entities",
