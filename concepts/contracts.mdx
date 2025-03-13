@@ -4,3 +4,139 @@ description: "Learn how contracts are modeled and represented in Flux OS."
 ---
 
 ### Overview
+
+Contracts are the core of the Flux OS commercial platform, representing a commercial agreement between parties for the purchase or sale of a product.
+
+#### Anatomy of a Contract
+
+- **Contract**: The central element of a commercial agreement, encompassing:
+
+  - **Status**: Indicates the current state of the contract (e.g., Draft, Created, Pending Approval, Sent, Pending Confirmation, Active).
+  - **Term**: Defines the duration and nature of the contract (e.g., Evergreen, Spot, Fixed Term).
+  - **Transaction Type**: Specifies the nature of the commercial agreement (e.g., Sell, Buy).
+  - **Parties Involved**: Includes various roles such as Seller, Buyer, Producer, and Negotiator, each with specific responsibilities and permissions.
+  - **Profit Shares**: Agreements specifying the percentage of profit to be shared among parties.
+  - **Pricing Provisions**: Conditions and terms related to pricing.
+  - **Legal Provisions**: Legal conditions and terms included in the contract.
+  - **Linked Message Threads**: For communication between parties.
+
+- **Schedule**: Details the production months and associated line items for the contract.
+
+- **Line Item**: Specifies the product, volume, pricing basis, and other relevant information.
+
+- **Contract Paper**: Legal documents and general terms and conditions that provide the legal framework for the contract.
+
+Each contract is associated with a **Deal**, which groups multiple contracts together to represent a trader's strategy. Contracts are linked to a **Deal** and can have various **Parties** involved, each with specific roles such as Seller, Buyer, Producer, and Negotiator. Additionally, contracts can include **Profit Shares** that specify the percentage of profit to be shared among the parties involved.
+
+### Contract Statuses
+
+Contracts can have different statuses such as Draft, Created, Pending Approval, Sent, Pending Confirmation, Active and Closed. These statuses help track the progress and current state of the contract.
+
+### Contract Terms
+
+Contracts can have different terms such as Evergreen, Spot, and Fixed Term. These terms define the duration and nature of the contract.
+
+### Contract Schedules
+
+Contracts include schedules that specify the production months and associated line items. Each line item details the product, volume, pricing basis, and other relevant information. A spot deal will have a single schedule, while a fixed term deal will have multiple schedules, one for each month of the contract term. Evergreen contracts will generate a schedule each month until the contract is closed.
+
+### Contract Line Items
+
+Contracts include line items detailing the product category, stream, volume, pricing basis, measurement units, differential amounts, index percentages, settlement currency, equalization metrics, and WADF references. Each line item is linked to a schedule (one schedule per production month).
+
+### Premium
+
+Contracts can include premiums, which are additional payments made by one party to another. Premiums are associated with a line item and can be paid by or paid to a specific organization.
+
+### Fees
+
+Contracts can include fees, which are charges made by one party to another. Fees are associated with a line item and can be paid by or paid to a specific organization.
+
+#### Fee Category
+
+Fee categories define the type of fee, such as Flat Fee, Percentage Based Fee, or Volume Based Fee. Each fee category has a unique short code for identification.
+
+#### Fee Type
+
+Fee types define the specific type of fee, such as Trucking Fee, Tariff Fee, etc. Each fee type is associated with a fee category and has a unique short code for identification.
+
+### Transportation
+
+Contracts line items include transportation information, including transport chains, transport modes, transport legs, and transport chain metrics.
+
+#### Transport Chain
+
+A transport chain is a collection of transport legs that represent a single transportation route. Each line item may have many transport chains, and each transport chain may have many legs. The purpose of a transport chain is to track the volume of product being transported from the source to the destination, the fees associated with the transportation service, the custodian responsible for the product during the leg, and the carrier responsible for physically transporting the product.
+
+#### Transport Mode
+
+Transport modes define the mode of transportation, such as Truck, Pipeline, Rail, etc. Each transport mode has a unique short code for identification.
+
+#### Transport Leg
+
+A transport leg is a single transportation segment of a transport chain. The first leg of a transport chain is the source leg, and the last leg of a transport chain is the destination leg. Each transport leg includes detailed information about the source and destination facilities, the mode of transportation, the volume of product being transported, and the custodian responsible for the product during the leg.
+
+- **Source Facility**: The starting point of the transport leg, which can be a well, a commercial facility, or another type of facility.
+- **Destination Facility**: The endpoint of the transport leg, which can be a commercial facility or another type of facility.
+- **Mode of Transportation**: The method used to transport the product, such as truck, pipeline, rail, etc.
+- **Volume**: The quantity of product being transported, measured in specific units. The sum of the volumes of all chains must equal the line item volume.
+- **Custodian**: The organization or entity responsible for the product during the transport leg. This includes details about the custodian organization, entity, and where custody transfer occurs.
+- **Carrier**: The organization, entity, or user responsible for physically transporting the product. This can include details about the carrier organization, entity, and user.
+- **Chain Source and Destination**: Flags indicating whether the transport leg is the source or destination of the entire transport chain.
+- **Fees**: Any fees associated with the transport leg, which can include various types of charges for the transportation service.
+
+Each transport leg is a critical component of the overall transport chain, ensuring that the product is moved efficiently and securely from the source to the destination.
+
+### Contract Roles
+
+Contracts involve various roles such as Seller, Buyer, Producer, and Negotiator. They may be associated with a user or organization.
+
+### Contract Transaction Types
+
+Contracts can represent different transaction types such as Sell and Buy. These transaction types define the nature of the commercial agreement.
+
+### Contract Parties
+
+Contracts involve multiple parties, including organizations and entities. Each party has a specific role and can be associated with users who act on behalf of the party.
+
+### Contract Profit Shares
+
+Contracts can include profit-sharing tracking between parties, specifying the percentage of profit to be shared amongst the parties involved.
+
+### Contract Pricing Provisions
+
+Contracts can include pricing provisions that add specific conditions and terms related to pricing based on measurable properties. These provisions are essential for defining how pricing is determined, adjusted, and enforced throughout the contract's lifecycle, while also providing the necessary data for optimization, real time position reporting, etc.
+
+The key components of pricing provisions include:
+
+- **Pricing Provision Type**: Specifies the type of pricing provision, such as Fee or Voidable. Fee types add a fee to the contract, while voidable types void the entirecontract.
+- **Line Item Association**: Links the pricing provision to a specific line item within the contract.
+- **Description**: Provides a detailed explanation of the pricing provision, which is generated automatically using AI for clarity and accuracy `Coming soon`.
+- **Fee**: Defines any fees associated with the pricing provision, including the amount and conditions under which the fee is applied.
+- **Conditions**: Defines the conditions under which the fee is applied, via condition groups, conditions, logical operators, comparison operators, etc.
+
+Additionally, pricing provisions can be grouped and nested using condition groups, which allow for complex logical combinations of conditions:
+
+- **Condition Group**: A collection of related conditions that can be combined using logical operators (AND, OR, XOR). Condition groups can be nested to create hierarchical structures.
+- **Logical Operator**: Specifies how the conditions within a group are combined, such as AND, OR, or XOR.
+- **Pricing Condition**: Individual conditions within a group that define specific criteria for pricing. Each condition includes:
+  - **Measurement Property**: The property being measured (e.g., volume, weight).
+  - **Measurement Unit**: The unit of measurement (e.g., liters, kilograms).
+  - **Comparison Operator**: The operator used to compare the measured value (e.g., greater than, less than, equal to).
+  - **Value**: The specific value being compared.
+
+For example, company A contracts company B to buy 1000 cubes of light oil. In their contract, company A adds a pricing provision as a fee of $3.00 per cube if the density of the volume is greater than 905 kg/m3. However, if the pricing provision type is voidable, company A can void the contract if the density is greater than 905 kg/m3.
+
+By incorporating these detailed pricing provisions, contracts can ensure precise and enforceable pricing terms that are tailored to the specific needs of the agreement. This is essential for optimization, which requires structured and definable conditions that affect prices based on measurable properties.
+
+### Contract Legal Provisions
+
+Contracts can include legal provisions that add specific legal conditions and terms to the contract. These provisions do not impact the pricing of the contract, but allow for the inclusion and customization of legal terms and conditions beyond the standard general terms and conditions.
+
+### Contract Paper
+
+Contracts are associated with a legal document, consisting of general terms and conditions and legal provisions (pricing provisions, legal provisions, etc). These documents provide the legal framework for the contract and are exportable to PDF.
+
+### Messaging
+
+Contracts can be linked to message threads for communication between parties. This allows for efficient and organized communication regarding the contract, as well as an easy way to track and manage the conversation history within the contract.

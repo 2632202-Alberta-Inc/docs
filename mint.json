@@ -105,8 +105,7 @@
             "api-reference/pricing/get-wadf",
             "api-reference/pricing/list-wadf-types",
             "api-reference/pricing/list-equalizations",
-            "api-reference/pricing/get-equalization",
-            "api-reference/pricing/list-pricing-bases"
+            "api-reference/pricing/get-equalization"
           ]
         },
         {
@@ -125,6 +124,9 @@
             "api-reference/contracts/list-contract-roles",
             "api-reference/contracts/list-contract-terms",
             "api-reference/contracts/list-contract-transaction-types",
+            "api-reference/contracts/list-contract-fee-categories",
+            "api-reference/contracts/list-contract-fee-types",
+            "api-reference/contracts/list-contract-pricing-bases",
             "api-reference/contracts/list-contract-transport-modes",
             "api-reference/contracts/list-contract-legal-provision-types",
             "api-reference/contracts/list-contract-pricing-provision-types",
