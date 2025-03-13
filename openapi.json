@@ -2821,7 +2821,6 @@
           },
           "term": {},
           "transaction_type": {},
-          "deal": {},
           "start_date": {
             "type": "string",
             "format": "date"
@@ -2834,7 +2833,6 @@
           }
         },
         "required": [
-          "deal",
           "external_id",
           "organization",
           "start_date",
@@ -2995,6 +2993,44 @@
         },
         "required": [
           "organization"
+        ]
+      },
+      "ContractReference2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "external_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "organization": {},
+          "status": {
+            "default": 1
+          },
+          "term": {},
+          "transaction_type": {},
+          "deal": {},
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "deal",
+          "external_id",
+          "organization",
+          "start_date",
+          "term",
+          "transaction_type"
         ]
       },
       "ContractScheduleReference1": {
@@ -3206,7 +3242,7 @@
           "contracts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ContractReference1"
+              "$ref": "#/components/schemas/ContractReference2"
             }
           },
           "schedules": {
@@ -3386,7 +3422,7 @@
             "$ref": "#/components/schemas/MessageThreadReference"
           },
           "contract": {
-            "$ref": "#/components/schemas/ContractReference1"
+            "$ref": "#/components/schemas/ContractReference2"
           }
         }
       },
