@@ -2873,6 +2873,24 @@
           "organization"
         ]
       },
+      "Deals_RequestDeal": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "contracts": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "contracts",
+          "description"
+        ]
+      },
       "ThreadType": {
         "type": "object",
         "properties": {
@@ -16680,7 +16698,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Deals_ReferenceDeal"
+                "$ref": "#/components/schemas/Deals_RequestDeal"
               }
             }
           }
@@ -16801,7 +16819,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Deals_ReferenceDeal"
+                "$ref": "#/components/schemas/Deals_RequestDeal"
               }
             }
           }
