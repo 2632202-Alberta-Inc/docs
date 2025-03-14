@@ -2847,7 +2847,9 @@
             "type": "string",
             "readOnly": true
           },
-          "organization": {},
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationReference"
+          },
           "description": {
             "type": "string",
             "default": null,
@@ -2868,10 +2870,7 @@
               "$ref": "#/components/schemas/ContractReference1"
             }
           }
-        },
-        "required": [
-          "organization"
-        ]
+        }
       },
       "Deals_RequestDeal": {
         "type": "object",
