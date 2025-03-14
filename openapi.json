@@ -3203,6 +3203,194 @@
           "thread"
         ]
       },
+      "FacilityReference2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "section": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "township": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "range": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "meridian": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "type": {},
+          "sub_type": {},
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "operator": {},
+          "operational_status": {
+            "type": "string",
+            "enum": [
+              "ABANDONED",
+              "ACTIVE",
+              "CANCELLED",
+              "MINSUSPEND",
+              "NEW",
+              "NONREPORTING",
+              "RECCERTIFIED",
+              "RECEXEMPT",
+              "RETIRED",
+              "SUSPENDED"
+            ]
+          },
+          "operator_start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "licensee": {
+            "default": null,
+            "nullable": true
+          },
+          "license_status": {
+            "type": "string",
+            "enum": [
+              "ABANDONED",
+              "AMMENDED",
+              "CANCELLED",
+              "DECOMMISSION",
+              "ISSUED",
+              "RE-ENTERED",
+              "RECCERTIFIED",
+              "RECEXEMPT",
+              "SUSPENDED",
+              "SUSPENSION"
+            ]
+          },
+          "license_type": {
+            "type": "string",
+            "enum": [
+              "WELL",
+              "FACILITY"
+            ]
+          },
+          "license_number": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "license_issued": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          },
+          "jurisdiction": {
+            "type": "string",
+            "enum": [
+              "ALBERTA",
+              "SASKATCHEWAN"
+            ]
+          },
+          "regulator_id": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "regulator_system": {
+            "type": "string",
+            "enum": [
+              "PETRINEX"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "operator",
+          "operator_start_date",
+          "start_date",
+          "sub_type",
+          "type"
+        ]
+      },
+      "CommercialFacilityReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "lsd": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "section": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "township": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "range": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "meridian": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "organization": {}
+        },
+        "required": [
+          "name",
+          "organization"
+        ]
+      },
       "Messages_MessageThread": {
         "type": "object",
         "properties": {
@@ -3273,6 +3461,18 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MessageReference"
+            }
+          },
+          "facilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FacilityReference2"
+            }
+          },
+          "commercial_facilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommercialFacilityReference1"
             }
           }
         }
