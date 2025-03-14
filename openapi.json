@@ -2854,6 +2854,14 @@
             "maxLength": 255,
             "nullable": true
           },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
           "contracts": {
             "type": "array",
             "items": {
@@ -2983,6 +2991,14 @@
             "default": null,
             "maxLength": 255,
             "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "contracts": {
             "type": "array",
@@ -6514,6 +6530,14 @@
             "default": null,
             "maxLength": 255,
             "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "contracts": {
             "type": "array",
@@ -16643,6 +16667,53 @@
             "$ref": "#/components/responses/InternalServerError"
           }
         }
+      },
+      "post": {
+        "summary": "Create Deal",
+        "description": "Create a new deal.",
+        "operationId": "create_deal",
+        "tags": [
+          "Deals"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Deals_ReferenceDeal"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Deal successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Deals_Deal"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
       }
     },
     "/deals/{id}": {
@@ -16674,6 +16745,85 @@
                   "properties": {
                     "data": {
                       "$ref": "#/components/schemas/Deals_Deal"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Deal not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Deal not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Deal",
+        "description": "Update an existing deal by ID.",
+        "operationId": "update_deal",
+        "tags": [
+          "Deals"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The deal ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Deals_ReferenceDeal"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deal queued for update.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "job_id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        }
+                      }
                     }
                   }
                 }
