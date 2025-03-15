@@ -1564,6 +1564,14 @@
           "feeder_wadf": {
             "$ref": "#/components/schemas/WadfReference"
           },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
           "premiums": {
             "type": "array",
             "items": {
@@ -1597,6 +1605,14 @@
           "production_month": {
             "type": "string",
             "format": "date"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "line_items": {
             "type": "array",
@@ -1944,6 +1960,50 @@
           "short_code"
         ]
       },
+      "Contracts_ContractSchedule": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "contract": {},
+          "production_month": {
+            "type": "string",
+            "format": "date"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "line_items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScheduleLineItem"
+            }
+          }
+        },
+        "required": [
+          "contract",
+          "production_month"
+        ]
+      },
+      "Contracts_RequestContractSchedule": {
+        "type": "object",
+        "properties": {
+          "production_month": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "production_month"
+        ]
+      },
       "ContractScheduleReference": {
         "type": "object",
         "properties": {
@@ -2019,6 +2079,14 @@
           "feeder_wadf": {
             "$ref": "#/components/schemas/WadfReference"
           },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
           "premiums": {
             "type": "array",
             "items": {
@@ -2040,6 +2108,57 @@
         },
         "required": [
           "volume"
+        ]
+      },
+      "Contracts_RequestScheduleLineItem": {
+        "type": "object",
+        "properties": {
+          "product_category": {},
+          "stream": {},
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {},
+          "measurement_type": {},
+          "pricing_basis": {},
+          "differential_unit_amount": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "differential_currency": {
+            "default": null,
+            "nullable": true
+          },
+          "differential_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_index": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_index_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "settlement_currency": {},
+          "eq": {},
+          "stream_wadf": {},
+          "feeder_wadf": {}
+        },
+        "required": [
+          "eq",
+          "feeder_wadf",
+          "measurement_type",
+          "pricing_basis",
+          "product_category",
+          "settlement_currency",
+          "stream",
+          "stream_wadf",
+          "volume",
+          "volume_measurement_unit"
         ]
       },
       "Contracts_ContractParty": {
@@ -2126,7 +2245,15 @@
           "settlement_currency": {},
           "eq": {},
           "stream_wadf": {},
-          "feeder_wadf": {}
+          "feeder_wadf": {},
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
         },
         "required": [
           "eq",
@@ -2628,7 +2755,15 @@
           "settlement_currency": {},
           "eq": {},
           "stream_wadf": {},
-          "feeder_wadf": {}
+          "feeder_wadf": {},
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
         },
         "required": [
           "eq",
@@ -3128,6 +3263,14 @@
           "production_month": {
             "type": "string",
             "format": "date"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [
@@ -6176,6 +6319,32 @@
           "short_code"
         ]
       },
+      "Contracts_ReferenceContractSchedule": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "contract": {},
+          "production_month": {
+            "type": "string",
+            "format": "date"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "contract",
+          "production_month"
+        ]
+      },
       "Contracts_ReferenceScheduleLineItem": {
         "type": "object",
         "properties": {
@@ -6217,7 +6386,15 @@
           "settlement_currency": {},
           "eq": {},
           "stream_wadf": {},
-          "feeder_wadf": {}
+          "feeder_wadf": {},
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
         },
         "required": [
           "eq",
@@ -15970,6 +16147,252 @@
           },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules": {
+      "post": {
+        "summary": "Create Contract Schedule",
+        "description": "Create a new contract schedule.",
+        "operationId": "create_contract_schedule",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestContractSchedule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Contract schedule successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contracts_ContractSchedule"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}": {
+      "delete": {
+        "summary": "Delete Contract Schedule",
+        "description": "Delete a contract schedule.",
+        "operationId": "delete_contract_schedule",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contract schedule successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract schedule successfully deleted."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/line-items": {
+      "post": {
+        "summary": "Create Schedule Line Item",
+        "description": "Create a new schedule line item.",
+        "operationId": "create_schedule_line_item",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestScheduleLineItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Contract schedule line item successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contracts_ScheduleLineItem"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}": {
+      "delete": {
+        "summary": "Delete Schedule Line Item",
+        "description": "Delete a schedule line item.",
+        "operationId": "delete_schedule_line_item",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Schedule line item successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Schedule line item successfully deleted."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
