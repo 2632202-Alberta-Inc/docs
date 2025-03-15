@@ -1797,6 +1797,14 @@
             "default": null,
             "nullable": true
           },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
           "parties": {
             "type": "array",
             "items": {
@@ -1823,6 +1831,33 @@
           "deal",
           "external_id",
           "start_date"
+        ]
+      },
+      "Contracts_RequestContract": {
+        "type": "object",
+        "properties": {
+          "external_id": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "term": {},
+          "transaction_type": {},
+          "deal": {},
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "deal",
+          "external_id",
+          "start_date",
+          "term",
+          "transaction_type"
         ]
       },
       "Contracts_ContractStatus": {
@@ -2830,6 +2865,14 @@
             "format": "date",
             "default": null,
             "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [
@@ -3055,6 +3098,14 @@
             "format": "date",
             "default": null,
             "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [
@@ -6022,6 +6073,14 @@
             "format": "date",
             "default": null,
             "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [
@@ -15724,6 +15783,53 @@
             "$ref": "#/components/responses/InternalServerError"
           }
         }
+      },
+      "post": {
+        "summary": "Create Contract",
+        "description": "Create a new contract.",
+        "operationId": "create_contract",
+        "tags": [
+          "Contracts"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestContract"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Contract successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contracts_Contract"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
       }
     },
     "/contracts/{id}": {
@@ -15755,6 +15861,85 @@
                   "properties": {
                     "data": {
                       "$ref": "#/components/schemas/Contracts_Contract"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contract not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Contract not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Contract",
+        "description": "Update an existing contract by ID.",
+        "operationId": "update_contract",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestContract"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contract updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "job_id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        }
+                      }
                     }
                   }
                 }
@@ -16825,7 +17010,7 @@
         },
         "responses": {
           "200": {
-            "description": "Deal queued for update.",
+            "description": "Deal updated.",
             "content": {
               "application/json": {
                 "schema": {

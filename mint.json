@@ -112,7 +112,9 @@
           "group": "Contracts",
           "pages": [
             "api-reference/contracts/list-contracts",
+            "api-reference/contracts/create-contract",
             "api-reference/contracts/get-contract",
+            "api-reference/contracts/update-contract",
             "api-reference/contracts/list-contract-statuses",
             "api-reference/contracts/list-contract-roles",
             "api-reference/contracts/list-contract-terms",
