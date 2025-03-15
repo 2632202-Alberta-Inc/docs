@@ -2300,6 +2300,93 @@
           "name"
         ]
       },
+      "Contracts_Fee": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "line_item": {},
+          "type": {},
+          "fee_category": {},
+          "currency": {},
+          "unit_cost": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "quantity": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "base_cost": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "percentage": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "currency",
+          "fee_category",
+          "line_item",
+          "type"
+        ]
+      },
+      "Contracts_FeeType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "fee_category": {}
+        },
+        "required": [
+          "fee_category",
+          "name",
+          "short_code"
+        ]
+      },
+      "Contracts_FeeCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
       "Contracts_TransportMode": {
         "type": "object",
         "properties": {
@@ -5608,6 +5695,37 @@
           "start_date"
         ]
       },
+      "Integrations_OrganizationLookup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "organization_lookup": {},
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationReference"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "organization_lookup",
+          "start_date"
+        ]
+      },
       "Service_Job": {
         "type": "object",
         "properties": {
@@ -6524,6 +6642,121 @@
           "mode",
           "position",
           "source_commercial_facility"
+        ]
+      },
+      "Contracts_ReferencePremium": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "line_item": {},
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "amount": {
+            "type": "number"
+          },
+          "currency": {},
+          "paid_by": {},
+          "paid_to": {}
+        },
+        "required": [
+          "amount",
+          "currency",
+          "line_item",
+          "name",
+          "paid_by",
+          "paid_to"
+        ]
+      },
+      "Contracts_ReferenceFee": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "line_item": {},
+          "type": {},
+          "fee_category": {},
+          "currency": {},
+          "unit_cost": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "quantity": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "base_cost": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "percentage": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "currency",
+          "fee_category",
+          "line_item",
+          "type"
+        ]
+      },
+      "Contracts_ReferenceFeeType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "fee_category": {}
+        },
+        "required": [
+          "fee_category",
+          "name",
+          "short_code"
+        ]
+      },
+      "Contracts_ReferenceFeeCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
         ]
       },
       "Contracts_ReferenceLogicalOperator": {
@@ -8996,9 +9229,7 @@
             "type": "string"
           },
           "organization_lookup": {},
-          "organization": {
-            "$ref": "#/components/schemas/OrganizationReference"
-          },
+          "organization": {},
           "start_date": {
             "type": "string",
             "format": "date"
@@ -9012,6 +9243,7 @@
         },
         "required": [
           "name",
+          "organization",
           "organization_lookup",
           "start_date"
         ]
@@ -16260,7 +16492,20 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "404": {
-            "$ref": "#/components/responses/NotFound"
+            "description": "Contract schedule not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Contract schedule not found."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -16392,7 +16637,20 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "404": {
-            "$ref": "#/components/responses/NotFound"
+            "description": "Contract schedule line item not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Contract schedule line item not found."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -16636,7 +16894,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Pricing_ReferenceFeeType"
+                        "$ref": "#/components/schemas/Contracts_ReferenceFeeType"
                       }
                     },
                     "meta": {
@@ -16705,7 +16963,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Pricing_ReferenceFeeCategory"
+                        "$ref": "#/components/schemas/Contracts_ReferenceFeeCategory"
                       }
                     },
                     "meta": {
