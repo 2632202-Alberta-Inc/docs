@@ -1224,7 +1224,15 @@
           },
           "currency": {},
           "paid_by": {},
-          "paid_to": {}
+          "paid_to": {},
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
         },
         "required": [
           "amount",
@@ -2309,11 +2317,126 @@
           },
           "paid_to": {
             "$ref": "#/components/schemas/OrganizationReference"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [
           "amount",
           "name"
+        ]
+      },
+      "ScheduleLineItemReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "schedule": {},
+          "product_category": {},
+          "stream": {},
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {},
+          "measurement_type": {},
+          "pricing_basis": {},
+          "differential_unit_amount": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "differential_currency": {
+            "default": null,
+            "nullable": true
+          },
+          "differential_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_index": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_index_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "settlement_currency": {},
+          "eq": {},
+          "stream_wadf": {},
+          "feeder_wadf": {},
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "eq",
+          "feeder_wadf",
+          "measurement_type",
+          "pricing_basis",
+          "product_category",
+          "schedule",
+          "settlement_currency",
+          "stream",
+          "stream_wadf",
+          "volume",
+          "volume_measurement_unit"
+        ]
+      },
+      "FeeTypeReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "FeeCategoryReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
         ]
       },
       "Contracts_Fee": {
@@ -2323,10 +2446,18 @@
             "type": "string",
             "readOnly": true
           },
-          "line_item": {},
-          "type": {},
-          "fee_category": {},
-          "currency": {},
+          "line_item": {
+            "$ref": "#/components/schemas/ScheduleLineItemReference1"
+          },
+          "type": {
+            "$ref": "#/components/schemas/FeeTypeReference"
+          },
+          "fee_category": {
+            "$ref": "#/components/schemas/FeeCategoryReference"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyReference"
+          },
           "unit_cost": {
             "type": "number",
             "default": null,
@@ -2358,14 +2489,11 @@
           "updated_at": {
             "type": "string",
             "format": "date-time"
+          },
+          "total_cost": {
+            "type": "number"
           }
-        },
-        "required": [
-          "currency",
-          "fee_category",
-          "line_item",
-          "type"
-        ]
+        }
       },
       "Contracts_RequestFee": {
         "type": "object",
@@ -2860,71 +2988,6 @@
         },
         "required": [
           "value"
-        ]
-      },
-      "ScheduleLineItemReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "schedule": {},
-          "product_category": {},
-          "stream": {},
-          "volume": {
-            "type": "number"
-          },
-          "volume_measurement_unit": {},
-          "measurement_type": {},
-          "pricing_basis": {},
-          "differential_unit_amount": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "differential_currency": {
-            "default": null,
-            "nullable": true
-          },
-          "differential_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "percentage_of_index": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "percentage_of_index_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "settlement_currency": {},
-          "eq": {},
-          "stream_wadf": {},
-          "feeder_wadf": {},
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "eq",
-          "feeder_wadf",
-          "measurement_type",
-          "pricing_basis",
-          "product_category",
-          "schedule",
-          "settlement_currency",
-          "stream",
-          "stream_wadf",
-          "volume",
-          "volume_measurement_unit"
         ]
       },
       "Contracts_PricingProvision": {
@@ -6722,7 +6785,15 @@
           },
           "currency": {},
           "paid_by": {},
-          "paid_to": {}
+          "paid_to": {},
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
         },
         "required": [
           "amount",
@@ -17136,6 +17207,75 @@
                 }
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/premiums": {
+      "post": {
+        "summary": "Create Premium",
+        "description": "Create a new premium.",
+        "operationId": "create_premium",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestPremium"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Premium successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contracts_Premium"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
