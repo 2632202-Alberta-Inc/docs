@@ -16580,6 +16580,97 @@
       }
     },
     "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}": {
+      "patch": {
+        "summary": "Update Schedule Line Item",
+        "description": "Update an existing schedule line item by ID.",
+        "operationId": "update_schedule_line_item",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestScheduleLineItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Schedule line item updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "line_item_id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Schedule line item not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Schedule line item not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          }
+        }
+      },
       "delete": {
         "summary": "Delete Schedule Line Item",
         "description": "Delete a schedule line item.",
@@ -16637,7 +16728,7 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "404": {
-            "description": "Contract schedule line item not found.",
+            "description": "Schedule line item not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -16645,7 +16736,7 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "Contract schedule line item not found."
+                      "example": "Schedule line item not found."
                     }
                   }
                 }
