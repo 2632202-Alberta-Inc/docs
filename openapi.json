@@ -16992,7 +16992,7 @@
         }
       }
     },
-    "/contracts/{id}/parties/{party_id}": {
+    "/contracts/{id}/parties/{contract_party_id}": {
       "patch": {
         "summary": "Update Contract Party",
         "description": "Update an existing contract party by ID.",
@@ -17012,7 +17012,7 @@
           },
           {
             "in": "path",
-            "name": "profit_share_id",
+            "name": "contract_party_id",
             "schema": {
               "type": "integer"
             },
@@ -17090,7 +17090,7 @@
           },
           {
             "in": "path",
-            "name": "party_id",
+            "name": "contract_party_id",
             "schema": {
               "type": "integer"
             },
