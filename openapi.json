@@ -2332,6 +2332,28 @@
           "name"
         ]
       },
+      "Contracts_RequestPremium": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "amount": {
+            "type": "number"
+          },
+          "currency": {},
+          "paid_by": {},
+          "paid_to": {}
+        },
+        "required": [
+          "amount",
+          "currency",
+          "name",
+          "paid_by",
+          "paid_to"
+        ]
+      },
       "ScheduleLineItemReference1": {
         "type": "object",
         "properties": {
@@ -17220,7 +17242,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/premiums": {
+    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/premiums": {
       "post": {
         "summary": "Create Premium",
         "description": "Create a new premium.",
@@ -17246,6 +17268,15 @@
             },
             "required": true,
             "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
           }
         ],
         "requestBody": {
@@ -17276,6 +17307,196 @@
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/premiums/{premium_id}": {
+      "patch": {
+        "summary": "Update Premium",
+        "description": "Update an existing premium by ID.",
+        "operationId": "update_premium",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          },
+          {
+            "in": "path",
+            "name": "premium_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The premium ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestPremium"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Premium updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contracts_Premium"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Premium not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Premium not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Premium",
+        "description": "Delete a premium.",
+        "operationId": "delete_premium",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          },
+          {
+            "in": "path",
+            "name": "premium_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The premium ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Premium successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Premium successfully deleted."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "description": "Premium not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Premium not found."
+                    }
+                  }
+                }
+              }
+            }
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
