@@ -1690,6 +1690,14 @@
           },
           "value": {
             "type": "number"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [
@@ -2577,6 +2585,104 @@
           "short_code"
         ]
       },
+      "ContractReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "external_id": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "external_id"
+        ]
+      },
+      "Contracts_ProfitShare": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "paid_by": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrganizationReference"
+              }
+            ]
+          },
+          "paid_to": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrganizationReference"
+              }
+            ]
+          },
+          "contract": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ContractReference"
+              }
+            ]
+          },
+          "settlement_currency": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyReference"
+              }
+            ]
+          },
+          "measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
+              }
+            ]
+          },
+          "value": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "Contracts_RequestProfitShare": {
+        "type": "object",
+        "properties": {
+          "paid_by": {},
+          "paid_to": {},
+          "settlement_currency": {},
+          "measurement_unit": {},
+          "value": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "measurement_unit",
+          "paid_by",
+          "paid_to",
+          "settlement_currency",
+          "value"
+        ]
+      },
       "Contracts_FeeCategory": {
         "type": "object",
         "properties": {
@@ -3085,22 +3191,6 @@
           "name",
           "organization",
           "short_code"
-        ]
-      },
-      "ContractReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "external_id": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "external_id"
         ]
       },
       "Contracts_Paper": {
@@ -17492,6 +17582,220 @@
                     "error": {
                       "type": "string",
                       "example": "Premium not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/profit-shares": {
+      "post": {
+        "summary": "Create Profit Share",
+        "description": "Create a new profit share.",
+        "operationId": "create_profit_share",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestProfitShare"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Profit share successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contracts_ProfitShare"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/profit-shares/{profit_share_id}": {
+      "patch": {
+        "summary": "Update Profit Share",
+        "description": "Update an existing profit share by ID.",
+        "operationId": "update_profit_share",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "profit_share_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The profit share ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestProfitShare"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Profit share updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contracts_ProfitShare"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Profit share not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Profit share not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Profit Share",
+        "description": "Delete a profit share.",
+        "operationId": "delete_profit_share",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "profit_share_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The profit share ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profit share successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Profit share successfully deleted."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "description": "Profit share not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Profit share not found."
                     }
                   }
                 }
