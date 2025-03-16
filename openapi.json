@@ -1048,6 +1048,14 @@
           "role": {
             "$ref": "#/components/schemas/ContractRoleReference"
           },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
           "users": {
             "type": "array",
             "items": {
@@ -2210,6 +2218,14 @@
           "role": {
             "$ref": "#/components/schemas/ContractRoleReference"
           },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
           "users": {
             "type": "array",
             "items": {
@@ -2219,6 +2235,21 @@
         },
         "required": [
           "contract"
+        ]
+      },
+      "Contracts_RequestContractParty": {
+        "type": "object",
+        "properties": {
+          "organization": {},
+          "entity": {
+            "default": null,
+            "nullable": true
+          },
+          "role": {}
+        },
+        "required": [
+          "organization",
+          "role"
         ]
       },
       "Contracts_ContractPartyUser": {
@@ -16883,6 +16914,220 @@
                     "error": {
                       "type": "string",
                       "example": "Profit share not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/parties": {
+      "post": {
+        "summary": "Create Contract Party",
+        "description": "Create a new contract party.",
+        "operationId": "create_contract_party",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestContractParty"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Contract party successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contracts_ContractParty"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/parties/{party_id}": {
+      "patch": {
+        "summary": "Update Contract Party",
+        "description": "Update an existing contract party by ID.",
+        "operationId": "update_contract_party",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "profit_share_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract party ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestContractParty"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contract party updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contracts_ContractParty"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contract party not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Contract party not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Contract Party",
+        "description": "Delete a contract party.",
+        "operationId": "delete_contract_party",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "party_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract party ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contract party successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract party successfully deleted."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "description": "Contract party not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Contract party not found."
                     }
                   }
                 }
