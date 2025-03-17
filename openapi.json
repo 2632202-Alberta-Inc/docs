@@ -1026,6 +1026,14 @@
           "party": {},
           "user": {
             "$ref": "#/components/schemas/UserReference"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [
@@ -2262,10 +2270,27 @@
           "party": {},
           "user": {
             "$ref": "#/components/schemas/UserReference"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [
           "party"
+        ]
+      },
+      "Contracts_RequestContractPartyUser": {
+        "type": "object",
+        "properties": {
+          "user": {}
+        },
+        "required": [
+          "user"
         ]
       },
       "ScheduleLineItemReference": {
@@ -17128,6 +17153,160 @@
                     "error": {
                       "type": "string",
                       "example": "Contract party not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/parties/{contract_party_id}/users": {
+      "post": {
+        "summary": "Create Contract Party User",
+        "description": "Create a new contract party user.",
+        "operationId": "create_contract_party_user",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "contract_party_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract party ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestContractPartyUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Contract party user successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contracts_ContractPartyUser"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/parties/{contract_party_id}/users/{user_id}": {
+      "delete": {
+        "summary": "Delete Contract Party User",
+        "description": "Delete a contract party user.",
+        "operationId": "delete_contract_party_user",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "contract_party_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract party ID."
+          },
+          {
+            "in": "path",
+            "name": "user_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The user ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contract party user successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Contract party user successfully deleted."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "description": "Contract party user not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Contract party user not found."
                     }
                   }
                 }
