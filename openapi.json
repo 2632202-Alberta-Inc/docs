@@ -2865,6 +2865,14 @@
           "line_item": {
             "$ref": "#/components/schemas/ScheduleLineItemReference"
           },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
           "legs": {
             "type": "array",
             "items": {
@@ -2872,6 +2880,10 @@
             }
           }
         }
+      },
+      "Contracts_RequestTransportChain": {
+        "type": "object",
+        "properties": {}
       },
       "TransportModeReference": {
         "type": "object",
@@ -6849,6 +6861,14 @@
             "readOnly": true
           },
           "line_item": {},
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
           "legs": {
             "type": "array",
             "items": {
@@ -17952,6 +17972,178 @@
                     "error": {
                       "type": "string",
                       "example": "Fee not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/transport-chains": {
+      "post": {
+        "summary": "Create Transport Chain",
+        "description": "Create a new transport chain.",
+        "operationId": "create_transport_chain",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestTransportChain"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Transport chain successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contracts_TransportChain"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/transport-chains/{transport_chain_id}": {
+      "delete": {
+        "summary": "Delete Transport Chain",
+        "description": "Delete a transport chain.",
+        "operationId": "delete_transport_chain",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          },
+          {
+            "in": "path",
+            "name": "transport_chain_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The transport chain ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transport chain successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Transport chain successfully deleted."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "description": "Transport chain not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Transport chain not found."
                     }
                   }
                 }

@@ -112,8 +112,8 @@
           "group": "Contracts",
           "pages": [
             "api-reference/contracts/list-contracts",
-            "api-reference/contracts/create-contract",
             "api-reference/contracts/get-contract",
+            "api-reference/contracts/create-contract",
             "api-reference/contracts/update-contract",
             "api-reference/contracts/delete-contract",
             "api-reference/contracts/create-contract-party",
@@ -135,6 +135,8 @@
             "api-reference/contracts/create-premium",
             "api-reference/contracts/update-premium",
             "api-reference/contracts/delete-premium",
+            "api-reference/contracts/create-transport-chain",
+            "api-reference/contracts/delete-transport-chain",
             "api-reference/contracts/list-contract-statuses",
             "api-reference/contracts/list-contract-roles",
             "api-reference/contracts/list-contract-terms",
