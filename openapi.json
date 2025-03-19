@@ -19040,9 +19040,9 @@
     },
     "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups/{condition_group_id}/pricing-conditions/{pricing_condition_id}": {
       "patch": {
-        "summary": "Update Pricing Pricing Con",
-        "description": "Update an existing pricing pricing con by ID.",
-        "operationId": "update_pricing_pricing_con",
+        "summary": "Update Pricing Condition",
+        "description": "Update an existing pricing condition by ID.",
+        "operationId": "update_pricing_condition",
         "tags": [
           "Contracts"
         ],
