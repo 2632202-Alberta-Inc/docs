@@ -1522,6 +1522,14 @@
           "logical_operator": {
             "$ref": "#/components/schemas/LogicalOperatorReference"
           },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
           "conditions": {
             "type": "array",
             "items": {
@@ -3234,6 +3242,14 @@
           "logical_operator": {
             "$ref": "#/components/schemas/LogicalOperatorReference"
           },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
           "conditions": {
             "type": "array",
             "items": {
@@ -3242,17 +3258,9 @@
           }
         }
       },
-      "ConditionGroupReference": {
+      "Contracts_RequestConditionGroup": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "provision": {
-            "default": null,
-            "nullable": true
-          },
           "parent_group": {
             "default": null,
             "nullable": true
@@ -3261,6 +3269,33 @@
         },
         "required": [
           "logical_operator"
+        ]
+      },
+      "ConditionGroupReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "provision": {},
+          "parent_group": {
+            "default": null,
+            "nullable": true
+          },
+          "logical_operator": {},
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "logical_operator",
+          "provision"
         ]
       },
       "Contracts_PricingCondition": {
@@ -7301,18 +7336,24 @@
             "type": "string",
             "readOnly": true
           },
-          "provision": {
-            "default": null,
-            "nullable": true
-          },
+          "provision": {},
           "parent_group": {
             "default": null,
             "nullable": true
           },
-          "logical_operator": {}
+          "logical_operator": {},
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
         },
         "required": [
-          "logical_operator"
+          "logical_operator",
+          "provision"
         ]
       },
       "Contracts_ReferencePricingCondition": {
@@ -18547,6 +18588,301 @@
                     "error": {
                       "type": "string",
                       "example": "Pricing provision not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups": {
+      "post": {
+        "summary": "Create Condition Group",
+        "description": "Create a new condition group.",
+        "operationId": "create_condition_group",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          },
+          {
+            "in": "path",
+            "name": "pricing_provision_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The pricing provision ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestConditionGroup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Condition group successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contracts_ConditionGroup"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups/{condition_group_id}": {
+      "patch": {
+        "summary": "Update Condition Group",
+        "description": "Update an existing condition group by ID.",
+        "operationId": "update_condition_group",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          },
+          {
+            "in": "path",
+            "name": "pricing_provision_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The pricing provision ID."
+          },
+          {
+            "in": "path",
+            "name": "condition_group_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The condition group ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestConditionGroup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Condition group updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contracts_ConditionGroup"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Condition group not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Condition group not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Condition Group",
+        "description": "Delete a condition group.",
+        "operationId": "delete_condition_group",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          },
+          {
+            "in": "path",
+            "name": "pricing_provision_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The pricing provision ID."
+          },
+          {
+            "in": "path",
+            "name": "condition_group_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The condition group ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition group successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Condition group successfully deleted."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "description": "Condition group not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Condition group not found."
                     }
                   }
                 }
