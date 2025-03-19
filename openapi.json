@@ -1393,6 +1393,14 @@
             "default": null,
             "nullable": true
           },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
           "fee": {}
         },
         "required": [
@@ -1536,6 +1544,14 @@
             "type": "string",
             "default": null,
             "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "fee": {
             "$ref": "#/components/schemas/FeeReference1"
@@ -3292,6 +3308,14 @@
             "default": null,
             "nullable": true
           },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
           "fee": {
             "$ref": "#/components/schemas/FeeReference1"
           },
@@ -3302,6 +3326,22 @@
             }
           }
         }
+      },
+      "Contracts_RequestPricingProvision": {
+        "type": "object",
+        "properties": {
+          "type": {},
+          "description": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "fee": {}
+        },
+        "required": [
+          "fee",
+          "type"
+        ]
       },
       "Contracts_PricingProvisionType": {
         "type": "object",
@@ -7311,6 +7351,14 @@
             "type": "string",
             "default": null,
             "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "fee": {}
         },
@@ -18231,6 +18279,274 @@
                     "error": {
                       "type": "string",
                       "example": "Fee not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/pricing-provisions": {
+      "post": {
+        "summary": "Create Pricing Provision",
+        "description": "Create a new pricing provision.",
+        "operationId": "create_pricing_provision",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestPricingProvision"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Pricing provision successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contracts_PricingProvision"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}": {
+      "patch": {
+        "summary": "Update Pricing Provision",
+        "description": "Update an existing pricing provision by ID.",
+        "operationId": "update_pricing_provision",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          },
+          {
+            "in": "path",
+            "name": "pricing_provision_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The pricing provision ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestPricingProvision"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pricing provision updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contracts_PricingProvision"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pricing provision not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Pricing provision not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Pricing Provision",
+        "description": "Delete a pricing provision.",
+        "operationId": "delete_pricing_provision",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          },
+          {
+            "in": "path",
+            "name": "pricing_provision_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The pricing provision ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pricing provision successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Pricing provision successfully deleted."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "description": "Pricing provision not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Pricing provision not found."
                     }
                   }
                 }
