@@ -2796,7 +2796,10 @@
             "default": null,
             "nullable": true
           },
-          "source_commercial_facility": {},
+          "source_commercial_facility": {
+            "default": null,
+            "nullable": true
+          },
           "source_facility": {
             "default": null,
             "nullable": true
@@ -2844,6 +2847,14 @@
           "carrier_user": {
             "default": null,
             "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [
@@ -2851,8 +2862,7 @@
           "destination_commercial_facility",
           "fee",
           "mode",
-          "position",
-          "source_commercial_facility"
+          "position"
         ]
       },
       "Contracts_TransportChain": {
@@ -2962,7 +2972,12 @@
             ]
           },
           "source_commercial_facility": {
-            "$ref": "#/components/schemas/CommercialFacilityReference"
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CommercialFacilityReference"
+              }
+            ]
           },
           "source_facility": {
             "nullable": true,
@@ -3045,11 +3060,82 @@
                 "$ref": "#/components/schemas/UserReference1"
               }
             ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [
           "chain",
           "position"
+        ]
+      },
+      "Contracts_RequestTransportLeg": {
+        "type": "object",
+        "properties": {
+          "position": {
+            "type": "integer"
+          },
+          "mode": {},
+          "source_well": {
+            "default": null,
+            "nullable": true
+          },
+          "source_commercial_facility": {
+            "default": null,
+            "nullable": true
+          },
+          "source_facility": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_commercial_facility": {},
+          "destination_facility": {
+            "default": null,
+            "nullable": true
+          },
+          "volume": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "volume_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "custodian_organization": {},
+          "custodian_entity": {
+            "default": null,
+            "nullable": true
+          },
+          "is_custody_transfer": {
+            "type": "boolean",
+            "default": false
+          },
+          "fee": {},
+          "carrier_organization": {
+            "default": null,
+            "nullable": true
+          },
+          "carrier_entity": {
+            "default": null,
+            "nullable": true
+          },
+          "carrier_user": {
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "custodian_organization",
+          "destination_commercial_facility",
+          "fee",
+          "mode"
         ]
       },
       "Contracts_LogicalOperator": {
@@ -6896,7 +6982,10 @@
             "default": null,
             "nullable": true
           },
-          "source_commercial_facility": {},
+          "source_commercial_facility": {
+            "default": null,
+            "nullable": true
+          },
           "source_facility": {
             "default": null,
             "nullable": true
@@ -6944,6 +7033,14 @@
           "carrier_user": {
             "default": null,
             "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [
@@ -6952,8 +7049,7 @@
           "destination_commercial_facility",
           "fee",
           "mode",
-          "position",
-          "source_commercial_facility"
+          "position"
         ]
       },
       "Contracts_ReferencePremium": {
@@ -18144,6 +18240,301 @@
                     "error": {
                       "type": "string",
                       "example": "Transport chain not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/transport-chains/{transport_chain_id}/transport-legs": {
+      "post": {
+        "summary": "Create Transport Leg",
+        "description": "Create a new transport leg.",
+        "operationId": "create_transport_leg",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          },
+          {
+            "in": "path",
+            "name": "transport_chain_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The transport chain ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestTransportLeg"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Transport leg successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contracts_TransportLeg"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/transport-chains/{transport_chain_id}/transport-legs/{transport_leg_id}": {
+      "patch": {
+        "summary": "Update Transport Leg",
+        "description": "Update an existing transport leg by ID.",
+        "operationId": "update_transport_leg",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          },
+          {
+            "in": "path",
+            "name": "transport_chain_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The transport chain ID."
+          },
+          {
+            "in": "path",
+            "name": "transport_leg_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The transport leg ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestTransportLeg"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Transport leg updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contracts_TransportLeg"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Transport leg not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Transport leg not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Transport Leg",
+        "description": "Delete a transport leg.",
+        "operationId": "delete_transport_leg",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "line_item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The line item ID."
+          },
+          {
+            "in": "path",
+            "name": "transport_chain_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The transport chain ID."
+          },
+          {
+            "in": "path",
+            "name": "transport_leg_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The transport leg ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transport leg successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Transport leg successfully deleted."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "description": "Transport leg not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Transport leg not found."
                     }
                   }
                 }
