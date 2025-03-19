@@ -116,6 +116,8 @@
             "api-reference/contracts/create-contract",
             "api-reference/contracts/update-contract",
             "api-reference/contracts/delete-contract",
+            "api-reference/contracts/create-paper",
+            "api-reference/contracts/update-paper",
             "api-reference/contracts/create-profit-share",
             "api-reference/contracts/update-profit-share",
             "api-reference/contracts/delete-profit-share",

@@ -1800,15 +1800,20 @@
           },
           "external_id": {
             "type": "string",
-            "maxLength": 255
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
           },
           "governing_gtc": {
             "$ref": "#/components/schemas/GeneralTermsAndConditions"
           },
-          "content": {
+          "created_at": {
             "type": "string",
-            "default": null,
-            "nullable": true
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "legal_provisions": {
             "type": "array",
@@ -1822,10 +1827,7 @@
               "$ref": "#/components/schemas/PaperPricingProvision"
             }
           }
-        },
-        "required": [
-          "external_id"
-        ]
+        }
       },
       "Contracts_Contract": {
         "type": "object",
@@ -3362,15 +3364,20 @@
           },
           "external_id": {
             "type": "string",
-            "maxLength": 255
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
           },
           "governing_gtc": {
             "$ref": "#/components/schemas/GeneralTermsAndConditions"
           },
-          "content": {
+          "created_at": {
             "type": "string",
-            "default": null,
-            "nullable": true
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "legal_provisions": {
             "type": "array",
@@ -3384,9 +3391,23 @@
               "$ref": "#/components/schemas/PaperPricingProvision"
             }
           }
+        }
+      },
+      "Contracts_RequestPaper": {
+        "type": "object",
+        "properties": {
+          "paper_from": {},
+          "external_id": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "governing_gtc": {}
         },
         "required": [
-          "external_id"
+          "governing_gtc",
+          "paper_from"
         ]
       },
       "PaperReference": {
@@ -3610,9 +3631,7 @@
           "stytch_id": {
             "type": "string"
           },
-          "organization": {
-            "type": "integer"
-          },
+          "organization": {},
           "first_name": {
             "type": "string"
           },
@@ -3645,6 +3664,7 @@
           "email",
           "first_name",
           "last_name",
+          "organization",
           "phone",
           "stytch_id",
           "title"
@@ -6353,9 +6373,7 @@
           "stytch_id": {
             "type": "string"
           },
-          "organization": {
-            "type": "integer"
-          },
+          "organization": {},
           "first_name": {
             "type": "string"
           },
@@ -6388,6 +6406,7 @@
           "email",
           "first_name",
           "last_name",
+          "organization",
           "phone",
           "stytch_id",
           "title"
@@ -7358,18 +7377,22 @@
           "paper_from": {},
           "external_id": {
             "type": "string",
-            "maxLength": 255
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
           },
           "governing_gtc": {},
-          "content": {
+          "created_at": {
             "type": "string",
-            "default": null,
-            "nullable": true
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [
           "contract",
-          "external_id",
           "governing_gtc",
           "paper_from"
         ]
@@ -16846,6 +16869,146 @@
                 }
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/paper": {
+      "post": {
+        "summary": "Create Paper",
+        "description": "Create a new paper.",
+        "operationId": "create_paper",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestPaper"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Paper successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contracts_Paper"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/paper/{paper_id}": {
+      "patch": {
+        "summary": "Update Paper",
+        "description": "Update an existing paper by ID.",
+        "operationId": "update_paper",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "paper_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The paper ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestPaper"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Paper updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contracts_Paper"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Paper not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Paper not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
