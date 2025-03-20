@@ -1805,6 +1805,14 @@
           },
           "provision": {
             "$ref": "#/components/schemas/LegalProvisionTypeReference"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -1817,6 +1825,14 @@
           },
           "provision": {
             "$ref": "#/components/schemas/PricingProvisionReference"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -3539,8 +3555,20 @@
           },
           "provision": {
             "$ref": "#/components/schemas/LegalProvisionTypeReference"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         }
+      },
+      "Contracts_RequestPaperLegalProvision": {
+        "type": "object",
+        "properties": {}
       },
       "Contracts_PaperPricingProvision": {
         "type": "object",
@@ -3554,6 +3582,14 @@
           },
           "provision": {
             "$ref": "#/components/schemas/PricingProvisionReference"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -7535,7 +7571,15 @@
             "readOnly": true
           },
           "paper": {},
-          "provision": {}
+          "provision": {},
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
         },
         "required": [
           "paper",
@@ -7550,7 +7594,15 @@
             "readOnly": true
           },
           "paper": {},
-          "provision": {}
+          "provision": {},
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
         },
         "required": [
           "paper",
@@ -17139,6 +17191,178 @@
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/paper/{paper_id}/legal-provisions/{legal_provision_id}": {
+      "patch": {
+        "summary": "Attach Legal Provision",
+        "description": "Attach a legal provision to a paper.",
+        "operationId": "attach_legal_provision",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "paper_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The paper ID."
+          },
+          {
+            "in": "path",
+            "name": "legal_provision_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The legal provision ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestPaperLegalProvision"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Legal provision attached.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contracts_PaperLegalProvision"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Legal provision not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Legal provision not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Detach Legal Provision",
+        "description": "Detach a legal provision from a paper.",
+        "operationId": "detach_legal_provision",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "paper_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The paper ID."
+          },
+          {
+            "in": "path",
+            "name": "legal_provision_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The legal provision ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Legal provision successfully detached.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Legal provision successfully detached."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "description": "Legal provision not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Legal provision not found."
+                    }
+                  }
+                }
+              }
+            }
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
