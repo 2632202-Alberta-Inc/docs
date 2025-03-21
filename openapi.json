@@ -892,27 +892,6 @@
           }
         }
       },
-      "ContractStatusReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
-      },
       "ContractTermReference": {
         "type": "object",
         "properties": {
@@ -1071,6 +1050,27 @@
             }
           }
         }
+      },
+      "ContractScheduleStatusReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
       },
       "ProductCategoryReference1": {
         "type": "object",
@@ -1674,6 +1674,9 @@
             "type": "string",
             "readOnly": true
           },
+          "status": {
+            "$ref": "#/components/schemas/ContractScheduleStatusReference"
+          },
           "production_month": {
             "type": "string",
             "format": "date"
@@ -1891,9 +1894,6 @@
           "organization": {
             "$ref": "#/components/schemas/OrganizationReference"
           },
-          "status": {
-            "$ref": "#/components/schemas/ContractStatusReference"
-          },
           "term": {
             "$ref": "#/components/schemas/ContractTermReference"
           },
@@ -1974,7 +1974,7 @@
           "transaction_type"
         ]
       },
-      "Contracts_ContractStatus": {
+      "Contracts_ContractScheduleStatus": {
         "type": "object",
         "properties": {
           "id": {
@@ -2066,6 +2066,9 @@
             "readOnly": true
           },
           "contract": {},
+          "status": {
+            "$ref": "#/components/schemas/ContractScheduleStatusReference"
+          },
           "production_month": {
             "type": "string",
             "format": "date"
@@ -2093,6 +2096,9 @@
       "Contracts_RequestContractSchedule": {
         "type": "object",
         "properties": {
+          "status": {
+            "default": 1
+          },
           "production_month": {
             "type": "string",
             "format": "date"
@@ -3628,9 +3634,6 @@
             "maxLength": 255
           },
           "organization": {},
-          "status": {
-            "default": 1
-          },
           "term": {},
           "transaction_type": {},
           "start_date": {
@@ -3859,9 +3862,6 @@
             "maxLength": 255
           },
           "organization": {},
-          "status": {
-            "default": 1
-          },
           "term": {},
           "transaction_type": {},
           "deal": {},
@@ -3901,6 +3901,9 @@
             "readOnly": true
           },
           "contract": {},
+          "status": {
+            "default": 1
+          },
           "production_month": {
             "type": "string",
             "format": "date"
@@ -6872,9 +6875,6 @@
             "maxLength": 255
           },
           "organization": {},
-          "status": {
-            "default": 1
-          },
           "term": {},
           "transaction_type": {},
           "deal": {},
@@ -6906,7 +6906,7 @@
           "transaction_type"
         ]
       },
-      "Contracts_ReferenceContractStatus": {
+      "Contracts_ReferenceContractScheduleStatus": {
         "type": "object",
         "properties": {
           "id": {
@@ -6998,6 +6998,9 @@
             "readOnly": true
           },
           "contract": {},
+          "status": {
+            "default": 1
+          },
           "production_month": {
             "type": "string",
             "format": "date"
@@ -20223,11 +20226,11 @@
         }
       }
     },
-    "/contracts/statuses": {
+    "/contracts/schedules/statuses": {
       "get": {
-        "summary": "List Contract Statuses",
-        "description": "Retrieve a list of contract statuses with pagination.",
-        "operationId": "get_contract_statuses",
+        "summary": "List Contract Schedules Statuses",
+        "description": "Retrieve a list of contract schedules statuses with pagination.",
+        "operationId": "get_contract_schedules_statuses",
         "tags": [
           "Contracts"
         ],
@@ -20255,7 +20258,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Contracts_ReferenceContractStatus"
+                        "$ref": "#/components/schemas/Contracts_ReferenceContractScheduleStatus"
                       }
                     },
                     "meta": {
