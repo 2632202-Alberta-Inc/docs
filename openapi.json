@@ -16752,15 +16752,6 @@
           },
           {
             "in": "query",
-            "name": "status",
-            "schema": {
-              "type": "integer"
-            },
-            "required": false,
-            "description": "Filter by contract status ID"
-          },
-          {
-            "in": "query",
             "name": "term",
             "schema": {
               "type": "integer"
