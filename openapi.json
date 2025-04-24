@@ -31,10 +31,6 @@
       "description": "Endpoints for organizations to configure, view, and manage their users, roles, permissions, product category specifications, commercial units, etc."
     },
     {
-      "name": "Deals",
-      "description": "Endpoints for managing deals, including statuses, contracts, and related data."
-    },
-    {
       "name": "Contracts",
       "description": "Endpoints for managing contracts, including statuses, roles, terms, line items, schedules, logistics, and transaction types."
     },
@@ -407,6 +403,11 @@
             "default": null,
             "nullable": true
           },
+          "image_url": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
           "entities": {
             "type": "array",
             "items": {
@@ -560,6 +561,11 @@
           "abbreviation": {
             "type": "string"
           },
+          "html_symbol": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
           "type": {
             "type": "string",
             "enum": [
@@ -633,6 +639,11 @@
           },
           "abbreviation": {
             "type": "string"
+          },
+          "html_symbol": {
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "type": {
             "type": "string",
@@ -892,6 +903,26 @@
           }
         }
       },
+      "OrganizationReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "image_url": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
       "ContractTermReference": {
         "type": "object",
         "properties": {
@@ -984,10 +1015,7 @@
             "type": "string"
           },
           "roles": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
+            "readOnly": true
           }
         },
         "required": [
@@ -1027,7 +1055,7 @@
             "readOnly": true
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference"
+            "$ref": "#/components/schemas/OrganizationReference1"
           },
           "entity": {
             "$ref": "#/components/schemas/EntityReference1"
@@ -1124,6 +1152,11 @@
           },
           "abbreviation": {
             "type": "string"
+          },
+          "html_symbol": {
+            "type": "string",
+            "default": null,
+            "nullable": true
           }
         },
         "required": [
@@ -1208,23 +1241,7 @@
           "name"
         ]
       },
-      "WadfReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
-      "PremiumReference": {
+      "Wadf": {
         "type": "object",
         "properties": {
           "id": {
@@ -1238,9 +1255,45 @@
           "amount": {
             "type": "number"
           },
-          "currency": {},
-          "paid_by": {},
-          "paid_to": {},
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyReference"
+          },
+          "measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          }
+        },
+        "required": [
+          "amount",
+          "name"
+        ]
+      },
+      "Premium": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "default": "Premium",
+            "maxLength": 255
+          },
+          "amount": {
+            "type": "number"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyReference"
+          },
+          "measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          },
+          "paid_by": {
+            "$ref": "#/components/schemas/OrganizationReference1"
+          },
+          "paid_to": {
+            "$ref": "#/components/schemas/OrganizationReference1"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -1251,11 +1304,176 @@
           }
         },
         "required": [
-          "amount",
-          "currency",
+          "amount"
+        ]
+      },
+      "FeeTypeReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
           "name",
-          "paid_by",
-          "paid_to"
+          "short_code"
+        ]
+      },
+      "FeeCategoryReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "Fee": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/FeeTypeReference"
+          },
+          "fee_category": {
+            "$ref": "#/components/schemas/FeeCategoryReference"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyReference"
+          },
+          "unit_cost": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "quantity": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          },
+          "base_cost": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "percentage": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "total_cost": {
+            "type": "number"
+          }
+        }
+      },
+      "TransportModeReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "WellReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          }
+        }
+      },
+      "CommercialFacilityReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "lsd": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "section": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "township": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "range": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "meridian": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
         ]
       },
       "FeeReference": {
@@ -1306,6 +1524,172 @@
           "fee_category",
           "type"
         ]
+      },
+      "UserReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name"
+        ]
+      },
+      "TransportLeg": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "position": {
+            "type": "integer"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/TransportModeReference"
+          },
+          "source_well": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WellReference"
+              }
+            ]
+          },
+          "source_commercial_facility": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CommercialFacilityReference1"
+              }
+            ]
+          },
+          "source_facility": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityReference"
+              }
+            ]
+          },
+          "destination_commercial_facility": {
+            "$ref": "#/components/schemas/CommercialFacilityReference1"
+          },
+          "destination_facility": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityReference"
+              }
+            ]
+          },
+          "volume": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "volume_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
+              }
+            ]
+          },
+          "custodian_organization": {
+            "$ref": "#/components/schemas/OrganizationReference1"
+          },
+          "custodian_entity": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference1"
+              }
+            ]
+          },
+          "is_custody_transfer": {
+            "type": "boolean",
+            "default": false
+          },
+          "is_chain_source": {
+            "type": "boolean",
+            "default": false
+          },
+          "is_chain_destination": {
+            "type": "boolean",
+            "default": false
+          },
+          "fee": {
+            "$ref": "#/components/schemas/FeeReference"
+          },
+          "carrier_organization": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrganizationReference1"
+              }
+            ]
+          },
+          "carrier_entity": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference1"
+              }
+            ]
+          },
+          "carrier_user": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserReference1"
+              }
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "position"
+        ]
+      },
+      "TransportChain": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "legs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransportLeg"
+            }
+          }
+        }
       },
       "PricingProvisionTypeReference": {
         "type": "object",
@@ -1631,10 +2015,10 @@
             "$ref": "#/components/schemas/EqualizationReference"
           },
           "stream_wadf": {
-            "$ref": "#/components/schemas/WadfReference"
+            "$ref": "#/components/schemas/Wadf"
           },
           "feeder_wadf": {
-            "$ref": "#/components/schemas/WadfReference"
+            "$ref": "#/components/schemas/Wadf"
           },
           "created_at": {
             "type": "string",
@@ -1647,13 +2031,19 @@
           "premiums": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PremiumReference"
+              "$ref": "#/components/schemas/Premium"
             }
           },
           "fees": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/FeeReference"
+              "$ref": "#/components/schemas/Fee"
+            }
+          },
+          "chains": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransportChain"
             }
           },
           "pricing_provisions": {
@@ -1711,7 +2101,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/OrganizationReference"
+                "$ref": "#/components/schemas/OrganizationReference1"
               }
             ]
           },
@@ -1719,7 +2109,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/OrganizationReference"
+                "$ref": "#/components/schemas/OrganizationReference1"
               }
             ]
           },
@@ -1847,7 +2237,7 @@
             "readOnly": true
           },
           "paper_from": {
-            "$ref": "#/components/schemas/OrganizationReference"
+            "$ref": "#/components/schemas/OrganizationReference1"
           },
           "external_id": {
             "type": "string",
@@ -1892,7 +2282,7 @@
             "maxLength": 255
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference"
+            "$ref": "#/components/schemas/OrganizationReference1"
           },
           "term": {
             "$ref": "#/components/schemas/ContractTermReference"
@@ -1900,7 +2290,6 @@
           "transaction_type": {
             "$ref": "#/components/schemas/ContractTransactionTypeReference"
           },
-          "deal": {},
           "start_date": {
             "type": "string",
             "format": "date"
@@ -1942,7 +2331,6 @@
           }
         },
         "required": [
-          "deal",
           "external_id",
           "start_date"
         ]
@@ -1956,7 +2344,6 @@
           },
           "term": {},
           "transaction_type": {},
-          "deal": {},
           "start_date": {
             "type": "string",
             "format": "date"
@@ -1967,7 +2354,6 @@
           }
         },
         "required": [
-          "deal",
           "external_id",
           "start_date",
           "term",
@@ -2178,10 +2564,10 @@
             "$ref": "#/components/schemas/EqualizationReference"
           },
           "stream_wadf": {
-            "$ref": "#/components/schemas/WadfReference"
+            "$ref": "#/components/schemas/Wadf"
           },
           "feeder_wadf": {
-            "$ref": "#/components/schemas/WadfReference"
+            "$ref": "#/components/schemas/Wadf"
           },
           "created_at": {
             "type": "string",
@@ -2194,13 +2580,19 @@
           "premiums": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PremiumReference"
+              "$ref": "#/components/schemas/Premium"
             }
           },
           "fees": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/FeeReference"
+              "$ref": "#/components/schemas/Fee"
+            }
+          },
+          "chains": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransportChain"
             }
           },
           "pricing_provisions": {
@@ -2274,7 +2666,7 @@
           },
           "contract": {},
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference"
+            "$ref": "#/components/schemas/OrganizationReference1"
           },
           "entity": {
             "$ref": "#/components/schemas/EntityReference1"
@@ -2424,6 +2816,7 @@
           },
           "name": {
             "type": "string",
+            "default": "Premium",
             "maxLength": 255
           },
           "amount": {
@@ -2432,11 +2825,14 @@
           "currency": {
             "$ref": "#/components/schemas/CurrencyReference"
           },
+          "measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          },
           "paid_by": {
-            "$ref": "#/components/schemas/OrganizationReference"
+            "$ref": "#/components/schemas/OrganizationReference1"
           },
           "paid_to": {
-            "$ref": "#/components/schemas/OrganizationReference"
+            "$ref": "#/components/schemas/OrganizationReference1"
           },
           "created_at": {
             "type": "string",
@@ -2448,8 +2844,7 @@
           }
         },
         "required": [
-          "amount",
-          "name"
+          "amount"
         ]
       },
       "Contracts_RequestPremium": {
@@ -2457,19 +2852,22 @@
         "properties": {
           "name": {
             "type": "string",
+            "default": "Premium",
             "maxLength": 255
           },
           "amount": {
             "type": "number"
           },
           "currency": {},
+          "measurement_unit": {
+            "default": 2
+          },
           "paid_by": {},
           "paid_to": {}
         },
         "required": [
           "amount",
           "currency",
-          "name",
           "paid_by",
           "paid_to"
         ]
@@ -2539,48 +2937,6 @@
           "volume_measurement_unit"
         ]
       },
-      "FeeTypeReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
-      },
-      "FeeCategoryReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
-      },
       "Contracts_Fee": {
         "type": "object",
         "properties": {
@@ -2611,8 +2967,7 @@
             "nullable": true
           },
           "measurement_unit": {
-            "default": null,
-            "nullable": true
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "base_cost": {
             "type": "number",
@@ -2724,7 +3079,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/OrganizationReference"
+                "$ref": "#/components/schemas/OrganizationReference1"
               }
             ]
           },
@@ -2732,7 +3087,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/OrganizationReference"
+                "$ref": "#/components/schemas/OrganizationReference1"
               }
             ]
           },
@@ -2837,90 +3192,6 @@
           "short_code"
         ]
       },
-      "TransportLegReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "position": {
-            "type": "integer"
-          },
-          "mode": {},
-          "source_well": {
-            "default": null,
-            "nullable": true
-          },
-          "source_commercial_facility": {
-            "default": null,
-            "nullable": true
-          },
-          "source_facility": {
-            "default": null,
-            "nullable": true
-          },
-          "destination_commercial_facility": {},
-          "destination_facility": {
-            "default": null,
-            "nullable": true
-          },
-          "volume": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "volume_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "custodian_organization": {},
-          "custodian_entity": {
-            "default": null,
-            "nullable": true
-          },
-          "is_custody_transfer": {
-            "type": "boolean",
-            "default": false
-          },
-          "is_chain_source": {
-            "type": "boolean",
-            "default": false
-          },
-          "is_chain_destination": {
-            "type": "boolean",
-            "default": false
-          },
-          "fee": {},
-          "carrier_organization": {
-            "default": null,
-            "nullable": true
-          },
-          "carrier_entity": {
-            "default": null,
-            "nullable": true
-          },
-          "carrier_user": {
-            "default": null,
-            "nullable": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "custodian_organization",
-          "destination_commercial_facility",
-          "fee",
-          "mode",
-          "position"
-        ]
-      },
       "Contracts_TransportChain": {
         "type": "object",
         "properties": {
@@ -2942,7 +3213,7 @@
           "legs": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TransportLegReference"
+              "$ref": "#/components/schemas/TransportLeg"
             }
           }
         }
@@ -2950,60 +3221,6 @@
       "Contracts_RequestTransportChain": {
         "type": "object",
         "properties": {}
-      },
-      "TransportModeReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
-      },
-      "WellReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          }
-        }
-      },
-      "UserReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "first_name": {
-            "type": "string"
-          },
-          "last_name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "first_name",
-          "last_name"
-        ]
       },
       "Contracts_TransportLeg": {
         "type": "object",
@@ -3031,7 +3248,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/CommercialFacilityReference"
+                "$ref": "#/components/schemas/CommercialFacilityReference1"
               }
             ]
           },
@@ -3044,7 +3261,7 @@
             ]
           },
           "destination_commercial_facility": {
-            "$ref": "#/components/schemas/CommercialFacilityReference"
+            "$ref": "#/components/schemas/CommercialFacilityReference1"
           },
           "destination_facility": {
             "nullable": true,
@@ -3068,7 +3285,7 @@
             ]
           },
           "custodian_organization": {
-            "$ref": "#/components/schemas/OrganizationReference"
+            "$ref": "#/components/schemas/OrganizationReference1"
           },
           "custodian_entity": {
             "nullable": true,
@@ -3097,7 +3314,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/OrganizationReference"
+                "$ref": "#/components/schemas/OrganizationReference1"
               }
             ]
           },
@@ -3173,7 +3390,10 @@
             "type": "boolean",
             "default": false
           },
-          "fee": {},
+          "fee": {
+            "default": null,
+            "nullable": true
+          },
           "carrier_organization": {
             "default": null,
             "nullable": true
@@ -3190,7 +3410,6 @@
         "required": [
           "custodian_organization",
           "destination_commercial_facility",
-          "fee",
           "mode"
         ]
       },
@@ -3490,7 +3709,7 @@
             "$ref": "#/components/schemas/ContractReference"
           },
           "paper_from": {
-            "$ref": "#/components/schemas/OrganizationReference"
+            "$ref": "#/components/schemas/OrganizationReference1"
           },
           "external_id": {
             "type": "string",
@@ -3622,97 +3841,6 @@
           "short_code"
         ]
       },
-      "ContractReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "external_id": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "organization": {},
-          "term": {},
-          "transaction_type": {},
-          "start_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "end_date": {
-            "type": "string",
-            "format": "date",
-            "default": null,
-            "nullable": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "external_id",
-          "organization",
-          "start_date",
-          "term",
-          "transaction_type"
-        ]
-      },
-      "Deals_Deal": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "organization": {
-            "$ref": "#/components/schemas/OrganizationReference"
-          },
-          "description": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "contracts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ContractReference1"
-            }
-          }
-        }
-      },
-      "Deals_RequestDeal": {
-        "type": "object",
-        "properties": {
-          "description": {
-            "type": "string"
-          },
-          "contracts": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "required": [
-          "contracts",
-          "description"
-        ]
-      },
       "ThreadType": {
         "type": "object",
         "properties": {
@@ -3734,7 +3862,7 @@
           "short_code"
         ]
       },
-      "OrganizationReference1": {
+      "OrganizationReference2": {
         "type": "object",
         "properties": {
           "id": {
@@ -3758,6 +3886,11 @@
             "nullable": true
           },
           "email": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "image_url": {
             "type": "string",
             "default": null,
             "nullable": true
@@ -3795,16 +3928,10 @@
             "type": "string"
           },
           "roles": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
+            "readOnly": true
           },
           "permissions": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
+            "readOnly": true
           }
         },
         "required": [
@@ -3817,40 +3944,7 @@
           "title"
         ]
       },
-      "DealReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "organization": {},
-          "description": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "contracts": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "required": [
-          "organization"
-        ]
-      },
-      "ContractReference2": {
+      "ContractReference1": {
         "type": "object",
         "properties": {
           "id": {
@@ -3864,7 +3958,6 @@
           "organization": {},
           "term": {},
           "transaction_type": {},
-          "deal": {},
           "start_date": {
             "type": "string",
             "format": "date"
@@ -3885,7 +3978,6 @@
           }
         },
         "required": [
-          "deal",
           "external_id",
           "organization",
           "start_date",
@@ -4210,7 +4302,7 @@
           "type"
         ]
       },
-      "CommercialFacilityReference1": {
+      "CommercialFacilityReference2": {
         "type": "object",
         "properties": {
           "id": {
@@ -4283,7 +4375,7 @@
           "organizations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/OrganizationReference1"
+              "$ref": "#/components/schemas/OrganizationReference2"
             }
           },
           "participants": {
@@ -4292,16 +4384,10 @@
               "$ref": "#/components/schemas/UserReference2"
             }
           },
-          "deals": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DealReference"
-            }
-          },
           "contracts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ContractReference2"
+              "$ref": "#/components/schemas/ContractReference1"
             }
           },
           "schedules": {
@@ -4343,7 +4429,7 @@
           "commercial_facilities": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CommercialFacilityReference1"
+              "$ref": "#/components/schemas/CommercialFacilityReference2"
             }
           }
         }
@@ -4438,7 +4524,7 @@
             "$ref": "#/components/schemas/MessageThreadReference"
           },
           "organization": {
-            "$ref": "#/components/schemas/OrganizationReference1"
+            "$ref": "#/components/schemas/OrganizationReference2"
           },
           "created_at": {
             "type": "string",
@@ -4467,21 +4553,6 @@
           "short_code"
         ]
       },
-      "Messages_DealThread": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "thread": {
-            "$ref": "#/components/schemas/MessageThreadReference"
-          },
-          "deal": {
-            "$ref": "#/components/schemas/DealReference"
-          }
-        }
-      },
       "Messages_ContractThread": {
         "type": "object",
         "properties": {
@@ -4493,7 +4564,7 @@
             "$ref": "#/components/schemas/MessageThreadReference"
           },
           "contract": {
-            "$ref": "#/components/schemas/ContractReference2"
+            "$ref": "#/components/schemas/ContractReference1"
           }
         }
       },
@@ -4700,9 +4771,6 @@
           "type": {
             "$ref": "#/components/schemas/WadfType"
           },
-          "facility": {
-            "$ref": "#/components/schemas/FacilityReference1"
-          },
           "stream": {
             "$ref": "#/components/schemas/StreamReference1"
           },
@@ -4755,6 +4823,9 @@
           },
           "stream": {
             "$ref": "#/components/schemas/StreamReference1"
+          },
+          "measurement_unit": {
+            "default": 2
           },
           "formula": {
             "type": "string"
@@ -5438,6 +5509,25 @@
           "external_id"
         ]
       },
+      "MeasurementUnitReference2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "abbreviation": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "abbreviation",
+          "name"
+        ]
+      },
       "TicketCodeReference": {
         "type": "object",
         "properties": {
@@ -5612,7 +5702,7 @@
             "nullable": true
           },
           "meter_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "meter_factor": {
             "type": "number",
@@ -5625,7 +5715,7 @@
             "nullable": true
           },
           "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "load_volume": {
             "type": "number",
@@ -5633,7 +5723,7 @@
             "nullable": true
           },
           "load_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "net_volume": {
             "type": "number",
@@ -5641,7 +5731,7 @@
             "nullable": true
           },
           "net_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "density": {
             "type": "number",
@@ -5649,7 +5739,7 @@
             "nullable": true
           },
           "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "bsw": {
             "type": "number",
@@ -5657,7 +5747,7 @@
             "nullable": true
           },
           "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "solids": {
             "type": "number",
@@ -5668,7 +5758,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
+                "$ref": "#/components/schemas/MeasurementUnitReference2"
               }
             ]
           },
@@ -5681,7 +5771,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
+                "$ref": "#/components/schemas/MeasurementUnitReference2"
               }
             ]
           },
@@ -5694,7 +5784,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
+                "$ref": "#/components/schemas/MeasurementUnitReference2"
               }
             ]
           },
@@ -5797,7 +5887,7 @@
             "nullable": true
           },
           "meter_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "meter_factor": {
             "type": "number",
@@ -5810,7 +5900,7 @@
             "nullable": true
           },
           "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "net_volume": {
             "type": "number",
@@ -5818,7 +5908,7 @@
             "nullable": true
           },
           "net_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "density": {
             "type": "number",
@@ -5826,7 +5916,7 @@
             "nullable": true
           },
           "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "bsw": {
             "type": "number",
@@ -5834,7 +5924,7 @@
             "nullable": true
           },
           "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "solids": {
             "type": "number",
@@ -5845,7 +5935,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
+                "$ref": "#/components/schemas/MeasurementUnitReference2"
               }
             ]
           },
@@ -5858,7 +5948,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
+                "$ref": "#/components/schemas/MeasurementUnitReference2"
               }
             ]
           },
@@ -5871,7 +5961,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
+                "$ref": "#/components/schemas/MeasurementUnitReference2"
               }
             ]
           },
@@ -6000,7 +6090,7 @@
             "nullable": true
           },
           "meter_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "meter_factor": {
             "type": "number",
@@ -6013,7 +6103,7 @@
             "nullable": true
           },
           "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "net_volume": {
             "type": "number",
@@ -6021,7 +6111,7 @@
             "nullable": true
           },
           "net_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "density": {
             "type": "number",
@@ -6029,7 +6119,7 @@
             "nullable": true
           },
           "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "bsw": {
             "type": "number",
@@ -6037,7 +6127,7 @@
             "nullable": true
           },
           "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "solids": {
             "type": "number",
@@ -6048,7 +6138,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
+                "$ref": "#/components/schemas/MeasurementUnitReference2"
               }
             ]
           },
@@ -6061,7 +6151,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
+                "$ref": "#/components/schemas/MeasurementUnitReference2"
               }
             ]
           },
@@ -6074,7 +6164,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
+                "$ref": "#/components/schemas/MeasurementUnitReference2"
               }
             ]
           },
@@ -6503,6 +6593,11 @@
             "type": "string",
             "default": null,
             "nullable": true
+          },
+          "image_url": {
+            "type": "string",
+            "default": null,
+            "nullable": true
           }
         },
         "required": [
@@ -6537,16 +6632,10 @@
             "type": "string"
           },
           "roles": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
+            "readOnly": true
           },
           "permissions": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
+            "readOnly": true
           }
         },
         "required": [
@@ -6694,6 +6783,11 @@
           },
           "abbreviation": {
             "type": "string"
+          },
+          "html_symbol": {
+            "type": "string",
+            "default": null,
+            "nullable": true
           },
           "type": {
             "type": "string",
@@ -6877,7 +6971,6 @@
           "organization": {},
           "term": {},
           "transaction_type": {},
-          "deal": {},
           "start_date": {
             "type": "string",
             "format": "date"
@@ -6898,7 +6991,6 @@
           }
         },
         "required": [
-          "deal",
           "external_id",
           "organization",
           "start_date",
@@ -7187,7 +7279,10 @@
             "type": "boolean",
             "default": false
           },
-          "fee": {},
+          "fee": {
+            "default": null,
+            "nullable": true
+          },
           "carrier_organization": {
             "default": null,
             "nullable": true
@@ -7213,7 +7308,6 @@
           "chain",
           "custodian_organization",
           "destination_commercial_facility",
-          "fee",
           "mode",
           "position"
         ]
@@ -7228,12 +7322,16 @@
           "line_item": {},
           "name": {
             "type": "string",
+            "default": "Premium",
             "maxLength": 255
           },
           "amount": {
             "type": "number"
           },
           "currency": {},
+          "measurement_unit": {
+            "default": 2
+          },
           "paid_by": {},
           "paid_to": {},
           "created_at": {
@@ -7249,7 +7347,6 @@
           "amount",
           "currency",
           "line_item",
-          "name",
           "paid_by",
           "paid_to"
         ]
@@ -7635,39 +7732,6 @@
           "short_code"
         ]
       },
-      "Deals_ReferenceDeal": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "organization": {},
-          "description": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "contracts": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
-        "required": [
-          "organization"
-        ]
-      },
       "Messages_ReferenceMessageThread": {
         "type": "object",
         "properties": {
@@ -7777,21 +7841,6 @@
         "required": [
           "name",
           "short_code"
-        ]
-      },
-      "Messages_ReferenceDealThread": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "thread": {},
-          "deal": {}
-        },
-        "required": [
-          "deal",
-          "thread"
         ]
       },
       "Messages_ReferenceContractThread": {
@@ -7925,7 +7974,6 @@
             "maxLength": 255
           },
           "type": {},
-          "facility": {},
           "stream": {},
           "amount": {
             "type": "number"
@@ -7936,7 +7984,6 @@
         "required": [
           "amount",
           "currency",
-          "facility",
           "measurement_unit",
           "name",
           "stream",
@@ -7976,6 +8023,9 @@
             "maxLength": 255
           },
           "stream": {},
+          "measurement_unit": {
+            "default": 2
+          },
           "formula": {
             "type": "string"
           }
@@ -10939,6 +10989,15 @@
             },
             "required": false,
             "description": "Township"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Name"
           }
         ],
         "responses": {
@@ -16767,6 +16826,48 @@
             },
             "required": false,
             "description": "Filter by contract transaction type ID"
+          },
+          {
+            "in": "query",
+            "name": "production_month",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Filter by production month in format YYYY-MM-DD"
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "id",
+                "term",
+                "transaction_type",
+                "external_id",
+                "start_date",
+                "end_date",
+                "created_at",
+                "updated_at"
+              ]
+            },
+            "required": false,
+            "description": "Field to sort by"
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            },
+            "required": false,
+            "description": "Sort direction (asc or desc)"
           }
         ],
         "responses": {
@@ -17934,6 +18035,143 @@
                     "error": {
                       "type": "string",
                       "example": "Contract party user not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/schedules": {
+      "get": {
+        "summary": "List Contract Schedules",
+        "description": "Retrieve a list of contract schedules with pagination and filtering options.",
+        "operationId": "get_contract_schedules",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "production_month",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": null
+            },
+            "required": false,
+            "description": "Production month in format YYYY-MM-DD"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Schedule Status"
+          },
+          {
+            "in": "query",
+            "name": "party_user_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Party User ID"
+          },
+          {
+            "in": "query",
+            "name": "contract_external_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Contract External ID"
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "id",
+                "production_month",
+                "status",
+                "created_at",
+                "updated_at"
+              ]
+            },
+            "required": false,
+            "description": "Field to sort by"
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            },
+            "required": false,
+            "description": "Sort direction (asc or desc)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of schedules.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Contracts_ContractSchedule"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
                     }
                   }
                 }
@@ -21045,13 +21283,13 @@
         }
       }
     },
-    "/deals": {
+    "/contracts/gtcs": {
       "get": {
-        "summary": "List Deals",
-        "description": "Retrieve a list of deals with pagination and filtering options.",
-        "operationId": "get_deals",
+        "summary": "List Contract GTCs",
+        "description": "Retrieve a list of contract GTCs with pagination.",
+        "operationId": "get_contract_gtcs",
         "tags": [
-          "Deals"
+          "Contracts"
         ],
         "parameters": [
           {
@@ -21068,7 +21306,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A paginated list of deals.",
+            "description": "A paginated list of contract GTCs.",
             "content": {
               "application/json": {
                 "schema": {
@@ -21077,7 +21315,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Deals_ReferenceDeal"
+                        "$ref": "#/components/schemas/Contracts_ReferenceGeneralTermsAndConditions"
                       }
                     },
                     "meta": {
@@ -21096,195 +21334,6 @@
                           "type": "integer"
                         }
                       }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create Deal",
-        "description": "Create a new deal.",
-        "operationId": "create_deal",
-        "tags": [
-          "Deals"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Deals_RequestDeal"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Deal successfully created.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Deals_Deal"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/deals/{id}": {
-      "get": {
-        "summary": "Get Deal",
-        "description": "Retrieve details about a specific deal by ID.",
-        "operationId": "get_deal",
-        "tags": [
-          "Deals"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The deal ID."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A single deal object containing deal details.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Deals_Deal"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Deal not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Deal not found."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update Deal",
-        "description": "Update an existing deal by ID.",
-        "operationId": "update_deal",
-        "tags": [
-          "Deals"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The deal ID."
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Deals_RequestDeal"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Deal updated.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "job_id": {
-                          "type": "integer"
-                        },
-                        "status": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Deal not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Deal not found."
                     }
                   }
                 }
