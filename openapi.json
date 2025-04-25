@@ -408,6 +408,11 @@
             "default": null,
             "nullable": true
           },
+          "short_code": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
           "entities": {
             "type": "array",
             "items": {
@@ -923,6 +928,27 @@
           "name"
         ]
       },
+      "ContractStatusReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
       "ContractTermReference": {
         "type": "object",
         "properties": {
@@ -1100,6 +1126,237 @@
           "short_code"
         ]
       },
+      "MeasurementUnitReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "abbreviation": {
+            "type": "string"
+          },
+          "html_symbol": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "abbreviation",
+          "name"
+        ]
+      },
+      "ContractSchedule": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ContractScheduleStatusReference"
+          },
+          "production_month": {
+            "type": "string",
+            "format": "date"
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "production_month",
+          "volume"
+        ]
+      },
+      "CurrencyReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "symbol"
+        ]
+      },
+      "ProfitShare": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "paid_by": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrganizationReference1"
+              }
+            ]
+          },
+          "paid_to": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrganizationReference1"
+              }
+            ]
+          },
+          "settlement_currency": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyReference"
+              }
+            ]
+          },
+          "measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
+              }
+            ]
+          },
+          "value": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "GeneralTermsAndConditions": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "short_code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "LegalProvisionTypeReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "short_code": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "organization": {}
+        },
+        "required": [
+          "content",
+          "name",
+          "organization",
+          "short_code"
+        ]
+      },
+      "PaperLegalProvision": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "provision": {
+            "$ref": "#/components/schemas/LegalProvisionTypeReference"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Paper": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "paper_from": {
+            "$ref": "#/components/schemas/OrganizationReference1"
+          },
+          "external_id": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
+          "governing_gtc": {
+            "$ref": "#/components/schemas/GeneralTermsAndConditions"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "legal_provisions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaperLegalProvision"
+            }
+          }
+        }
+      },
       "ProductCategoryReference1": {
         "type": "object",
         "properties": {
@@ -1138,30 +1395,6 @@
           "name",
           "product_category",
           "short_code"
-        ]
-      },
-      "MeasurementUnitReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "abbreviation": {
-            "type": "string"
-          },
-          "html_symbol": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          }
-        },
-        "required": [
-          "abbreviation",
-          "name"
         ]
       },
       "MeasurementTypeReference": {
@@ -1204,25 +1437,6 @@
         "required": [
           "name",
           "short_code"
-        ]
-      },
-      "CurrencyReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "symbol": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name",
-          "symbol"
         ]
       },
       "EqualizationReference": {
@@ -1964,7 +2178,7 @@
           }
         }
       },
-      "ScheduleLineItem": {
+      "LineItem": {
         "type": "object",
         "properties": {
           "id": {
@@ -2057,219 +2271,6 @@
           "volume"
         ]
       },
-      "ContractSchedule": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ContractScheduleStatusReference"
-          },
-          "production_month": {
-            "type": "string",
-            "format": "date"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "line_items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ScheduleLineItem"
-            }
-          }
-        },
-        "required": [
-          "production_month"
-        ]
-      },
-      "ProfitShare": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "paid_by": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/OrganizationReference1"
-              }
-            ]
-          },
-          "paid_to": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/OrganizationReference1"
-              }
-            ]
-          },
-          "settlement_currency": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CurrencyReference"
-              }
-            ]
-          },
-          "measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
-          },
-          "value": {
-            "type": "number"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "value"
-        ]
-      },
-      "GeneralTermsAndConditions": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "short_code": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
-      },
-      "LegalProvisionTypeReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "short_code": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "organization": {}
-        },
-        "required": [
-          "content",
-          "name",
-          "organization",
-          "short_code"
-        ]
-      },
-      "PaperLegalProvision": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "provision": {
-            "$ref": "#/components/schemas/LegalProvisionTypeReference"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
-      "PaperPricingProvision": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "provision": {
-            "$ref": "#/components/schemas/PricingProvisionReference"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
-      "Paper": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "paper_from": {
-            "$ref": "#/components/schemas/OrganizationReference1"
-          },
-          "external_id": {
-            "type": "string",
-            "default": null,
-            "maxLength": 255,
-            "nullable": true
-          },
-          "governing_gtc": {
-            "$ref": "#/components/schemas/GeneralTermsAndConditions"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "legal_provisions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaperLegalProvision"
-            }
-          },
-          "pricing_provisions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaperPricingProvision"
-            }
-          }
-        }
-      },
       "Contracts_Contract": {
         "type": "object",
         "properties": {
@@ -2283,6 +2284,9 @@
           },
           "organization": {
             "$ref": "#/components/schemas/OrganizationReference1"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ContractStatusReference"
           },
           "term": {
             "$ref": "#/components/schemas/ContractTermReference"
@@ -2328,6 +2332,12 @@
           },
           "paper": {
             "$ref": "#/components/schemas/Paper"
+          },
+          "line_items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LineItem"
+            }
           }
         },
         "required": [
@@ -2341,6 +2351,9 @@
           "external_id": {
             "type": "string",
             "maxLength": 255
+          },
+          "status": {
+            "default": 1
           },
           "term": {},
           "transaction_type": {},
@@ -2358,6 +2371,27 @@
           "start_date",
           "term",
           "transaction_type"
+        ]
+      },
+      "Contracts_ContractStatus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
         ]
       },
       "Contracts_ContractScheduleStatus": {
@@ -2423,6 +2457,27 @@
           "short_code"
         ]
       },
+      "Contracts_ContractPaymentTerm": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
       "Contracts_ContractTransactionType": {
         "type": "object",
         "properties": {
@@ -2444,6 +2499,22 @@
           "short_code"
         ]
       },
+      "ContractReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "external_id": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "external_id"
+        ]
+      },
       "Contracts_ContractSchedule": {
         "type": "object",
         "properties": {
@@ -2451,13 +2522,21 @@
             "type": "string",
             "readOnly": true
           },
-          "contract": {},
+          "contract": {
+            "$ref": "#/components/schemas/ContractReference"
+          },
           "status": {
             "$ref": "#/components/schemas/ContractScheduleStatusReference"
           },
           "production_month": {
             "type": "string",
             "format": "date"
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "created_at": {
             "type": "string",
@@ -2466,17 +2545,11 @@
           "updated_at": {
             "type": "string",
             "format": "date-time"
-          },
-          "line_items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ScheduleLineItem"
-            }
           }
         },
         "required": [
-          "contract",
-          "production_month"
+          "production_month",
+          "volume"
         ]
       },
       "Contracts_RequestContractSchedule": {
@@ -2488,37 +2561,27 @@
           "production_month": {
             "type": "string",
             "format": "date"
-          }
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {}
         },
         "required": [
-          "production_month"
+          "production_month",
+          "volume",
+          "volume_measurement_unit"
         ]
       },
-      "ContractScheduleReference": {
+      "Contracts_LineItem": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "readOnly": true
           },
-          "production_month": {
-            "type": "string",
-            "format": "date"
-          }
-        },
-        "required": [
-          "production_month"
-        ]
-      },
-      "Contracts_ScheduleLineItem": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "schedule": {
-            "$ref": "#/components/schemas/ContractScheduleReference"
+          "contract": {
+            "$ref": "#/components/schemas/ContractReference"
           },
           "product_category": {
             "$ref": "#/components/schemas/ProductCategoryReference1"
@@ -2606,7 +2669,7 @@
           "volume"
         ]
       },
-      "Contracts_RequestScheduleLineItem": {
+      "Contracts_RequestLineItem": {
         "type": "object",
         "properties": {
           "product_category": {},
@@ -2741,7 +2804,7 @@
           "user"
         ]
       },
-      "ScheduleLineItemReference": {
+      "LineItemReference": {
         "type": "object",
         "properties": {
           "id": {
@@ -2812,7 +2875,7 @@
             "readOnly": true
           },
           "line_item": {
-            "$ref": "#/components/schemas/ScheduleLineItemReference"
+            "$ref": "#/components/schemas/LineItemReference"
           },
           "name": {
             "type": "string",
@@ -2872,14 +2935,14 @@
           "paid_to"
         ]
       },
-      "ScheduleLineItemReference1": {
+      "LineItemReference1": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "readOnly": true
           },
-          "schedule": {},
+          "contract": {},
           "product_category": {},
           "stream": {},
           "volume": {
@@ -2924,12 +2987,12 @@
           }
         },
         "required": [
+          "contract",
           "eq",
           "feeder_wadf",
           "measurement_type",
           "pricing_basis",
           "product_category",
-          "schedule",
           "settlement_currency",
           "stream",
           "stream_wadf",
@@ -2945,7 +3008,7 @@
             "readOnly": true
           },
           "line_item": {
-            "$ref": "#/components/schemas/ScheduleLineItemReference1"
+            "$ref": "#/components/schemas/LineItemReference1"
           },
           "type": {
             "$ref": "#/components/schemas/FeeTypeReference"
@@ -3050,22 +3113,6 @@
           "fee_category",
           "name",
           "short_code"
-        ]
-      },
-      "ContractReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "external_id": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "external_id"
         ]
       },
       "Contracts_ProfitShare": {
@@ -3200,7 +3247,7 @@
             "readOnly": true
           },
           "line_item": {
-            "$ref": "#/components/schemas/ScheduleLineItemReference"
+            "$ref": "#/components/schemas/LineItemReference"
           },
           "created_at": {
             "type": "string",
@@ -3610,7 +3657,7 @@
             "$ref": "#/components/schemas/PricingProvisionTypeReference"
           },
           "line_item": {
-            "$ref": "#/components/schemas/ScheduleLineItemReference1"
+            "$ref": "#/components/schemas/LineItemReference1"
           },
           "description": {
             "type": "string",
@@ -3697,6 +3744,26 @@
           "organization",
           "short_code"
         ]
+      },
+      "PaperPricingProvision": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "provision": {
+            "$ref": "#/components/schemas/PricingProvisionReference"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
       },
       "Contracts_Paper": {
         "type": "object",
@@ -3894,6 +3961,11 @@
             "type": "string",
             "default": null,
             "nullable": true
+          },
+          "short_code": {
+            "type": "string",
+            "default": null,
+            "nullable": true
           }
         },
         "required": [
@@ -3956,6 +4028,9 @@
             "maxLength": 255
           },
           "organization": {},
+          "status": {
+            "default": 1
+          },
           "term": {},
           "transaction_type": {},
           "start_date": {
@@ -3985,7 +4060,7 @@
           "transaction_type"
         ]
       },
-      "ContractScheduleReference1": {
+      "ContractScheduleReference": {
         "type": "object",
         "properties": {
           "id": {
@@ -4000,6 +4075,10 @@
             "type": "string",
             "format": "date"
           },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {},
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -4011,7 +4090,9 @@
         },
         "required": [
           "contract",
-          "production_month"
+          "production_month",
+          "volume",
+          "volume_measurement_unit"
         ]
       },
       "EntityReference2": {
@@ -4393,13 +4474,13 @@
           "schedules": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ContractScheduleReference1"
+              "$ref": "#/components/schemas/ContractScheduleReference"
             }
           },
           "line_items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ScheduleLineItemReference1"
+              "$ref": "#/components/schemas/LineItemReference1"
             }
           },
           "users": {
@@ -4579,11 +4660,11 @@
             "$ref": "#/components/schemas/MessageThreadReference"
           },
           "schedule": {
-            "$ref": "#/components/schemas/ContractScheduleReference1"
+            "$ref": "#/components/schemas/ContractScheduleReference"
           }
         }
       },
-      "Messages_ScheduleLineItemThread": {
+      "Messages_LineItemThread": {
         "type": "object",
         "properties": {
           "id": {
@@ -4594,7 +4675,7 @@
             "$ref": "#/components/schemas/MessageThreadReference"
           },
           "line_item": {
-            "$ref": "#/components/schemas/ScheduleLineItemReference1"
+            "$ref": "#/components/schemas/LineItemReference1"
           }
         }
       },
@@ -4837,6 +4918,51 @@
         ]
       },
       "Pricing_PricingBasis": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "Pricing_Index": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "stream": {
+            "$ref": "#/components/schemas/StreamReference1"
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "Pricing_PriceBase": {
         "type": "object",
         "properties": {
           "id": {
@@ -6598,6 +6724,11 @@
             "type": "string",
             "default": null,
             "nullable": true
+          },
+          "short_code": {
+            "type": "string",
+            "default": null,
+            "nullable": true
           }
         },
         "required": [
@@ -6969,6 +7100,9 @@
             "maxLength": 255
           },
           "organization": {},
+          "status": {
+            "default": 1
+          },
           "term": {},
           "transaction_type": {},
           "start_date": {
@@ -6996,6 +7130,27 @@
           "start_date",
           "term",
           "transaction_type"
+        ]
+      },
+      "Contracts_ReferenceContractStatus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
         ]
       },
       "Contracts_ReferenceContractScheduleStatus": {
@@ -7061,6 +7216,27 @@
           "short_code"
         ]
       },
+      "Contracts_ReferenceContractPaymentTerm": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
       "Contracts_ReferenceContractTransactionType": {
         "type": "object",
         "properties": {
@@ -7097,6 +7273,10 @@
             "type": "string",
             "format": "date"
           },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {},
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -7108,17 +7288,19 @@
         },
         "required": [
           "contract",
-          "production_month"
+          "production_month",
+          "volume",
+          "volume_measurement_unit"
         ]
       },
-      "Contracts_ReferenceScheduleLineItem": {
+      "Contracts_ReferenceLineItem": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "readOnly": true
           },
-          "schedule": {},
+          "contract": {},
           "product_category": {},
           "stream": {},
           "volume": {
@@ -7163,12 +7345,12 @@
           }
         },
         "required": [
+          "contract",
           "eq",
           "feeder_wadf",
           "measurement_type",
           "pricing_basis",
           "product_category",
-          "schedule",
           "settlement_currency",
           "stream",
           "stream_wadf",
@@ -7873,7 +8055,7 @@
           "thread"
         ]
       },
-      "Messages_ReferenceScheduleLineItemThread": {
+      "Messages_ReferenceLineItemThread": {
         "type": "object",
         "properties": {
           "id": {
@@ -8037,6 +8219,50 @@
         ]
       },
       "Pricing_ReferencePricingBasis": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "Pricing_ReferenceIndex": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "stream": {}
+        },
+        "required": [
+          "name",
+          "short_code",
+          "stream"
+        ]
+      },
+      "Pricing_ReferencePriceBase": {
         "type": "object",
         "properties": {
           "id": {
@@ -11744,6 +11970,279 @@
                     "error": {
                       "type": "string",
                       "example": "Equalization not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/indexes": {
+      "get": {
+        "summary": "List Indexes",
+        "description": "Retrieve a list of indexes with pagination.",
+        "operationId": "get_indexes",
+        "tags": [
+          "Pricing"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "stream",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "The stream to filter by"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of indexes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Pricing_ReferenceIndex"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/indexes/{id}": {
+      "get": {
+        "summary": "Get Index",
+        "description": "Retrieve details about a specific index.",
+        "operationId": "get_index",
+        "tags": [
+          "Pricing"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The index ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single index object containing index details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Pricing_Index"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Index not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Index not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/price-bases": {
+      "get": {
+        "summary": "List Price Bases",
+        "description": "Retrieve a list of price bases with pagination.",
+        "operationId": "get_price_bases",
+        "tags": [
+          "Pricing"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of price bases.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Pricing_ReferencePriceBase"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/price-bases/{id}": {
+      "get": {
+        "summary": "Get Price Base",
+        "description": "Retrieve details about a specific price base.",
+        "operationId": "get_price_base",
+        "tags": [
+          "Pricing"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The price base ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single price base object containing price base details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Pricing_PriceBase"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Price base not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Price base not found."
                     }
                   }
                 }
@@ -18326,11 +18825,11 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items": {
+    "/contracts/{id}/line-items": {
       "post": {
-        "summary": "Create Schedule Line Item",
-        "description": "Create a new schedule line item.",
-        "operationId": "create_schedule_line_item",
+        "summary": "Create Line Item",
+        "description": "Create a new line item.",
+        "operationId": "create_line_item",
         "tags": [
           "Contracts"
         ],
@@ -18343,15 +18842,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           }
         ],
         "requestBody": {
@@ -18359,21 +18849,21 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Contracts_RequestScheduleLineItem"
+                "$ref": "#/components/schemas/Contracts_RequestLineItem"
               }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Contract schedule line item successfully created.",
+            "description": "Contract line item successfully created.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Contracts_ScheduleLineItem"
+                      "$ref": "#/components/schemas/Contracts_LineItem"
                     }
                   }
                 }
@@ -18395,11 +18885,11 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}": {
+    "/contracts/{id}/line-items/{line_item_id}": {
       "patch": {
-        "summary": "Update Schedule Line Item",
-        "description": "Update an existing schedule line item by ID.",
-        "operationId": "update_schedule_line_item",
+        "summary": "Update Line Item",
+        "description": "Update an existing line item by ID.",
+        "operationId": "update_line_item",
         "tags": [
           "Contracts"
         ],
@@ -18412,15 +18902,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -18437,24 +18918,24 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Contracts_RequestScheduleLineItem"
+                "$ref": "#/components/schemas/Contracts_RequestLineItem"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Schedule line item updated.",
+            "description": "Line item updated.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Contracts_ScheduleLineItem"
+                  "$ref": "#/components/schemas/Contracts_LineItem"
                 }
               }
             }
           },
           "404": {
-            "description": "Schedule line item not found.",
+            "description": "Line item not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -18462,7 +18943,7 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "Schedule line item not found."
+                      "example": "Line item not found."
                     }
                   }
                 }
@@ -18484,9 +18965,9 @@
         }
       },
       "delete": {
-        "summary": "Delete Schedule Line Item",
-        "description": "Delete a schedule line item.",
-        "operationId": "delete_schedule_line_item",
+        "summary": "Delete Line Item",
+        "description": "Delete a line item.",
+        "operationId": "delete_line_item",
         "tags": [
           "Contracts"
         ],
@@ -18502,15 +18983,6 @@
           },
           {
             "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
-          },
-          {
-            "in": "path",
             "name": "line_item_id",
             "schema": {
               "type": "integer"
@@ -18521,7 +18993,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Schedule line item successfully deleted.",
+            "description": "Line item successfully deleted.",
             "content": {
               "application/json": {
                 "schema": {
@@ -18529,7 +19001,7 @@
                   "properties": {
                     "message": {
                       "type": "string",
-                      "example": "Schedule line item successfully deleted."
+                      "example": "Line item successfully deleted."
                     }
                   }
                 }
@@ -18540,7 +19012,7 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "404": {
-            "description": "Schedule line item not found.",
+            "description": "Line item not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -18548,7 +19020,7 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "Schedule line item not found."
+                      "example": "Line item not found."
                     }
                   }
                 }
@@ -18567,7 +19039,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/fees": {
+    "/contracts/{id}/line-items/{line_item_id}/fees": {
       "post": {
         "summary": "Create Fee",
         "description": "Create a new fee.",
@@ -18584,15 +19056,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -18645,7 +19108,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/fees/{fee_id}": {
+    "/contracts/{id}/line-items/{line_item_id}/fees/{fee_id}": {
       "patch": {
         "summary": "Update Fee",
         "description": "Update an existing fee by ID.",
@@ -18662,15 +19125,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -18761,15 +19215,6 @@
           },
           {
             "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
-          },
-          {
-            "in": "path",
             "name": "line_item_id",
             "schema": {
               "type": "integer"
@@ -18835,7 +19280,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/pricing-provisions": {
+    "/contracts/{id}/line-items/{line_item_id}/pricing-provisions": {
       "post": {
         "summary": "Create Pricing Provision",
         "description": "Create a new pricing provision.",
@@ -18852,15 +19297,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -18913,7 +19349,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}": {
+    "/contracts/{id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}": {
       "patch": {
         "summary": "Update Pricing Provision",
         "description": "Update an existing pricing provision by ID.",
@@ -18930,15 +19366,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -19029,15 +19456,6 @@
           },
           {
             "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
-          },
-          {
-            "in": "path",
             "name": "line_item_id",
             "schema": {
               "type": "integer"
@@ -19103,7 +19521,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups": {
+    "/contracts/{id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups": {
       "post": {
         "summary": "Create Condition Group",
         "description": "Create a new condition group.",
@@ -19120,15 +19538,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -19190,7 +19599,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups/{condition_group_id}": {
+    "/contracts/{id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups/{condition_group_id}": {
       "patch": {
         "summary": "Update Condition Group",
         "description": "Update an existing condition group by ID.",
@@ -19207,15 +19616,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -19315,15 +19715,6 @@
           },
           {
             "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
-          },
-          {
-            "in": "path",
             "name": "line_item_id",
             "schema": {
               "type": "integer"
@@ -19398,7 +19789,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups/{condition_group_id}/pricing-conditions": {
+    "/contracts/{id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups/{condition_group_id}/pricing-conditions": {
       "post": {
         "summary": "Create Pricing Condition",
         "description": "Create a new pricing condition.",
@@ -19415,15 +19806,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -19494,7 +19876,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups/{condition_group_id}/pricing-conditions/{pricing_condition_id}": {
+    "/contracts/{id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups/{condition_group_id}/pricing-conditions/{pricing_condition_id}": {
       "patch": {
         "summary": "Update Pricing Condition",
         "description": "Update an existing pricing condition by ID.",
@@ -19511,15 +19893,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -19628,15 +20001,6 @@
           },
           {
             "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
-          },
-          {
-            "in": "path",
             "name": "line_item_id",
             "schema": {
               "type": "integer"
@@ -19720,7 +20084,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/transport-chains": {
+    "/contracts/{id}/line-items/{line_item_id}/transport-chains": {
       "post": {
         "summary": "Create Transport Chain",
         "description": "Create a new transport chain.",
@@ -19737,15 +20101,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -19798,7 +20153,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/transport-chains/{transport_chain_id}": {
+    "/contracts/{id}/line-items/{line_item_id}/transport-chains/{transport_chain_id}": {
       "delete": {
         "summary": "Delete Transport Chain",
         "description": "Delete a transport chain.",
@@ -19815,15 +20170,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -19892,7 +20238,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/transport-chains/{transport_chain_id}/transport-legs": {
+    "/contracts/{id}/line-items/{line_item_id}/transport-chains/{transport_chain_id}/transport-legs": {
       "post": {
         "summary": "Create Transport Leg",
         "description": "Create a new transport leg.",
@@ -19909,15 +20255,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -19979,7 +20316,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/transport-chains/{transport_chain_id}/transport-legs/{transport_leg_id}": {
+    "/contracts/{id}/line-items/{line_item_id}/transport-chains/{transport_chain_id}/transport-legs/{transport_leg_id}": {
       "patch": {
         "summary": "Update Transport Leg",
         "description": "Update an existing transport leg by ID.",
@@ -19996,15 +20333,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -20104,15 +20432,6 @@
           },
           {
             "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
-          },
-          {
-            "in": "path",
             "name": "line_item_id",
             "schema": {
               "type": "integer"
@@ -20187,7 +20506,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/premiums": {
+    "/contracts/{id}/line-items/{line_item_id}/premiums": {
       "post": {
         "summary": "Create Premium",
         "description": "Create a new premium.",
@@ -20204,15 +20523,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -20265,7 +20575,7 @@
         }
       }
     },
-    "/contracts/{id}/schedules/{schedule_id}/line-items/{line_item_id}/premiums/{premium_id}": {
+    "/contracts/{id}/line-items/{line_item_id}/premiums/{premium_id}": {
       "patch": {
         "summary": "Update Premium",
         "description": "Update an existing premium by ID.",
@@ -20282,15 +20592,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -20381,15 +20682,6 @@
           },
           {
             "in": "path",
-            "name": "schedule_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The schedule ID."
-          },
-          {
-            "in": "path",
             "name": "line_item_id",
             "schema": {
               "type": "integer"
@@ -20437,6 +20729,75 @@
                     "error": {
                       "type": "string",
                       "example": "Premium not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/statuses": {
+      "get": {
+        "summary": "List Contract Statuses",
+        "description": "Retrieve a list of contract statuses with pagination.",
+        "operationId": "get_contract_statuses",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of contract statuses.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Contracts_ReferenceContractStatus"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
                     }
                   }
                 }
@@ -20626,6 +20987,75 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/Contracts_ReferenceContractTerm"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/payment-terms": {
+      "get": {
+        "summary": "List Contract Payment Terms",
+        "description": "Retrieve a list of contract payment terms with pagination.",
+        "operationId": "get_contract_payment_terms",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of contract payment terms.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Contracts_ReferenceContractPaymentTerm"
                       }
                     },
                     "meta": {
