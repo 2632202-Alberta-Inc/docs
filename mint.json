@@ -100,15 +100,6 @@
           ]
         },
         {
-          "group": "Deals",
-          "pages": [
-            "api-reference/deals/list-deals",
-            "api-reference/deals/create-deal",
-            "api-reference/deals/get-deal",
-            "api-reference/deals/update-deal"
-          ]
-        },
-        {
           "group": "Contracts",
           "pages": [
             "api-reference/contracts/list-contracts",
