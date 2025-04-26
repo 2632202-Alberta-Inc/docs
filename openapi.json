@@ -2373,6 +2373,27 @@
           "transaction_type"
         ]
       },
+      "Contracts_ContractType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
       "Contracts_ContractStatus": {
         "type": "object",
         "properties": {
@@ -7154,6 +7175,27 @@
         ]
       },
       "Contracts_ReferenceContractScheduleStatus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "Contracts_ReferenceContractType": {
         "type": "object",
         "properties": {
           "id": {
