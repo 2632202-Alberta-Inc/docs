@@ -1150,6 +1150,56 @@
           "name"
         ]
       },
+      "MeasurementPropertyReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "EstimatedQuality": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "measurement_property": {
+            "$ref": "#/components/schemas/MeasurementPropertyReference"
+          },
+          "measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          },
+          "value": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
       "ContractSchedule": {
         "type": "object",
         "properties": {
@@ -1177,6 +1227,12 @@
           "updated_at": {
             "type": "string",
             "format": "date-time"
+          },
+          "estimated_qualities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EstimatedQuality"
+            }
           }
         },
         "required": [
@@ -2028,27 +2084,6 @@
           "symbol"
         ]
       },
-      "MeasurementPropertyReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
-      },
       "ComparisonOperatorReference": {
         "type": "object",
         "properties": {
@@ -2294,6 +2329,7 @@
           "transaction_type": {
             "$ref": "#/components/schemas/ContractTransactionTypeReference"
           },
+          "type": {},
           "start_date": {
             "type": "string",
             "format": "date"
@@ -2342,7 +2378,8 @@
         },
         "required": [
           "external_id",
-          "start_date"
+          "start_date",
+          "type"
         ]
       },
       "Contracts_RequestContract": {
@@ -2357,6 +2394,7 @@
           },
           "term": {},
           "transaction_type": {},
+          "type": {},
           "start_date": {
             "type": "string",
             "format": "date"
@@ -2370,7 +2408,8 @@
           "external_id",
           "start_date",
           "term",
-          "transaction_type"
+          "transaction_type",
+          "type"
         ]
       },
       "Contracts_ContractType": {
@@ -2413,6 +2452,69 @@
         "required": [
           "name",
           "short_code"
+        ]
+      },
+      "ContractScheduleReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "production_month": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "production_month"
+        ]
+      },
+      "Contracts_EstimatedQuality": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "schedule": {
+            "$ref": "#/components/schemas/ContractScheduleReference"
+          },
+          "measurement_property": {
+            "$ref": "#/components/schemas/MeasurementPropertyReference"
+          },
+          "measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          },
+          "value": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "Contracts_RequestEstimatedQuality": {
+        "type": "object",
+        "properties": {
+          "measurement_property": {},
+          "measurement_unit": {},
+          "value": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "measurement_property",
+          "measurement_unit",
+          "value"
         ]
       },
       "Contracts_ContractScheduleStatus": {
@@ -2566,6 +2668,12 @@
           "updated_at": {
             "type": "string",
             "format": "date-time"
+          },
+          "estimated_qualities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EstimatedQuality"
+            }
           }
         },
         "required": [
@@ -4054,6 +4162,7 @@
           },
           "term": {},
           "transaction_type": {},
+          "type": {},
           "start_date": {
             "type": "string",
             "format": "date"
@@ -4078,10 +4187,11 @@
           "organization",
           "start_date",
           "term",
-          "transaction_type"
+          "transaction_type",
+          "type"
         ]
       },
-      "ContractScheduleReference": {
+      "ContractScheduleReference1": {
         "type": "object",
         "properties": {
           "id": {
@@ -4495,7 +4605,7 @@
           "schedules": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ContractScheduleReference"
+              "$ref": "#/components/schemas/ContractScheduleReference1"
             }
           },
           "line_items": {
@@ -4681,7 +4791,7 @@
             "$ref": "#/components/schemas/MessageThreadReference"
           },
           "schedule": {
-            "$ref": "#/components/schemas/ContractScheduleReference"
+            "$ref": "#/components/schemas/ContractScheduleReference1"
           }
         }
       },
@@ -7126,6 +7236,7 @@
           },
           "term": {},
           "transaction_type": {},
+          "type": {},
           "start_date": {
             "type": "string",
             "format": "date"
@@ -7150,7 +7261,8 @@
           "organization",
           "start_date",
           "term",
-          "transaction_type"
+          "transaction_type",
+          "type"
         ]
       },
       "Contracts_ReferenceContractStatus": {
@@ -7193,6 +7305,35 @@
         "required": [
           "name",
           "short_code"
+        ]
+      },
+      "Contracts_ReferenceEstimatedQuality": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "schedule": {},
+          "measurement_property": {},
+          "measurement_unit": {},
+          "value": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "measurement_property",
+          "measurement_unit",
+          "schedule",
+          "value"
         ]
       },
       "Contracts_ReferenceContractType": {
@@ -19063,6 +19204,247 @@
                     "error": {
                       "type": "string",
                       "example": "Line item not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/estimated-qualities": {
+      "post": {
+        "summary": "Create Estimated Quality",
+        "description": "Create a new estimated quality.",
+        "operationId": "create_estimated_quality",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestEstimatedQuality"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Estimated quality successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contracts_EstimatedQuality"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/estimated-qualities/{estimated_quality_id}": {
+      "patch": {
+        "summary": "Update Estimated Quality",
+        "description": "Update an existing estimated quality by ID.",
+        "operationId": "update_estimated_quality",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "estimated_quality_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The estimated quality ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestEstimatedQuality"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Estimated quality updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contracts_EstimatedQuality"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Estimated quality not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Estimated quality not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Estimated Quality",
+        "description": "Delete an estimated quality.",
+        "operationId": "delete_estimated_quality",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "estimated_quality_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The estimated quality ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Estimated quality successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Estimated quality successfully deleted."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "description": "Estimated quality not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Estimated quality not found."
                     }
                   }
                 }
