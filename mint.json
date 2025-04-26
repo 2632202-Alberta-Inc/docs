@@ -109,6 +109,7 @@
             "api-reference/contracts/delete-contract",
             "api-reference/contracts/delete-transport-leg",
             "api-reference/contracts/list-contract-roles",
+            "api-reference/contracts/list-contract-types",
             "api-reference/contracts/list-contract-terms",
             "api-reference/contracts/list-contract-transaction-types",
             "api-reference/contracts/list-contract-gtcs",
