@@ -32,7 +32,7 @@
     },
     {
       "name": "Contracts",
-      "description": "Endpoints for managing contracts, including statuses, roles, terms, line items, schedules, logistics, and transaction types."
+      "description": "Endpoints for managing contracts, including statuses, roles, terms, schedules, logistics, and transaction types."
     },
     {
       "name": "Messages",
@@ -991,6 +991,217 @@
           "short_code"
         ]
       },
+      "MeasurementUnitReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "abbreviation": {
+            "type": "string"
+          },
+          "html_symbol": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "abbreviation",
+          "name"
+        ]
+      },
+      "MeasurementTypeReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "PricingBasisReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "CurrencyReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "symbol"
+        ]
+      },
+      "ContractPaymentTermReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "EqualizationReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "IndexReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "StreamReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "short_code": {
+            "type": "string"
+          },
+          "product_category": {}
+        },
+        "required": [
+          "name",
+          "product_category",
+          "short_code"
+        ]
+      },
+      "BenchmarkReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "Wadf": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "amount": {
+            "type": "number"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyReference"
+          },
+          "measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          }
+        },
+        "required": [
+          "amount",
+          "name"
+        ]
+      },
       "EntityReference1": {
         "type": "object",
         "properties": {
@@ -1126,30 +1337,6 @@
           "short_code"
         ]
       },
-      "MeasurementUnitReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "abbreviation": {
-            "type": "string"
-          },
-          "html_symbol": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          }
-        },
-        "required": [
-          "abbreviation",
-          "name"
-        ]
-      },
       "MeasurementPropertyReference": {
         "type": "object",
         "properties": {
@@ -1238,25 +1425,6 @@
         "required": [
           "production_month",
           "volume"
-        ]
-      },
-      "CurrencyReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "symbol": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name",
-          "symbol"
         ]
       },
       "ProfitShare": {
@@ -1432,245 +1600,6 @@
           "short_code"
         ]
       },
-      "StreamReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "short_code": {
-            "type": "string"
-          },
-          "product_category": {}
-        },
-        "required": [
-          "name",
-          "product_category",
-          "short_code"
-        ]
-      },
-      "MeasurementTypeReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
-      },
-      "PricingBasisReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
-      },
-      "EqualizationReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
-      "Wadf": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "amount": {
-            "type": "number"
-          },
-          "currency": {
-            "$ref": "#/components/schemas/CurrencyReference"
-          },
-          "measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
-          }
-        },
-        "required": [
-          "amount",
-          "name"
-        ]
-      },
-      "Premium": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "default": "Premium",
-            "maxLength": 255
-          },
-          "amount": {
-            "type": "number"
-          },
-          "currency": {
-            "$ref": "#/components/schemas/CurrencyReference"
-          },
-          "measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
-          },
-          "paid_by": {
-            "$ref": "#/components/schemas/OrganizationReference1"
-          },
-          "paid_to": {
-            "$ref": "#/components/schemas/OrganizationReference1"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "amount"
-        ]
-      },
-      "FeeTypeReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
-      },
-      "FeeCategoryReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
-      },
-      "Fee": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "type": {
-            "$ref": "#/components/schemas/FeeTypeReference"
-          },
-          "fee_category": {
-            "$ref": "#/components/schemas/FeeCategoryReference"
-          },
-          "currency": {
-            "$ref": "#/components/schemas/CurrencyReference"
-          },
-          "unit_cost": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "quantity": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
-          },
-          "base_cost": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "percentage": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "total_cost": {
-            "type": "number"
-          }
-        }
-      },
       "TransportModeReference": {
         "type": "object",
         "properties": {
@@ -1761,22 +1690,7 @@
             "default": null,
             "nullable": true
           },
-          "quantity": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
           "measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "base_cost": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "percentage": {
-            "type": "number",
             "default": null,
             "nullable": true
           },
@@ -1824,6 +1738,7 @@
           "position": {
             "type": "integer"
           },
+          "chain": {},
           "mode": {
             "$ref": "#/components/schemas/TransportModeReference"
           },
@@ -1935,6 +1850,7 @@
           }
         },
         "required": [
+          "chain",
           "position"
         ]
       },
@@ -1961,6 +1877,85 @@
           }
         }
       },
+      "FeeTypeReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "FeeCategoryReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "Fee": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/FeeTypeReference"
+          },
+          "fee_category": {
+            "$ref": "#/components/schemas/FeeCategoryReference"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyReference"
+          },
+          "unit_cost": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "total_cost": {
+            "type": "number"
+          }
+        }
+      },
       "PricingProvisionTypeReference": {
         "type": "object",
         "properties": {
@@ -1982,57 +1977,6 @@
           "short_code"
         ]
       },
-      "FeeReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "line_item": {},
-          "type": {},
-          "fee_category": {},
-          "currency": {},
-          "unit_cost": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "quantity": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "base_cost": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "percentage": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "currency",
-          "fee_category",
-          "line_item",
-          "type"
-        ]
-      },
       "PricingProvisionReference": {
         "type": "object",
         "properties": {
@@ -2041,7 +1985,7 @@
             "readOnly": true
           },
           "type": {},
-          "line_item": {},
+          "contract": {},
           "description": {
             "type": "string",
             "default": null,
@@ -2058,8 +2002,8 @@
           "fee": {}
         },
         "required": [
+          "contract",
           "fee",
-          "line_item",
           "type"
         ]
       },
@@ -2203,7 +2147,7 @@
             "format": "date-time"
           },
           "fee": {
-            "$ref": "#/components/schemas/FeeReference1"
+            "$ref": "#/components/schemas/FeeReference"
           },
           "groups": {
             "type": "array",
@@ -2212,99 +2156,6 @@
             }
           }
         }
-      },
-      "LineItem": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "product_category": {
-            "$ref": "#/components/schemas/ProductCategoryReference1"
-          },
-          "stream": {
-            "$ref": "#/components/schemas/StreamReference"
-          },
-          "volume": {
-            "type": "number"
-          },
-          "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
-          },
-          "measurement_type": {
-            "$ref": "#/components/schemas/MeasurementTypeReference"
-          },
-          "pricing_basis": {
-            "$ref": "#/components/schemas/PricingBasisReference"
-          },
-          "differential_unit_amount": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "differential_currency": {
-            "$ref": "#/components/schemas/CurrencyReference"
-          },
-          "differential_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
-          },
-          "percentage_of_index": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "percentage_of_index_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
-          },
-          "settlement_currency": {
-            "$ref": "#/components/schemas/CurrencyReference"
-          },
-          "eq": {
-            "$ref": "#/components/schemas/EqualizationReference"
-          },
-          "stream_wadf": {
-            "$ref": "#/components/schemas/Wadf"
-          },
-          "feeder_wadf": {
-            "$ref": "#/components/schemas/Wadf"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "premiums": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Premium"
-            }
-          },
-          "fees": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Fee"
-            }
-          },
-          "chains": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TransportChain"
-            }
-          },
-          "pricing_provisions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PricingProvision"
-            }
-          }
-        },
-        "required": [
-          "volume"
-        ]
       },
       "Contracts_Contract": {
         "type": "object",
@@ -2340,6 +2191,70 @@
             "default": null,
             "nullable": true
           },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          },
+          "measurement_type": {
+            "$ref": "#/components/schemas/MeasurementTypeReference"
+          },
+          "pricing_basis": {
+            "$ref": "#/components/schemas/PricingBasisReference"
+          },
+          "differential_unit_amount": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "differential_currency": {
+            "$ref": "#/components/schemas/CurrencyReference"
+          },
+          "differential_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          },
+          "percentage_of_index": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_index_measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          },
+          "percentage_of_benchmark": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_benchmark_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "settlement_currency": {
+            "$ref": "#/components/schemas/CurrencyReference"
+          },
+          "payment_term": {
+            "$ref": "#/components/schemas/ContractPaymentTermReference"
+          },
+          "eq": {
+            "$ref": "#/components/schemas/EqualizationReference"
+          },
+          "index": {
+            "$ref": "#/components/schemas/IndexReference"
+          },
+          "stream": {
+            "$ref": "#/components/schemas/StreamReference"
+          },
+          "benchmark": {
+            "$ref": "#/components/schemas/BenchmarkReference"
+          },
+          "stream_wadf": {
+            "$ref": "#/components/schemas/Wadf"
+          },
+          "feeder_wadf": {
+            "$ref": "#/components/schemas/Wadf"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -2369,17 +2284,33 @@
           "paper": {
             "$ref": "#/components/schemas/Paper"
           },
-          "line_items": {
+          "product_category": {
+            "$ref": "#/components/schemas/ProductCategoryReference1"
+          },
+          "chains": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/LineItem"
+              "$ref": "#/components/schemas/TransportChain"
+            }
+          },
+          "fees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Fee"
+            }
+          },
+          "pricing_provisions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PricingProvision"
             }
           }
         },
         "required": [
           "external_id",
           "start_date",
-          "type"
+          "type",
+          "volume"
         ]
       },
       "Contracts_RequestContract": {
@@ -2402,14 +2333,77 @@
           "end_date": {
             "type": "string",
             "format": "date"
-          }
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {},
+          "measurement_type": {},
+          "pricing_basis": {},
+          "differential_unit_amount": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "differential_currency": {
+            "default": null,
+            "nullable": true
+          },
+          "differential_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_index": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_index_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_benchmark": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_benchmark_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "settlement_currency": {},
+          "payment_term": {},
+          "eq": {
+            "default": null,
+            "nullable": true
+          },
+          "index": {
+            "default": null,
+            "nullable": true
+          },
+          "stream": {},
+          "benchmark": {
+            "default": null,
+            "nullable": true
+          },
+          "stream_wadf": {},
+          "feeder_wadf": {}
         },
         "required": [
           "external_id",
+          "feeder_wadf",
+          "measurement_type",
+          "payment_term",
+          "pricing_basis",
+          "settlement_currency",
           "start_date",
+          "stream",
+          "stream_wadf",
           "term",
           "transaction_type",
-          "type"
+          "type",
+          "volume",
+          "volume_measurement_unit"
         ]
       },
       "Contracts_ContractType": {
@@ -2702,153 +2696,6 @@
           "volume_measurement_unit"
         ]
       },
-      "Contracts_LineItem": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "contract": {
-            "$ref": "#/components/schemas/ContractReference"
-          },
-          "product_category": {
-            "$ref": "#/components/schemas/ProductCategoryReference1"
-          },
-          "stream": {
-            "$ref": "#/components/schemas/StreamReference"
-          },
-          "volume": {
-            "type": "number"
-          },
-          "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
-          },
-          "measurement_type": {
-            "$ref": "#/components/schemas/MeasurementTypeReference"
-          },
-          "pricing_basis": {
-            "$ref": "#/components/schemas/PricingBasisReference"
-          },
-          "differential_unit_amount": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "differential_currency": {
-            "$ref": "#/components/schemas/CurrencyReference"
-          },
-          "differential_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
-          },
-          "percentage_of_index": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "percentage_of_index_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
-          },
-          "settlement_currency": {
-            "$ref": "#/components/schemas/CurrencyReference"
-          },
-          "eq": {
-            "$ref": "#/components/schemas/EqualizationReference"
-          },
-          "stream_wadf": {
-            "$ref": "#/components/schemas/Wadf"
-          },
-          "feeder_wadf": {
-            "$ref": "#/components/schemas/Wadf"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "premiums": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Premium"
-            }
-          },
-          "fees": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Fee"
-            }
-          },
-          "chains": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TransportChain"
-            }
-          },
-          "pricing_provisions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PricingProvision"
-            }
-          }
-        },
-        "required": [
-          "volume"
-        ]
-      },
-      "Contracts_RequestLineItem": {
-        "type": "object",
-        "properties": {
-          "product_category": {},
-          "stream": {},
-          "volume": {
-            "type": "number"
-          },
-          "volume_measurement_unit": {},
-          "measurement_type": {},
-          "pricing_basis": {},
-          "differential_unit_amount": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "differential_currency": {
-            "default": null,
-            "nullable": true
-          },
-          "differential_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "percentage_of_index": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "percentage_of_index_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "settlement_currency": {},
-          "eq": {},
-          "stream_wadf": {},
-          "feeder_wadf": {}
-        },
-        "required": [
-          "eq",
-          "feeder_wadf",
-          "measurement_type",
-          "pricing_basis",
-          "product_category",
-          "settlement_currency",
-          "stream",
-          "stream_wadf",
-          "volume",
-          "volume_measurement_unit"
-        ]
-      },
       "Contracts_ContractParty": {
         "type": "object",
         "properties": {
@@ -2933,69 +2780,6 @@
           "user"
         ]
       },
-      "LineItemReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "product_category": {},
-          "stream": {},
-          "volume": {
-            "type": "number"
-          },
-          "volume_measurement_unit": {},
-          "measurement_type": {},
-          "pricing_basis": {},
-          "differential_unit_amount": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "differential_currency": {
-            "default": null,
-            "nullable": true
-          },
-          "differential_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "percentage_of_index": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "percentage_of_index_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "settlement_currency": {},
-          "eq": {},
-          "stream_wadf": {},
-          "feeder_wadf": {},
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "eq",
-          "feeder_wadf",
-          "measurement_type",
-          "pricing_basis",
-          "product_category",
-          "settlement_currency",
-          "stream",
-          "stream_wadf",
-          "volume",
-          "volume_measurement_unit"
-        ]
-      },
       "Contracts_Premium": {
         "type": "object",
         "properties": {
@@ -3003,8 +2787,8 @@
             "type": "string",
             "readOnly": true
           },
-          "line_item": {
-            "$ref": "#/components/schemas/LineItemReference"
+          "contract": {
+            "$ref": "#/components/schemas/ContractReference"
           },
           "name": {
             "type": "string",
@@ -3064,71 +2848,6 @@
           "paid_to"
         ]
       },
-      "LineItemReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "contract": {},
-          "product_category": {},
-          "stream": {},
-          "volume": {
-            "type": "number"
-          },
-          "volume_measurement_unit": {},
-          "measurement_type": {},
-          "pricing_basis": {},
-          "differential_unit_amount": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "differential_currency": {
-            "default": null,
-            "nullable": true
-          },
-          "differential_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "percentage_of_index": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "percentage_of_index_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "settlement_currency": {},
-          "eq": {},
-          "stream_wadf": {},
-          "feeder_wadf": {},
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "contract",
-          "eq",
-          "feeder_wadf",
-          "measurement_type",
-          "pricing_basis",
-          "product_category",
-          "settlement_currency",
-          "stream",
-          "stream_wadf",
-          "volume",
-          "volume_measurement_unit"
-        ]
-      },
       "Contracts_Fee": {
         "type": "object",
         "properties": {
@@ -3136,8 +2855,8 @@
             "type": "string",
             "readOnly": true
           },
-          "line_item": {
-            "$ref": "#/components/schemas/LineItemReference1"
+          "contract": {
+            "$ref": "#/components/schemas/ContractReference"
           },
           "type": {
             "$ref": "#/components/schemas/FeeTypeReference"
@@ -3153,23 +2872,8 @@
             "default": null,
             "nullable": true
           },
-          "quantity": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
           "measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
-          },
-          "base_cost": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "percentage": {
-            "type": "number",
-            "default": null,
-            "nullable": true
           },
           "created_at": {
             "type": "string",
@@ -3195,22 +2899,7 @@
             "default": null,
             "nullable": true
           },
-          "quantity": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
           "measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "base_cost": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "percentage": {
-            "type": "number",
             "default": null,
             "nullable": true
           }
@@ -3375,8 +3064,8 @@
             "type": "string",
             "readOnly": true
           },
-          "line_item": {
-            "$ref": "#/components/schemas/LineItemReference"
+          "contract": {
+            "$ref": "#/components/schemas/ContractReference"
           },
           "created_at": {
             "type": "string",
@@ -3785,8 +3474,8 @@
           "type": {
             "$ref": "#/components/schemas/PricingProvisionTypeReference"
           },
-          "line_item": {
-            "$ref": "#/components/schemas/LineItemReference1"
+          "contract": {
+            "$ref": "#/components/schemas/ContractReference"
           },
           "description": {
             "type": "string",
@@ -3802,7 +3491,7 @@
             "format": "date-time"
           },
           "fee": {
-            "$ref": "#/components/schemas/FeeReference1"
+            "$ref": "#/components/schemas/FeeReference"
           },
           "groups": {
             "type": "array",
@@ -4173,6 +3862,60 @@
             "default": null,
             "nullable": true
           },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {},
+          "measurement_type": {},
+          "pricing_basis": {},
+          "differential_unit_amount": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "differential_currency": {
+            "default": null,
+            "nullable": true
+          },
+          "differential_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_index": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_index_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_benchmark": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_benchmark_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "settlement_currency": {},
+          "payment_term": {},
+          "eq": {
+            "default": null,
+            "nullable": true
+          },
+          "index": {
+            "default": null,
+            "nullable": true
+          },
+          "stream": {},
+          "benchmark": {
+            "default": null,
+            "nullable": true
+          },
+          "stream_wadf": {},
+          "feeder_wadf": {},
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -4184,11 +3927,20 @@
         },
         "required": [
           "external_id",
+          "feeder_wadf",
+          "measurement_type",
           "organization",
+          "payment_term",
+          "pricing_basis",
+          "settlement_currency",
           "start_date",
+          "stream",
+          "stream_wadf",
           "term",
           "transaction_type",
-          "type"
+          "type",
+          "volume",
+          "volume_measurement_unit"
         ]
       },
       "ContractScheduleReference1": {
@@ -4608,12 +4360,6 @@
               "$ref": "#/components/schemas/ContractScheduleReference1"
             }
           },
-          "line_items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LineItemReference1"
-            }
-          },
           "users": {
             "type": "array",
             "items": {
@@ -4792,21 +4538,6 @@
           },
           "schedule": {
             "$ref": "#/components/schemas/ContractScheduleReference1"
-          }
-        }
-      },
-      "Messages_LineItemThread": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "thread": {
-            "$ref": "#/components/schemas/MessageThreadReference"
-          },
-          "line_item": {
-            "$ref": "#/components/schemas/LineItemReference1"
           }
         }
       },
@@ -5093,7 +4824,7 @@
           "short_code"
         ]
       },
-      "Pricing_PriceBase": {
+      "Pricing_Benchmark": {
         "type": "object",
         "properties": {
           "id": {
@@ -7247,6 +6978,60 @@
             "default": null,
             "nullable": true
           },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {},
+          "measurement_type": {},
+          "pricing_basis": {},
+          "differential_unit_amount": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "differential_currency": {
+            "default": null,
+            "nullable": true
+          },
+          "differential_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_index": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_index_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_benchmark": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "percentage_of_benchmark_measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "settlement_currency": {},
+          "payment_term": {},
+          "eq": {
+            "default": null,
+            "nullable": true
+          },
+          "index": {
+            "default": null,
+            "nullable": true
+          },
+          "stream": {},
+          "benchmark": {
+            "default": null,
+            "nullable": true
+          },
+          "stream_wadf": {},
+          "feeder_wadf": {},
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -7258,11 +7043,20 @@
         },
         "required": [
           "external_id",
+          "feeder_wadf",
+          "measurement_type",
           "organization",
+          "payment_term",
+          "pricing_basis",
+          "settlement_currency",
           "start_date",
+          "stream",
+          "stream_wadf",
           "term",
           "transaction_type",
-          "type"
+          "type",
+          "volume",
+          "volume_measurement_unit"
         ]
       },
       "Contracts_ReferenceContractStatus": {
@@ -7476,71 +7270,6 @@
           "volume_measurement_unit"
         ]
       },
-      "Contracts_ReferenceLineItem": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "contract": {},
-          "product_category": {},
-          "stream": {},
-          "volume": {
-            "type": "number"
-          },
-          "volume_measurement_unit": {},
-          "measurement_type": {},
-          "pricing_basis": {},
-          "differential_unit_amount": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "differential_currency": {
-            "default": null,
-            "nullable": true
-          },
-          "differential_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "percentage_of_index": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "percentage_of_index_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "settlement_currency": {},
-          "eq": {},
-          "stream_wadf": {},
-          "feeder_wadf": {},
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "contract",
-          "eq",
-          "feeder_wadf",
-          "measurement_type",
-          "pricing_basis",
-          "product_category",
-          "settlement_currency",
-          "stream",
-          "stream_wadf",
-          "volume",
-          "volume_measurement_unit"
-        ]
-      },
       "Contracts_ReferenceTransportMode": {
         "type": "object",
         "properties": {
@@ -7569,7 +7298,7 @@
             "type": "string",
             "readOnly": true
           },
-          "line_item": {},
+          "contract": {},
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -7586,7 +7315,7 @@
           }
         },
         "required": [
-          "line_item"
+          "contract"
         ]
       },
       "Contracts_ReferenceTransportLeg": {
@@ -7684,7 +7413,7 @@
             "type": "string",
             "readOnly": true
           },
-          "line_item": {},
+          "contract": {},
           "name": {
             "type": "string",
             "default": "Premium",
@@ -7710,8 +7439,8 @@
         },
         "required": [
           "amount",
+          "contract",
           "currency",
-          "line_item",
           "paid_by",
           "paid_to"
         ]
@@ -7723,7 +7452,7 @@
             "type": "string",
             "readOnly": true
           },
-          "line_item": {},
+          "contract": {},
           "type": {},
           "fee_category": {},
           "currency": {},
@@ -7732,22 +7461,7 @@
             "default": null,
             "nullable": true
           },
-          "quantity": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
           "measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "base_cost": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "percentage": {
-            "type": "number",
             "default": null,
             "nullable": true
           },
@@ -7761,9 +7475,9 @@
           }
         },
         "required": [
+          "contract",
           "currency",
           "fee_category",
-          "line_item",
           "type"
         ]
       },
@@ -7929,7 +7643,7 @@
             "readOnly": true
           },
           "type": {},
-          "line_item": {},
+          "contract": {},
           "description": {
             "type": "string",
             "default": null,
@@ -7946,8 +7660,8 @@
           "fee": {}
         },
         "required": [
+          "contract",
           "fee",
-          "line_item",
           "type"
         ]
       },
@@ -8238,21 +7952,6 @@
           "thread"
         ]
       },
-      "Messages_ReferenceLineItemThread": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "thread": {},
-          "line_item": {}
-        },
-        "required": [
-          "line_item",
-          "thread"
-        ]
-      },
       "Messages_ReferenceUserThread": {
         "type": "object",
         "properties": {
@@ -8445,7 +8144,7 @@
           "stream"
         ]
       },
-      "Pricing_ReferencePriceBase": {
+      "Pricing_ReferenceBenchmark": {
         "type": "object",
         "properties": {
           "id": {
@@ -12312,11 +12011,11 @@
         }
       }
     },
-    "/price-bases": {
+    "/benchmarks": {
       "get": {
-        "summary": "List Price Bases",
-        "description": "Retrieve a list of price bases with pagination.",
-        "operationId": "get_price_bases",
+        "summary": "List Benchmarks",
+        "description": "Retrieve a list of benchmarks with pagination.",
+        "operationId": "get_benchmarks",
         "tags": [
           "Pricing"
         ],
@@ -12335,7 +12034,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A paginated list of price bases.",
+            "description": "A paginated list of benchmarks.",
             "content": {
               "application/json": {
                 "schema": {
@@ -12344,7 +12043,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Pricing_ReferencePriceBase"
+                        "$ref": "#/components/schemas/Pricing_ReferenceBenchmark"
                       }
                     },
                     "meta": {
@@ -12381,11 +12080,11 @@
         }
       }
     },
-    "/price-bases/{id}": {
+    "/benchmarks/{id}": {
       "get": {
-        "summary": "Get Price Base",
-        "description": "Retrieve details about a specific price base.",
-        "operationId": "get_price_base",
+        "summary": "Get Benchmark",
+        "description": "Retrieve details about a specific benchmark.",
+        "operationId": "get_benchmark",
         "tags": [
           "Pricing"
         ],
@@ -12397,19 +12096,19 @@
               "type": "integer"
             },
             "required": true,
-            "description": "The price base ID."
+            "description": "The benchmark ID."
           }
         ],
         "responses": {
           "200": {
-            "description": "A single price base object containing price base details.",
+            "description": "A single benchmark object containing benchmark details.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/Pricing_PriceBase"
+                      "$ref": "#/components/schemas/Pricing_Benchmark"
                     }
                   }
                 }
@@ -12417,7 +12116,7 @@
             }
           },
           "404": {
-            "description": "Price base not found.",
+            "description": "Benchmark not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -12425,7 +12124,7 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "example": "Price base not found."
+                      "example": "Benchmark not found."
                     }
                   }
                 }
@@ -19008,220 +18707,6 @@
         }
       }
     },
-    "/contracts/{id}/line-items": {
-      "post": {
-        "summary": "Create Line Item",
-        "description": "Create a new line item.",
-        "operationId": "create_line_item",
-        "tags": [
-          "Contracts"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The contract ID."
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Contracts_RequestLineItem"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Contract line item successfully created.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Contracts_LineItem"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/contracts/{id}/line-items/{line_item_id}": {
-      "patch": {
-        "summary": "Update Line Item",
-        "description": "Update an existing line item by ID.",
-        "operationId": "update_line_item",
-        "tags": [
-          "Contracts"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Contracts_RequestLineItem"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Line item updated.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Contracts_LineItem"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Line item not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Line item not found."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete Line Item",
-        "description": "Delete a line item.",
-        "operationId": "delete_line_item",
-        "tags": [
-          "Contracts"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Line item successfully deleted.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Line item successfully deleted."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "404": {
-            "description": "Line item not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Line item not found."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      }
-    },
     "/contracts/{id}/schedules/{schedule_id}/estimated-qualities": {
       "post": {
         "summary": "Create Estimated Quality",
@@ -19463,7 +18948,7 @@
         }
       }
     },
-    "/contracts/{id}/line-items/{line_item_id}/fees": {
+    "/contracts/{id}/fees": {
       "post": {
         "summary": "Create Fee",
         "description": "Create a new fee.",
@@ -19480,15 +18965,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           }
         ],
         "requestBody": {
@@ -19532,7 +19008,7 @@
         }
       }
     },
-    "/contracts/{id}/line-items/{line_item_id}/fees/{fee_id}": {
+    "/contracts/{id}/fees/{fee_id}": {
       "patch": {
         "summary": "Update Fee",
         "description": "Update an existing fee by ID.",
@@ -19549,15 +19025,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           },
           {
             "in": "path",
@@ -19639,15 +19106,6 @@
           },
           {
             "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
-          },
-          {
-            "in": "path",
             "name": "fee_id",
             "schema": {
               "type": "integer"
@@ -19704,7 +19162,7 @@
         }
       }
     },
-    "/contracts/{id}/line-items/{line_item_id}/pricing-provisions": {
+    "/contracts/{id}/pricing-provisions": {
       "post": {
         "summary": "Create Pricing Provision",
         "description": "Create a new pricing provision.",
@@ -19721,15 +19179,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           }
         ],
         "requestBody": {
@@ -19773,7 +19222,7 @@
         }
       }
     },
-    "/contracts/{id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}": {
+    "/contracts/{id}/pricing-provisions/{pricing_provision_id}": {
       "patch": {
         "summary": "Update Pricing Provision",
         "description": "Update an existing pricing provision by ID.",
@@ -19790,15 +19239,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           },
           {
             "in": "path",
@@ -19880,15 +19320,6 @@
           },
           {
             "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
-          },
-          {
-            "in": "path",
             "name": "pricing_provision_id",
             "schema": {
               "type": "integer"
@@ -19945,7 +19376,7 @@
         }
       }
     },
-    "/contracts/{id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups": {
+    "/contracts/{id}/pricing-provisions/{pricing_provision_id}/condition-groups": {
       "post": {
         "summary": "Create Condition Group",
         "description": "Create a new condition group.",
@@ -19962,15 +19393,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           },
           {
             "in": "path",
@@ -20023,7 +19445,7 @@
         }
       }
     },
-    "/contracts/{id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups/{condition_group_id}": {
+    "/contracts/{id}/pricing-provisions/{pricing_provision_id}/condition-groups/{condition_group_id}": {
       "patch": {
         "summary": "Update Condition Group",
         "description": "Update an existing condition group by ID.",
@@ -20040,15 +19462,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           },
           {
             "in": "path",
@@ -20139,15 +19552,6 @@
           },
           {
             "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
-          },
-          {
-            "in": "path",
             "name": "pricing_provision_id",
             "schema": {
               "type": "integer"
@@ -20213,7 +19617,7 @@
         }
       }
     },
-    "/contracts/{id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups/{condition_group_id}/pricing-conditions": {
+    "/contracts/{id}/pricing-provisions/{pricing_provision_id}/condition-groups/{condition_group_id}/pricing-conditions": {
       "post": {
         "summary": "Create Pricing Condition",
         "description": "Create a new pricing condition.",
@@ -20230,15 +19634,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           },
           {
             "in": "path",
@@ -20300,7 +19695,7 @@
         }
       }
     },
-    "/contracts/{id}/line-items/{line_item_id}/pricing-provisions/{pricing_provision_id}/condition-groups/{condition_group_id}/pricing-conditions/{pricing_condition_id}": {
+    "/contracts/{id}/pricing-provisions/{pricing_provision_id}/condition-groups/{condition_group_id}/pricing-conditions/{pricing_condition_id}": {
       "patch": {
         "summary": "Update Pricing Condition",
         "description": "Update an existing pricing condition by ID.",
@@ -20317,15 +19712,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           },
           {
             "in": "path",
@@ -20425,15 +19811,6 @@
           },
           {
             "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
-          },
-          {
-            "in": "path",
             "name": "pricing_provision_id",
             "schema": {
               "type": "integer"
@@ -20508,7 +19885,7 @@
         }
       }
     },
-    "/contracts/{id}/line-items/{line_item_id}/transport-chains": {
+    "/contracts/{id}/transport-chains": {
       "post": {
         "summary": "Create Transport Chain",
         "description": "Create a new transport chain.",
@@ -20525,15 +19902,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           }
         ],
         "requestBody": {
@@ -20577,7 +19945,7 @@
         }
       }
     },
-    "/contracts/{id}/line-items/{line_item_id}/transport-chains/{transport_chain_id}": {
+    "/contracts/{id}/transport-chains/{transport_chain_id}": {
       "delete": {
         "summary": "Delete Transport Chain",
         "description": "Delete a transport chain.",
@@ -20594,15 +19962,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           },
           {
             "in": "path",
@@ -20662,7 +20021,7 @@
         }
       }
     },
-    "/contracts/{id}/line-items/{line_item_id}/transport-chains/{transport_chain_id}/transport-legs": {
+    "/contracts/{id}/transport-chains/{transport_chain_id}/transport-legs": {
       "post": {
         "summary": "Create Transport Leg",
         "description": "Create a new transport leg.",
@@ -20679,15 +20038,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           },
           {
             "in": "path",
@@ -20740,7 +20090,7 @@
         }
       }
     },
-    "/contracts/{id}/line-items/{line_item_id}/transport-chains/{transport_chain_id}/transport-legs/{transport_leg_id}": {
+    "/contracts/{id}/transport-chains/{transport_chain_id}/transport-legs/{transport_leg_id}": {
       "patch": {
         "summary": "Update Transport Leg",
         "description": "Update an existing transport leg by ID.",
@@ -20757,15 +20107,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           },
           {
             "in": "path",
@@ -20856,15 +20197,6 @@
           },
           {
             "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
-          },
-          {
-            "in": "path",
             "name": "transport_chain_id",
             "schema": {
               "type": "integer"
@@ -20930,7 +20262,7 @@
         }
       }
     },
-    "/contracts/{id}/line-items/{line_item_id}/premiums": {
+    "/contracts/{id}/premiums": {
       "post": {
         "summary": "Create Premium",
         "description": "Create a new premium.",
@@ -20947,15 +20279,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           }
         ],
         "requestBody": {
@@ -20999,7 +20322,7 @@
         }
       }
     },
-    "/contracts/{id}/line-items/{line_item_id}/premiums/{premium_id}": {
+    "/contracts/{id}/premiums/{premium_id}": {
       "patch": {
         "summary": "Update Premium",
         "description": "Update an existing premium by ID.",
@@ -21016,15 +20339,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           },
           {
             "in": "path",
@@ -21103,15 +20417,6 @@
             },
             "required": true,
             "description": "The contract ID."
-          },
-          {
-            "in": "path",
-            "name": "line_item_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "The line item ID."
           },
           {
             "in": "path",
