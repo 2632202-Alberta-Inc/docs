@@ -96,7 +96,9 @@
             "api-reference/pricing/get-wadf",
             "api-reference/pricing/list-wadf-types",
             "api-reference/pricing/list-equalizations",
-            "api-reference/pricing/get-equalization"
+            "api-reference/pricing/get-equalization",
+            "api-reference/pricing/list-benchmarks",
+            "api-reference/pricing/get-benchmark"
           ]
         },
         {
@@ -134,9 +136,6 @@
             "api-reference/contracts/create-estimated-quality",
             "api-reference/contracts/delete-estimated-quality",
             "api-reference/contracts/update-estimated-quality",
-            "api-reference/contracts/create-line-item",
-            "api-reference/contracts/update-line-item",
-            "api-reference/contracts/delete-line-item",
             "api-reference/contracts/list-contract-pricing-bases",
             "api-reference/contracts/create-fee",
             "api-reference/contracts/update-fee",
