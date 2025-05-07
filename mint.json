@@ -19,7 +19,7 @@
     },
     "background": {
       "light": "#ffffff",
-      "dark": "#000000"
+      "dark": "rgb(31 41 55 1)"
     }
   },
   "topbarLinks": [
