@@ -716,6 +716,10 @@
           "short_code": {
             "type": "string",
             "maxLength": 255
+          },
+          "is_estimated_quality": {
+            "type": "boolean",
+            "default": false
           }
         },
         "required": [
@@ -971,6 +975,27 @@
         ]
       },
       "ContractTransactionTypeReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "ContractTypeReference": {
         "type": "object",
         "properties": {
           "id": {
@@ -1685,7 +1710,7 @@
           "type": {},
           "fee_category": {},
           "currency": {},
-          "unit_cost": {
+          "amount": {
             "type": "number",
             "default": null,
             "nullable": true
@@ -1935,7 +1960,7 @@
           "currency": {
             "$ref": "#/components/schemas/CurrencyReference"
           },
-          "unit_cost": {
+          "amount": {
             "type": "number",
             "default": null,
             "nullable": true
@@ -1955,6 +1980,46 @@
             "type": "number"
           }
         }
+      },
+      "Premium": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "default": "Premium",
+            "maxLength": 255
+          },
+          "amount": {
+            "type": "number"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyReference"
+          },
+          "measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
+          },
+          "paid_by": {
+            "$ref": "#/components/schemas/OrganizationReference1"
+          },
+          "paid_to": {
+            "$ref": "#/components/schemas/OrganizationReference1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "amount"
+        ]
       },
       "PricingProvisionTypeReference": {
         "type": "object",
@@ -2180,7 +2245,9 @@
           "transaction_type": {
             "$ref": "#/components/schemas/ContractTransactionTypeReference"
           },
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/ContractTypeReference"
+          },
           "start_date": {
             "type": "string",
             "format": "date"
@@ -2255,6 +2322,12 @@
           "feeder_wadf": {
             "$ref": "#/components/schemas/Wadf"
           },
+          "broker_transaction_id": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -2299,6 +2372,12 @@
               "$ref": "#/components/schemas/Fee"
             }
           },
+          "premiums": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Premium"
+            }
+          },
           "pricing_provisions": {
             "type": "array",
             "items": {
@@ -2309,7 +2388,6 @@
         "required": [
           "external_id",
           "start_date",
-          "type",
           "volume"
         ]
       },
@@ -2386,19 +2464,29 @@
             "default": null,
             "nullable": true
           },
-          "stream_wadf": {},
-          "feeder_wadf": {}
+          "stream_wadf": {
+            "default": null,
+            "nullable": true
+          },
+          "feeder_wadf": {
+            "default": null,
+            "nullable": true
+          },
+          "broker_transaction_id": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          }
         },
         "required": [
           "external_id",
-          "feeder_wadf",
           "measurement_type",
           "payment_term",
           "pricing_basis",
           "settlement_currency",
           "start_date",
           "stream",
-          "stream_wadf",
           "term",
           "transaction_type",
           "type",
@@ -2867,7 +2955,7 @@
           "currency": {
             "$ref": "#/components/schemas/CurrencyReference"
           },
-          "unit_cost": {
+          "amount": {
             "type": "number",
             "default": null,
             "nullable": true
@@ -2894,7 +2982,7 @@
           "type": {},
           "fee_category": {},
           "currency": {},
-          "unit_cost": {
+          "amount": {
             "type": "number",
             "default": null,
             "nullable": true
@@ -3914,8 +4002,20 @@
             "default": null,
             "nullable": true
           },
-          "stream_wadf": {},
-          "feeder_wadf": {},
+          "stream_wadf": {
+            "default": null,
+            "nullable": true
+          },
+          "feeder_wadf": {
+            "default": null,
+            "nullable": true
+          },
+          "broker_transaction_id": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -3927,7 +4027,6 @@
         },
         "required": [
           "external_id",
-          "feeder_wadf",
           "measurement_type",
           "organization",
           "payment_term",
@@ -3935,7 +4034,6 @@
           "settlement_currency",
           "start_date",
           "stream",
-          "stream_wadf",
           "term",
           "transaction_type",
           "type",
@@ -6840,6 +6938,10 @@
           "short_code": {
             "type": "string",
             "maxLength": 255
+          },
+          "is_estimated_quality": {
+            "type": "boolean",
+            "default": false
           }
         },
         "required": [
@@ -7030,8 +7132,20 @@
             "default": null,
             "nullable": true
           },
-          "stream_wadf": {},
-          "feeder_wadf": {},
+          "stream_wadf": {
+            "default": null,
+            "nullable": true
+          },
+          "feeder_wadf": {
+            "default": null,
+            "nullable": true
+          },
+          "broker_transaction_id": {
+            "type": "string",
+            "default": null,
+            "maxLength": 255,
+            "nullable": true
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -7043,7 +7157,6 @@
         },
         "required": [
           "external_id",
-          "feeder_wadf",
           "measurement_type",
           "organization",
           "payment_term",
@@ -7051,7 +7164,6 @@
           "settlement_currency",
           "start_date",
           "stream",
-          "stream_wadf",
           "term",
           "transaction_type",
           "type",
@@ -7456,7 +7568,7 @@
           "type": {},
           "fee_category": {},
           "currency": {},
-          "unit_cost": {
+          "amount": {
             "type": "number",
             "default": null,
             "nullable": true
@@ -18632,6 +18744,84 @@
       }
     },
     "/contracts/{id}/schedules/{schedule_id}": {
+      "patch": {
+        "summary": "Update Contract Schedule",
+        "description": "Update an existing contract schedule by ID.",
+        "operationId": "update_contract_schedule",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract schedule ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestContractSchedule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contract schedule updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contracts_ContractSchedule"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contract schedule not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Contract schedule not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
       "delete": {
         "summary": "Delete Contract Schedule",
         "description": "Delete a contract schedule.",
