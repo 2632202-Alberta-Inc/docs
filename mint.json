@@ -179,7 +179,6 @@
           "group": "Land",
           "pages": [
             "api-reference/land/list-land-descriptions",
-            "api-reference/land/get-land-description",
             "api-reference/land/list-survey-systems",
             "api-reference/land/list-survey-system-units",
             "api-reference/land/search-land-description"
