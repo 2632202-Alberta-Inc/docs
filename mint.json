@@ -109,7 +109,6 @@
             "api-reference/contracts/create-contract",
             "api-reference/contracts/update-contract",
             "api-reference/contracts/delete-contract",
-            "api-reference/contracts/delete-transport-leg",
             "api-reference/contracts/list-contract-roles",
             "api-reference/contracts/list-contract-types",
             "api-reference/contracts/list-contract-terms",
@@ -163,6 +162,7 @@
             "api-reference/contracts/delete-transport-chain",
             "api-reference/contracts/create-transport-leg",
             "api-reference/contracts/update-transport-leg",
+            "api-reference/contracts/delete-transport-leg",
             "api-reference/contracts/list-contract-transport-modes"
           ]
         },
@@ -173,6 +173,16 @@
             "api-reference/facilities/get-facility",
             "api-reference/facilities/list-types",
             "api-reference/facilities/list-sub-types"
+          ]
+        },
+        {
+          "group": "Land",
+          "pages": [
+            "api-reference/land/list-land-descriptions",
+            "api-reference/land/get-land-description",
+            "api-reference/land/list-survey-systems",
+            "api-reference/land/list-survey-system-units",
+            "api-reference/land/search-land-description"
           ]
         },
         {

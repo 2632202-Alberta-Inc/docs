@@ -67,6 +67,10 @@
       "description": "Endpoints for managing facilities such as terminals, batteries, pipelines, etc."
     },
     {
+      "name": "Land",
+      "description": "Endpoints for land, including legal land descriptions, survey systems, and survey units."
+    },
+    {
       "name": "Wells",
       "description": "Endpoints for managing wells."
     },
@@ -1412,6 +1416,323 @@
           "value"
         ]
       },
+      "TransportModeReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "WellReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          }
+        }
+      },
+      "CommercialFacilityReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "lsd": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "section": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "township": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "range": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "meridian": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "SurveySystemReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "SurveyUnitReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "LandDescriptionReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "description": {
+            "type": "string"
+          },
+          "survey_system": {
+            "$ref": "#/components/schemas/SurveySystemReference"
+          },
+          "unit": {
+            "$ref": "#/components/schemas/SurveyUnitReference"
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "description",
+          "latitude",
+          "longitude"
+        ]
+      },
+      "UserReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name"
+        ]
+      },
+      "TransportLeg": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "position": {
+            "type": "integer"
+          },
+          "chain": {},
+          "mode": {
+            "$ref": "#/components/schemas/TransportModeReference"
+          },
+          "source_well": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WellReference"
+              }
+            ]
+          },
+          "source_commercial_facility": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CommercialFacilityReference1"
+              }
+            ]
+          },
+          "source_facility": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityReference"
+              }
+            ]
+          },
+          "source_land_description": {
+            "$ref": "#/components/schemas/LandDescriptionReference"
+          },
+          "destination_commercial_facility": {
+            "$ref": "#/components/schemas/CommercialFacilityReference1"
+          },
+          "destination_facility": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FacilityReference"
+              }
+            ]
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volume_measurement_unit": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MeasurementUnitReference1"
+              }
+            ]
+          },
+          "custodian_organization": {
+            "$ref": "#/components/schemas/OrganizationReference1"
+          },
+          "custodian_entity": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference1"
+              }
+            ]
+          },
+          "is_custody_transfer": {
+            "type": "boolean",
+            "default": false
+          },
+          "is_chain_source": {
+            "type": "boolean",
+            "default": false
+          },
+          "is_chain_destination": {
+            "type": "boolean",
+            "default": false
+          },
+          "fob": {
+            "type": "boolean",
+            "default": false
+          },
+          "carrier_organization": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrganizationReference1"
+              }
+            ]
+          },
+          "carrier_entity": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityReference1"
+              }
+            ]
+          },
+          "carrier_user": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserReference1"
+              }
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "chain",
+          "position",
+          "volume"
+        ]
+      },
+      "TransportChain": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "legs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransportLeg"
+            }
+          }
+        }
+      },
       "ContractSchedule": {
         "type": "object",
         "properties": {
@@ -1444,6 +1765,12 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/EstimatedQuality"
+            }
+          },
+          "chains": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransportChain"
             }
           }
         },
@@ -1625,283 +1952,6 @@
           "short_code"
         ]
       },
-      "TransportModeReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
-      },
-      "WellReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          }
-        }
-      },
-      "CommercialFacilityReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "lsd": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          },
-          "section": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          },
-          "township": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          },
-          "range": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          },
-          "meridian": {
-            "type": "string",
-            "default": null,
-            "nullable": true
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
-      "FeeReference": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "type": {},
-          "fee_category": {},
-          "currency": {},
-          "amount": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "currency",
-          "fee_category",
-          "type"
-        ]
-      },
-      "UserReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "first_name": {
-            "type": "string"
-          },
-          "last_name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "first_name",
-          "last_name"
-        ]
-      },
-      "TransportLeg": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "position": {
-            "type": "integer"
-          },
-          "chain": {},
-          "mode": {
-            "$ref": "#/components/schemas/TransportModeReference"
-          },
-          "source_well": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/WellReference"
-              }
-            ]
-          },
-          "source_commercial_facility": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CommercialFacilityReference1"
-              }
-            ]
-          },
-          "source_facility": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FacilityReference"
-              }
-            ]
-          },
-          "destination_commercial_facility": {
-            "$ref": "#/components/schemas/CommercialFacilityReference1"
-          },
-          "destination_facility": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FacilityReference"
-              }
-            ]
-          },
-          "volume": {
-            "type": "number",
-            "default": null,
-            "nullable": true
-          },
-          "volume_measurement_unit": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
-              }
-            ]
-          },
-          "custodian_organization": {
-            "$ref": "#/components/schemas/OrganizationReference1"
-          },
-          "custodian_entity": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EntityReference1"
-              }
-            ]
-          },
-          "is_custody_transfer": {
-            "type": "boolean",
-            "default": false
-          },
-          "is_chain_source": {
-            "type": "boolean",
-            "default": false
-          },
-          "is_chain_destination": {
-            "type": "boolean",
-            "default": false
-          },
-          "fee": {
-            "$ref": "#/components/schemas/FeeReference"
-          },
-          "carrier_organization": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/OrganizationReference1"
-              }
-            ]
-          },
-          "carrier_entity": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EntityReference1"
-              }
-            ]
-          },
-          "carrier_user": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/UserReference1"
-              }
-            ]
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "chain",
-          "position"
-        ]
-      },
-      "TransportChain": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "legs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TransportLeg"
-            }
-          }
-        }
-      },
       "FeeTypeReference": {
         "type": "object",
         "properties": {
@@ -1962,6 +2012,10 @@
           },
           "amount": {
             "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "transport_leg": {
             "default": null,
             "nullable": true
           },
@@ -2040,6 +2094,44 @@
         "required": [
           "name",
           "short_code"
+        ]
+      },
+      "FeeReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "type": {},
+          "fee_category": {},
+          "currency": {},
+          "amount": {
+            "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "transport_leg": {
+            "default": null,
+            "nullable": true
+          },
+          "measurement_unit": {
+            "default": null,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "currency",
+          "fee_category",
+          "type"
         ]
       },
       "PricingProvisionReference": {
@@ -2359,12 +2451,6 @@
           },
           "product_category": {
             "$ref": "#/components/schemas/ProductCategoryReference1"
-          },
-          "chains": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TransportChain"
-            }
           },
           "fees": {
             "type": "array",
@@ -2756,6 +2842,12 @@
             "items": {
               "$ref": "#/components/schemas/EstimatedQuality"
             }
+          },
+          "chains": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransportChain"
+            }
           }
         },
         "required": [
@@ -2960,6 +3052,10 @@
             "default": null,
             "nullable": true
           },
+          "transport_leg": {
+            "default": null,
+            "nullable": true
+          },
           "measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
@@ -2984,6 +3080,10 @@
           "currency": {},
           "amount": {
             "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "transport_leg": {
             "default": null,
             "nullable": true
           },
@@ -3152,8 +3252,8 @@
             "type": "string",
             "readOnly": true
           },
-          "contract": {
-            "$ref": "#/components/schemas/ContractReference"
+          "schedule": {
+            "$ref": "#/components/schemas/ContractScheduleReference"
           },
           "created_at": {
             "type": "string",
@@ -3213,6 +3313,9 @@
               }
             ]
           },
+          "source_land_description": {
+            "$ref": "#/components/schemas/LandDescriptionReference"
+          },
           "destination_commercial_facility": {
             "$ref": "#/components/schemas/CommercialFacilityReference1"
           },
@@ -3225,9 +3328,7 @@
             ]
           },
           "volume": {
-            "type": "number",
-            "default": null,
-            "nullable": true
+            "type": "number"
           },
           "volume_measurement_unit": {
             "nullable": true,
@@ -3260,8 +3361,9 @@
             "type": "boolean",
             "default": false
           },
-          "fee": {
-            "$ref": "#/components/schemas/FeeReference"
+          "fob": {
+            "type": "boolean",
+            "default": false
           },
           "carrier_organization": {
             "nullable": true,
@@ -3298,7 +3400,8 @@
         },
         "required": [
           "chain",
-          "position"
+          "position",
+          "volume"
         ]
       },
       "Contracts_RequestTransportLeg": {
@@ -3320,20 +3423,16 @@
             "default": null,
             "nullable": true
           },
+          "source_land_description": {},
           "destination_commercial_facility": {},
           "destination_facility": {
             "default": null,
             "nullable": true
           },
           "volume": {
-            "type": "number",
-            "default": null,
-            "nullable": true
+            "type": "number"
           },
-          "volume_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
+          "volume_measurement_unit": {},
           "custodian_organization": {},
           "custodian_entity": {
             "default": null,
@@ -3343,9 +3442,9 @@
             "type": "boolean",
             "default": false
           },
-          "fee": {
-            "default": null,
-            "nullable": true
+          "fob": {
+            "type": "boolean",
+            "default": false
           },
           "carrier_organization": {
             "default": null,
@@ -3363,7 +3462,10 @@
         "required": [
           "custodian_organization",
           "destination_commercial_facility",
-          "mode"
+          "mode",
+          "source_land_description",
+          "volume",
+          "volume_measurement_unit"
         ]
       },
       "Contracts_LogicalOperator": {
@@ -7410,7 +7512,7 @@
             "type": "string",
             "readOnly": true
           },
-          "contract": {},
+          "schedule": {},
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -7427,7 +7529,7 @@
           }
         },
         "required": [
-          "contract"
+          "schedule"
         ]
       },
       "Contracts_ReferenceTransportLeg": {
@@ -7454,20 +7556,16 @@
             "default": null,
             "nullable": true
           },
+          "source_land_description": {},
           "destination_commercial_facility": {},
           "destination_facility": {
             "default": null,
             "nullable": true
           },
           "volume": {
-            "type": "number",
-            "default": null,
-            "nullable": true
+            "type": "number"
           },
-          "volume_measurement_unit": {
-            "default": null,
-            "nullable": true
-          },
+          "volume_measurement_unit": {},
           "custodian_organization": {},
           "custodian_entity": {
             "default": null,
@@ -7485,9 +7583,9 @@
             "type": "boolean",
             "default": false
           },
-          "fee": {
-            "default": null,
-            "nullable": true
+          "fob": {
+            "type": "boolean",
+            "default": false
           },
           "carrier_organization": {
             "default": null,
@@ -7515,7 +7613,10 @@
           "custodian_organization",
           "destination_commercial_facility",
           "mode",
-          "position"
+          "position",
+          "source_land_description",
+          "volume",
+          "volume_measurement_unit"
         ]
       },
       "Contracts_ReferencePremium": {
@@ -7570,6 +7671,10 @@
           "currency": {},
           "amount": {
             "type": "number",
+            "default": null,
+            "nullable": true
+          },
+          "transport_leg": {
             "default": null,
             "nullable": true
           },
@@ -8720,6 +8825,87 @@
           "section",
           "township",
           "uwi"
+        ]
+      },
+      "Land_ReferenceSurveySystem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
+      "Land_ReferenceSurveyUnit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "survey_system": {}
+        },
+        "required": [
+          "name",
+          "short_code",
+          "survey_system"
+        ]
+      },
+      "Land_ReferenceLandDescription": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "description": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "survey_system": {
+            "$ref": "#/components/schemas/SurveySystemReference"
+          },
+          "unit": {
+            "$ref": "#/components/schemas/SurveyUnitReference"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "description",
+          "latitude",
+          "longitude"
         ]
       },
       "Volumes_ReferenceMeter": {
@@ -20075,7 +20261,7 @@
         }
       }
     },
-    "/contracts/{id}/transport-chains": {
+    "/contracts/{id}/schedules/{schedule_id}/transport-chains": {
       "post": {
         "summary": "Create Transport Chain",
         "description": "Create a new transport chain.",
@@ -20092,6 +20278,15 @@
             },
             "required": true,
             "description": "The contract ID."
+          },
+          {
+            "in": "query",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
           }
         ],
         "requestBody": {
@@ -20135,7 +20330,7 @@
         }
       }
     },
-    "/contracts/{id}/transport-chains/{transport_chain_id}": {
+    "/contracts/{id}/schedules/{schedule_id}/transport-chains/{transport_chain_id}": {
       "delete": {
         "summary": "Delete Transport Chain",
         "description": "Delete a transport chain.",
@@ -20152,6 +20347,15 @@
             },
             "required": true,
             "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -20211,7 +20415,7 @@
         }
       }
     },
-    "/contracts/{id}/transport-chains/{transport_chain_id}/transport-legs": {
+    "/contracts/{id}/schedules/{schedule_id}/transport-chains/{transport_chain_id}/transport-legs": {
       "post": {
         "summary": "Create Transport Leg",
         "description": "Create a new transport leg.",
@@ -20228,6 +20432,15 @@
             },
             "required": true,
             "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -20280,7 +20493,7 @@
         }
       }
     },
-    "/contracts/{id}/transport-chains/{transport_chain_id}/transport-legs/{transport_leg_id}": {
+    "/contracts/{id}/schedules/{schedule_id}/transport-chains/{transport_chain_id}/transport-legs/{transport_leg_id}": {
       "patch": {
         "summary": "Update Transport Leg",
         "description": "Update an existing transport leg by ID.",
@@ -20297,6 +20510,15 @@
             },
             "required": true,
             "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
           },
           {
             "in": "path",
@@ -22085,6 +22307,287 @@
                     "error": {
                       "type": "string",
                       "example": "Message not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/land/search": {
+      "get": {
+        "summary": "Search Land Description",
+        "description": "Search for a land description.",
+        "operationId": "search_land",
+        "tags": [
+          "Land"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lsd",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Land description to search for (e.g. \"1-2-23\")"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of land descriptions with geographic coordinates.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "description": {
+                            "type": "string",
+                            "example": "16-7-W5"
+                          },
+                          "latitude": {
+                            "type": "number",
+                            "format": "float",
+                            "example": 50.389866046
+                          },
+                          "longitude": {
+                            "type": "number",
+                            "format": "float",
+                            "example": -114.861164194
+                          },
+                          "survey_system": {
+                            "type": "string",
+                            "example": "DLS"
+                          },
+                          "survey_system_unit": {
+                            "type": "string",
+                            "example": "Township"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/land/descriptions": {
+      "get": {
+        "summary": "List Land Descriptions",
+        "description": "Retrieve a list of land descriptions with pagination.",
+        "operationId": "get_land_descriptions",
+        "tags": [
+          "Land"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of land descriptions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Land_ReferenceLandDescription"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/land/survey-systems": {
+      "get": {
+        "summary": "List Survey Systems",
+        "description": "Retrieve a list of survey systems with pagination.",
+        "operationId": "get_survey_systems",
+        "tags": [
+          "Land"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of survey systems.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Land_ReferenceSurveySystem"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/land/survey-systems/units": {
+      "get": {
+        "summary": "List Survey System Units",
+        "description": "Retrieve a list of survey system units with pagination.",
+        "operationId": "get_survey_system_units",
+        "tags": [
+          "Land"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of survey system units.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Land_ReferenceSurveyUnit"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
                     }
                   }
                 }
