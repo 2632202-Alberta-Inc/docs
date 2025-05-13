@@ -163,6 +163,7 @@
             "api-reference/contracts/create-transport-leg",
             "api-reference/contracts/update-transport-leg",
             "api-reference/contracts/delete-transport-leg",
+            "api-reference/contracts/update-source-land-description",
             "api-reference/contracts/list-contract-transport-modes"
           ]
         },

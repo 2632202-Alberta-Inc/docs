@@ -3468,6 +3468,14 @@
           "volume_measurement_unit"
         ]
       },
+      "Contracts_RequestTransportLegSourceLandDescription": {
+        "type": "object",
+        "properties": {
+          "source_land_description": {
+            "type": "string"
+          }
+        }
+      },
       "Contracts_LogicalOperator": {
         "type": "object",
         "properties": {
@@ -17523,6 +17531,7 @@
               "enum": [
                 "id",
                 "term",
+                "type",
                 "transaction_type",
                 "external_id",
                 "start_date",
@@ -20661,6 +20670,95 @@
                 }
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/change-source/{source_land_description}": {
+      "patch": {
+        "summary": "Update Source Land Description",
+        "description": "Update the source land description for all transport chains in a schedule.",
+        "operationId": "update_source_land_description",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          },
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The schedule ID."
+          },
+          {
+            "in": "path",
+            "name": "source_land_description",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The source land description."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestTransportLegSourceLandDescription"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Source land description updated for all transport chains in the schedule.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contracts_ContractSchedule"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Schedule not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Schedule not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
