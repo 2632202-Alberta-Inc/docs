@@ -74,6 +74,7 @@
             "api-reference/organizations/get-organization",
             "api-reference/organizations/list-users",
             "api-reference/organizations/get-user",
+            "api-reference/organizations/create-user",
             "api-reference/organizations/list-roles",
             "api-reference/organizations/list-permissions",
             "api-reference/organizations/list-commercial-facilities",
