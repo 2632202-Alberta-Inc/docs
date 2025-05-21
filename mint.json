@@ -225,6 +225,8 @@
             "api-reference/measurements/list-measurement-properties",
             "api-reference/measurements/list-measurement-units",
             "api-reference/measurements/get-measurement-unit",
+            "api-reference/measurements/list-unit-conversions",
+            "api-reference/measurements/get-unit-conversion",
             "api-reference/measurements/convert-between-measurement-units"
           ]
         },

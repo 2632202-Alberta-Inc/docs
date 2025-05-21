@@ -636,6 +636,31 @@
           "formula"
         ]
       },
+      "MeasurementPropertyReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "is_estimated_quality": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
       "Measurements_MeasurementUnit": {
         "type": "object",
         "properties": {
@@ -677,6 +702,12 @@
             "items": {
               "$ref": "#/components/schemas/UnitConversion1"
             }
+          },
+          "measurement_properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MeasurementPropertyReference"
+            }
           }
         },
         "required": [
@@ -706,6 +737,59 @@
           "short_code"
         ]
       },
+      "MeasurementUnitReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "abbreviation": {
+            "type": "string"
+          },
+          "html_symbol": {
+            "type": "string",
+            "default": null,
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "VOLUME",
+              "TEMPERATURE",
+              "DIMENSIONLESS",
+              "DENSITY",
+              "DISTANCE",
+              "PRESSURE",
+              "VISCOSITY",
+              "MASS RATIO",
+              "ENERGY",
+              "FLOW RATE",
+              "POWER",
+              "PARTICLE SIZE"
+            ]
+          }
+        },
+        "required": [
+          "abbreviation",
+          "name"
+        ]
+      },
+      "MeasurementPropertyMeasurementUnit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference"
+          }
+        }
+      },
       "Measurements_MeasurementProperty": {
         "type": "object",
         "properties": {
@@ -724,6 +808,12 @@
           "is_estimated_quality": {
             "type": "boolean",
             "default": false
+          },
+          "measurement_units": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MeasurementPropertyMeasurementUnit"
+            }
           }
         },
         "required": [
@@ -731,7 +821,7 @@
           "short_code"
         ]
       },
-      "UnitConversion2": {
+      "Measurements_UnitConversion": {
         "type": "object",
         "properties": {
           "id": {
@@ -771,7 +861,7 @@
           "unit_conversions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/UnitConversion2"
+              "$ref": "#/components/schemas/Measurements_UnitConversion"
             }
           }
         },
@@ -795,7 +885,7 @@
           "name"
         ]
       },
-      "MeasurementUnitReference": {
+      "MeasurementUnitReference1": {
         "type": "object",
         "properties": {
           "id": {
@@ -833,7 +923,7 @@
             "type": "number"
           },
           "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "bsw_min": {
             "type": "number"
@@ -842,7 +932,7 @@
             "type": "number"
           },
           "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           }
         },
         "required": [
@@ -899,7 +989,7 @@
             "nullable": true
           },
           "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           },
           "bsw_min": {
             "type": "number",
@@ -912,7 +1002,7 @@
             "nullable": true
           },
           "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference"
+            "$ref": "#/components/schemas/MeasurementUnitReference1"
           }
         }
       },
@@ -1020,7 +1110,7 @@
           "short_code"
         ]
       },
-      "MeasurementUnitReference1": {
+      "MeasurementUnitReference2": {
         "type": "object",
         "properties": {
           "id": {
@@ -1223,7 +1313,7 @@
             "$ref": "#/components/schemas/CurrencyReference"
           },
           "measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           }
         },
         "required": [
@@ -1366,7 +1456,7 @@
           "short_code"
         ]
       },
-      "MeasurementPropertyReference": {
+      "MeasurementPropertyReference1": {
         "type": "object",
         "properties": {
           "id": {
@@ -1395,10 +1485,10 @@
             "readOnly": true
           },
           "measurement_property": {
-            "$ref": "#/components/schemas/MeasurementPropertyReference"
+            "$ref": "#/components/schemas/MeasurementPropertyReference1"
           },
           "measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "value": {
             "type": "number"
@@ -1640,7 +1730,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
+                "$ref": "#/components/schemas/MeasurementUnitReference2"
               }
             ]
           },
@@ -1751,7 +1841,7 @@
             "type": "number"
           },
           "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "created_at": {
             "type": "string",
@@ -1814,7 +1904,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
+                "$ref": "#/components/schemas/MeasurementUnitReference2"
               }
             ]
           },
@@ -2020,7 +2110,7 @@
             "nullable": true
           },
           "measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "created_at": {
             "type": "string",
@@ -2054,7 +2144,7 @@
             "$ref": "#/components/schemas/CurrencyReference"
           },
           "measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "paid_by": {
             "$ref": "#/components/schemas/OrganizationReference1"
@@ -2214,10 +2304,10 @@
             "readOnly": true
           },
           "measurement_property": {
-            "$ref": "#/components/schemas/MeasurementPropertyReference"
+            "$ref": "#/components/schemas/MeasurementPropertyReference1"
           },
           "measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "comparison_operator": {
             "$ref": "#/components/schemas/ComparisonOperatorReference"
@@ -2354,7 +2444,7 @@
             "type": "number"
           },
           "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "measurement_type": {
             "$ref": "#/components/schemas/MeasurementTypeReference"
@@ -2371,7 +2461,7 @@
             "$ref": "#/components/schemas/CurrencyReference"
           },
           "differential_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "percentage_of_index": {
             "type": "number",
@@ -2379,7 +2469,7 @@
             "nullable": true
           },
           "percentage_of_index_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "percentage_of_benchmark": {
             "type": "number",
@@ -2649,10 +2739,10 @@
             "$ref": "#/components/schemas/ContractScheduleReference"
           },
           "measurement_property": {
-            "$ref": "#/components/schemas/MeasurementPropertyReference"
+            "$ref": "#/components/schemas/MeasurementPropertyReference1"
           },
           "measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "value": {
             "type": "number"
@@ -2827,7 +2917,7 @@
             "type": "number"
           },
           "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "created_at": {
             "type": "string",
@@ -2982,7 +3072,7 @@
             "$ref": "#/components/schemas/CurrencyReference"
           },
           "measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "paid_by": {
             "$ref": "#/components/schemas/OrganizationReference1"
@@ -3057,7 +3147,7 @@
             "nullable": true
           },
           "measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "created_at": {
             "type": "string",
@@ -3164,7 +3254,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
+                "$ref": "#/components/schemas/MeasurementUnitReference2"
               }
             ]
           },
@@ -3334,7 +3424,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference1"
+                "$ref": "#/components/schemas/MeasurementUnitReference2"
               }
             ]
           },
@@ -3621,10 +3711,10 @@
             "$ref": "#/components/schemas/ConditionGroupReference"
           },
           "measurement_property": {
-            "$ref": "#/components/schemas/MeasurementPropertyReference"
+            "$ref": "#/components/schemas/MeasurementPropertyReference1"
           },
           "measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
           "comparison_operator": {
             "$ref": "#/components/schemas/ComparisonOperatorReference"
@@ -4932,7 +5022,7 @@
             "$ref": "#/components/schemas/CurrencyReference"
           },
           "measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference1"
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           }
         },
         "required": [
@@ -5705,7 +5795,7 @@
           "external_id"
         ]
       },
-      "MeasurementUnitReference2": {
+      "MeasurementUnitReference3": {
         "type": "object",
         "properties": {
           "id": {
@@ -5898,7 +5988,7 @@
             "nullable": true
           },
           "meter_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "meter_factor": {
             "type": "number",
@@ -5911,7 +6001,7 @@
             "nullable": true
           },
           "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "load_volume": {
             "type": "number",
@@ -5919,7 +6009,7 @@
             "nullable": true
           },
           "load_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "net_volume": {
             "type": "number",
@@ -5927,7 +6017,7 @@
             "nullable": true
           },
           "net_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "density": {
             "type": "number",
@@ -5935,7 +6025,7 @@
             "nullable": true
           },
           "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "bsw": {
             "type": "number",
@@ -5943,7 +6033,7 @@
             "nullable": true
           },
           "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "solids": {
             "type": "number",
@@ -5954,7 +6044,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference2"
+                "$ref": "#/components/schemas/MeasurementUnitReference3"
               }
             ]
           },
@@ -5967,7 +6057,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference2"
+                "$ref": "#/components/schemas/MeasurementUnitReference3"
               }
             ]
           },
@@ -5980,7 +6070,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference2"
+                "$ref": "#/components/schemas/MeasurementUnitReference3"
               }
             ]
           },
@@ -6083,7 +6173,7 @@
             "nullable": true
           },
           "meter_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "meter_factor": {
             "type": "number",
@@ -6096,7 +6186,7 @@
             "nullable": true
           },
           "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "net_volume": {
             "type": "number",
@@ -6104,7 +6194,7 @@
             "nullable": true
           },
           "net_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "density": {
             "type": "number",
@@ -6112,7 +6202,7 @@
             "nullable": true
           },
           "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "bsw": {
             "type": "number",
@@ -6120,7 +6210,7 @@
             "nullable": true
           },
           "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "solids": {
             "type": "number",
@@ -6131,7 +6221,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference2"
+                "$ref": "#/components/schemas/MeasurementUnitReference3"
               }
             ]
           },
@@ -6144,7 +6234,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference2"
+                "$ref": "#/components/schemas/MeasurementUnitReference3"
               }
             ]
           },
@@ -6157,7 +6247,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference2"
+                "$ref": "#/components/schemas/MeasurementUnitReference3"
               }
             ]
           },
@@ -6286,7 +6376,7 @@
             "nullable": true
           },
           "meter_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "meter_factor": {
             "type": "number",
@@ -6299,7 +6389,7 @@
             "nullable": true
           },
           "volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "net_volume": {
             "type": "number",
@@ -6307,7 +6397,7 @@
             "nullable": true
           },
           "net_volume_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "density": {
             "type": "number",
@@ -6315,7 +6405,7 @@
             "nullable": true
           },
           "density_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "bsw": {
             "type": "number",
@@ -6323,7 +6413,7 @@
             "nullable": true
           },
           "bsw_measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
+            "$ref": "#/components/schemas/MeasurementUnitReference3"
           },
           "solids": {
             "type": "number",
@@ -6334,7 +6424,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference2"
+                "$ref": "#/components/schemas/MeasurementUnitReference3"
               }
             ]
           },
@@ -6347,7 +6437,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference2"
+                "$ref": "#/components/schemas/MeasurementUnitReference3"
               }
             ]
           },
@@ -6360,7 +6450,7 @@
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/MeasurementUnitReference2"
+                "$ref": "#/components/schemas/MeasurementUnitReference3"
               }
             ]
           },
@@ -17041,7 +17131,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Measurements_ReferenceMeasurementProperty"
+                        "$ref": "#/components/schemas/Measurements_MeasurementProperty"
                       }
                     },
                     "meta": {
@@ -17299,6 +17389,138 @@
                     "error": {
                       "type": "string",
                       "example": "Measurement unit not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/measurements/units/conversions": {
+      "get": {
+        "summary": "List Unit Conversions",
+        "description": "Retrieve a list of unit conversions with pagination and filtering options.",
+        "operationId": "get_unit_conversions",
+        "tags": [
+          "Measurements"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of unit conversions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Measurements_UnitConversion"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "type": "integer"
+                        },
+                        "total_items": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/measurements/units/conversions/{id}": {
+      "get": {
+        "summary": "Get Unit Conversion",
+        "description": "Retrieve details of a specific unit conversion.",
+        "operationId": "get_unit_conversion",
+        "tags": [
+          "Measurements"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The unit conversion ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single unit conversion.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Measurements_UnitConversion"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unit conversion not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Unit conversion not found."
                     }
                   }
                 }
