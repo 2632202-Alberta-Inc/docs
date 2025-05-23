@@ -1261,6 +1261,12 @@
           "name": {
             "type": "string",
             "maxLength": 255
+          },
+          "currency": {
+            "default": 2
+          },
+          "measurement_unit": {
+            "default": 2
           }
         },
         "required": [
@@ -1281,6 +1287,12 @@
           "short_code": {
             "type": "string",
             "maxLength": 255
+          },
+          "currency": {
+            "default": 2
+          },
+          "measurement_unit": {
+            "default": 2
           }
         },
         "required": [
@@ -1323,14 +1335,19 @@
           "short_code": {
             "type": "string",
             "maxLength": 255
-          }
+          },
+          "currency": {
+            "default": 1
+          },
+          "measurement_unit": {}
         },
         "required": [
+          "measurement_unit",
           "name",
           "short_code"
         ]
       },
-      "Wadf": {
+      "WadfReference": {
         "type": "object",
         "properties": {
           "id": {
@@ -1344,15 +1361,13 @@
           "amount": {
             "type": "number"
           },
-          "currency": {
-            "$ref": "#/components/schemas/CurrencyReference"
-          },
-          "measurement_unit": {
-            "$ref": "#/components/schemas/MeasurementUnitReference2"
-          }
+          "currency": {},
+          "measurement_unit": {}
         },
         "required": [
           "amount",
+          "currency",
+          "measurement_unit",
           "name"
         ]
       },
@@ -2534,10 +2549,10 @@
             "$ref": "#/components/schemas/BenchmarkReference"
           },
           "stream_wadf": {
-            "$ref": "#/components/schemas/Wadf"
+            "$ref": "#/components/schemas/WadfReference"
           },
           "feeder_wadf": {
-            "$ref": "#/components/schemas/Wadf"
+            "$ref": "#/components/schemas/WadfReference"
           },
           "broker_transaction_id": {
             "type": "string",
@@ -5109,7 +5124,10 @@
             "$ref": "#/components/schemas/StreamReference1"
           },
           "measurement_unit": {
-            "default": 2
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyReference"
           },
           "formula": {
             "type": "string"
@@ -5158,6 +5176,12 @@
           },
           "stream": {
             "$ref": "#/components/schemas/StreamReference1"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyReference"
+          },
+          "measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           }
         },
         "required": [
@@ -5179,6 +5203,12 @@
           "short_code": {
             "type": "string",
             "maxLength": 255
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyReference"
+          },
+          "measurement_unit": {
+            "$ref": "#/components/schemas/MeasurementUnitReference2"
           }
         },
         "required": [
@@ -8456,6 +8486,9 @@
           "measurement_unit": {
             "default": 2
           },
+          "currency": {
+            "default": 2
+          },
           "formula": {
             "type": "string"
           }
@@ -8502,7 +8535,13 @@
             "type": "string",
             "maxLength": 255
           },
-          "stream": {}
+          "stream": {},
+          "currency": {
+            "default": 2
+          },
+          "measurement_unit": {
+            "default": 2
+          }
         },
         "required": [
           "name",
@@ -8524,9 +8563,14 @@
           "short_code": {
             "type": "string",
             "maxLength": 255
-          }
+          },
+          "currency": {
+            "default": 1
+          },
+          "measurement_unit": {}
         },
         "required": [
+          "measurement_unit",
           "name",
           "short_code"
         ]
