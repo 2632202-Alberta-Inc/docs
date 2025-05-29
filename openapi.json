@@ -1284,10 +1284,6 @@
             "type": "string",
             "maxLength": 255
           },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          },
           "currency": {
             "default": 2
           },
@@ -1296,8 +1292,7 @@
           }
         },
         "required": [
-          "name",
-          "short_code"
+          "name"
         ]
       },
       "StreamReference": {
@@ -5120,9 +5115,6 @@
             "type": "string",
             "maxLength": 255
           },
-          "stream": {
-            "$ref": "#/components/schemas/StreamReference1"
-          },
           "measurement_unit": {
             "$ref": "#/components/schemas/MeasurementUnitReference2"
           },
@@ -5170,10 +5162,6 @@
             "type": "string",
             "maxLength": 255
           },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          },
           "stream": {
             "$ref": "#/components/schemas/StreamReference1"
           },
@@ -5185,8 +5173,7 @@
           }
         },
         "required": [
-          "name",
-          "short_code"
+          "name"
         ]
       },
       "Pricing_Benchmark": {
@@ -8482,7 +8469,6 @@
             "type": "string",
             "maxLength": 255
           },
-          "stream": {},
           "measurement_unit": {
             "default": 2
           },
@@ -8495,8 +8481,7 @@
         },
         "required": [
           "formula",
-          "name",
-          "stream"
+          "name"
         ]
       },
       "Pricing_ReferencePricingBasis": {
@@ -8531,10 +8516,6 @@
             "type": "string",
             "maxLength": 255
           },
-          "short_code": {
-            "type": "string",
-            "maxLength": 255
-          },
           "stream": {},
           "currency": {
             "default": 2
@@ -8545,7 +8526,6 @@
         },
         "required": [
           "name",
-          "short_code",
           "stream"
         ]
       },
