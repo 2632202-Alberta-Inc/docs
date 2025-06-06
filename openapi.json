@@ -1287,12 +1287,14 @@
           "currency": {
             "default": 2
           },
+          "stream": {},
           "measurement_unit": {
             "default": 2
           }
         },
         "required": [
-          "name"
+          "name",
+          "stream"
         ]
       },
       "StreamReference": {
@@ -2619,9 +2621,6 @@
             "type": "string",
             "maxLength": 255
           },
-          "status": {
-            "default": 1
-          },
           "term": {},
           "transaction_type": {},
           "type": {},
@@ -2750,11 +2749,27 @@
           "short_code": {
             "type": "string",
             "maxLength": 255
+          },
+          "color": {
+            "type": "string",
+            "default": "bg-gray-400",
+            "maxLength": 255
           }
         },
         "required": [
           "name",
           "short_code"
+        ]
+      },
+      "Contracts_RequestContractStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "status"
         ]
       },
       "ContractScheduleReference": {
@@ -2833,6 +2848,11 @@
           },
           "short_code": {
             "type": "string",
+            "maxLength": 255
+          },
+          "color": {
+            "type": "string",
+            "default": "bg-gray-400",
             "maxLength": 255
           }
         },
@@ -3009,6 +3029,17 @@
           "production_month",
           "volume",
           "volume_measurement_unit"
+        ]
+      },
+      "Contracts_RequestContractScheduleStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "status"
         ]
       },
       "Contracts_ContractParty": {
@@ -7453,6 +7484,11 @@
           "short_code": {
             "type": "string",
             "maxLength": 255
+          },
+          "color": {
+            "type": "string",
+            "default": "bg-gray-400",
+            "maxLength": 255
           }
         },
         "required": [
@@ -7473,6 +7509,11 @@
           },
           "short_code": {
             "type": "string",
+            "maxLength": 255
+          },
+          "color": {
+            "type": "string",
+            "default": "bg-gray-400",
             "maxLength": 255
           }
         },
@@ -18191,6 +18232,74 @@
         }
       }
     },
+    "/contracts/{id}/update-status": {
+      "post": {
+        "summary": "Update Contract Status",
+        "description": "Update an existing contract status by ID.",
+        "operationId": "update_contract_status",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestContractStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contract updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contracts_Contract"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contract not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Contract not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/contracts/{id}/paper": {
       "post": {
         "summary": "Create Paper",
@@ -19269,6 +19378,74 @@
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contracts/{id}/schedules/{schedule_id}/update-status": {
+      "post": {
+        "summary": "Update Contract Schedule Status",
+        "description": "Update an existing contract schedule status by ID.",
+        "operationId": "update_contract_schedule_status",
+        "tags": [
+          "Contracts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The contract ID."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contracts_RequestContractScheduleStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contract schedule updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contracts_ScheduleContract"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contract schedule not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Contract schedule not found."
+                    }
+                  }
+                }
+              }
+            }
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
