@@ -1297,6 +1297,25 @@
           "stream"
         ]
       },
+      "ProductCategoryReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "short_code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "short_code"
+        ]
+      },
       "StreamReference": {
         "type": "object",
         "properties": {
@@ -2070,25 +2089,6 @@
           }
         }
       },
-      "ProductCategoryReference1": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string"
-          },
-          "short_code": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "name",
-          "short_code"
-        ]
-      },
       "FeeTypeReference": {
         "type": "object",
         "properties": {
@@ -2539,6 +2539,9 @@
           "index": {
             "$ref": "#/components/schemas/IndexReference"
           },
+          "product_category": {
+            "$ref": "#/components/schemas/ProductCategoryReference1"
+          },
           "stream": {
             "$ref": "#/components/schemas/StreamReference"
           },
@@ -2585,9 +2588,6 @@
           },
           "paper": {
             "$ref": "#/components/schemas/Paper"
-          },
-          "product_category": {
-            "$ref": "#/components/schemas/ProductCategoryReference1"
           },
           "fees": {
             "type": "array",
@@ -2679,7 +2679,14 @@
             "default": null,
             "nullable": true
           },
-          "stream": {},
+          "product_category": {
+            "default": null,
+            "nullable": true
+          },
+          "stream": {
+            "default": null,
+            "nullable": true
+          },
           "benchmark": {
             "default": null,
             "nullable": true
@@ -2706,7 +2713,6 @@
           "pricing_basis",
           "settlement_currency",
           "start_date",
-          "stream",
           "term",
           "transaction_type",
           "type",
@@ -4281,7 +4287,14 @@
             "default": null,
             "nullable": true
           },
-          "stream": {},
+          "product_category": {
+            "default": null,
+            "nullable": true
+          },
+          "stream": {
+            "default": null,
+            "nullable": true
+          },
           "benchmark": {
             "default": null,
             "nullable": true
@@ -4317,7 +4330,6 @@
           "pricing_basis",
           "settlement_currency",
           "start_date",
-          "stream",
           "term",
           "transaction_type",
           "type",
@@ -5871,6 +5883,21 @@
           "name"
         ]
       },
+      "LandDescriptionReference1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "description"
+        ]
+      },
       "MeterReference": {
         "type": "object",
         "properties": {
@@ -6015,6 +6042,14 @@
               }
             ]
           },
+          "source_land_description": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LandDescriptionReference1"
+              }
+            ]
+          },
           "source_well": {
             "$ref": "#/components/schemas/WellReference1"
           },
@@ -6031,11 +6066,19 @@
           "destination_facility_operator": {
             "$ref": "#/components/schemas/EntityReference1"
           },
+          "destination_land_description": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LandDescriptionReference1"
+              }
+            ]
+          },
           "destination_facility": {
             "nullable": true,
             "allOf": [
               {
-                "$ref": "#/components/schemas/FacilityReference1"
+                "$ref": "#/components/schemas/FacilityReference2"
               }
             ]
           },
@@ -6224,6 +6267,14 @@
               }
             ]
           },
+          "land_description": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LandDescriptionReference1"
+              }
+            ]
+          },
           "production_date": {
             "type": "string",
             "format": "date",
@@ -6342,6 +6393,10 @@
               }
             ]
           },
+          "default_product_category": {
+            "default": null,
+            "nullable": true
+          },
           "commercial_entity": {
             "$ref": "#/components/schemas/EntityReference1"
           },
@@ -6403,6 +6458,14 @@
               }
             ]
           },
+          "source_land_description": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LandDescriptionReference1"
+              }
+            ]
+          },
           "source_well": {
             "$ref": "#/components/schemas/WellReference1"
           },
@@ -6418,6 +6481,14 @@
           },
           "destination_facility_operator": {
             "$ref": "#/components/schemas/EntityReference1"
+          },
+          "destination_land_description": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LandDescriptionReference1"
+              }
+            ]
           },
           "destination_facility": {
             "nullable": true,
@@ -7426,7 +7497,14 @@
             "default": null,
             "nullable": true
           },
-          "stream": {},
+          "product_category": {
+            "default": null,
+            "nullable": true
+          },
+          "stream": {
+            "default": null,
+            "nullable": true
+          },
           "benchmark": {
             "default": null,
             "nullable": true
@@ -7462,7 +7540,6 @@
           "pricing_basis",
           "settlement_currency",
           "start_date",
-          "stream",
           "term",
           "transaction_type",
           "type",
@@ -9243,6 +9320,10 @@
             "default": null,
             "nullable": true
           },
+          "source_land_description": {
+            "default": null,
+            "nullable": true
+          },
           "source_well": {
             "default": null,
             "nullable": true
@@ -9260,6 +9341,10 @@
             "nullable": true
           },
           "destination_facility_operator": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_land_description": {
             "default": null,
             "nullable": true
           },
@@ -9497,6 +9582,10 @@
           "source_facility": {
             "type": "integer"
           },
+          "source_land_description": {
+            "default": null,
+            "nullable": true
+          },
           "source_well": {
             "type": "integer"
           },
@@ -9512,6 +9601,10 @@
           },
           "destination_facility_operator": {
             "type": "integer"
+          },
+          "destination_land_description": {
+            "default": null,
+            "nullable": true
           },
           "destination_facility": {
             "type": "integer"
@@ -9607,6 +9700,10 @@
             "type": "integer",
             "nullable": true
           },
+          "default_product_category": {
+            "default": null,
+            "nullable": true
+          },
           "codes": {
             "type": "array",
             "items": {
@@ -9664,6 +9761,7 @@
             "type": "string"
           },
           "status": {
+            "default": 1,
             "readOnly": true
           },
           "organization": {
@@ -9678,6 +9776,10 @@
             "nullable": true
           },
           "facility": {
+            "default": null,
+            "nullable": true
+          },
+          "land_description": {
             "default": null,
             "nullable": true
           },
@@ -9795,6 +9897,10 @@
             "default": null,
             "nullable": true
           },
+          "default_product_category": {
+            "default": null,
+            "nullable": true
+          },
           "codes": {
             "readOnly": true
           }
@@ -9802,8 +9908,7 @@
         "required": [
           "external_id",
           "organization",
-          "reference",
-          "status"
+          "reference"
         ]
       },
       "Volumes_ReferenceTankTicketError": {
@@ -9871,6 +9976,10 @@
           },
           "facility": {
             "type": "integer"
+          },
+          "land_description": {
+            "default": null,
+            "nullable": true
           },
           "production_date": {
             "type": "string",
@@ -9954,6 +10063,10 @@
             "type": "integer",
             "nullable": true
           },
+          "default_product_category": {
+            "default": null,
+            "nullable": true
+          },
           "commercial_entity": {
             "type": "integer"
           },
@@ -10007,6 +10120,7 @@
             "type": "string"
           },
           "status": {
+            "default": 1,
             "readOnly": true
           },
           "organization": {
@@ -10032,6 +10146,10 @@
             "default": null,
             "nullable": true
           },
+          "source_land_description": {
+            "default": null,
+            "nullable": true
+          },
           "source_well": {
             "default": null,
             "nullable": true
@@ -10049,6 +10167,10 @@
             "nullable": true
           },
           "destination_facility_operator": {
+            "default": null,
+            "nullable": true
+          },
+          "destination_land_description": {
             "default": null,
             "nullable": true
           },
@@ -10181,8 +10303,7 @@
         "required": [
           "external_id",
           "organization",
-          "reference",
-          "status"
+          "reference"
         ]
       },
       "Volumes_ReferenceMeterTicketError": {
@@ -10258,6 +10379,10 @@
           "source_facility": {
             "type": "integer"
           },
+          "source_land_description": {
+            "default": null,
+            "nullable": true
+          },
           "source_well": {
             "type": "integer"
           },
@@ -10273,6 +10398,10 @@
           },
           "destination_facility_operator": {
             "type": "integer"
+          },
+          "destination_land_description": {
+            "default": null,
+            "nullable": true
           },
           "destination_facility": {
             "type": "integer"
@@ -10357,6 +10486,10 @@
           },
           "temperature_measurement_unit": {
             "type": "integer",
+            "nullable": true
+          },
+          "default_product_category": {
+            "default": null,
             "nullable": true
           },
           "codes": {
